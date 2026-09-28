@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Leçon 20 — Permissions et contrôle d’accès</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<style>body{background:#f7f8fb;color:#42506c}.wrap{max-width:900px;margin:auto;padding:50px 20px}.card{border:1px solid #e5e9f1;border-radius:18px}h1{color:#152354}.badge{background:#eef2ff!important;color:#315eea!important}</style>
+<link href="../../../assets/css/navbar.css" rel="stylesheet"/><style id="astechai-navbar-embedded">:root{--as-navy:#07164d;--as-blue:#1267f3;--as-purple:#8d31f4}
+.as-navbar{min-height:80px;z-index:1050;font-family:Arial,"Segoe UI",sans-serif}
+.as-nav-container{max-width:1440px;padding-left:44px;padding-right:44px}
+.as-brand{display:flex;align-items:center;gap:12px;margin-right:36px}
+.as-brand>span:last-child{display:flex;flex-direction:column}
+.as-brand strong{font-size:27px;line-height:1;color:var(--as-navy);font-weight:850;letter-spacing:-.5px}
+.as-brand strong span{color:#4227c9}.as-brand small{font-size:12px;color:#71809e;margin-top:5px}
+.as-book{width:60px;height:48px;position:relative;display:inline-block;flex:0 0 60px}
+.as-book:before,.as-book:after{content:"";position:absolute;top:4px;width:28px;height:39px;border-radius:5px 5px 15px 5px}
+.as-book:before{left:0;background:linear-gradient(145deg,#0877ff,#1453ee);transform:skewY(8deg)}
+.as-book:after{right:0;background:linear-gradient(145deg,#7058ff,#a22ef2);transform:skewY(-8deg)}
+.as-main-links{gap:7px}.as-main-links .nav-link{color:#0b225c!important;font-size:14px;font-weight:700;padding:11px 18px!important;border-radius:12px}
+.as-main-links .nav-link:hover,.as-main-links .nav-link.active{background:#edf4ff;color:#075bd8!important}
+.as-search{width:255px;height:44px;border-radius:25px;background:#f0f5ff;align-items:center;gap:8px;padding:0 16px;margin-right:22px;color:#7b88a4}
+.as-search input{width:100%;border:0;outline:0;background:transparent;color:#5e6e8b}
+.as-login{border:0!important;border-radius:13px!important;padding:12px 22px!important;color:#fff!important;font-weight:700!important;white-space:nowrap;background:linear-gradient(100deg,#3a7df5,#8b30f4)!important}
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:690px;padding:18px;border:1px solid #e6ebf4;border-radius:18px;box-shadow:0 20px 48px rgba(23,48,96,.14)}
+.as-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.as-course-card{display:flex;align-items:center;gap:11px;min-height:78px;padding:12px;border:1px solid #edf0f6;border-radius:13px;background:#fff;color:#172958;text-decoration:none;transition:.15s ease}
+.as-course-card:hover{background:#f6f9ff;border-color:#dce7ff;transform:translateY(-1px)}
+.as-course-icon{width:42px;height:42px;flex:0 0 42px;border-radius:11px;background:#edf4ff;color:#1267f3;display:grid;place-items:center;font-size:19px;font-weight:800}
+.as-course-icon.orange{background:#fff0eb;color:#e84b27}.as-course-icon.purple{background:#f4eaff;color:#8429ef}
+.as-course-card strong{display:block;font-size:13px;line-height:1.25;color:#102252}.as-course-card small{display:block;margin-top:3px;font-size:10px;line-height:1.25;color:#7b89a5}
+@media(max-width:1199px){.as-nav-container{padding-left:22px;padding-right:22px}.as-brand{margin-right:12px}.as-main-links{gap:1px}.as-main-links .nav-link{padding:10px 11px!important}}
+@media(max-width:991px){.as-navbar{min-height:72px}.as-brand strong{font-size:23px}.as-book{width:50px;flex-basis:50px}.as-book:before,.as-book:after{width:23px;height:36px}.navbar-collapse{padding:12px 0 16px}.as-main-links{align-items:stretch!important}.as-course-menu{position:static!important;transform:none!important;width:100%;margin:5px 0 8px}.as-course-grid{grid-template-columns:1fr 1fr}.as-login{margin-top:8px}}
+@media(max-width:600px){.as-nav-container{padding-left:14px;padding-right:14px}.as-brand small{display:none}.as-course-grid{grid-template-columns:1fr}}
+</style>
+<style id="lesson20-content-styles">
+.content-card{margin-top:1.5rem;padding:1.25rem;border:1px solid #e5e9f1;border-radius:16px;background:#fff}
+.content-card h2{color:#152354;font-size:1.45rem;margin-bottom:1rem}
+.content-card h3{color:#263968;font-size:1.08rem;font-weight:750;margin-top:1.15rem}
+.content-card h4{color:#35466f;font-size:1rem;font-weight:750;margin-top:1rem}
+.callout,.warn,.mini-exercise,.method-box{padding:1rem 1.1rem;border-radius:14px;margin:1rem 0}
+.callout{background:#eef5ff;border-left:4px solid #1265f3}
+.warn{background:#fff7e8;border-left:4px solid #f0a000}
+.method-box{background:#f6f9ff;border:1px solid #dfe8f7}
+.mini-exercise{background:#f7f3ff;border:1px solid #ded2ff}
+.mini-exercise h3{color:#5b2bd9;margin-top:0;font-size:1.02rem}
+.codebox{margin:.7rem 0;padding:1rem 1.1rem;background:#07142f;color:#eef5ff;border-radius:14px;white-space:pre-wrap;overflow:auto}
+.content-card code{font-size:.95em}
+.permission-flow{font-weight:750;text-align:center;padding:1rem;border-radius:14px;background:#f5f8ff;border:1px solid #dfe7f7;margin:1rem 0}
+.scenario-box,.solution-box,.explain-box{padding:1rem 1.1rem;border-radius:14px;margin:1rem 0}
+.scenario-box{background:#fffaf0;border:1px solid #f0dfb7}
+.solution-box{background:#f2fbf5;border:1px solid #cce8d4}
+.explain-box{background:#f6f9ff;border:1px solid #dfe8f7}
+.syntax-parts{margin:.6rem 0 1rem}
+.syntax-parts li{margin:.35rem 0}
+</style>
+
+<style id="solution-toggle-styles">
+details.solution-toggle{
+  margin:1rem 0;
+  border:1px solid #cce8d4;
+  border-radius:14px;
+  background:#f2fbf5;
+  overflow:hidden;
+}
+details.solution-toggle summary{
+  cursor:pointer;
+  padding:.9rem 1.1rem;
+  font-weight:750;
+  color:#17643a;
+  user-select:none;
+  list-style:none;
+}
+details.solution-toggle summary::-webkit-details-marker{display:none}
+details.solution-toggle summary::before{
+  content:"＋";
+  display:inline-block;
+  margin-right:.55rem;
+  font-weight:900;
+}
+details.solution-toggle[open] summary::before{content:"−"}
+details.solution-toggle .solution-content{
+  padding:0 1.1rem 1rem;
+}
+</style>
+
+<style id="lesson20-design-fixes">
+.wrap{max-width:980px;padding:42px 22px 64px}
+.card.shadow-sm{border:1px solid #e4e9f2;box-shadow:0 14px 38px rgba(26,45,85,.07)!important}
+.card-body{overflow:hidden}
+.content-card{
+  margin-top:1.65rem;
+  padding:1.5rem 1.6rem;
+  border:1px solid #e3e9f3;
+  border-radius:18px;
+  box-shadow:0 5px 18px rgba(25,48,91,.035);
+}
+.content-card h2{font-size:1.38rem;line-height:1.35;margin:0 0 1.15rem}
+.content-card h3{font-size:1.04rem;line-height:1.4;margin:1.35rem 0 .65rem}
+.content-card p{line-height:1.65;margin-bottom:.85rem}
+.syntax-parts{padding-left:1.4rem;margin:.65rem 0 1.1rem}
+.syntax-parts li{line-height:1.55;margin:.4rem 0}
+.codebox{
+  margin:.65rem 0 1rem;
+  padding:.95rem 1.1rem;
+  border-radius:12px;
+  line-height:1.55;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04);
+}
+.scenario-box,.explain-box,.callout,.warn,.method-box,.mini-exercise{
+  line-height:1.6;
+  margin:1rem 0;
+}
+.scenario-box{padding:1rem 1.1rem}
+.explain-box{padding:1rem 1.1rem}
+details.solution-toggle{
+  display:block;
+  width:100%;
+  margin:1rem 0 1.15rem;
+  border:1px solid #c9e6d2;
+  border-radius:13px;
+  background:#f3fbf5;
+  overflow:hidden;
+}
+details.solution-toggle summary{
+  display:block;
+  width:100%;
+  padding:.9rem 1.05rem;
+  line-height:1.35;
+  cursor:pointer;
+}
+details.solution-toggle summary::before{content:"＋";margin-right:.65rem}
+details.solution-toggle[open] summary{
+  border-bottom:1px solid #d9ecdf;
+  background:#edf9f1;
+}
+details.solution-toggle[open] summary::before{content:"−"}
+details.solution-toggle .solution-content{
+  padding:1rem 1.05rem 1.05rem;
+}
+details.solution-toggle .solution-content .codebox{
+  margin-top:0;
+}
+details.solution-toggle .solution-content p:last-child{
+  margin-bottom:0!important;
+}
+.table-responsive{margin:1rem 0}
+.table{margin-bottom:0}
+.table th{background:#f4f7fc;color:#172b5c}
+figure img{max-height:560px;object-fit:contain}
+@media(max-width:767px){
+  .wrap{padding:28px 12px 48px}
+  .card-body{padding:1.35rem!important}
+  .content-card{padding:1.15rem}
+  .content-card h2{font-size:1.24rem}
+}
+</style>
+
+
+<style id="exercise-solution-styles">
+.exercise-solution{margin-top:-.15rem!important;margin-bottom:1.35rem!important}
+.exercise-solution summary{color:#17643a}
+.exercise-solution .solution-content p{line-height:1.65}
+</style>
+
+
+<style id="lab-examen-styles">
+.lab-card{border-top:4px solid #315eea}
+.lab-card>h2{font-size:1.55rem}
+.lab-steps{padding-left:1.35rem}
+.lab-steps li{margin:.75rem 0;line-height:1.6;padding-left:.2rem}
+.lab-solution{margin-top:1.4rem!important}
+.lab-solution>summary{font-size:1.02rem}
+.lab-solution .solution-content h3{margin-top:1.3rem}
+</style>
+
+</head>
+<body><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+<div class="container-fluid as-nav-container">
+<a class="navbar-brand as-brand" href="../../../index.html">
+<span aria-hidden="true" class="as-book"></span>
+<span>
+<strong>AsTech<span>AI</span></strong>
+<small>IT Learning Platform</small>
+</span>
+</a>
+<button aria-controls="asMainNavbar" aria-expanded="false" aria-label="Afficher la navigation" class="navbar-toggler" data-bs-target="#asMainNavbar" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="asMainNavbar">
+<ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+<li class="nav-item">
+<a class="nav-link active" href="../../../index.html">Accueil</a>
+</li>
+<li class="nav-item dropdown position-static">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#" role="button">Cours</a>
+<div class="dropdown-menu as-course-menu">
+<div class="as-course-grid">
+<a class="as-course-card" href="../../../cours/gestion-ordinateurs/index.html">
+<span class="as-course-icon">▣</span>
+<span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/microsoft-365/index.html">
+<span class="as-course-icon orange">M</span>
+<span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation/index.html">
+<span class="as-course-icon purple">&lt;/&gt;</span>
+<span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/bases-de-donnees/index.html">
+<span class="as-course-icon">◎</span>
+<span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation-orientee-objet/index.html">
+<span class="as-course-icon purple">◇</span>
+<span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+</a>
+</div>
+</div>
+</li>
+<li class="nav-item"><a class="nav-link" href="../../../projets/index.html">Projets</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#apropos">À propos</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#ressources">Ressources</a></li>
+</ul>
+<form class="d-none d-xl-flex as-search" onsubmit="return false;" role="search">
+<span aria-hidden="true">⌕</span>
+<input aria-label="Rechercher" placeholder="Rechercher..." type="search"/>
+</form>
+<a class="btn as-login" href="../../../connexion/index.html">♙   Connexion</a>
+</div>
+</div>
+</nav><main class="wrap"><a class="text-decoration-none" href="../index.html#lesson-20">← Retour aux leçons</a>
+<div class="card shadow-sm mt-4"><div class="card-body p-4 p-md-5"><span class="badge rounded-pill mb-3">Leçon 20</span><h1>Permissions et contrôle d’accès</h1>
+
+<p class="lead mt-3">Comprendre comment Windows contrôle l’accès aux fichiers et dossiers, puis configurer, vérifier et diagnostiquer les permissions NTFS à l’aide de l’interface graphique et de la commande <code>icacls</code>.</p>
+
+<div class="alert alert-primary mt-4">
+<strong>Objectifs d’apprentissage.</strong> À la fin de cette leçon, l’étudiant sera capable de définir NTFS, une permission et une ACL, de distinguer permissions explicites et héritées, d’expliquer le rôle des groupes dans le contrôle d’accès, de configurer des permissions avec l’interface graphique et <code>icacls</code>, puis de vérifier l’accès obtenu.
+</div>
+
+<section class="content-card">
+<h2>1. Qu’est-ce qu’une permission ?</h2>
+<p>Une <strong>permission</strong> est une autorisation associée à une ressource. Elle indique ce qu’une identité peut faire avec un fichier ou un dossier : le lire, le modifier, l’exécuter ou en contrôler davantage d’aspects.</p>
+<p>Dans Windows, le contrôle d’accès permet donc de répondre à une question fondamentale : <strong>qui peut faire quoi sur quelle ressource ?</strong></p>
+<div class="permission-flow">Identité → Ressource → Permission → Accès autorisé ou refusé</div>
+<div class="callout"><strong>Exemple :</strong> le groupe <code>Etudiants</code> peut recevoir la permission de lecture sur un dossier de documentation, tandis que le groupe <code>Enseignants</code> peut recevoir une permission permettant de modifier son contenu.</div>
+<div class="mini-exercise"><h3>Mini-exercice 1</h3><p>Pour un dossier contenant les consignes d’un examen, proposez un droit adapté aux étudiants et un droit adapté aux enseignants. Justifiez.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 1</summary>
+<div class="solution-content">
+<p><strong>Proposition :</strong> pour les étudiants, <code>R</code> (Lecture) convient afin de consulter les consignes sans les modifier. Pour les enseignants, <code>M</code> (Modification) peut convenir s’ils doivent mettre à jour les documents. Ce choix respecte le principe du moindre privilège.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>2. NTFS et contrôle d’accès</h2>
+<p><strong>NTFS</strong> signifie <em>New Technology File System</em>. C’est un système de fichiers Windows qui prend notamment en charge des mécanismes de sécurité permettant d’associer des permissions aux fichiers et dossiers.</p>
+<p>Les permissions étudiées dans cette leçon sont donc des <strong>permissions NTFS</strong>. Elles concernent les ressources stockées sur un volume utilisant NTFS.</p>
+<div class="callout"><strong>Lien avec les leçons précédentes :</strong> le système de fichiers organise les données sur le volume. Avec NTFS, Windows peut également enregistrer des informations de contrôle d’accès associées aux ressources.</div>
+<div class="mini-exercise"><h3>Mini-exercice 2</h3><p>Expliquez pourquoi il faut connaître le système de fichiers utilisé avant d’appliquer une procédure portant spécifiquement sur les permissions NTFS.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 2</summary>
+<div class="solution-content">
+<p>Il faut d’abord vérifier le système de fichiers, car la procédure étudiée concerne les <strong>permissions NTFS</strong>. Si la ressource n’est pas stockée sur un volume NTFS, on ne peut pas supposer que les mêmes mécanismes et la même procédure s’appliquent.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>3. Utilisateurs, groupes et permissions</h2>
+<p>Windows peut attribuer des permissions à une identité telle qu’un utilisateur ou un groupe. Dans un environnement comportant plusieurs utilisateurs, l’utilisation des <strong>groupes</strong> facilite l’administration.</p>
+<div class="permission-flow">Utilisateur → membre d’un groupe → groupe associé à une permission → accès à la ressource</div>
+<figure class="my-4 text-center">
+<img src="images/utilisateur-groupe-permission-acces.png" class="img-fluid rounded-4 border shadow-sm" alt="Schéma montrant la relation entre un utilisateur, son groupe, les permissions accordées au groupe et l’accès à une ressource Windows"/>
+<figcaption class="text-muted small mt-2">Utilisateur → membre d’un groupe → groupe associé à une permission → accès à la ressource.</figcaption>
+</figure>
+<p>Cette approche évite de configurer séparément les mêmes permissions pour de nombreux comptes. Lorsqu’un nouvel utilisateur doit recevoir les mêmes accès que ses collègues, il peut être ajouté au groupe approprié.</p>
+<div class="callout"><strong>Exemple :</strong> si <code>eleve1</code>, <code>eleve2</code> et <code>eleve3</code> appartiennent au groupe <code>Etudiants</code>, une permission accordée à ce groupe peut s’appliquer aux membres concernés.</div>
+<div class="mini-exercise"><h3>Mini-exercice 3</h3><p>Un laboratoire contient 25 étudiants devant recevoir le même accès à un dossier. Comparez l’attribution individuelle des permissions et l’utilisation d’un groupe.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 3</summary>
+<div class="solution-content">
+<p>Attribuer les permissions individuellement oblige à configurer et maintenir les droits de 25 comptes. Avec un groupe <code>Etudiants</code>, on attribue la permission au groupe, puis les étudiants membres bénéficient de l’accès correspondant. Cette méthode est plus simple à administrer.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>4. Qu’est-ce qu’une ACL ?</h2>
+<p><strong>ACL</strong> signifie <em>Access Control List</em>, ou <strong>liste de contrôle d’accès</strong>. Une ACL contient des entrées décrivant les permissions associées à différentes identités sur une ressource.</p>
+<p>Chaque entrée de contrôle d’accès associe notamment une identité à des droits. Lorsqu’un utilisateur tente d’accéder à une ressource, Windows évalue les informations de sécurité applicables afin de déterminer l’accès effectif.</p>
+<div class="callout"><strong>À retenir :</strong> une ACL n’est pas un groupe d’utilisateurs. C’est une liste de règles d’accès attachée à une ressource.</div>
+<div class="mini-exercise"><h3>Mini-exercice 4</h3><p>Expliquez avec vos mots la différence entre un <strong>groupe</strong> et une <strong>ACL</strong>.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 4</summary>
+<div class="solution-content">
+<p>Un <strong>groupe</strong> rassemble des comptes afin de faciliter leur administration. Une <strong>ACL</strong> est une liste de règles d’accès attachée à une ressource et indiquant quelles identités disposent de quels droits.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>5. Permissions NTFS courantes</h2>
+<p>Les permissions peuvent être simples ou composées de plusieurs droits. Pour cette leçon, nous utilisons principalement les niveaux suivants.</p>
+<div class="table-responsive"><table class="table table-bordered align-middle">
+<thead><tr><th>Code</th><th>Permission</th><th>Idée générale</th></tr></thead>
+<tbody>
+<tr><td><code>R</code></td><td>Read — Lecture</td><td>Lire le contenu autorisé.</td></tr>
+<tr><td><code>W</code></td><td>Write — Écriture</td><td>Créer ou écrire selon les droits associés.</td></tr>
+<tr><td><code>RX</code></td><td>Read and Execute</td><td>Lire et exécuter.</td></tr>
+<tr><td><code>M</code></td><td>Modify — Modification</td><td>Lire, écrire, modifier et supprimer selon les droits associés.</td></tr>
+<tr><td><code>F</code></td><td>Full control — Contrôle total</td><td>Contrôle très étendu de la ressource, y compris des opérations de gestion des permissions selon le contexte.</td></tr>
+</tbody></table></div>
+<div class="warn"><strong>Principe du moindre privilège :</strong> accordez les permissions nécessaires au travail demandé, sans donner inutilement un niveau plus élevé.</div>
+<div class="mini-exercise"><h3>Mini-exercice 5</h3><p>Un étudiant doit consulter les documents d’un dossier sans les modifier. Parmi <code>R</code>, <code>M</code> et <code>F</code>, quelle permission répond le mieux au besoin ? Expliquez.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 5</summary>
+<div class="solution-content">
+<p>La permission <code>R</code> est la plus adaptée : l’étudiant doit seulement consulter les documents. <code>M</code> et <code>F</code> accorderaient davantage de droits que nécessaire.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>6. Permissions explicites et permissions héritées</h2>
+<p>Une <strong>permission explicite</strong> est configurée directement sur le fichier ou le dossier concerné pour une identité donnée.</p>
+<p>Une <strong>permission héritée</strong> provient d’un dossier parent. L’héritage permet de propager des règles d’accès dans une arborescence sans devoir configurer manuellement chaque fichier et chaque sous-dossier.</p>
+<div class="callout"><strong>Exemple :</strong> si le dossier <code>C:\Cours</code> transmet certaines permissions à ses sous-dossiers, <code>C:\Cours\TP</code> peut recevoir ces règles par héritage.</div>
+<div class="warn"><strong>Attention :</strong> retirer une permission explicitement accordée ne signifie pas automatiquement que l’utilisateur perd tout accès. Il peut encore bénéficier d’une permission héritée ou d’un accès obtenu par l’intermédiaire d’un autre groupe.</div>
+<div class="mini-exercise"><h3>Mini-exercice 6</h3><p>Un utilisateur conserve l’accès à un dossier après la suppression d’une entrée explicite. Donnez deux explications possibles à partir des notions de cette section.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 6</summary>
+<div class="solution-content">
+<p>Deux explications possibles : l’utilisateur reçoit encore une <strong>permission héritée</strong> d’un dossier parent, ou il appartient à un <strong>autre groupe</strong> auquel une permission donnant accès à la ressource est accordée.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>7. Autoriser, refuser et déterminer l’accès effectif</h2>
+<p>Le contrôle d’accès peut comprendre des autorisations et, dans certains contextes, des refus explicites. L’accès réellement obtenu par un utilisateur peut dépendre de plusieurs entrées : permissions directes, permissions héritées et appartenance à différents groupes.</p>
+<p>L’<strong>accès effectif</strong> représente les droits dont l’utilisateur dispose réellement après l’évaluation des règles applicables.</p>
+<div class="warn"><strong>Bonne pratique :</strong> évitez de construire inutilement des configurations complexes avec de nombreux refus explicites. Une organisation claire des groupes et des autorisations est généralement plus facile à administrer et à diagnostiquer.</div>
+<div class="mini-exercise"><h3>Mini-exercice 7</h3><p>Pourquoi faut-il examiner les groupes auxquels appartient un utilisateur lorsqu’on cherche à comprendre son accès réel à un dossier ?</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 7</summary>
+<div class="solution-content">
+<p>Les groupes doivent être examinés parce qu’un utilisateur peut recevoir des permissions indirectement grâce à son appartenance à un ou plusieurs groupes. L’accès effectif ne dépend donc pas uniquement des permissions attribuées directement au compte.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>8. Configurer les permissions avec l’interface graphique</h2>
+<p>Windows permet d’observer et de modifier les permissions NTFS depuis les propriétés d’un fichier ou d’un dossier.</p>
+<div class="method-box">
+<strong>Manipulation :</strong>
+<ol class="mb-0 mt-2">
+<li>Créer un dossier de laboratoire, par exemple <code>C:\PartageTP</code>.</li>
+<li>Cliquer avec le bouton droit sur le dossier puis choisir <strong>Propriétés</strong>.</li>
+<li>Ouvrir l’onglet <strong>Sécurité</strong>.</li>
+<li>Observer les utilisateurs et groupes affichés.</li>
+<li>Sélectionner une identité et examiner ses permissions.</li>
+<li>Utiliser les commandes de modification uniquement dans le dossier de laboratoire prévu.</li>
+<li>Valider puis rouvrir l’onglet Sécurité pour vérifier le résultat.</li>
+</ol>
+</div>
+<p>Les intitulés exacts peuvent varier selon la version de Windows, l’édition et le contexte de la ressource.</p>
+<div class="mini-exercise"><h3>Mini-exercice 8</h3><p>Dans votre VM, créez un dossier de test. Ouvrez son onglet <strong>Sécurité</strong> et relevez au moins trois identités présentes ainsi que les permissions affichées pour l’une d’elles. Ne modifiez pas un dossier système.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 8</summary>
+<div class="solution-content">
+<p><strong>Exemple de résultat attendu :</strong> après avoir créé <code>C:\PartageTP</code>, ouvrez <strong>Propriétés → Sécurité</strong>. Relevez trois identités réellement affichées dans votre VM et notez les permissions de l’une d’elles. Les identités peuvent varier selon l’installation Windows : la réponse doit donc être basée sur l’observation de votre propre machine.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>9. Méthode de travail avant une modification</h2>
+<p>Une modification de permissions doit être préparée et vérifiée. Avant d’appliquer un changement, identifiez clairement la ressource, l’identité concernée et le niveau d’accès attendu.</p>
+<div class="method-box"><strong>Méthode :</strong> observer l’état actuel → identifier le besoin → choisir l’identité → choisir la permission → appliquer → relire l’ACL → tester avec le compte concerné.</div>
+<div class="warn"><strong>Précaution de laboratoire :</strong> travaillez sur des dossiers créés pour le TP. Ne modifiez pas les permissions de dossiers système tels que <code>C:\Windows</code> ou d’autres ressources essentielles.</div>
+<div class="mini-exercise"><h3>Mini-exercice 9</h3><p>Expliquez pourquoi il faut relever les permissions existantes avant de modifier l’ACL d’un dossier.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 9</summary>
+<div class="solution-content">
+<p>Relever les permissions existantes permet de connaître l’état initial de l’ACL, d’identifier les règles explicites ou héritées déjà présentes et de comparer cet état avec le résultat obtenu après la modification. Cela facilite aussi le diagnostic en cas de résultat inattendu.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>10. Commande <code>icacls</code> — afficher les permissions</h2>
+
+<h3>10.1 Définition</h3>
+<p><code>icacls</code> est une commande Windows permettant d’afficher et de modifier les listes de contrôle d’accès (ACL) des fichiers et des dossiers. Avant toute modification, il est recommandé de commencer par afficher l’état actuel des permissions.</p>
+
+<h3>10.2 Syntaxe générale</h3>
+<div class="codebox">icacls &lt;chemin&gt;</div>
+<ul class="syntax-parts">
+<li><code>icacls</code> : nom de la commande.</li>
+<li><code>&lt;chemin&gt;</code> : fichier ou dossier dont on souhaite afficher les permissions.</li>
+</ul>
+
+<h3>10.3 Exemple simple</h3>
+<div class="codebox">icacls C:\PartageTP</div>
+<div class="explain-box"><code>icacls</code> demande à Windows d’afficher l’ACL du dossier <code>C:\PartageTP</code>. La commande ne modifie rien : elle permet d’observer les identités présentes et les permissions associées.</div>
+
+<h3>10.4 Exemple 2</h3>
+<div class="scenario-box"><strong>Scénario :</strong> un enseignant vous demande de vérifier les permissions actuelles du dossier <code>C:\Cours</code> avant d’apporter une modification. Vous devez d’abord savoir quels utilisateurs et groupes apparaissent dans son ACL.</div>
+<details class="solution-toggle">
+<summary>Voir la solution</summary>
+<div class="solution-content">
+<div class="codebox">icacls C:\Cours</div>
+<p class="mb-0">Analysez ensuite le résultat affiché. Cette étape permet d’observer les permissions actuelles avant toute modification.</p>
+</div>
+</details>
+
+<h3>10.5 Obtenir l’aide de la commande</h3>
+<div class="codebox">icacls /?</div>
+<div class="explain-box">l’option <code>/?</code> affiche l’aide intégrée de <code>icacls</code>, notamment les opérations et paramètres disponibles.</div>
+
+<div class="mini-exercise"><h3>Mini-exercice 10</h3><p>Créez <code>C:\PartageTP</code>, affichez son ACL avec <code>icacls</code> et identifiez les identités visibles dans le résultat.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 10</summary>
+<div class="solution-content">
+<div class="codebox">mkdir C:\PartageTP
+icacls C:\PartageTP</div><p>La première commande crée le dossier s’il n’existe pas. La seconde affiche son ACL. Il faut ensuite relever dans la sortie les utilisateurs ou groupes visibles et les permissions associées.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>11. Accorder une permission avec <code>icacls /grant</code></h2>
+
+<h3>11.1 Rôle</h3>
+<p>L’opération <code>/grant</code> permet d’accorder une permission à un utilisateur ou à un groupe sur une ressource.</p>
+
+<h3>11.2 Syntaxe générale</h3>
+<div class="codebox">icacls &lt;chemin&gt; /grant &lt;utilisateur_ou_groupe&gt;:&lt;permission&gt;</div>
+<ul class="syntax-parts">
+<li><code>&lt;chemin&gt;</code> : ressource à laquelle la permission sera appliquée.</li>
+<li><code>/grant</code> : opération qui accorde une permission.</li>
+<li><code>&lt;utilisateur_ou_groupe&gt;</code> : identité qui recevra la permission.</li>
+<li><code>&lt;permission&gt;</code> : niveau d’accès, par exemple <code>R</code>, <code>RX</code>, <code>W</code>, <code>M</code> ou <code>F</code>.</li>
+</ul>
+
+<h3>11.3 Exemple 1 — Lecture (<code>R</code>)</h3>
+<div class="scenario-box"><strong>Scénario :</strong> les membres du groupe <code>Etudiants</code> doivent consulter les documents de <code>C:\PartageTP</code> sans recevoir inutilement une permission plus élevée.</div>
+<div class="codebox">icacls C:\PartageTP /grant Etudiants:R</div>
+<p>La permission <code>R</code> signifie <em>Lecture</em>. Le groupe peut lire le contenu autorisé.</p>
+
+<h3>11.4 Exemple 2 — Lecture et exécution (<code>RX</code>)</h3>
+<div class="scenario-box"><strong>Scénario :</strong> le groupe <code>UtilisateursLab</code> doit pouvoir lire et exécuter les éléments autorisés dans <code>C:\Outils</code>.</div>
+<div class="codebox">icacls C:\Outils /grant UtilisateursLab:RX</div>
+<p><code>RX</code> signifie Lecture et exécution.</p>
+
+<h3>11.5 Exemple 3 — Écriture (<code>W</code>)</h3>
+<div class="scenario-box"><strong>Scénario :</strong> le groupe <code>DepotTP</code> doit recevoir un droit d’écriture sur le dossier <code>C:\Depot</code>.</div>
+<div class="codebox">icacls C:\Depot /grant DepotTP:W</div>
+<p><code>W</code> signifie <em>Écriture</em>. Cette permission concerne les opérations d’écriture autorisées par ce niveau de droit.</p>
+
+<h3>11.6 Exemple 4 — Modification (<code>M</code>)</h3>
+<div class="scenario-box"><strong>Scénario :</strong> les membres du groupe <code>Projet</code> doivent travailler sur les fichiers du dossier <code>C:\Projet</code> : lire, écrire, modifier et supprimer selon les droits associés.</div>
+<div class="codebox">icacls C:\Projet /grant Projet:M</div>
+<p><code>M</code> signifie <em>Modification</em>. Il convient lorsqu’un groupe doit réellement travailler sur le contenu plutôt que seulement le consulter.</p>
+
+<h3>11.7 Exemple 5 — Contrôle total (<code>F</code>)</h3>
+<div class="scenario-box"><strong>Scénario :</strong> dans un dossier de laboratoire créé uniquement pour l’exercice, le groupe <code>AdminsLab</code> doit recevoir un contrôle très étendu sur la ressource.</div>
+<div class="codebox">icacls C:\LabTest /grant AdminsLab:F</div>
+<p><code>F</code> signifie <em>Contrôle total</em>. Cette permission est beaucoup plus étendue et ne doit pas être accordée automatiquement lorsqu’un niveau inférieur suffit.</p>
+<div class="warn"><strong>Principe du moindre privilège :</strong> choisissez toujours le niveau de permission nécessaire au besoin réel. N’utilisez pas <code>F</code> simplement pour éviter d’analyser le besoin.</div>
+
+<h3>11.8 Vérifier le résultat</h3>
+<p>Après un <code>/grant</code>, affichez de nouveau l’ACL. Par exemple :</p>
+<div class="codebox">icacls C:\PartageTP</div>
+<p>La capture suivante illustre le type de résultat attendu après l’attribution de la lecture au groupe <code>Etudiants</code>.</p>
+<figure class="my-4 text-center">
+<img src="images/resultat-icacls-grant.png" class="img-fluid rounded-4 border shadow-sm" alt="Capture illustrative du résultat de la commande icacls après attribution de la permission de lecture au groupe Etudiants"/>
+<figcaption class="text-muted small mt-2">Capture illustrative — vérification de l’ACL après <code>/grant Etudiants:R</code>.</figcaption>
+</figure>
+
+<h3>11.9 Comparaison rapide</h3>
+<div class="table-responsive"><table class="table table-bordered align-middle">
+<thead><tr><th>Permission</th><th>Commande d’exemple</th><th>Besoin illustré</th></tr></thead>
+<tbody>
+<tr><td><code>R</code></td><td><code>icacls C:\PartageTP /grant Etudiants:R</code></td><td>Consulter.</td></tr>
+<tr><td><code>RX</code></td><td><code>icacls C:\Outils /grant UtilisateursLab:RX</code></td><td>Lire et exécuter.</td></tr>
+<tr><td><code>W</code></td><td><code>icacls C:\Depot /grant DepotTP:W</code></td><td>Écrire.</td></tr>
+<tr><td><code>M</code></td><td><code>icacls C:\Projet /grant Projet:M</code></td><td>Travailler et modifier le contenu.</td></tr>
+<tr><td><code>F</code></td><td><code>icacls C:\LabTest /grant AdminsLab:F</code></td><td>Contrôle total dans le laboratoire.</td></tr>
+</tbody></table></div>
+
+<details class="solution-toggle">
+<summary>Voir la solution</summary>
+<div class="solution-content">
+<p><strong>Situation :</strong> le groupe <code>Stagiaires</code> doit seulement consulter les fichiers du dossier <code>C:\Documentation</code>.</p>
+<div class="codebox">icacls C:\Documentation /grant Stagiaires:R
+icacls C:\Documentation</div>
+<p class="mb-0">La première commande accorde la lecture. La seconde affiche l’ACL pour vérifier le résultat.</p>
+</div>
+</details>
+
+<div class="mini-exercise"><h3>Mini-exercice 11</h3><p>Pour chacun des besoins suivants, choisissez entre <code>R</code>, <code>RX</code>, <code>W</code>, <code>M</code> et <code>F</code>, puis écrivez la commande <code>icacls /grant</code> correspondante : consulter des documents, exécuter un outil, déposer du contenu, modifier un projet et administrer complètement un dossier de laboratoire.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 11</summary>
+<div class="solution-content">
+<p>Une solution possible pour chaque besoin :</p>
+<div class="codebox">icacls C:\Documentation /grant Etudiants:R
+icacls C:\Outils /grant UtilisateursLab:RX
+icacls C:\Depot /grant DepotTP:W
+icacls C:\Projet /grant Projet:M
+icacls C:\LabTest /grant AdminsLab:F</div>
+<p><code>R</code> sert à consulter, <code>RX</code> à lire et exécuter, <code>W</code> à écrire, <code>M</code> à travailler sur le contenu et <code>F</code> au contrôle total dans le contexte de laboratoire.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>12. Accorder une permission avec héritage : <code>(OI)</code> et <code>(CI)</code></h2>
+
+<h3>12.1 Rôle</h3>
+<p>Lorsqu’une permission est configurée sur un dossier, il peut être nécessaire de préciser comment cette permission doit être héritée par son contenu. Avec <code>icacls</code>, <code>(OI)</code> et <code>(CI)</code> sont des indicateurs d’héritage.</p>
+
+<h3>12.2 Syntaxe générale</h3>
+<div class="codebox">icacls &lt;chemin&gt; /grant &lt;utilisateur_ou_groupe&gt;:(OI)(CI)&lt;permission&gt;</div>
+<div class="table-responsive"><table class="table table-bordered">
+<thead><tr><th>Élément</th><th>Signification</th></tr></thead>
+<tbody>
+<tr><td><code>(OI)</code></td><td><em>Object inherit</em> : héritage vers les fichiers.</td></tr>
+<tr><td><code>(CI)</code></td><td><em>Container inherit</em> : héritage vers les sous-dossiers.</td></tr>
+</tbody></table></div>
+<p><code>(OI)</code> et <code>(CI)</code> sont des indicateurs placés dans la spécification de permission ; ce ne sont pas des options commençant par <code>/</code>.</p>
+
+<h3>12.3 Exemple simple</h3>
+<div class="codebox">icacls C:\PartageTP /grant Etudiants:(OI)(CI)R</div>
+<div class="explain-box">la permission de lecture <code>R</code> est accordée au groupe <code>Etudiants</code>. <code>(OI)</code> prévoit l’héritage vers les fichiers et <code>(CI)</code> vers les sous-dossiers.</div>
+
+<h3>12.4 Exemple 2</h3>
+<div class="scenario-box"><strong>Scénario :</strong> le dossier <code>C:\Cours</code> contient plusieurs fichiers et sous-dossiers. Le groupe <code>Etudiants</code> doit pouvoir lire le contenu actuel et les éléments auxquels la règle d’héritage s’applique.</div>
+<details class="solution-toggle">
+<summary>Voir la solution</summary>
+<div class="solution-content">
+<div class="codebox">icacls C:\Cours /grant Etudiants:(OI)(CI)R
+icacls C:\Cours</div>
+<p class="mb-0">La première commande accorde la lecture avec héritage. La deuxième affiche l’ACL pour vérifier le résultat.</p>
+</div>
+</details>
+
+<div class="mini-exercise"><h3>Mini-exercice 12</h3><p>Expliquez pourquoi les indicateurs <code>(OI)</code> et <code>(CI)</code> sont utiles lorsqu’un dossier contient des fichiers et des sous-dossiers.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 12</summary>
+<div class="solution-content">
+<p><code>(OI)</code> permet l’héritage vers les <strong>fichiers</strong>, tandis que <code>(CI)</code> permet l’héritage vers les <strong>sous-dossiers</strong>. Ils sont donc utiles lorsqu’une règle appliquée au dossier parent doit également concerner son contenu.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>13. Remplacer une permission explicitement accordée avec <code>icacls /grant:r</code></h2>
+
+<h3>13.1 Rôle</h3>
+<p><code>/grant:r</code> est utilisé ici pour remplacer les permissions explicitement accordées à l’identité concernée par la nouvelle permission indiquée.</p>
+
+<h3>13.2 Syntaxe générale</h3>
+<div class="codebox">icacls &lt;chemin&gt; /grant:r &lt;utilisateur_ou_groupe&gt;:&lt;permission&gt;</div>
+<p>Avec héritage vers les fichiers et sous-dossiers :</p>
+<div class="codebox">icacls &lt;chemin&gt; /grant:r &lt;utilisateur_ou_groupe&gt;:(OI)(CI)&lt;permission&gt;</div>
+
+<h3>13.3 Exemple simple</h3>
+<div class="codebox">icacls C:\PartageTP /grant:r Etudiants:(OI)(CI)M</div>
+<div class="explain-box"><code>/grant:r</code> remplace les permissions explicitement accordées au groupe <code>Etudiants</code> sur cette ressource par <code>M</code> (<em>Modify</em>), avec les indicateurs d’héritage <code>(OI)(CI)</code>.</div>
+
+<h3>13.4 Exemple 2</h3>
+<div class="scenario-box"><strong>Scénario :</strong> le groupe <code>Projet</code> possédait initialement la lecture sur <code>C:\Projet</code>. Les membres doivent maintenant pouvoir modifier le contenu du dossier. Vous voulez remplacer l’entrée explicite étudiée dans le TP.</div>
+<details class="solution-toggle">
+<summary>Voir la solution</summary>
+<div class="solution-content">
+<div class="codebox">icacls C:\Projet /grant:r Projet:(OI)(CI)M
+icacls C:\Projet</div>
+<p class="mb-0"><code>/grant:r</code> remplace les permissions explicites accordées au groupe par <code>M</code>. La deuxième commande vérifie l’ACL.</p>
+</div>
+</details>
+
+<div class="mini-exercise"><h3>Mini-exercice 13</h3><p>Après avoir accordé la lecture au groupe de test, remplacez cette entrée par <code>M</code>. Vérifiez l’ACL avant et après la modification et décrivez le changement.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 13</summary>
+<div class="solution-content">
+<div class="codebox">icacls C:\PartageTP
+icacls C:\PartageTP /grant:r Etudiants:(OI)(CI)M
+icacls C:\PartageTP</div>
+<p>La première commande relève l’état initial. La deuxième remplace les permissions explicitement accordées au groupe <code>Etudiants</code> par <code>M</code> avec héritage. La troisième permet de vérifier le changement dans l’ACL.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>14. Retirer une permission explicitement accordée avec <code>icacls /remove:g</code></h2>
+
+<h3>14.1 Rôle</h3>
+<p><code>/remove:g</code> permet de retirer les permissions accordées explicitement à l’identité indiquée. Cette opération ne permet pas, à elle seule, de conclure que l’utilisateur n’a plus aucun accès : d’autres groupes ou l’héritage peuvent encore lui fournir des droits.</p>
+
+<h3>14.2 Syntaxe générale</h3>
+<div class="codebox">icacls &lt;chemin&gt; /remove:g &lt;utilisateur_ou_groupe&gt;</div>
+<ul class="syntax-parts">
+<li><code>&lt;chemin&gt;</code> : ressource concernée.</li>
+<li><code>/remove:g</code> : retire les permissions explicitement accordées à l’identité.</li>
+<li><code>&lt;utilisateur_ou_groupe&gt;</code> : identité dont l’entrée accordée doit être retirée.</li>
+</ul>
+
+<h3>14.3 Exemple simple</h3>
+<div class="codebox">icacls C:\PartageTP /remove:g Etudiants</div>
+<div class="explain-box">Windows retire de <code>C:\PartageTP</code> les permissions explicitement accordées au groupe <code>Etudiants</code> visées par cette opération.</div>
+
+<h3>14.4 Exemple 2</h3>
+<div class="scenario-box"><strong>Scénario :</strong> le groupe temporaire <code>Stagiaires</code> avait reçu une permission explicite sur <code>C:\Archives</code>. Le stage est terminé et cette entrée explicitement accordée doit être retirée.</div>
+<details class="solution-toggle">
+<summary>Voir la solution</summary>
+<div class="solution-content">
+<div class="codebox">icacls C:\Archives /remove:g Stagiaires
+icacls C:\Archives</div>
+<p class="mb-0">La première commande retire les permissions explicitement accordées au groupe. La deuxième affiche l’ACL pour vérifier le résultat.</p>
+</div>
+</details>
+
+<div class="warn"><strong>Important :</strong> retirer une entrée explicitement accordée ne prouve pas que l’identité n’a plus accès à la ressource. L’accès effectif doit être vérifié.</div>
+<div class="mini-exercise"><h3>Mini-exercice 14</h3><p>Retirez l’entrée explicitement accordée au groupe de test, affichez l’ACL et expliquez pourquoi un test d’accès avec le compte concerné reste nécessaire.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 14</summary>
+<div class="solution-content">
+<div class="codebox">icacls C:\PartageTP /remove:g Etudiants
+icacls C:\PartageTP</div>
+<p>La première commande retire les permissions explicitement accordées au groupe. La seconde vérifie l’ACL. Un test avec le compte concerné reste nécessaire, car un accès peut encore provenir de l’héritage ou d’un autre groupe.</p>
+</div>
+</details>
+</section>
+
+<section class="content-card">
+<h2>15. Résumé des commandes <code>icacls</code></h2>
+<p>Voici les principales opérations étudiées pour gérer les permissions d’un dossier.</p>
+
+<div class="table-responsive"><table class="table table-bordered align-middle">
+<thead><tr><th>Action</th><th>Commande</th><th>Rôle</th></tr></thead>
+<tbody>
+<tr><td><strong>Afficher</strong></td><td><code>icacls C:\PartageTP</code></td><td>Afficher les permissions actuelles.</td></tr>
+<tr><td><strong>Accorder</strong></td><td><code>icacls C:\PartageTP /grant Etudiants:R</code></td><td>Accorder la permission de lecture au groupe <code>Etudiants</code>.</td></tr>
+<tr><td><strong>Accorder avec héritage</strong></td><td><code>icacls C:\PartageTP /grant Etudiants:(OI)(CI)R</code></td><td>Accorder la lecture et permettre son héritage par les fichiers et sous-dossiers.</td></tr>
+<tr><td><strong>Remplacer</strong></td><td><code>icacls C:\PartageTP /grant:r Etudiants:(OI)(CI)M</code></td><td>Remplacer les permissions explicites accordées au groupe par <code>M</code> (Modification).</td></tr>
+<tr><td><strong>Retirer</strong></td><td><code>icacls C:\PartageTP /remove:g Etudiants</code></td><td>Retirer les permissions explicitement accordées au groupe.</td></tr>
+</tbody></table></div>
+
+<div class="method-box"><strong>Méthode :</strong> afficher l’ACL → appliquer la commande nécessaire → afficher de nouveau l’ACL → tester l’accès.</div>
+
+<div class="mini-exercise">
+<h3>Mini-exercice 15</h3>
+<p>Sur le dossier <code>C:\PartageTP</code>, accordez au groupe <code>Etudiants</code> la permission de lecture avec héritage. Vérifiez ensuite le résultat avec <code>icacls</code>.</p>
+</div>
+
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 15</summary>
+<div class="solution-content">
+<div class="codebox">icacls C:\PartageTP /grant Etudiants:(OI)(CI)R
+icacls C:\PartageTP</div>
+<p class="mb-0">La première commande accorde au groupe <code>Etudiants</code> la permission de lecture <code>R</code> avec héritage vers les fichiers <code>(OI)</code> et les sous-dossiers <code>(CI)</code>. La deuxième commande affiche l’ACL afin de vérifier que l’entrée attendue est présente.</p>
+</div>
+</details>
+
+</section>
+
+<section class="content-card">
+<h2>16. Manipulation guidée — sécuriser un dossier de laboratoire</h2>
+<p><strong>Situation :</strong> le groupe <code>Etudiants</code> existe déjà et contient des comptes de test. Vous devez préparer un dossier <code>C:\Travaux</code>.</p>
+<ol>
+<li>Créer le dossier <code>C:\Travaux</code>.</li>
+<li>Afficher son ACL initiale.</li>
+<li>Accorder au groupe <code>Etudiants</code> la lecture avec héritage vers les fichiers et sous-dossiers.</li>
+<li>Afficher l’ACL et relever le résultat.</li>
+<li>Créer un fichier et un sous-dossier de test dans <code>C:\Travaux</code>.</li>
+<li>Observer les permissions héritées sur les nouveaux éléments.</li>
+<li>Remplacer l’entrée explicitement accordée au groupe par <code>M</code>.</li>
+<li>Afficher de nouveau l’ACL.</li>
+<li>Tester l’accès avec un compte membre du groupe.</li>
+<li>Retirer l’entrée ajoutée pendant le TP.</li>
+<li>Afficher l’ACL finale et documenter les observations.</li>
+</ol>
+<div class="method-box"><strong>Réflexe attendu :</strong> aucune modification sans observation préalable, aucune conclusion sans vérification.</div>
+<div class="mini-exercise"><h3>Mini-exercice 16</h3><p>Réalisez la manipulation dans votre VM et préparez un tableau avec quatre colonnes : <strong>étape</strong>, <strong>commande/action</strong>, <strong>résultat attendu</strong> et <strong>résultat observé</strong>.</p></div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 16</summary>
+<div class="solution-content">
+<p><strong>Exemple de démarche :</strong></p>
+<div class="codebox">mkdir C:\Travaux
+icacls C:\Travaux
+icacls C:\Travaux /grant Etudiants:(OI)(CI)R
+icacls C:\Travaux
+icacls C:\Travaux /grant:r Etudiants:(OI)(CI)M
+icacls C:\Travaux
+icacls C:\Travaux /remove:g Etudiants
+icacls C:\Travaux</div>
+<p>Entre ces étapes, créez un fichier et un sous-dossier de test, observez leurs permissions héritées et testez l’accès avec un compte membre du groupe. Le tableau demandé doit distinguer la commande exécutée, le résultat attendu et le résultat réellement observé dans la VM.</p>
+</div>
+</details>
+</section>
+
+
+
+
+
+<section class="content-card">
+<h2>19. Exercice intégrateur</h2>
+<p>Préparez dans votre VM un environnement comprenant deux utilisateurs de test, un groupe <code>Projet</code> et un dossier <code>C:\Projet</code>. Les utilisateurs doivent être membres du groupe.</p>
+<p>Votre travail doit :</p>
+<ol>
+<li>afficher l’ACL initiale du dossier ;</li>
+<li>accorder au groupe la lecture avec héritage ;</li>
+<li>vérifier et tester ;</li>
+<li>remplacer la permission par Modification ;</li>
+<li>vérifier et tester de nouveau ;</li>
+<li>retirer l’entrée explicitement accordée ;</li>
+<li>examiner l’ACL finale ;</li>
+<li>expliquer si un accès subsiste et d’où il pourrait provenir.</li>
+</ol>
+<p>Présentez les commandes, les résultats observés et une courte justification pour chaque étape.</p>
+
+<details class="solution-toggle exercise-solution">
+<summary>Voir une proposition de solution</summary>
+<div class="solution-content">
+<p><strong>Exemple de procédure :</strong></p>
+<div class="codebox">mkdir C:\Projet
+icacls C:\Projet
+icacls C:\Projet /grant Projet:(OI)(CI)R
+icacls C:\Projet
+icacls C:\Projet /grant:r Projet:(OI)(CI)M
+icacls C:\Projet
+icacls C:\Projet /remove:g Projet
+icacls C:\Projet</div>
+<p>Après l’attribution de <code>R</code>, les membres du groupe doivent disposer de la lecture selon les règles applicables. Après <code>/grant:r ... M</code>, l’entrée explicite étudiée est remplacée par la permission de modification. Après <code>/remove:g</code>, l’entrée explicitement accordée est retirée.</p>
+<p class="mb-0"><strong>Vérification finale :</strong> si un utilisateur conserve un accès, examinez les permissions héritées et les autres groupes auxquels il appartient. L’ACL doit être relue après chaque modification et l’accès doit être testé avec le compte concerné.</p>
+</div>
+</details>
+
+</section>
+
+
+<section class="content-card lab-card">
+<h2>Laboratoire — Gestion des accès à un dossier d’examen</h2>
+
+<div class="scenario-box">
+<strong>Scénario :</strong> vous devez préparer un dossier sécurisé contenant des fichiers d’examen. Trois utilisateurs et deux groupes doivent être créés. Le groupe <code>Enseignants</code> doit pouvoir accéder au dossier, tandis que le groupe <code>Etudiants</code> ne doit pas pouvoir y accéder.
+</div>
+
+<h3>Objectifs</h3>
+<p>À la fin de ce laboratoire, vous serez capable de créer des utilisateurs et des groupes locaux, d’organiser les utilisateurs dans les groupes appropriés, de créer des ressources de test et de configurer puis vérifier leurs permissions.</p>
+
+<h3>Situation à mettre en place</h3>
+<div class="table-responsive">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Utilisateur</th><th>Groupe</th><th>Rôle</th></tr></thead>
+<tbody>
+<tr><td><code>Enseignant1</code></td><td><code>Enseignants</code></td><td>Professeur</td></tr>
+<tr><td><code>Etudiant1</code></td><td><code>Etudiants</code></td><td>Étudiant</td></tr>
+<tr><td><code>Etudiant2</code></td><td><code>Etudiants</code></td><td>Étudiant</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Travail demandé</h3>
+<ol class="lab-steps">
+<li><strong>Créer les utilisateurs.</strong> Créez trois comptes locaux nommés <code>Enseignant1</code>, <code>Etudiant1</code> et <code>Etudiant2</code>.</li>
+<li><strong>Créer les groupes.</strong> Créez deux groupes locaux nommés <code>Enseignants</code> et <code>Etudiants</code>.</li>
+<li><strong>Organiser les utilisateurs.</strong> Ajoutez <code>Enseignant1</code> au groupe <code>Enseignants</code>. Ajoutez <code>Etudiant1</code> et <code>Etudiant2</code> au groupe <code>Etudiants</code>.</li>
+<li><strong>Vérifier les groupes.</strong> Vérifiez que chaque utilisateur appartient au groupe demandé avant de continuer.</li>
+<li><strong>Créer le dossier.</strong> Sur votre Bureau, créez un dossier nommé <code>Examen</code>.</li>
+<li><strong>Créer les fichiers.</strong> Dans le dossier <code>Examen</code>, créez deux fichiers texte : <code>Examen-mi-session.txt</code> et <code>Examen-final.txt</code>.</li>
+<li><strong>Observer l’état initial.</strong> Affichez les permissions actuelles du dossier <code>Examen</code> avant d’apporter une modification.</li>
+<li><strong>Configurer l’accès.</strong> Configurez les permissions afin que le groupe <code>Enseignants</code> puisse accéder au dossier <code>Examen</code> et à son contenu.</li>
+<li><strong>Bloquer l’accès des étudiants.</strong> Configurez les permissions afin que les membres du groupe <code>Etudiants</code> ne puissent pas accéder au dossier <code>Examen</code>.</li>
+<li><strong>Vérifier les permissions.</strong> Affichez de nouveau l’ACL du dossier et relevez les entrées correspondant aux deux groupes.</li>
+<li><strong>Tester.</strong> Testez l’accès avec <code>Enseignant1</code>, <code>Etudiant1</code> et <code>Etudiant2</code> et notez le résultat obtenu pour chaque compte.</li>
+</ol>
+
+<h3>Résultats attendus</h3>
+<div class="table-responsive">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Compte</th><th>Résultat attendu</th></tr></thead>
+<tbody>
+<tr><td><code>Enseignant1</code></td><td>Peut accéder au dossier <code>Examen</code> et à son contenu.</td></tr>
+<tr><td><code>Etudiant1</code></td><td>Ne peut pas accéder au dossier <code>Examen</code>.</td></tr>
+<tr><td><code>Etudiant2</code></td><td>Ne peut pas accéder au dossier <code>Examen</code>.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>À remettre</h3>
+<p>Présentez les commandes utilisées, les vérifications effectuées et un court tableau indiquant le résultat du test pour chacun des trois utilisateurs.</p>
+
+<details class="solution-toggle lab-solution">
+<summary>Voir la solution du laboratoire</summary>
+<div class="solution-content">
+
+<h3>1. Créer les utilisateurs</h3>
+<div class="codebox">net user Enseignant1 * /add
+net user Etudiant1 * /add
+net user Etudiant2 * /add</div>
+<p>Vérifiez ensuite les comptes :</p>
+<div class="codebox">net user</div>
+
+<h3>2. Créer les groupes</h3>
+<div class="codebox">net localgroup Enseignants /add
+net localgroup Etudiants /add</div>
+
+<h3>3. Ajouter les utilisateurs aux groupes</h3>
+<div class="codebox">net localgroup Enseignants Enseignant1 /add
+net localgroup Etudiants Etudiant1 /add
+net localgroup Etudiants Etudiant2 /add</div>
+<p>Vérifiez les membres :</p>
+<div class="codebox">net localgroup Enseignants
+net localgroup Etudiants</div>
+
+<h3>4. Créer le dossier et les fichiers</h3>
+<p>Créez le dossier <code>Examen</code> sur le Bureau, puis créez à l’intérieur <code>Examen-mi-session.txt</code> et <code>Examen-final.txt</code>.</p>
+
+<h3>5. Afficher l’ACL initiale</h3>
+<div class="codebox">icacls "%USERPROFILE%\Desktop\Examen"</div>
+
+<h3>6. Accorder l’accès aux professeurs</h3>
+<div class="codebox">icacls "%USERPROFILE%\Desktop\Examen" /grant Enseignants:(OI)(CI)M</div>
+<p><code>M</code> accorde la permission de modification. <code>(OI)</code> applique l’héritage aux fichiers et <code>(CI)</code> aux sous-dossiers.</p>
+
+<h3>7. Refuser l’accès aux étudiants</h3>
+<div class="codebox">icacls "%USERPROFILE%\Desktop\Examen" /deny Etudiants:(OI)(CI)F</div>
+<p>Cette règle de laboratoire refuse au groupe <code>Etudiants</code> les droits visés sur le dossier et son contenu. Un refus explicite doit être utilisé avec prudence.</p>
+
+<h3>8. Vérifier les permissions</h3>
+<div class="codebox">icacls "%USERPROFILE%\Desktop\Examen"</div>
+<p>Vérifiez que les entrées des groupes <code>Enseignants</code> et <code>Etudiants</code> apparaissent dans l’ACL.</p>
+
+<h3>9. Tester les comptes</h3>
+<div class="table-responsive">
+<table class="table table-bordered align-middle mb-0">
+<thead><tr><th>Utilisateur</th><th>Test</th><th>Résultat attendu</th></tr></thead>
+<tbody>
+<tr><td><code>Enseignant1</code></td><td>Ouvrir <code>Examen</code> et les deux fichiers.</td><td>Accès autorisé.</td></tr>
+<tr><td><code>Etudiant1</code></td><td>Ouvrir <code>Examen</code>.</td><td>Accès refusé.</td></tr>
+<tr><td><code>Etudiant2</code></td><td>Ouvrir <code>Examen</code>.</td><td>Accès refusé.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="method-box mt-3"><strong>Vérification finale :</strong> ne concluez pas uniquement à partir de la commande. Testez réellement l’accès avec les trois comptes.</div>
+</div>
+</details>
+</section>
+
+
+<section class="content-card">
+<h2>20. Synthèse</h2>
+<div class="table-responsive"><table class="table table-bordered align-middle">
+<thead><tr><th>Notion</th><th>Idée essentielle</th></tr></thead>
+<tbody>
+<tr><td>Permission</td><td>Détermine les actions autorisées sur une ressource.</td></tr>
+<tr><td>NTFS</td><td>Système de fichiers Windows prenant en charge les permissions étudiées.</td></tr>
+<tr><td>ACL</td><td>Liste des entrées de contrôle d’accès associées à une ressource.</td></tr>
+<tr><td>Permission explicite</td><td>Configurée directement sur la ressource.</td></tr>
+<tr><td>Permission héritée</td><td>Provient d’un dossier parent.</td></tr>
+<tr><td>Groupe</td><td>Facilite l’administration des accès de plusieurs utilisateurs.</td></tr>
+<tr><td><code>icacls</code></td><td>Affiche ou modifie les ACL depuis la ligne de commande.</td></tr>
+<tr><td><code>/grant</code></td><td>Accorde des permissions.</td></tr>
+<tr><td><code>/grant:r</code></td><td>Remplace les permissions explicitement accordées à l’identité concernée.</td></tr>
+<tr><td><code>/remove:g</code></td><td>Retire les permissions explicitement accordées à l’identité.</td></tr>
+<tr><td><code>(OI)</code> / <code>(CI)</code></td><td>Indicateurs d’héritage vers les fichiers et sous-dossiers.</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="content-card">
+<h2>À retenir</h2>
+<p>Le contrôle d’accès Windows repose sur l’association entre des identités, des ressources et des permissions. Avec NTFS, les ACL permettent de décrire ces règles. Une administration fiable tient compte des groupes, distingue permissions explicites et héritées, applique le principe du moindre privilège et vérifie toujours l’accès après une modification. L’interface graphique permet d’observer les règles, tandis que <code>icacls</code> permet de les afficher et de les administrer en ligne de commande.</p>
+</section>
+
+</div></div></main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script></body></html>

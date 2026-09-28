@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Leçon 3 — Systèmes d’exploitation</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<style>body{background:#f7f8fb;color:#42506c}.wrap{max-width:900px;margin:auto;padding:50px 20px}.card{border:1px solid #e5e9f1;border-radius:18px}h1{color:#152354}.badge{background:#eef2ff!important;color:#315eea!important}</style>
+<link href="../../../assets/css/navbar.css" rel="stylesheet"/><style id="astechai-navbar-embedded">:root{--as-navy:#07164d;--as-blue:#1267f3;--as-purple:#8d31f4}
+.as-navbar{min-height:80px;z-index:1050;font-family:Arial,"Segoe UI",sans-serif}
+.as-nav-container{max-width:1440px;padding-left:44px;padding-right:44px}
+.as-brand{display:flex;align-items:center;gap:12px;margin-right:36px}
+.as-brand>span:last-child{display:flex;flex-direction:column}
+.as-brand strong{font-size:27px;line-height:1;color:var(--as-navy);font-weight:850;letter-spacing:-.5px}
+.as-brand strong span{color:#4227c9}.as-brand small{font-size:12px;color:#71809e;margin-top:5px}
+.as-book{width:60px;height:48px;position:relative;display:inline-block;flex:0 0 60px}
+.as-book:before,.as-book:after{content:"";position:absolute;top:4px;width:28px;height:39px;border-radius:5px 5px 15px 5px}
+.as-book:before{left:0;background:linear-gradient(145deg,#0877ff,#1453ee);transform:skewY(8deg)}
+.as-book:after{right:0;background:linear-gradient(145deg,#7058ff,#a22ef2);transform:skewY(-8deg)}
+.as-main-links{gap:7px}.as-main-links .nav-link{color:#0b225c!important;font-size:14px;font-weight:700;padding:11px 18px!important;border-radius:12px}
+.as-main-links .nav-link:hover,.as-main-links .nav-link.active{background:#edf4ff;color:#075bd8!important}
+.as-search{width:255px;height:44px;border-radius:25px;background:#f0f5ff;align-items:center;gap:8px;padding:0 16px;margin-right:22px;color:#7b88a4}
+.as-search input{width:100%;border:0;outline:0;background:transparent;color:#5e6e8b}
+.as-login{border:0!important;border-radius:13px!important;padding:12px 22px!important;color:#fff!important;font-weight:700!important;white-space:nowrap;background:linear-gradient(100deg,#3a7df5,#8b30f4)!important}
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:690px;padding:18px;border:1px solid #e6ebf4;border-radius:18px;box-shadow:0 20px 48px rgba(23,48,96,.14)}
+.as-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.as-course-card{display:flex;align-items:center;gap:11px;min-height:78px;padding:12px;border:1px solid #edf0f6;border-radius:13px;background:#fff;color:#172958;text-decoration:none;transition:.15s ease}
+.as-course-card:hover{background:#f6f9ff;border-color:#dce7ff;transform:translateY(-1px)}
+.as-course-icon{width:42px;height:42px;flex:0 0 42px;border-radius:11px;background:#edf4ff;color:#1267f3;display:grid;place-items:center;font-size:19px;font-weight:800}
+.as-course-icon.orange{background:#fff0eb;color:#e84b27}.as-course-icon.purple{background:#f4eaff;color:#8429ef}
+.as-course-card strong{display:block;font-size:13px;line-height:1.25;color:#102252}.as-course-card small{display:block;margin-top:3px;font-size:10px;line-height:1.25;color:#7b89a5}
+@media(max-width:1199px){.as-nav-container{padding-left:22px;padding-right:22px}.as-brand{margin-right:12px}.as-main-links{gap:1px}.as-main-links .nav-link{padding:10px 11px!important}}
+@media(max-width:991px){.as-navbar{min-height:72px}.as-brand strong{font-size:23px}.as-book{width:50px;flex-basis:50px}.as-book:before,.as-book:after{width:23px;height:36px}.navbar-collapse{padding:12px 0 16px}.as-main-links{align-items:stretch!important}.as-course-menu{position:static!important;transform:none!important;width:100%;margin:5px 0 8px}.as-course-grid{grid-template-columns:1fr 1fr}.as-login{margin-top:8px}}
+@media(max-width:600px){.as-nav-container{padding-left:14px;padding-right:14px}.as-brand small{display:none}.as-course-grid{grid-template-columns:1fr}}
+</style></head>
+<body><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+<div class="container-fluid as-nav-container">
+<a class="navbar-brand as-brand" href="../../../index.html">
+<span aria-hidden="true" class="as-book"></span>
+<span>
+<strong>AsTech<span>AI</span></strong>
+<small>IT Learning Platform</small>
+</span>
+</a>
+<button aria-controls="asMainNavbar" aria-expanded="false" aria-label="Afficher la navigation" class="navbar-toggler" data-bs-target="#asMainNavbar" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="asMainNavbar">
+<ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+<li class="nav-item">
+<a class="nav-link active" href="../../../index.html">Accueil</a>
+</li>
+<li class="nav-item dropdown position-static">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#" role="button">Cours</a>
+<div class="dropdown-menu as-course-menu">
+<div class="as-course-grid">
+<a class="as-course-card" href="../../../cours/gestion-ordinateurs/index.html">
+<span class="as-course-icon">▣</span>
+<span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/microsoft-365/index.html">
+<span class="as-course-icon orange">M</span>
+<span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation/index.html">
+<span class="as-course-icon purple">&lt;/&gt;</span>
+<span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/bases-de-donnees/index.html">
+<span class="as-course-icon">◎</span>
+<span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation-orientee-objet/index.html">
+<span class="as-course-icon purple">◇</span>
+<span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+</a>
+</div>
+</div>
+</li>
+<li class="nav-item"><a class="nav-link" href="../../../projets/index.html">Projets</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#apropos">À propos</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#ressources">Ressources</a></li>
+</ul>
+<form class="d-none d-xl-flex as-search" onsubmit="return false;" role="search">
+<span aria-hidden="true">⌕</span>
+<input aria-label="Rechercher" placeholder="Rechercher..." type="search"/>
+</form>
+<a class="btn as-login" href="../../../connexion/index.html">♙   Connexion</a>
+</div>
+</div>
+</nav><main class="wrap"><a class="text-decoration-none" href="../index.html#lesson-3">← Retour aux leçons</a>
+<div class="card shadow-sm mt-4"><div class="card-body p-4 p-md-5"><span class="badge rounded-pill mb-3">Leçon 3</span><h1>Systèmes d’exploitation</h1>
+<p class="lead mt-3">Comprendre le rôle d’un système d’exploitation, ses principales fonctions et la manière dont il assure l’interaction entre l’utilisateur, les applications et le matériel.</p>
+
+<div class="alert alert-primary mt-4">
+<strong>Objectifs d’apprentissage.</strong> À la fin de cette leçon, l’étudiant sera capable de définir un système d’exploitation, d’expliquer son rôle, d’identifier ses principales fonctions et composantes, de distinguer noyau, interpréteur de commandes et système de fichiers, de reconnaître les notions d’édition et de distribution et d’identifier des critères permettant de choisir une solution adaptée aux besoins.
+</div>
+
+<section class="mt-5">
+<h2>1. Définition d’un système d’exploitation</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Un <strong>système d’exploitation</strong>, souvent abrégé <strong>SE</strong> ou <strong>OS (Operating System)</strong>, est l’ensemble de logiciels fondamentaux qui permettent à un ordinateur de fonctionner et d’utiliser ses ressources matérielles.</p>
+<p>Il constitue une couche intermédiaire entre le <strong>matériel</strong>, les <strong>applications</strong> et l’<strong>utilisateur</strong>. Sans système d’exploitation, l’utilisateur devrait contrôler directement les composants matériels et chaque application devrait gérer elle-même les particularités du matériel.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Lorsqu’un utilisateur ouvre un navigateur Web, il ne demande pas directement au processeur de lire des instructions ni au SSD de rechercher chaque fichier. L’application formule des demandes au système d’exploitation, qui coordonne l’accès aux ressources nécessaires.</p>
+
+<div class="alert alert-warning"><strong>Exercice 1.</strong> Expliquez avec vos propres mots pourquoi le système d’exploitation peut être considéré comme un intermédiaire entre les applications et le matériel.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>2. Pourquoi un système d’exploitation est-il nécessaire ?</h2>
+<p>Un ordinateur possède plusieurs ressources : processeur, RAM, stockage, écran, clavier, souris, interfaces réseau et autres périphériques. Plusieurs programmes peuvent vouloir utiliser ces ressources simultanément. Le système d’exploitation fournit des mécanismes permettant de les organiser et de les partager.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Besoin</th><th>Rôle du système d’exploitation</th></tr></thead>
+<tbody>
+<tr><td>Exécuter des applications</td><td>Charge les programmes, leur attribue des ressources et supervise leur exécution.</td></tr>
+<tr><td>Utiliser la mémoire</td><td>Organise l’utilisation de la RAM par le système et les programmes.</td></tr>
+<tr><td>Conserver des fichiers</td><td>Fournit une organisation logique permettant de créer, lire, modifier et supprimer des fichiers.</td></tr>
+<tr><td>Utiliser les périphériques</td><td>Coordonne les échanges avec le clavier, la souris, l’écran, l’imprimante et d’autres équipements.</td></tr>
+<tr><td>Utiliser le réseau</td><td>Fournit les services nécessaires aux communications réseau.</td></tr>
+<tr><td>Contrôler l’accès</td><td>Gère notamment les comptes, les droits et certaines protections du système.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Lorsque plusieurs applications sont ouvertes, le système d’exploitation doit répartir le temps du processeur et la mémoire disponible entre elles tout en maintenant le fonctionnement de l’interface et des services du système.</p>
+
+<div class="alert alert-warning"><strong>Exercice 2.</strong> Donnez quatre ressources matérielles gérées par un système d’exploitation et expliquez pourquoi leur gestion doit être coordonnée.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>3. Les principales fonctions d’un système d’exploitation</h2>
+
+<h3 class="h5 mt-4">Gestion du processeur et des processus</h3>
+<p>Un <strong>processus</strong> est une instance d’un programme en cours d’exécution. Le système d’exploitation organise l’exécution des processus et répartit l’utilisation du processeur entre les différentes tâches.</p>
+
+<h3 class="h5 mt-4">Gestion de la mémoire</h3>
+<p>Le système d’exploitation attribue de l’espace en mémoire aux programmes et récupère cet espace lorsqu’il n’est plus nécessaire. Il doit également éviter qu’un programme n’utilise arbitrairement la mémoire réservée à un autre processus.</p>
+
+<h3 class="h5 mt-4">Gestion des fichiers et du stockage</h3>
+<p>Le système fournit des mécanismes pour organiser les données sous forme de fichiers et de dossiers. Il permet notamment leur création, leur lecture, leur modification, leur déplacement et leur suppression.</p>
+
+<h3 class="h5 mt-4">Gestion des périphériques</h3>
+<p>Le système d’exploitation coordonne l’utilisation des périphériques. Il s’appuie notamment sur des <strong>pilotes</strong> pour communiquer avec certains matériels.</p>
+
+<h3 class="h5 mt-4">Gestion des droits</h3>
+<p>Le système d’exploitation assure la <strong>gestion des permissions d’accès aux ressources</strong> pour les différents utilisateurs. Cette fonction permet de déterminer qui peut accéder à une ressource et quelles opérations sont autorisées.</p>
+
+<h3 class="h5 mt-4">Gestion des utilisateurs et de la sécurité</h3>
+<p>La gestion des droits s’inscrit dans un ensemble plus large comprenant les comptes utilisateurs et les mécanismes permettant de contrôler l’accès aux ressources du système.</p>
+
+<h3 class="h5 mt-4">Gestion du réseau</h3>
+<p>Les systèmes modernes intègrent des fonctions permettant de configurer les interfaces réseau et de communiquer avec d’autres machines et services.</p>
+
+<div class="alert alert-warning"><strong>Exercice 3.</strong> Associez chaque situation à la fonction du système d’exploitation concernée : ouvrir un fichier, lancer une application, connecter une imprimante, se connecter avec un compte utilisateur et accéder à un serveur sur le réseau.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>4. Le noyau du système d’exploitation</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Le <strong>noyau</strong>, ou <strong>kernel</strong>, est la partie centrale du système d’exploitation. Il fonctionne au cœur du système et fournit des mécanismes fondamentaux permettant de gérer les ressources matérielles et l’exécution des programmes.</p>
+<p>Il intervient notamment dans la gestion du processeur, de la mémoire, des entrées/sorties et des interactions de bas niveau avec le matériel.</p>
+
+<div class="alert alert-info">
+<strong>À distinguer :</strong> le système d’exploitation ne se limite pas au noyau. Le document de cours met en évidence trois composantes : <strong>le noyau</strong>, <strong>l’interpréteur de commandes</strong> et <strong>le système de fichiers</strong>.
+</div>
+
+<h3 class="h5 mt-4">L’interpréteur de commandes (shell)</h3>
+<p>L’<strong>interpréteur de commandes</strong>, appelé <strong>shell</strong> en anglais, permet la communication avec le système d’exploitation au moyen d’un langage de commandes.</p>
+
+<h3 class="h5 mt-4">Le système de fichiers</h3>
+<p>Le <strong>système de fichiers</strong>, ou <strong>file system (FS)</strong>, permet d’enregistrer et d’organiser les fichiers dans une <strong>arborescence</strong>.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Une application qui souhaite accéder à un fichier ne manipule normalement pas directement le contrôleur du stockage. Elle utilise les services fournis par le système, qui transmet les opérations nécessaires aux couches appropriées.</p>
+
+<div class="alert alert-warning"><strong>Exercice 4.</strong> Expliquez pourquoi il serait incorrect d’affirmer que « le noyau et le système d’exploitation sont exactement la même chose ».</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>5. Interface utilisateur : GUI et CLI</h2>
+<p>L’utilisateur doit disposer d’un moyen d’interagir avec le système. Deux formes d’interaction sont particulièrement importantes.</p>
+<figure class="my-4 text-center">
+<img src="images/interface-utilisateur.png" class="img-fluid rounded-4 border shadow-sm" alt="Exemple d’interface graphique d’un système Windows avec bureau et menu" loading="lazy" style="max-width:760px;width:100%;">
+<figcaption class="small text-secondary mt-2">Exemple d’interface graphique (GUI) permettant à l’utilisateur d’interagir visuellement avec le système d’exploitation.</figcaption>
+</figure>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Interface</th><th>Définition</th><th>Exemples d’utilisation</th></tr></thead>
+<tbody>
+<tr><td><strong>GUI</strong></td><td><strong>Graphical User Interface</strong> : interface graphique reposant notamment sur des fenêtres, menus, icônes et boutons.</td><td>Explorateur de fichiers, paramètres système, bureau.</td></tr>
+<tr><td><strong>CLI</strong></td><td><strong>Command-Line Interface</strong> : interface permettant de communiquer avec le système au moyen de commandes textuelles.</td><td>Terminal, invite de commandes, shell.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Une interface graphique facilite de nombreuses opérations courantes. Une interface en ligne de commande permet quant à elle d’exécuter précisément des commandes, d’automatiser certaines tâches et d’administrer efficacement un système. Les deux approches sont complémentaires.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Un utilisateur peut créer un dossier avec un gestionnaire de fichiers graphique. Un administrateur peut effectuer une opération équivalente à l’aide d’une commande dans un terminal.</p>
+
+<div class="alert alert-warning"><strong>Exercice 5.</strong> Donnez deux avantages d’une interface graphique et deux situations dans lesquelles une interface en ligne de commande peut être particulièrement utile.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>6. Pilotes et communication avec le matériel</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Un <strong>pilote de périphérique</strong>, ou <strong>driver</strong>, est un logiciel permettant au système d’exploitation de communiquer avec un matériel particulier.</p>
+<p>Le pilote traduit les opérations attendues par le système en interactions adaptées au périphérique concerné. Les détails de l’installation et de la gestion des pilotes seront étudiés dans une leçon dédiée.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Une imprimante peut être physiquement connectée à l’ordinateur, mais le système doit également être capable de la reconnaître et de lui transmettre correctement les travaux d’impression.</p>
+
+<div class="alert alert-warning"><strong>Exercice 6.</strong> Un nouvel équipement est correctement branché mais n’est pas reconnu par le système. Expliquez pourquoi le pilote constitue l’un des éléments à vérifier.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>7. Types de systèmes d’exploitation</h2>
+<p>Les systèmes d’exploitation peuvent être classés selon le matériel utilisé et le rôle de la machine.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Catégorie</th><th>Utilisation générale</th><th>Exemples</th></tr></thead>
+<tbody>
+<tr><td>Ordinateurs personnels</td><td>Postes de travail et ordinateurs portables.</td><td>Windows, macOS, distributions Linux.</td></tr>
+<tr><td>Serveurs</td><td>Fourniture de services à d’autres systèmes ou utilisateurs.</td><td>Windows Server, distributions Linux serveur.</td></tr>
+<tr><td>Mobiles</td><td>Téléphones intelligents et tablettes.</td><td>Android, iOS.</td></tr>
+<tr><td>Embarqués</td><td>Équipements spécialisés intégrant un système informatique.</td><td>Systèmes destinés à des appareils ou contrôleurs spécialisés.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 7.</strong> Pour chacun des contextes suivants, indiquez la catégorie de système la plus appropriée : ordinateur portable d’un étudiant, téléphone intelligent, serveur de fichiers d’une entreprise et contrôleur intégré à un équipement spécialisé.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>8. Windows, Linux et macOS : vue d’ensemble</h2>
+<p><strong>Windows</strong>, <strong>Linux</strong> et <strong>macOS</strong> sont trois environnements importants sur les ordinateurs personnels et professionnels, mais ils ne sont pas organisés exactement de la même manière.</p>
+<figure class="my-4 text-center">
+<img src="images/systemes-exploitation.png" class="img-fluid rounded-4 border shadow-sm" alt="Illustration des systèmes d’exploitation Windows, Linux et macOS" loading="lazy">
+<figcaption class="small text-secondary mt-2">Trois environnements de systèmes d’exploitation : Windows, Linux et macOS.</figcaption>
+</figure>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Système</th><th>Caractéristiques générales</th></tr></thead>
+<tbody>
+<tr><td><strong>Windows</strong></td><td>Système largement utilisé sur les ordinateurs personnels et dans de nombreux environnements professionnels; il propose des outils graphiques et des outils d’administration en ligne de commande.</td></tr>
+<tr><td><strong>Linux</strong></td><td>Famille de systèmes reposant sur le noyau Linux et distribuée sous différentes distributions; très présente dans les serveurs et également disponible sur les postes de travail.</td></tr>
+<tr><td><strong>macOS</strong></td><td>Système d’exploitation d’Apple destiné aux ordinateurs Mac, avec une interface graphique et des outils Unix sous-jacents.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Le choix d’un système dépend du matériel, des applications nécessaires, des contraintes de l’organisation, des compétences disponibles et des objectifs d’utilisation. Cette leçon vise à comprendre leurs principes communs plutôt qu’à établir un classement entre eux.</p>
+
+<div class="alert alert-warning"><strong>Exercice 8.</strong> Citez trois critères techniques ou organisationnels qui peuvent influencer le choix d’un système d’exploitation.</div>
+</section>
+<hr class="my-5">
+
+<section>
+<h2>9. Éditions, versions et distributions</h2>
+<h3 class="h5 mt-4">Pourquoi plusieurs éditions ?</h3>
+<p>Les systèmes d’exploitation peuvent être proposés sous différentes <strong>éditions</strong>. Ces éditions offrent des fonctionnalités différentes afin de répondre aux besoins variés des utilisateurs. Le choix de l’édition influence donc l’expérience et les possibilités offertes par le système.</p>
+
+<h3 class="h5 mt-4">Exemple : éditions de Windows</h3>
+<p>Le document de cours présente, avec Windows 10, les éditions <strong>Familiale</strong>, <strong>Professionnelle</strong>, <strong>Entreprise</strong> et <strong>Éducation</strong>. Cet exemple montre qu’un même système peut être décliné pour différents contextes d’utilisation.</p>
+
+<h3 class="h5 mt-4">Linux : distributions et personnalisation</h3>
+<p>Pour Linux, le document met plutôt l’accent sur les <strong>distributions</strong>. Il indique qu’il n’existe pas d’édition unique comparable au modèle présenté pour Windows et cite notamment <strong>Ubuntu</strong>, <strong>Fedora</strong> et <strong>Debian</strong>. Cette diversité permet de choisir un environnement adapté à des besoins spécifiques.</p>
+
+<div class="table-responsive mt-3"><table class="table table-bordered align-middle">
+<thead><tr><th>Notion</th><th>Idée essentielle</th><th>Exemples du document</th></tr></thead>
+<tbody>
+<tr><td><strong>Édition</strong></td><td>Variante d’un système destinée à certains usages ou publics.</td><td>Windows Familiale, Professionnelle, Entreprise, Éducation.</td></tr>
+<tr><td><strong>Distribution Linux</strong></td><td>Choix d’un environnement Linux pouvant répondre à des besoins spécifiques.</td><td>Ubuntu, Fedora, Debian.</td></tr>
+</tbody></table></div>
+
+<div class="alert alert-warning"><strong>Exercice 9.</strong> Expliquez la différence entre une édition de Windows et une distribution Linux en vous appuyant sur les exemples du cours.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>10. Comment choisir une édition ou un système ?</h2>
+<p>Le document propose quatre critères principaux à considérer avant de choisir :</p>
+<div class="row g-3 mt-2">
+<div class="col-md-6"><div class="p-3 border rounded-4 h-100"><strong>Utilisation personnelle ou professionnelle</strong><p class="mb-0 mt-2">Identifier le contexte dans lequel le système sera utilisé.</p></div></div>
+<div class="col-md-6"><div class="p-3 border rounded-4 h-100"><strong>Sécurité et gestion des appareils</strong><p class="mb-0 mt-2">Déterminer les besoins de contrôle et de gestion du poste.</p></div></div>
+<div class="col-md-6"><div class="p-3 border rounded-4 h-100"><strong>Fonctionnalités spécifiques</strong><p class="mb-0 mt-2">Repérer les besoins liés, par exemple, à la créativité ou au gaming.</p></div></div>
+<div class="col-md-6"><div class="p-3 border rounded-4 h-100"><strong>Budget</strong><p class="mb-0 mt-2">Prendre en compte les contraintes financières dans le choix.</p></div></div>
+</div>
+
+<h3 class="h5 mt-4">Exemples de choix</h3>
+<p>Le cours illustre cette démarche par différents profils : un étudiant utilisant un ordinateur portable, une entreprise ayant des besoins de sécurité et de gestion, et un créateur de contenu recherchant des fonctionnalités avancées.</p>
+
+<div class="alert alert-warning"><strong>Exercice 10.</strong> Pour chacun des profils suivants — étudiant, entreprise et créateur de contenu — indiquez les besoins qu’il faudrait analyser avant de choisir une édition.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>11. Vérifier les exigences techniques</h2>
+<p>Avant l’installation, il faut vérifier que l’ordinateur satisfait les <strong>conditions techniques</strong> du système et de la version choisis. Le document de cours organise cette vérification autour de quatre éléments principaux :</p>
+<div class="table-responsive mt-3"><table class="table table-bordered align-middle">
+<thead><tr><th>Élément</th><th>Vérification</th></tr></thead>
+<tbody>
+<tr><td><strong>Processeur</strong></td><td>Vérifier que ses caractéristiques satisfont les exigences indiquées.</td></tr>
+<tr><td><strong>Mémoire RAM</strong></td><td>Vérifier que la quantité disponible est suffisante.</td></tr>
+<tr><td><strong>Espace disque</strong></td><td>Vérifier que le stockage disponible permet l’installation.</td></tr>
+<tr><td><strong>Carte graphique</strong></td><td>Vérifier la compatibilité demandée par le système.</td></tr>
+</tbody></table></div>
+
+<div class="alert alert-info"><strong>Référence actualisée :</strong> les exigences minimales officielles de Windows 10 64 bits utilisées dans cette leçon sont : processeur de 1 GHz ou plus, 2 Go de RAM, 32 Go ou plus de stockage pour les versions récentes, DirectX 9 ou ultérieur avec pilote WDDM 1.0 et écran 800 × 600 minimum.</div>
+<div class="alert alert-warning"><strong>Exercice 11.</strong> Expliquez pourquoi il faut vérifier ces quatre éléments avant de commencer l’installation d’un système d’exploitation.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>12. Différents systèmes d’exploitation et leurs prérequis</h2>
+<p>Avant d’installer un système d’exploitation, il faut identifier le système et la version visés, puis vérifier que l’ordinateur possède les ressources matérielles nécessaires. Les principaux éléments à contrôler sont le <strong>processeur</strong>, la <strong>mémoire RAM</strong>, l’<strong>espace de stockage</strong> et, lorsque cela est exigé, les capacités graphiques ou d’autres caractéristiques de la plateforme.</p>
+
+<div class="table-responsive mt-4">
+<table class="table table-bordered align-middle">
+<thead>
+<tr>
+<th>Système d’exploitation</th>
+<th>Contexte</th>
+<th>Prérequis / vérifications</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Windows 10 64 bits</strong></td>
+<td>Ordinateurs personnels et professionnels.</td>
+<td>
+<ul class="mb-2">
+<li><strong>CPU :</strong> 1 GHz ou plus</li>
+<li><strong>RAM :</strong> 2 Go pour 64 bits</li>
+<li><strong>Stockage :</strong> 32 Go ou plus pour les versions récentes</li>
+<li><strong>GPU :</strong> DirectX 9 ou ultérieur avec pilote WDDM 1.0</li>
+<li><strong>Écran :</strong> 800 × 600 minimum</li>
+</ul>
+<p class="mb-1"><strong>À noter :</strong> le support standard de Windows 10 a pris fin le <strong>14 octobre 2025</strong>.</p>
+<a href="https://support.microsoft.com/en-us/windows/windows-10-system-requirements-6d4e9a79-66bf-7950-467c-795cf0386715" target="_blank" rel="noopener noreferrer">Source : Microsoft Support</a>
+</td>
+</tr>
+<tr>
+<td><strong>Ubuntu Desktop</strong></td>
+<td>Distribution Linux destinée aux ordinateurs de bureau et portables.</td>
+<td>
+<ul class="mb-2">
+<li><strong>CPU :</strong> double cœur 2 GHz ou supérieur</li>
+<li><strong>Mémoire :</strong> 6 Go de mémoire système</li>
+<li><strong>Stockage :</strong> 25 Go d’espace disque libre</li>
+<li><strong>Installation :</strong> port USB ou lecteur DVD pour le support d’installation</li>
+<li><strong>Internet :</strong> utile pendant l’installation</li>
+</ul>
+<a href="https://ubuntu.com/download/desktop" target="_blank" rel="noopener noreferrer">Source : Ubuntu</a>
+</td>
+</tr>
+<tr>
+<td><strong>macOS</strong></td>
+<td>Système d’exploitation des ordinateurs Mac.</td>
+<td>
+<p>Apple ne définit pas un minimum générique unique sous la forme « CPU + RAM + disque » pour toutes les versions de macOS. Il faut surtout vérifier que le <strong>modèle précis du Mac est compatible avec la version de macOS</strong> que l’on souhaite installer.</p>
+<p class="mb-2">Pour <strong>macOS Tahoe 26</strong>, Apple fournit directement une liste des modèles de Mac compatibles.</p>
+<a href="https://support.apple.com/fr-fr/122867" target="_blank" rel="noopener noreferrer">Source : Assistance Apple — compatibilité macOS Tahoe 26</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-info mt-4">
+<strong>Attention :</strong> un « prérequis minimal » indique qu’un système peut satisfaire les conditions nécessaires à l’installation; il ne garantit pas nécessairement une expérience confortable pour toutes les applications. Les exigences doivent aussi être vérifiées pour la <strong>version précise</strong> du système que l’on souhaite installer.
+</div>
+
+<h3 class="h5 mt-4">Méthode de vérification avant installation</h3>
+<ol>
+<li>Identifier le système d’exploitation et sa version.</li>
+<li>Relever les caractéristiques matérielles de l’ordinateur.</li>
+<li>Comparer le processeur, la RAM, le stockage et les autres exigences avec les prérequis annoncés.</li>
+<li>Vérifier la compatibilité du matériel et des périphériques nécessaires.</li>
+<li>Ne commencer l’installation que lorsque les conditions requises sont satisfaites.</li>
+</ol>
+
+<div class="alert alert-warning">
+<strong>Exercice 12 — Analyse.</strong> Un ordinateur possède un processeur de 1 GHz, 1 Go de RAM, 40 Go d’espace disque disponible et une carte graphique compatible DirectX 9 avec pilote WDDM 1.0. Comparez cette configuration aux prérequis de Windows 10 64 bits présentés dans le tableau. Identifiez le ou les éléments qui posent problème et justifiez votre réponse.
+</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>13. Du démarrage à l’utilisation du système</h2>
+<p>Lorsqu’un ordinateur est mis sous tension, plusieurs étapes doivent se produire avant que l’utilisateur puisse travailler. À ce stade du cours, on peut retenir la séquence générale suivante :</p>
+<ol>
+<li>Le matériel est mis sous tension et initialisé.</li>
+<li>Le firmware participe à l’identification du périphérique de démarrage.</li>
+<li>Le mécanisme de démarrage charge les éléments nécessaires du système d’exploitation.</li>
+<li>Le noyau initialise les ressources fondamentales.</li>
+<li>Les services du système démarrent.</li>
+<li>Une interface de connexion ou un environnement utilisateur devient disponible.</li>
+<li>L’utilisateur peut ensuite lancer ses applications.</li>
+</ol>
+<div class="alert alert-info"><strong>Important :</strong> le BIOS/UEFI et le processus de démarrage seront étudiés plus en détail dans une leçon spécifique. Ici, l’objectif est uniquement de situer le système d’exploitation dans la séquence générale.</div>
+
+<div class="alert alert-warning"><strong>Exercice 13.</strong> Replacez dans un ordre logique : lancement d’une application, initialisation du matériel, chargement du système d’exploitation et ouverture de la session utilisateur. Justifiez brièvement votre ordre.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>14. Relation entre applications, système d’exploitation et matériel</h2>
+<p>Une application utilise les services du système d’exploitation pour accéder aux ressources. Le système d’exploitation coordonne ensuite l’utilisation du matériel.</p>
+
+<figure class="my-4 text-center">
+<img src="images/relation-utilisateur-application-os-materiel.png"
+     class="img-fluid rounded-4 border shadow-sm"
+     alt="Schéma de la relation entre l’utilisateur, l’application, le système d’exploitation et le matériel, avec le retour des résultats vers l’utilisateur"
+     loading="lazy">
+<figcaption class="small text-secondary mt-2">
+La demande part de l’utilisateur vers l’application, puis passe par le système d’exploitation jusqu’au matériel. Les résultats suivent ensuite le chemin inverse jusqu’à l’utilisateur.
+</figcaption>
+</figure>
+
+<h3 class="h5 mt-4">Exemple guidé : ouverture d’un fichier</h3>
+<ol>
+<li>L’utilisateur sélectionne un fichier dans une application.</li>
+<li>L’application demande au système d’exploitation d’accéder au fichier.</li>
+<li>Le système vérifie les informations nécessaires et localise les données à travers son organisation du stockage.</li>
+<li>Les opérations d’entrée/sortie nécessaires sont réalisées avec le périphérique de stockage.</li>
+<li>Les données sont placées en mémoire pour être utilisées.</li>
+<li>L’application traite les données et présente le résultat à l’utilisateur.</li>
+</ol>
+
+<div class="alert alert-warning"><strong>Exercice 14.</strong> Décrivez le chemin général suivi lorsqu’un utilisateur demande à une application d’imprimer un document. Faites intervenir au minimum l’application, le système d’exploitation, le pilote et l’imprimante.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>Mise en situation — Plusieurs applications en même temps</h2>
+<p>Un utilisateur ouvre un navigateur avec plusieurs onglets, un logiciel de visioconférence et un traitement de texte. Pendant ce temps, il télécharge un fichier et imprime un document.</p>
+<ol>
+<li>Quelles ressources matérielles sont sollicitées ?</li>
+<li>Quelles fonctions du système d’exploitation interviennent dans cette situation ?</li>
+<li>Pourquoi le système doit-il organiser l’utilisation du processeur et de la RAM ?</li>
+<li>Quel rôle joue le système lors de l’impression ?</li>
+<li>Quel rôle joue-t-il dans le téléchargement du fichier ?</li>
+</ol>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>Activité de synthèse</h2>
+<p>Construisez un schéma expliquant le rôle du système d’exploitation dans un ordinateur. Votre schéma doit faire apparaître :</p>
+<ul>
+<li>l’utilisateur;</li>
+<li>les applications;</li>
+<li>le système d’exploitation;</li>
+<li>le noyau;</li>
+<li>les pilotes;</li>
+<li>le processeur et la mémoire;</li>
+<li>le stockage;</li>
+<li>au moins deux périphériques.</li>
+</ul>
+<p>Ajoutez des flèches et une courte explication pour montrer comment circulent les demandes et les résultats.</p>
+<p class="mt-3">Complétez votre synthèse par un tableau indiquant <strong>une édition Windows</strong>, <strong>une distribution Linux</strong> et les <strong>quatre critères de choix</strong> présentés dans le cours.</p>
+</section>
+
+<section class="mt-5">
+<h2>À retenir</h2>
+<div class="alert alert-success mb-0">
+Le système d’exploitation coordonne les interactions entre le matériel, les logiciels et les utilisateurs. Il gère notamment le processeur, la mémoire, les entrées/sorties, les fichiers et les droits. Le cours distingue aussi le noyau, l’interpréteur de commandes et le système de fichiers. Les systèmes peuvent être proposés sous différentes éditions ou distributions : le choix dépend notamment du type d’utilisation, des besoins de sécurité et de gestion, des fonctionnalités recherchées, du budget et des exigences techniques.
+</div>
+</section>
+<hr class="my-5">
+
+<section id="quiz-lecon-3" class="mt-5">
+<h2>Quiz autocorrigé — Systèmes d’exploitation</h2>
+<p>Répondez aux questions suivantes, puis cliquez sur <strong>Corriger le quiz</strong>. Une seule réponse est correcte pour chaque question.</p>
+
+<form id="osQuiz" class="mt-4">
+
+<div class="quiz-question p-4 mb-4 border rounded-4" data-answer="b">
+<p class="fw-bold">1. Quel est le rôle général d’un système d’exploitation ?</p>
+<label class="d-block mb-2"><input type="radio" name="q1" value="a"> Remplacer tous les composants matériels.</label>
+<label class="d-block mb-2"><input type="radio" name="q1" value="b"> Coordonner les ressources matérielles et fournir des services aux applications et aux utilisateurs.</label>
+<label class="d-block mb-2"><input type="radio" name="q1" value="c"> Servir uniquement à stocker les fichiers personnels.</label>
+<label class="d-block"><input type="radio" name="q1" value="d"> Transformer automatiquement un ordinateur en serveur.</label>
+<div class="quiz-feedback mt-3"></div>
+</div>
+
+<div class="quiz-question p-4 mb-4 border rounded-4" data-answer="c">
+<p class="fw-bold">2. Qu’est-ce qu’un processus ?</p>
+<label class="d-block mb-2"><input type="radio" name="q2" value="a"> Un périphérique connecté à l’ordinateur.</label>
+<label class="d-block mb-2"><input type="radio" name="q2" value="b"> Un dossier réservé au système.</label>
+<label class="d-block mb-2"><input type="radio" name="q2" value="c"> Une instance d’un programme en cours d’exécution.</label>
+<label class="d-block"><input type="radio" name="q2" value="d"> Une partition du disque.</label>
+<div class="quiz-feedback mt-3"></div>
+</div>
+
+<div class="quiz-question p-4 mb-4 border rounded-4" data-answer="a">
+<p class="fw-bold">3. Quelle partie constitue le cœur du système d’exploitation et intervient notamment dans la gestion du processeur et de la mémoire ?</p>
+<label class="d-block mb-2"><input type="radio" name="q3" value="a"> Le noyau (kernel).</label>
+<label class="d-block mb-2"><input type="radio" name="q3" value="b"> L’interface graphique.</label>
+<label class="d-block mb-2"><input type="radio" name="q3" value="c"> Le navigateur Web.</label>
+<label class="d-block"><input type="radio" name="q3" value="d"> Le système de fichiers uniquement.</label>
+<div class="quiz-feedback mt-3"></div>
+</div>
+
+<div class="quiz-question p-4 mb-4 border rounded-4" data-answer="d">
+<p class="fw-bold">4. Un périphérique est correctement branché, mais le système ne parvient pas à communiquer avec lui. Quel élément faut-il notamment vérifier ?</p>
+<label class="d-block mb-2"><input type="radio" name="q4" value="a"> Le fond d’écran.</label>
+<label class="d-block mb-2"><input type="radio" name="q4" value="b"> Le nom du compte utilisateur.</label>
+<label class="d-block mb-2"><input type="radio" name="q4" value="c"> Le nombre de dossiers personnels.</label>
+<label class="d-block"><input type="radio" name="q4" value="d"> Le pilote du périphérique.</label>
+<div class="quiz-feedback mt-3"></div>
+</div>
+
+<div class="quiz-question p-4 mb-4 border rounded-4" data-answer="b">
+<p class="fw-bold">5. Quelle proposition décrit correctement GUI et CLI ?</p>
+<label class="d-block mb-2"><input type="radio" name="q5" value="a"> GUI et CLI sont deux types de processeurs.</label>
+<label class="d-block mb-2"><input type="radio" name="q5" value="b"> GUI utilise une interface graphique, tandis que CLI permet l’interaction au moyen de commandes textuelles.</label>
+<label class="d-block mb-2"><input type="radio" name="q5" value="c"> GUI sert uniquement au réseau et CLI uniquement au stockage.</label>
+<label class="d-block"><input type="radio" name="q5" value="d"> CLI désigne obligatoirement une distribution Linux.</label>
+<div class="quiz-feedback mt-3"></div>
+</div>
+
+<div class="quiz-question p-4 mb-4 border rounded-4" data-answer="c">
+<p class="fw-bold">6. Un ordinateur possède 1 GHz de processeur, 1 Go de RAM, 40 Go de stockage et un GPU compatible DirectX 9 avec WDDM 1.0. Quel élément ne respecte pas les prérequis de Windows 10 64 bits présentés dans cette leçon ?</p>
+<label class="d-block mb-2"><input type="radio" name="q6" value="a"> Le processeur.</label>
+<label class="d-block mb-2"><input type="radio" name="q6" value="b"> Le stockage.</label>
+<label class="d-block mb-2"><input type="radio" name="q6" value="c"> La mémoire RAM.</label>
+<label class="d-block"><input type="radio" name="q6" value="d"> Le GPU.</label>
+<div class="quiz-feedback mt-3"></div>
+</div>
+
+<div class="quiz-question p-4 mb-4 border rounded-4" data-answer="a">
+<p class="fw-bold">7. Lorsqu’un utilisateur ouvre un fichier avec une application, quelle séquence représente le mieux la relation étudiée dans la leçon ?</p>
+<label class="d-block mb-2"><input type="radio" name="q7" value="a"> Utilisateur → Application → Système d’exploitation → Matériel.</label>
+<label class="d-block mb-2"><input type="radio" name="q7" value="b"> Matériel → Utilisateur → Application → Système d’exploitation.</label>
+<label class="d-block mb-2"><input type="radio" name="q7" value="c"> Application → Matériel → Utilisateur → Système d’exploitation.</label>
+<label class="d-block"><input type="radio" name="q7" value="d"> Système d’exploitation → Utilisateur → Matériel → Application.</label>
+<div class="quiz-feedback mt-3"></div>
+</div>
+
+<div class="d-flex flex-wrap gap-2">
+<button type="button" id="quizSubmit" class="btn btn-primary px-4">Corriger le quiz</button>
+<button type="button" id="quizReset" class="btn btn-outline-secondary px-4">Recommencer</button>
+</div>
+<div id="quizResult" class="alert mt-4 d-none" role="status"></div>
+</form>
+</section>
+
+</div></div></main>
+
+<script>
+(function () {
+  const form = document.getElementById('osQuiz');
+  const submit = document.getElementById('quizSubmit');
+  const reset = document.getElementById('quizReset');
+  const result = document.getElementById('quizResult');
+  if (!form || !submit || !reset || !result) return;
+
+  const explanations = [
+    "Le système d’exploitation coordonne les ressources matérielles et sert d’intermédiaire entre le matériel, les applications et l’utilisateur.",
+    "Un processus est une instance d’un programme en cours d’exécution.",
+    "Le noyau est la partie centrale du système d’exploitation et gère notamment le processeur, la mémoire et les entrées/sorties.",
+    "Le pilote permet au système d’exploitation de communiquer correctement avec un matériel particulier.",
+    "GUI désigne une interface graphique; CLI désigne une interface permettant l’interaction au moyen de commandes textuelles.",
+    "La leçon indique 2 Go de RAM pour Windows 10 64 bits. Avec seulement 1 Go, cette configuration ne respecte pas ce prérequis.",
+    "La demande part de l’utilisateur vers l’application, passe par le système d’exploitation puis atteint le matériel; le résultat revient ensuite vers l’utilisateur."
+  ];
+
+  submit.addEventListener('click', function () {
+    const questions = [...form.querySelectorAll('.quiz-question')];
+    let score = 0;
+
+    questions.forEach((q, i) => {
+      const correct = q.dataset.answer;
+      const selected = q.querySelector('input[type="radio"]:checked');
+      const feedback = q.querySelector('.quiz-feedback');
+
+      q.querySelectorAll('label').forEach(label => {
+        label.classList.remove('text-success', 'text-danger', 'fw-semibold');
+        const input = label.querySelector('input');
+        if (input.value === correct) {
+          label.classList.add('text-success', 'fw-semibold');
+        }
+      });
+
+      if (selected && selected.value === correct) {
+        score++;
+        feedback.innerHTML = '<span class="text-success fw-semibold">Bonne réponse.</span> ' + explanations[i];
+      } else {
+        if (selected) selected.closest('label').classList.add('text-danger', 'fw-semibold');
+        feedback.innerHTML = '<span class="text-danger fw-semibold">Réponse à revoir.</span> ' + explanations[i];
+      }
+    });
+
+    const pct = Math.round((score / questions.length) * 100);
+    let message = pct >= 80 ? "Très bonne maîtrise des notions essentielles."
+                : pct >= 60 ? "Bonne base; révisez les notions associées aux réponses incorrectes."
+                : "Une révision de la leçon est recommandée avant de refaire le quiz.";
+
+    result.className = 'alert mt-4 ' + (pct >= 80 ? 'alert-success' : pct >= 60 ? 'alert-warning' : 'alert-danger');
+    result.innerHTML = '<strong>Résultat : ' + score + ' / ' + questions.length + ' (' + pct + ' %)</strong><br>' + message;
+    result.classList.remove('d-none');
+    result.scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+
+  reset.addEventListener('click', function () {
+    form.reset();
+    form.querySelectorAll('label').forEach(label =>
+      label.classList.remove('text-success', 'text-danger', 'fw-semibold')
+    );
+    form.querySelectorAll('.quiz-feedback').forEach(f => f.innerHTML = '');
+    result.className = 'alert mt-4 d-none';
+    result.innerHTML = '';
+  });
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script></body></html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Leçon 8 — Installation de Windows</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<style>body{background:#f7f8fb;color:#42506c}.wrap{max-width:900px;margin:auto;padding:50px 20px}.card{border:1px solid #e5e9f1;border-radius:18px}h1{color:#152354}.badge{background:#eef2ff!important;color:#315eea!important}</style>
+<link href="../../../assets/css/navbar.css" rel="stylesheet"/><style id="astechai-navbar-embedded">:root{--as-navy:#07164d;--as-blue:#1267f3;--as-purple:#8d31f4}
+.as-navbar{min-height:80px;z-index:1050;font-family:Arial,"Segoe UI",sans-serif}
+.as-nav-container{max-width:1440px;padding-left:44px;padding-right:44px}
+.as-brand{display:flex;align-items:center;gap:12px;margin-right:36px}
+.as-brand>span:last-child{display:flex;flex-direction:column}
+.as-brand strong{font-size:27px;line-height:1;color:var(--as-navy);font-weight:850;letter-spacing:-.5px}
+.as-brand strong span{color:#4227c9}.as-brand small{font-size:12px;color:#71809e;margin-top:5px}
+.as-book{width:60px;height:48px;position:relative;display:inline-block;flex:0 0 60px}
+.as-book:before,.as-book:after{content:"";position:absolute;top:4px;width:28px;height:39px;border-radius:5px 5px 15px 5px}
+.as-book:before{left:0;background:linear-gradient(145deg,#0877ff,#1453ee);transform:skewY(8deg)}
+.as-book:after{right:0;background:linear-gradient(145deg,#7058ff,#a22ef2);transform:skewY(-8deg)}
+.as-main-links{gap:7px}.as-main-links .nav-link{color:#0b225c!important;font-size:14px;font-weight:700;padding:11px 18px!important;border-radius:12px}
+.as-main-links .nav-link:hover,.as-main-links .nav-link.active{background:#edf4ff;color:#075bd8!important}
+.as-search{width:255px;height:44px;border-radius:25px;background:#f0f5ff;align-items:center;gap:8px;padding:0 16px;margin-right:22px;color:#7b88a4}
+.as-search input{width:100%;border:0;outline:0;background:transparent;color:#5e6e8b}
+.as-login{border:0!important;border-radius:13px!important;padding:12px 22px!important;color:#fff!important;font-weight:700!important;white-space:nowrap;background:linear-gradient(100deg,#3a7df5,#8b30f4)!important}
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:690px;padding:18px;border:1px solid #e6ebf4;border-radius:18px;box-shadow:0 20px 48px rgba(23,48,96,.14)}
+.as-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.as-course-card{display:flex;align-items:center;gap:11px;min-height:78px;padding:12px;border:1px solid #edf0f6;border-radius:13px;background:#fff;color:#172958;text-decoration:none;transition:.15s ease}
+.as-course-card:hover{background:#f6f9ff;border-color:#dce7ff;transform:translateY(-1px)}
+.as-course-icon{width:42px;height:42px;flex:0 0 42px;border-radius:11px;background:#edf4ff;color:#1267f3;display:grid;place-items:center;font-size:19px;font-weight:800}
+.as-course-icon.orange{background:#fff0eb;color:#e84b27}.as-course-icon.purple{background:#f4eaff;color:#8429ef}
+.as-course-card strong{display:block;font-size:13px;line-height:1.25;color:#102252}.as-course-card small{display:block;margin-top:3px;font-size:10px;line-height:1.25;color:#7b89a5}
+@media(max-width:1199px){.as-nav-container{padding-left:22px;padding-right:22px}.as-brand{margin-right:12px}.as-main-links{gap:1px}.as-main-links .nav-link{padding:10px 11px!important}}
+@media(max-width:991px){.as-navbar{min-height:72px}.as-brand strong{font-size:23px}.as-book{width:50px;flex-basis:50px}.as-book:before,.as-book:after{width:23px;height:36px}.navbar-collapse{padding:12px 0 16px}.as-main-links{align-items:stretch!important}.as-course-menu{position:static!important;transform:none!important;width:100%;margin:5px 0 8px}.as-course-grid{grid-template-columns:1fr 1fr}.as-login{margin-top:8px}}
+@media(max-width:600px){.as-nav-container{padding-left:14px;padding-right:14px}.as-brand small{display:none}.as-course-grid{grid-template-columns:1fr}}
+</style></head>
+<body><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+<div class="container-fluid as-nav-container">
+<a class="navbar-brand as-brand" href="../../../index.html">
+<span aria-hidden="true" class="as-book"></span>
+<span>
+<strong>AsTech<span>AI</span></strong>
+<small>IT Learning Platform</small>
+</span>
+</a>
+<button aria-controls="asMainNavbar" aria-expanded="false" aria-label="Afficher la navigation" class="navbar-toggler" data-bs-target="#asMainNavbar" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="asMainNavbar">
+<ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+<li class="nav-item">
+<a class="nav-link active" href="../../../index.html">Accueil</a>
+</li>
+<li class="nav-item dropdown position-static">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#" role="button">Cours</a>
+<div class="dropdown-menu as-course-menu">
+<div class="as-course-grid">
+<a class="as-course-card" href="../../../cours/gestion-ordinateurs/index.html">
+<span class="as-course-icon">▣</span>
+<span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/microsoft-365/index.html">
+<span class="as-course-icon orange">M</span>
+<span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation/index.html">
+<span class="as-course-icon purple">&lt;/&gt;</span>
+<span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/bases-de-donnees/index.html">
+<span class="as-course-icon">◎</span>
+<span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation-orientee-objet/index.html">
+<span class="as-course-icon purple">◇</span>
+<span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+</a>
+</div>
+</div>
+</li>
+<li class="nav-item"><a class="nav-link" href="../../../projets/index.html">Projets</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#apropos">À propos</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#ressources">Ressources</a></li>
+</ul>
+<form class="d-none d-xl-flex as-search" onsubmit="return false;" role="search">
+<span aria-hidden="true">⌕</span>
+<input aria-label="Rechercher" placeholder="Rechercher..." type="search"/>
+</form>
+<a class="btn as-login" href="../../../connexion/index.html">♙   Connexion</a>
+</div>
+</div>
+</nav><main class="wrap"><a class="text-decoration-none" href="../index.html#lesson-8">← Retour aux leçons</a>
+<div class="card shadow-sm mt-4"><div class="card-body p-4 p-md-5"><span class="badge rounded-pill mb-3">Leçon 8</span><h1>Installation de Windows</h1>
+<p class="lead mt-3">Installer Windows 11 de manière méthodique : préparer le support, démarrer l’ordinateur ou la machine virtuelle, choisir le type d’installation, sélectionner correctement le disque, suivre Windows Setup et terminer la configuration initiale.</p>
+
+<div class="alert alert-primary mt-4">
+<strong>Objectifs d’apprentissage.</strong> À la fin de cette leçon, l’étudiant sera capable de préparer une installation de Windows 11, d’identifier les principales étapes de Windows Setup, de distinguer mise à niveau et installation personnalisée, de sélectionner prudemment le disque cible, de terminer l’expérience de première configuration (OOBE) et de vérifier qu’une installation est fonctionnelle.
+</div>
+
+<div class="alert alert-warning">
+<strong>Important :</strong> une installation personnalisée peut supprimer les partitions et les données du disque cible. Avant toute manipulation sur une machine réelle, sauvegardez les données importantes et vérifiez précisément le disque sélectionné.
+</div>
+
+<section class="mt-5">
+<h2>1. Qu’est-ce qu’une installation de Windows ?</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>L’<strong>installation de Windows</strong> est le processus qui prépare un disque, applique les fichiers du système d’exploitation, configure le démarrage et initialise Windows afin qu’il puisse fonctionner sur l’ordinateur.</p>
+<p>Dans une installation interactive, <strong>Windows Setup</strong> guide l’utilisateur à travers les choix nécessaires : langue, édition ou licence selon le média utilisé, type d’installation, disque cible et configuration initiale.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Dans un laboratoire, Windows 11 peut être installé dans une machine virtuelle VirtualBox. Cette méthode permet de pratiquer les étapes d’installation sans modifier le système principal de l’ordinateur hôte.</p>
+
+<div class="alert alert-warning"><strong>Exercice 1.</strong> Expliquez pourquoi une machine virtuelle constitue un environnement approprié pour apprendre à installer Windows.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>2. Préparer l’installation</h2>
+<p>Une installation fiable commence avant le démarrage de Windows Setup. Il faut vérifier le système à installer, la compatibilité de la machine, les données à conserver et le support d’installation.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Élément</th><th>Vérification</th></tr></thead>
+<tbody>
+<tr><td><strong>Édition et architecture</strong></td><td>Identifier la version de Windows 11 et l’architecture adaptée à la machine.</td></tr>
+<tr><td><strong>Configuration matérielle</strong></td><td>Vérifier que la machine satisfait aux exigences du système.</td></tr>
+<tr><td><strong>Données</strong></td><td>Sauvegarder les fichiers importants avant toute modification du disque.</td></tr>
+<tr><td><strong>Stockage</strong></td><td>Identifier le disque cible, sa capacité, ses partitions et l’espace disponible.</td></tr>
+<tr><td><strong>Support</strong></td><td>Préparer une clé USB amorçable ou une image ISO dans une VM.</td></tr>
+<tr><td><strong>Alimentation</strong></td><td>Éviter une interruption pendant l’installation.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-info"><strong>Lien avec les leçons précédentes :</strong> la préparation du support, le mode UEFI, le partitionnement et la création d’une VM ont déjà été introduits. Ici, l’objectif est de les mobiliser pour réaliser l’installation de Windows.</div>
+
+<div class="alert alert-warning"><strong>Exercice 2.</strong> Avant d’installer Windows sur un ordinateur contenant des documents personnels, quelles vérifications devez-vous effectuer ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>3. Obtenir le support d’installation officiel</h2>
+<p>Pour Windows 11, utilisez la page officielle de Microsoft. Elle propose notamment l’Assistant d’installation, la création d’un support et le téléchargement d’une image ISO selon les options disponibles au moment du téléchargement.</p>
+
+<div class="alert alert-light border">
+<strong>Page officielle :</strong>
+<a class="btn btn-outline-primary btn-sm ms-2" href="https://www.microsoft.com/software-download/windows11" target="_blank" rel="noopener noreferrer">Télécharger Windows 11 — Microsoft</a>
+</div>
+
+<h3 class="h5 mt-4">Sur une machine physique</h3>
+<p>Pour une installation depuis le démarrage, le support doit être <strong>amorçable</strong>. Une clé USB préparée avec l’outil approprié contient les fichiers nécessaires et les informations permettant au firmware de lancer Windows Setup.</p>
+
+<h3 class="h5 mt-4">Dans une machine virtuelle</h3>
+<p>Il n’est généralement pas nécessaire de créer une clé USB physique. L’image ISO peut être associée au lecteur optique virtuel de la VM, puis utilisée comme support de démarrage.</p>
+
+<div class="alert alert-warning"><strong>Exercice 3.</strong> Quelle différence existe entre l’utilisation d’une image ISO dans VirtualBox et l’installation de Windows sur une machine physique à partir d’une clé USB ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>4. Démarrer sur le support d’installation</h2>
+<p>Pour lancer une nouvelle installation, l’ordinateur doit démarrer sur le support contenant Windows Setup plutôt que sur le système déjà présent sur le disque.</p>
+
+<h3 class="h5 mt-4">Machine physique</h3>
+<ol>
+<li>Connecter le support USB amorçable.</li>
+<li>Redémarrer l’ordinateur.</li>
+<li>Ouvrir le menu de démarrage temporaire ou configurer l’ordre de démarrage dans UEFI.</li>
+<li>Sélectionner le support d’installation.</li>
+<li>Vérifier que Windows Setup apparaît.</li>
+</ol>
+
+<h3 class="h5 mt-4">Machine virtuelle</h3>
+<ol>
+<li>Associer l’image ISO à la VM.</li>
+<li>Vérifier l’ordre de démarrage virtuel.</li>
+<li>Démarrer la VM.</li>
+<li>Vérifier que l’installateur Windows se lance depuis l’ISO.</li>
+</ol>
+
+<div class="alert alert-warning"><strong>Exercice 4.</strong> Une VM démarre directement sur son disque virtuel au lieu de l’image ISO. Citez deux éléments de configuration à vérifier.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>5. Premier écran de Windows Setup</h2>
+<p>Au lancement de Windows Setup, l’installateur demande des paramètres régionaux et linguistiques. Selon la version du média, la présentation exacte des écrans peut varier.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Paramètre</th><th>Rôle</th></tr></thead>
+<tbody>
+<tr><td>Langue</td><td>Détermine la langue utilisée pendant l’installation et, selon l’image, celle du système.</td></tr>
+<tr><td>Format régional</td><td>Influence notamment certains formats de date, heure et nombres.</td></tr>
+<tr><td>Clavier</td><td>Détermine la disposition utilisée pour la saisie.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Après vérification des paramètres, l’utilisateur poursuit vers l’installation de Windows.</p>
+
+<div class="alert alert-warning"><strong>Exercice 5.</strong> Pourquoi faut-il vérifier la disposition du clavier avant de saisir des mots de passe ou des informations de compte ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>6. Licence, clé de produit et édition</h2>
+<p>Windows Setup peut demander une <strong>clé de produit</strong> ou proposer de poursuivre selon le scénario de licence. Une clé de produit est un identifiant utilisé dans le processus d’activation de Windows.</p>
+<p>Lorsque plusieurs éditions sont proposées par le média, il faut sélectionner celle qui correspond à la licence et au contexte prévu. Le choix d’une édition ne doit pas être effectué au hasard, car les fonctionnalités disponibles peuvent différer.</p>
+
+<div class="alert alert-info"><strong>À distinguer :</strong> <em>installer</em> Windows et <em>activer</em> Windows sont deux opérations liées mais différentes. L’installation place et configure le système; l’activation vérifie ensuite l’état de licence.</div>
+
+<div class="alert alert-warning"><strong>Exercice 6.</strong> Expliquez la différence entre installation et activation de Windows.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>7. Mise à niveau ou installation personnalisée</h2>
+<p>Windows Setup peut être utilisé dans différents scénarios. Deux notions doivent être distinguées.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Type</th><th>Principe</th><th>Situation</th></tr></thead>
+<tbody>
+<tr><td><strong>Mise à niveau</strong></td><td>Le programme d’installation met à niveau un système Windows existant en cherchant à conserver les éléments prévus par le scénario choisi.</td><td>Migration depuis une installation Windows compatible.</td></tr>
+<tr><td><strong>Installation personnalisée</strong></td><td>Windows est installé sur la partition choisie; ce scénario permet notamment de travailler sur la structure du disque pendant une nouvelle installation.</td><td>Nouvelle installation, laboratoire, disque préparé ou réinstallation planifiée.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-danger"><strong>Attention :</strong> ne supprimez ou ne formatez jamais une partition simplement parce qu’elle apparaît dans la liste. Identifiez d’abord le disque, sa capacité, son contenu et les données à conserver.</div>
+
+<div class="alert alert-warning"><strong>Exercice 7.</strong> Vous devez installer Windows dans une nouvelle VM dont le disque virtuel est vide. Quel type d’installation est adapté ? Justifiez.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>8. Choisir le disque et la partition cible</h2>
+<p>Cette étape est l’une des plus importantes. Windows Setup affiche les disques, partitions et espaces non alloués détectés. Le technicien doit reconnaître la destination prévue avant de poursuivre.</p>
+
+<h3 class="h5 mt-4">Espace non alloué</h3>
+<p>Un <strong>espace non alloué</strong> est une zone du disque qui n’appartient actuellement à aucune partition. Dans un laboratoire avec un disque virtuel neuf, Windows Setup peut créer les partitions nécessaires à partir de cet espace.</p>
+
+<h3 class="h5 mt-4">Partitions existantes</h3>
+<p>Sur une machine déjà utilisée, plusieurs partitions peuvent être présentes : partition système EFI, partition Windows, récupération ou partitions contenant d’autres données. Leur suppression peut rendre un système inutilisable ou provoquer une perte de données.</p>
+
+<div class="alert alert-light border">
+<strong>Scénario de laboratoire :</strong> une VM possède un seul disque virtuel neuf de 80 Go affiché comme espace non alloué. Après avoir confirmé qu’il s’agit bien du disque virtuel de la VM, cet espace peut être sélectionné comme destination de la nouvelle installation.
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 8.</strong> Windows Setup affiche deux disques de capacités différentes. Quelles informations devez-vous vérifier avant de supprimer, formater ou sélectionner une partition ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>9. Ce que fait Windows Setup</h2>
+<p>Une fois les choix validés, Windows Setup prépare le stockage, applique l’image Windows, configure les informations de démarrage puis poursuit la configuration du système. L’ordinateur peut redémarrer plusieurs fois pendant ce processus.</p>
+
+<div class="alert alert-info"><strong>Important :</strong> après le premier redémarrage, évitez de relancer accidentellement l’installation depuis le début. Dans une VM, l’hyperviseur peut gérer le média virtuel; sur une machine physique, le comportement dépend de l’ordre de démarrage et du support utilisé.</div>
+
+<h3 class="h5 mt-4">Pendant cette phase</h3>
+<ul>
+<li>ne pas éteindre brutalement la machine;</li>
+<li>ne pas supprimer le disque virtuel ou déconnecter le stockage cible;</li>
+<li>laisser Windows terminer les redémarrages nécessaires;</li>
+<li>observer les messages plutôt que d’interrompre le processus.</li>
+</ul>
+
+<div class="alert alert-warning"><strong>Exercice 9.</strong> Pourquoi l’ordinateur redémarre-t-il pendant l’installation et pourquoi faut-il éviter de recommencer l’installation depuis le support après chaque redémarrage ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>10. OOBE — première configuration de Windows</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p><strong>OOBE</strong> signifie <em>Out-of-Box Experience</em>. Il s’agit de la série d’écrans de première configuration affichée après l’installation avant l’utilisation normale du bureau Windows.</p>
+<p>Selon l’édition, la version, la connexion réseau et les politiques appliquées, l’ordre et la présence de certains écrans peuvent varier. Les étapes peuvent notamment concerner la région, le clavier, le réseau, les mises à jour, la licence, le compte, Windows Hello et les paramètres de confidentialité.</p>
+
+<h3 class="h5 mt-4">Approche pédagogique</h3>
+<p>Ne mémorisez pas uniquement l’ordre visuel des écrans : identifiez plutôt la fonction de chaque choix. Une nouvelle version de Windows peut modifier l’apparence ou l’ordre de l’OOBE sans changer les objectifs fondamentaux de configuration.</p>
+
+<div class="alert alert-warning"><strong>Exercice 10.</strong> Que signifie OOBE et à quel moment cette phase apparaît-elle ? Donnez trois catégories de paramètres qui peuvent y être configurées.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>11. Réseau, compte et confidentialité</h2>
+<p>La configuration initiale peut demander une connexion réseau et proposer ou exiger certaines étapes de compte selon l’édition et le scénario. Évitez d’enseigner une méthode de contournement fondée sur un écran particulier : les exigences de Windows évoluent avec les versions.</p>
+
+<h3 class="h5 mt-4">Points à analyser</h3>
+<ul>
+<li><strong>Réseau :</strong> vérifier que l’interface réseau est reconnue et que la connectivité correspond au laboratoire.</li>
+<li><strong>Compte :</strong> utiliser le type de compte prévu par les règles du cours ou de l’organisation.</li>
+<li><strong>Nom du poste :</strong> adopter une convention claire lorsqu’un nom est demandé ou configuré ensuite.</li>
+<li><strong>Confidentialité :</strong> lire les options proposées avant de les accepter ou de les désactiver.</li>
+<li><strong>Windows Hello :</strong> comprendre qu’il s’agit d’un mécanisme d’authentification proposé par Windows dans les scénarios compatibles.</li>
+</ul>
+
+<div class="alert alert-warning"><strong>Exercice 11.</strong> Pourquoi un technicien ne devrait-il pas simplement cliquer sur « Suivant » à chaque écran de confidentialité ou de compte sans lire les choix proposés ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>12. Première ouverture de session et vérifications</h2>
+<p>L’apparition du bureau ne signifie pas que le travail du technicien est terminé. Il faut vérifier l’état général du système avant de considérer l’installation comme valide.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Vérification</th><th>Objectif</th></tr></thead>
+<tbody>
+<tr><td>Démarrage</td><td>Confirmer que Windows démarre normalement depuis le disque prévu.</td></tr>
+<tr><td>Édition et activation</td><td>Vérifier l’édition installée et l’état d’activation selon le contexte de licence.</td></tr>
+<tr><td>Gestionnaire de périphériques</td><td>Repérer les périphériques non reconnus ou nécessitant un pilote.</td></tr>
+<tr><td>Réseau</td><td>Vérifier l’interface, l’adressage et la connectivité attendue.</td></tr>
+<tr><td>Windows Update</td><td>Rechercher et appliquer les mises à jour nécessaires.</td></tr>
+<tr><td>Stockage</td><td>Vérifier les volumes, leur capacité et l’espace disponible.</td></tr>
+<tr><td>Date, heure et région</td><td>Confirmer les paramètres essentiels du poste.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 12.</strong> Le bureau Windows apparaît, mais la carte réseau n’est pas reconnue. L’installation est-elle réellement terminée du point de vue d’un technicien ? Expliquez.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>13. Pilotes et Windows Update</h2>
+<p>Un <strong>pilote</strong> est un logiciel permettant au système d’exploitation de communiquer correctement avec un périphérique. Windows peut installer automatiquement de nombreux pilotes, mais une vérification reste nécessaire.</p>
+
+<h3 class="h5 mt-4">Méthode</h3>
+<ol>
+<li>Ouvrir le Gestionnaire de périphériques.</li>
+<li>Repérer les périphériques signalés comme non reconnus ou en erreur.</li>
+<li>Exécuter Windows Update.</li>
+<li>Lorsque nécessaire, utiliser les pilotes appropriés provenant d’une source fiable, idéalement du fabricant.</li>
+<li>Redémarrer si l’installation du pilote ou de la mise à jour le demande.</li>
+<li>Vérifier de nouveau le périphérique.</li>
+</ol>
+
+<div class="alert alert-info"><strong>Dans une VM :</strong> l’hyperviseur peut proposer des outils ou pilotes invités améliorant l’affichage, la souris, le presse-papiers ou d’autres fonctions. Leur installation dépend de l’environnement de virtualisation utilisé.</div>
+
+<div class="alert alert-warning"><strong>Exercice 13.</strong> Après l’installation, l’affichage fonctionne uniquement avec une résolution limitée. Quelles vérifications effectueriez-vous avant de conclure à une panne matérielle ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>14. Vérifier les informations du système installé</h2>
+<p>Une validation simple consiste à vérifier que l’édition, la version, l’architecture et les principales ressources détectées correspondent au scénario prévu.</p>
+
+<h3 class="h5 mt-4">Exemples de vérifications</h3>
+<ul>
+<li><strong>Paramètres → Système → Informations système</strong> : informations générales sur Windows et le matériel;</li>
+<li><strong>Gestionnaire de périphériques</strong> : état des périphériques;</li>
+<li><strong>Gestion des disques</strong> : structure du stockage;</li>
+<li><strong>Windows Update</strong> : état des mises à jour;</li>
+<li><strong>Paramètres réseau</strong> : connectivité et configuration de l’interface.</li>
+</ul>
+
+<div class="alert alert-warning"><strong>Exercice 14.</strong> Préparez une fiche de validation contenant au moins six éléments à contrôler après une nouvelle installation de Windows.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>15. Erreurs fréquentes pendant l’installation</h2>
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Situation</th><th>Analyse initiale</th></tr></thead>
+<tbody>
+<tr><td>Le support ne démarre pas</td><td>Vérifier le support, le menu de démarrage, l’ordre de démarrage et les paramètres UEFI.</td></tr>
+<tr><td>Le disque attendu n’apparaît pas</td><td>Vérifier la détection du stockage, la configuration du contrôleur et, selon le matériel, la disponibilité du pilote requis.</td></tr>
+<tr><td>Mauvaise partition sélectionnée</td><td>Ne pas poursuivre; réidentifier les disques et les données avant toute modification.</td></tr>
+<tr><td>L’installation redémarre depuis le début</td><td>Vérifier le média et la priorité de démarrage après le premier redémarrage.</td></tr>
+<tr><td>Pas de réseau après installation</td><td>Vérifier le pilote, l’interface réseau, la configuration IP et l’environnement réseau.</td></tr>
+<tr><td>Périphérique inconnu</td><td>Identifier le matériel et vérifier le pilote approprié.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 15.</strong> Une installation se termine, mais l’ordinateur n’a ni réseau ni résolution d’écran correcte. Proposez une démarche de diagnostic ordonnée.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>16. Manipulation guidée — installer Windows 11 dans une VM</h2>
+<p>Cette manipulation permet de pratiquer une installation complète dans un environnement contrôlé.</p>
+
+<ol>
+<li><strong>Préparer la VM :</strong> vérifier la RAM, les vCPU, le disque virtuel et l’image ISO.</li>
+<li><strong>Démarrer sur l’ISO :</strong> lancer la VM et vérifier que Windows Setup apparaît.</li>
+<li><strong>Configurer la langue et le clavier :</strong> contrôler les paramètres avant de poursuivre.</li>
+<li><strong>Démarrer l’installation :</strong> choisir les options correspondant au scénario du laboratoire.</li>
+<li><strong>Sélectionner l’édition :</strong> uniquement si le média présente ce choix et selon les consignes de licence du laboratoire.</li>
+<li><strong>Choisir l’installation personnalisée :</strong> dans le scénario d’une VM neuve.</li>
+<li><strong>Identifier le disque virtuel :</strong> vérifier sa capacité avant toute action.</li>
+<li><strong>Sélectionner l’espace prévu :</strong> utiliser le disque virtuel neuf prévu pour l’exercice.</li>
+<li><strong>Laisser Windows Setup travailler :</strong> attendre la copie, l’application de l’image et les redémarrages.</li>
+<li><strong>Effectuer l’OOBE :</strong> configurer les paramètres demandés selon les consignes du laboratoire.</li>
+<li><strong>Atteindre le bureau :</strong> vérifier que Windows démarre normalement.</li>
+<li><strong>Valider l’installation :</strong> contrôler périphériques, réseau, stockage, mises à jour et informations système.</li>
+</ol>
+
+<div class="alert alert-danger"><strong>Règle du laboratoire :</strong> toutes les opérations de suppression ou de formatage doivent être réalisées uniquement sur le <strong>disque virtuel prévu pour l’exercice</strong>. Sur une machine physique, une mauvaise sélection peut supprimer des données réelles.</div>
+
+<div class="alert alert-warning"><strong>Exercice 16.</strong> Rédigez un compte rendu de la manipulation comprenant : configuration de la VM, ISO utilisée, type d’installation, disque choisi, principales étapes observées, éventuels problèmes rencontrés et vérifications finales.</div>
+</section>
+<hr class="my-5">
+
+<section>
+<h2>Mise en situation — Nouvelle installation dans une VM</h2>
+<p>Vous disposez d’une VM avec 8 Go de RAM, 2 vCPU, un disque virtuel neuf de 80 Go et une image ISO officielle de Windows 11. Au démarrage, Windows Setup affiche le disque comme espace non alloué.</p>
+<ol>
+<li>Quel est le rôle de l’image ISO ?</li>
+<li>Pourquoi faut-il malgré tout vérifier que le disque de 80 Go est bien celui prévu pour l’exercice ?</li>
+<li>Quel type d’installation est cohérent avec une VM neuve ?</li>
+<li>Que fera Windows Setup après la validation du disque ?</li>
+<li>Quelle phase apparaît après l’installation pour la configuration initiale ?</li>
+<li>Quelles vérifications devez-vous effectuer après l’arrivée sur le bureau ?</li>
+</ol>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>Activité de synthèse</h2>
+<p>Construisez une procédure professionnelle d’installation de Windows 11 organisée en quatre phases :</p>
+<ol>
+<li><strong>Avant l’installation :</strong> compatibilité, sauvegarde, ISO/support, stockage et paramètres de démarrage.</li>
+<li><strong>Pendant Windows Setup :</strong> paramètres initiaux, type d’installation, disque cible et progression.</li>
+<li><strong>Première configuration :</strong> OOBE, réseau, compte et confidentialité selon le scénario.</li>
+<li><strong>Validation :</strong> pilotes, mises à jour, activation, réseau, stockage et informations système.</li>
+</ol>
+<p>Pour chaque phase, indiquez au moins une erreur possible et une mesure permettant de la prévenir.</p>
+</section>
+
+<section class="mt-5">
+<h2>À retenir</h2>
+<div class="alert alert-success mb-0">
+Une installation de Windows ne consiste pas uniquement à copier des fichiers. Le technicien doit préparer le support et les données, démarrer sur le bon média, identifier sans ambiguïté le disque cible, suivre Windows Setup, terminer l’OOBE puis valider les pilotes, le réseau, le stockage, les mises à jour et l’état général du système. La vérification du disque et la sauvegarde des données restent essentielles avant toute opération destructive.
+</div>
+</section>
+</div></div></main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script></body></html>

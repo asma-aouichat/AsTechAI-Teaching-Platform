@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Leçon 7 — Préparation à l’installation d’un système</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<style>body{background:#f7f8fb;color:#42506c}.wrap{max-width:900px;margin:auto;padding:50px 20px}.card{border:1px solid #e5e9f1;border-radius:18px}h1{color:#152354}.badge{background:#eef2ff!important;color:#315eea!important}</style>
+<link href="../../../assets/css/navbar.css" rel="stylesheet"/><style id="astechai-navbar-embedded">:root{--as-navy:#07164d;--as-blue:#1267f3;--as-purple:#8d31f4}
+.as-navbar{min-height:80px;z-index:1050;font-family:Arial,"Segoe UI",sans-serif}
+.as-nav-container{max-width:1440px;padding-left:44px;padding-right:44px}
+.as-brand{display:flex;align-items:center;gap:12px;margin-right:36px}
+.as-brand>span:last-child{display:flex;flex-direction:column}
+.as-brand strong{font-size:27px;line-height:1;color:var(--as-navy);font-weight:850;letter-spacing:-.5px}
+.as-brand strong span{color:#4227c9}.as-brand small{font-size:12px;color:#71809e;margin-top:5px}
+.as-book{width:60px;height:48px;position:relative;display:inline-block;flex:0 0 60px}
+.as-book:before,.as-book:after{content:"";position:absolute;top:4px;width:28px;height:39px;border-radius:5px 5px 15px 5px}
+.as-book:before{left:0;background:linear-gradient(145deg,#0877ff,#1453ee);transform:skewY(8deg)}
+.as-book:after{right:0;background:linear-gradient(145deg,#7058ff,#a22ef2);transform:skewY(-8deg)}
+.as-main-links{gap:7px}.as-main-links .nav-link{color:#0b225c!important;font-size:14px;font-weight:700;padding:11px 18px!important;border-radius:12px}
+.as-main-links .nav-link:hover,.as-main-links .nav-link.active{background:#edf4ff;color:#075bd8!important}
+.as-search{width:255px;height:44px;border-radius:25px;background:#f0f5ff;align-items:center;gap:8px;padding:0 16px;margin-right:22px;color:#7b88a4}
+.as-search input{width:100%;border:0;outline:0;background:transparent;color:#5e6e8b}
+.as-login{border:0!important;border-radius:13px!important;padding:12px 22px!important;color:#fff!important;font-weight:700!important;white-space:nowrap;background:linear-gradient(100deg,#3a7df5,#8b30f4)!important}
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:690px;padding:18px;border:1px solid #e6ebf4;border-radius:18px;box-shadow:0 20px 48px rgba(23,48,96,.14)}
+.as-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.as-course-card{display:flex;align-items:center;gap:11px;min-height:78px;padding:12px;border:1px solid #edf0f6;border-radius:13px;background:#fff;color:#172958;text-decoration:none;transition:.15s ease}
+.as-course-card:hover{background:#f6f9ff;border-color:#dce7ff;transform:translateY(-1px)}
+.as-course-icon{width:42px;height:42px;flex:0 0 42px;border-radius:11px;background:#edf4ff;color:#1267f3;display:grid;place-items:center;font-size:19px;font-weight:800}
+.as-course-icon.orange{background:#fff0eb;color:#e84b27}.as-course-icon.purple{background:#f4eaff;color:#8429ef}
+.as-course-card strong{display:block;font-size:13px;line-height:1.25;color:#102252}.as-course-card small{display:block;margin-top:3px;font-size:10px;line-height:1.25;color:#7b89a5}
+@media(max-width:1199px){.as-nav-container{padding-left:22px;padding-right:22px}.as-brand{margin-right:12px}.as-main-links{gap:1px}.as-main-links .nav-link{padding:10px 11px!important}}
+@media(max-width:991px){.as-navbar{min-height:72px}.as-brand strong{font-size:23px}.as-book{width:50px;flex-basis:50px}.as-book:before,.as-book:after{width:23px;height:36px}.navbar-collapse{padding:12px 0 16px}.as-main-links{align-items:stretch!important}.as-course-menu{position:static!important;transform:none!important;width:100%;margin:5px 0 8px}.as-course-grid{grid-template-columns:1fr 1fr}.as-login{margin-top:8px}}
+@media(max-width:600px){.as-nav-container{padding-left:14px;padding-right:14px}.as-brand small{display:none}.as-course-grid{grid-template-columns:1fr}}
+</style></head>
+<body><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+<div class="container-fluid as-nav-container">
+<a class="navbar-brand as-brand" href="../../../index.html">
+<span aria-hidden="true" class="as-book"></span>
+<span>
+<strong>AsTech<span>AI</span></strong>
+<small>IT Learning Platform</small>
+</span>
+</a>
+<button aria-controls="asMainNavbar" aria-expanded="false" aria-label="Afficher la navigation" class="navbar-toggler" data-bs-target="#asMainNavbar" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="asMainNavbar">
+<ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+<li class="nav-item">
+<a class="nav-link active" href="../../../index.html">Accueil</a>
+</li>
+<li class="nav-item dropdown position-static">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#" role="button">Cours</a>
+<div class="dropdown-menu as-course-menu">
+<div class="as-course-grid">
+<a class="as-course-card" href="../../../cours/gestion-ordinateurs/index.html">
+<span class="as-course-icon">▣</span>
+<span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/microsoft-365/index.html">
+<span class="as-course-icon orange">M</span>
+<span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation/index.html">
+<span class="as-course-icon purple">&lt;/&gt;</span>
+<span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/bases-de-donnees/index.html">
+<span class="as-course-icon">◎</span>
+<span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation-orientee-objet/index.html">
+<span class="as-course-icon purple">◇</span>
+<span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+</a>
+</div>
+</div>
+</li>
+<li class="nav-item"><a class="nav-link" href="../../../projets/index.html">Projets</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#apropos">À propos</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#ressources">Ressources</a></li>
+</ul>
+<form class="d-none d-xl-flex as-search" onsubmit="return false;" role="search">
+<span aria-hidden="true">⌕</span>
+<input aria-label="Rechercher" placeholder="Rechercher..." type="search"/>
+</form>
+<a class="btn as-login" href="../../../connexion/index.html">♙   Connexion</a>
+</div>
+</div>
+</nav><main class="wrap"><a class="text-decoration-none" href="../index.html#lesson-7">← Retour aux leçons</a>
+<div class="card shadow-sm mt-4"><div class="card-body p-4 p-md-5"><span class="badge rounded-pill mb-3">Leçon 7</span><h1>Préparation à l’installation d’un système</h1>
+<p class="lead mt-3">Préparer méthodiquement un ordinateur avant l’installation d’un système d’exploitation afin de vérifier sa compatibilité, protéger les données existantes et disposer d’un support d’installation fiable.</p>
+
+<div class="alert alert-primary mt-4">
+<strong>Objectifs d’apprentissage.</strong> À la fin de cette leçon, l’étudiant sera capable d’identifier le système à installer, de vérifier les prérequis matériels et logiciels, de sauvegarder les données importantes, de choisir une édition et une architecture adaptées, de télécharger une image ISO depuis une source fiable, de préparer un support d’installation amorçable et d’effectuer les vérifications nécessaires avant de lancer l’installation.
+</div>
+
+<section class="mt-5">
+<h2>1. Qu’est-ce que la préparation à l’installation ?</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>La <strong>préparation à l’installation</strong> regroupe toutes les vérifications et opérations réalisées <strong>avant</strong> l’installation d’un système d’exploitation. Elle permet de déterminer si l’ordinateur peut accueillir le système choisi et de préparer les ressources nécessaires à l’installation.</p>
+<p>Une installation ne commence donc pas au moment où l’on clique sur « Installer ». Elle commence par une phase de planification : identifier la machine, vérifier sa configuration, protéger les données, choisir le système approprié et préparer le support d’installation.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Avant d’installer Windows ou une distribution Linux sur un ordinateur, le technicien vérifie notamment le processeur, la mémoire RAM, le stockage disponible, le mode de démarrage, les données à conserver et le support USB qui servira à lancer l’installation.</p>
+
+<div class="alert alert-warning"><strong>Exercice 1.</strong> Expliquez pourquoi il serait risqué de commencer une installation sans effectuer de préparation préalable. Donnez deux conséquences possibles.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>2. Identifier le besoin et le système à installer</h2>
+<p>La première étape consiste à déterminer <strong>pourquoi</strong> un système doit être installé et <strong>quel système</strong> répond au besoin. Le choix peut dépendre du contexte d’utilisation, des applications nécessaires, du matériel disponible et des politiques de l’organisation.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Question</th><th>Pourquoi la poser ?</th></tr></thead>
+<tbody>
+<tr><td>Quel système doit être installé ?</td><td>Déterminer la famille du système : Windows, Linux ou autre système compatible.</td></tr>
+<tr><td>Quelle version ou édition ?</td><td>Vérifier les fonctionnalités, la compatibilité et les exigences propres à la version choisie.</td></tr>
+<tr><td>Quel est l’usage du poste ?</td><td>Adapter le système aux besoins : bureautique, développement, laboratoire, serveur, etc.</td></tr>
+<tr><td>Quelles applications seront utilisées ?</td><td>Vérifier qu’elles sont compatibles avec le système et l’architecture prévus.</td></tr>
+<tr><td>Faut-il conserver les données existantes ?</td><td>Déterminer la stratégie de sauvegarde et le type d’installation à envisager.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 2.</strong> Une entreprise souhaite préparer un ordinateur destiné à la bureautique, aux réunions en ligne et à une application métier disponible uniquement sous Windows. Quelles informations devez-vous recueillir avant de choisir précisément le système à installer ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>3. Vérifier la configuration matérielle</h2>
+<p>Un système d’exploitation possède des <strong>prérequis matériels</strong>. Ce sont les caractéristiques minimales ou recommandées que l’ordinateur doit respecter pour permettre l’installation et l’utilisation du système.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Élément</th><th>Vérification</th><th>Pourquoi ?</th></tr></thead>
+<tbody>
+<tr><td><strong>Processeur (CPU)</strong></td><td>Architecture, génération et caractéristiques requises.</td><td>Le système doit pouvoir exécuter ses instructions sur le processeur.</td></tr>
+<tr><td><strong>Mémoire RAM</strong></td><td>Quantité installée par rapport aux exigences du système.</td><td>Une quantité insuffisante peut empêcher l’installation ou dégrader fortement l’utilisation.</td></tr>
+<tr><td><strong>Stockage</strong></td><td>Capacité totale et espace disponible.</td><td>Le système et ses mises à jour nécessitent suffisamment d’espace.</td></tr>
+<tr><td><strong>Graphique / affichage</strong></td><td>Compatibilité avec les exigences graphiques du système.</td><td>Certaines interfaces et fonctions dépendent du matériel graphique.</td></tr>
+<tr><td><strong>Firmware</strong></td><td>Mode BIOS/UEFI et options nécessaires.</td><td>Le mode de démarrage influence la préparation et l’installation.</td></tr>
+<tr><td><strong>Périphériques</strong></td><td>Disponibilité de pilotes compatibles.</td><td>Le réseau, l’audio, l’affichage ou d’autres périphériques doivent fonctionner après l’installation.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-info"><strong>Important :</strong> satisfaire une configuration minimale signifie généralement que le système peut fonctionner, mais cela ne garantit pas une expérience confortable avec les applications de l’utilisateur.</div>
+
+<div class="alert alert-warning"><strong>Exercice 3.</strong> Un ordinateur respecte exactement la configuration minimale du système choisi. Peut-on conclure qu’il offrira de bonnes performances pour toutes les applications ? Justifiez votre réponse.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>4. Vérifier l’architecture du système : 64 bits</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>L’<strong>architecture</strong> indique notamment le type d’environnement pour lequel le système et le processeur sont conçus. Les ordinateurs personnels modernes utilisent principalement des systèmes <strong>64 bits</strong>.</p>
+<p>Avant de télécharger un système, il faut vérifier que l’image d’installation choisie correspond à l’architecture prise en charge par la machine et à la version du système que l’on souhaite déployer.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Si le système choisi est distribué sous la forme d’une image 64 bits, le technicien vérifie que le processeur et la plateforme sont compatibles avant de préparer la clé USB d’installation.</p>
+
+<div class="alert alert-warning"><strong>Exercice 4.</strong> Pourquoi faut-il vérifier l’architecture avant de télécharger l’image d’installation ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>5. Vérifier le firmware et le mode de démarrage</h2>
+<p>Le <strong>firmware</strong> est le logiciel de bas niveau qui initialise le matériel et participe au démarrage de l’ordinateur. Deux environnements sont couramment rencontrés : <strong>BIOS</strong> et <strong>UEFI</strong>.</p>
+<p>Sur les ordinateurs modernes, UEFI est couramment utilisé. Avant l’installation, il faut vérifier le mode de démarrage actif et certaines options susceptibles d’influencer le lancement du support d’installation.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Vérification</th><th>Question à poser</th></tr></thead>
+<tbody>
+<tr><td>Mode de démarrage</td><td>La machine utilise-t-elle UEFI ou un mode hérité ?</td></tr>
+<tr><td>Ordre de démarrage</td><td>Le support USB peut-il être sélectionné au démarrage ?</td></tr>
+<tr><td>Secure Boot</td><td>Le système et le support prévus sont-ils compatibles avec la configuration de démarrage sécurisé ?</td></tr>
+<tr><td>Stockage détecté</td><td>Le disque cible apparaît-il correctement dans le firmware ?</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-info"><strong>Lien avec le cours :</strong> les notions BIOS, UEFI et processus de démarrage seront approfondies dans la leçon qui leur est consacrée. Ici, l’objectif est de savoir qu’elles doivent être vérifiées avant l’installation.</div>
+
+<div class="alert alert-warning"><strong>Exercice 5.</strong> Le support USB est correctement créé mais l’ordinateur démarre toujours sur l’ancien système. Citez deux vérifications liées au démarrage à effectuer avant de conclure que la clé est défectueuse.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>6. Protéger les données avant l’installation</h2>
+<p>Une installation peut entraîner la suppression de partitions, le formatage d’un volume ou le remplacement d’un système existant. Les données importantes doivent donc être identifiées et <strong>sauvegardées sur un autre support</strong> avant toute opération potentiellement destructive.</p>
+
+<h3 class="h5 mt-4">Données à vérifier</h3>
+<p>La sauvegarde peut concerner les documents personnels, les projets, les fichiers de travail, les paramètres importants, les données d’applications et toute autre information que l’utilisateur ne peut pas perdre.</p>
+
+<h3 class="h5 mt-4">Vérifier la sauvegarde</h3>
+<p>Copier des fichiers ne suffit pas : il faut vérifier que la sauvegarde est accessible et que les fichiers essentiels peuvent réellement être ouverts depuis le support de sauvegarde.</p>
+
+<div class="alert alert-danger"><strong>Précaution :</strong> ne supprimez, ne formatez et ne repartitionnez jamais un disque contenant des données importantes avant d’avoir confirmé qu’une sauvegarde valide existe.</div>
+
+<div class="alert alert-warning"><strong>Exercice 6.</strong> Un utilisateur affirme que tous ses fichiers sont « probablement synchronisés ». Pourquoi cette information est-elle insuffisante avant de formater son disque ? Décrivez la vérification à effectuer.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>7. Examiner le disque et préparer l’espace d’installation</h2>
+<p>Avant l’installation, il faut identifier précisément le <strong>disque cible</strong>, sa capacité, son organisation actuelle et l’espace disponible. Cette vérification permet d’éviter de modifier le mauvais support.</p>
+
+<h3 class="h5 mt-4">Points à examiner</h3>
+<ul>
+<li>nombre de disques présents dans l’ordinateur;</li>
+<li>capacité et type de chaque disque;</li>
+<li>partitions existantes;</li>
+<li>données ou systèmes à conserver;</li>
+<li>espace disponible pour le nouveau système;</li>
+<li>schéma de partitionnement approprié au contexte d’installation.</li>
+</ul>
+
+<div class="alert alert-info"><strong>Important :</strong> la création, la suppression, le redimensionnement et le formatage des partitions sont étudiés en détail dans la leçon consacrée au <strong>partitionnement et à la préparation des disques</strong>. Cette section se limite aux vérifications à effectuer avant l’installation.</div>
+
+<div class="alert alert-warning"><strong>Exercice 7.</strong> Un ordinateur contient un SSD de 512 Go et un HDD de 2 To. Avant l’installation, quelles informations permettent de s’assurer que le système sera installé sur le bon disque ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>8. Image ISO et fichiers d’installation</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Une <strong>image ISO</strong> est un fichier qui représente le contenu d’un support d’installation. Les éditeurs de systèmes d’exploitation peuvent fournir leurs images d’installation sous ce format.</p>
+
+<h3 class="h5 mt-4">Téléchargement</h3>
+<p>L’image doit provenir d’une <strong>source officielle ou fiable</strong>. Il faut choisir la bonne version, l’édition appropriée, la langue souhaitée et l’architecture compatible avec l’ordinateur.</p>
+
+
+<h3 class="h5 mt-4">Téléchargement officiel des images d’installation</h3>
+<p>Pour réduire les risques liés à une image modifiée, corrompue ou provenant d’une source non fiable, utilisez en priorité les pages officielles de l’éditeur.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead>
+<tr><th>Système</th><th>Page officielle</th><th>Utilisation</th></tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Windows 11</strong></td>
+<td><a class="btn btn-outline-primary btn-sm" href="https://www.microsoft.com/en-ca/software-download/windows11" target="_blank" rel="noopener noreferrer">Télécharger Windows 11 — Microsoft</a></td>
+<td>La page Microsoft permet notamment de télécharger l’image disque <strong>ISO de Windows 11</strong> pour les appareils x64 et propose aussi l’outil de création de média.</td>
+</tr>
+<tr>
+<td><strong>Ubuntu Desktop</strong></td>
+<td><a class="btn btn-outline-primary btn-sm" href="https://ubuntu.com/download/desktop" target="_blank" rel="noopener noreferrer">Télécharger Ubuntu Desktop — Ubuntu</a></td>
+<td>La page officielle Ubuntu permet de télécharger l’image d’installation d’<strong>Ubuntu Desktop</strong>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-info">
+<strong>Conseil pédagogique :</strong> évitez de fournir dans le cours un lien direct vers un fichier ISO précis, car le nom et l’adresse du fichier changent avec les versions. Utiliser la <strong>page officielle de téléchargement</strong> permet aux étudiants de sélectionner la version actuellement proposée par l’éditeur.
+</div>
+
+<h4 class="h6 mt-4 fw-bold">Windows 11 — procédure</h4>
+<figure class="my-4 text-center">
+<img src="images/windows-11-iso-download.png" class="img-fluid rounded border shadow-sm" alt="Page officielle Microsoft montrant la section Download Windows 11 Disk Image ISO for x64 devices">
+<figcaption class="text-muted small mt-2">Figure — Page officielle Microsoft : sélection de « Windows 11 (multi-edition ISO for x64 devices) » avant de cliquer sur « Download Now ».</figcaption>
+</figure>
+
+<div class="alert alert-info">
+<strong>Repère visuel :</strong> dans la section <em>Download Windows 11 Disk Image (ISO) for x64 devices</em>, sélectionnez <strong>Windows 11 (multi-edition ISO for x64 devices)</strong>, puis cliquez sur <strong>Download Now</strong>. La page indique également séparément la disponibilité des images ISO destinées aux appareils Arm64.
+</div>
+<ol>
+<li>Ouvrez la page officielle de téléchargement de Windows 11.</li>
+<li>Repérez la section consacrée au téléchargement de l’<strong>image disque Windows 11 (ISO)</strong>.</li>
+<li>Sélectionnez l’édition proposée, puis la langue souhaitée.</li>
+<li>Téléchargez l’image correspondant à l’architecture de la machine.</li>
+<li>Conservez le fichier ISO pour créer ensuite le support USB amorçable.</li>
+</ol>
+
+<h4 class="h6 mt-4 fw-bold">Ubuntu Desktop — procédure</h4>
+<ol>
+<li>Ouvrez la page officielle <strong>Download Ubuntu Desktop</strong>.</li>
+<li>Identifiez la version d’Ubuntu Desktop que vous souhaitez utiliser pour le laboratoire.</li>
+<li>Lancez le téléchargement de l’image ISO.</li>
+<li>Conservez le fichier téléchargé afin de créer le support USB amorçable ou de l’utiliser dans une machine virtuelle.</li>
+</ol>
+
+<h3 class="h5 mt-4">Vérification de l’intégrité</h3>
+<p>Lorsqu’une somme de contrôle est publiée, elle peut être utilisée pour vérifier l’<strong>intégrité</strong> du fichier téléchargé. Une <strong>somme de contrôle</strong> est une valeur calculée à partir d’un fichier; comparer la valeur obtenue avec celle publiée permet de détecter une modification ou une corruption du téléchargement.</p>
+
+<div class="alert alert-warning"><strong>Exercice 8.</strong> Pourquoi est-il préférable de télécharger une image ISO depuis le site officiel de l’éditeur ? Quel est l’intérêt d’une vérification d’intégrité lorsqu’elle est disponible ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>9. Créer un support USB amorçable</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Un support <strong>amorçable</strong> (bootable) est un support à partir duquel l’ordinateur peut démarrer afin de lancer un environnement d’installation ou de maintenance.</p>
+<p>Copier simplement le fichier ISO sur une clé USB ne suffit généralement pas. Un outil de création de média prépare la clé pour qu’elle puisse être utilisée au démarrage.</p>
+
+<h3 class="h5 mt-4">Méthode générale</h3>
+<ol>
+<li>Préparer une clé USB dont les données peuvent être effacées.</li>
+<li>Télécharger l’image d’installation ou utiliser l’outil officiel de création de média.</li>
+<li>Lancer l’outil choisi.</li>
+<li>Sélectionner soigneusement la clé USB cible.</li>
+<li>Choisir l’image ISO et les paramètres adaptés au système.</li>
+<li>Lancer la création du support.</li>
+<li>Attendre la fin de l’opération et vérifier qu’aucune erreur n’est signalée.</li>
+</ol>
+
+<div class="alert alert-danger"><strong>Attention :</strong> la création d’un support amorçable peut effacer le contenu de la clé USB. Vérifiez toujours le support sélectionné avant de lancer l’opération.</div>
+
+<div class="alert alert-warning"><strong>Exercice 9.</strong> Une clé USB contient des documents importants et doit être utilisée pour créer un média d’installation. Quelle opération devez-vous réaliser avant de commencer et pourquoi ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>10. Démarrer sur le support d’installation</h2>
+<p>Une fois le support préparé, l’ordinateur doit démarrer sur celui-ci plutôt que sur le système déjà présent sur le disque interne.</p>
+
+<h3 class="h5 mt-4">Deux approches courantes</h3>
+<p>Selon l’ordinateur, il est possible d’utiliser un <strong>menu de démarrage temporaire</strong> pour choisir la clé USB ou de modifier l’<strong>ordre de démarrage</strong> dans le firmware. La touche permettant d’ouvrir le menu varie selon le fabricant.</p>
+
+<h3 class="h5 mt-4">Vérification</h3>
+<p>Le support doit apparaître dans la liste des périphériques de démarrage. S’il n’apparaît pas, il faut vérifier la clé, le port USB, la création du média et la configuration UEFI/BIOS avant de poursuivre.</p>
+
+<div class="alert alert-warning"><strong>Exercice 10.</strong> Une clé amorçable fonctionne sur un autre ordinateur mais n’apparaît pas dans le menu de démarrage de la machine cible. Proposez trois vérifications avant de recréer entièrement le support.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>11. Préparer les pilotes, le réseau et les ressources nécessaires</h2>
+<p>Après l’installation, certains composants peuvent nécessiter un <strong>pilote</strong>, c’est-à-dire un logiciel permettant au système d’exploitation de communiquer correctement avec le matériel.</p>
+<p>Avant une installation importante, il est utile de vérifier la disponibilité des pilotes essentiels, notamment pour le réseau et le stockage. Si la connexion réseau n’est pas immédiatement disponible après l’installation, disposer à l’avance du pilote approprié peut faciliter la configuration du poste.</p>
+
+<h3 class="h5 mt-4">Autres ressources à prévoir</h3>
+<p>Selon le contexte, le technicien peut également préparer les informations de licence, les identifiants nécessaires, les paramètres réseau, la liste des applications à réinstaller et les fichiers de configuration utiles.</p>
+
+<div class="alert alert-warning"><strong>Exercice 11.</strong> Pourquoi le pilote de la carte réseau peut-il être particulièrement utile à préparer avant une réinstallation complète ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>12. Choisir le type d’installation</h2>
+<p>Le type d’installation dépend de l’objectif poursuivi. Il faut distinguer une installation destinée à conserver autant que possible l’environnement existant d’une installation qui repart d’un espace préparé pour un nouveau système.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Approche</th><th>Principe général</th><th>Préparation importante</th></tr></thead>
+<tbody>
+<tr><td><strong>Mise à niveau</strong></td><td>Faire évoluer un système existant lorsqu’un chemin de mise à niveau compatible est prévu.</td><td>Vérifier la compatibilité des applications, des pilotes, de la version actuelle et sauvegarder les données.</td></tr>
+<tr><td><strong>Installation propre</strong></td><td>Installer un nouveau système sur un espace préparé, sans dépendre de l’ancienne installation.</td><td>Sauvegarder les données, préparer le disque et prévoir la réinstallation des applications.</td></tr>
+<tr><td><strong>Installation parallèle</strong></td><td>Faire coexister plusieurs systèmes sur une même machine lorsque la configuration le permet.</td><td>Planifier les partitions et le démarrage avec une attention particulière.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 12.</strong> Un poste présente de nombreux problèmes logiciels et l’organisation souhaite repartir sur un environnement propre. Quelle approche semble correspondre à cet objectif et quelles préparations sont indispensables avant de commencer ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>13. Liste de vérification avant installation</h2>
+<p>Avant de lancer réellement l’installation, le technicien doit effectuer une dernière vérification. Cette étape permet de confirmer que les conditions nécessaires sont réunies.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Élément</th><th>Vérification finale</th></tr></thead>
+<tbody>
+<tr><td>Système</td><td>Version, édition, langue et architecture correctement choisies.</td></tr>
+<tr><td>Matériel</td><td>CPU, RAM, stockage et autres exigences vérifiés.</td></tr>
+<tr><td>Données</td><td>Sauvegarde terminée et fichiers essentiels contrôlés.</td></tr>
+<tr><td>Disque cible</td><td>Disque et partitions correctement identifiés.</td></tr>
+<tr><td>Support</td><td>Clé USB amorçable créée et reconnue.</td></tr>
+<tr><td>Firmware</td><td>Mode de démarrage et paramètres pertinents vérifiés.</td></tr>
+<tr><td>Pilotes</td><td>Pilotes essentiels disponibles si nécessaire.</td></tr>
+<tr><td>Ressources</td><td>Licence, réseau, comptes et informations nécessaires préparés selon le contexte.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-success"><strong>Règle professionnelle :</strong> une installation doit commencer uniquement lorsque le technicien sait <strong>quoi installer, où l’installer, ce qui doit être conservé et comment revenir en arrière en cas de problème</strong>.</div>
+
+<div class="alert alert-warning"><strong>Exercice 13.</strong> Construisez une checklist personnelle de huit vérifications à effectuer systématiquement avant toute installation d’un système d’exploitation.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>Mise en situation — Préparer un ordinateur pour une nouvelle installation</h2>
+<p>Un utilisateur vous confie un ordinateur contenant un ancien système, 8 Go de RAM, un SSD de 512 Go et plusieurs dossiers personnels. Il souhaite installer un nouveau système et conserver ses documents.</p>
+<ol>
+<li>Quelles informations devez-vous recueillir auprès de l’utilisateur ?</li>
+<li>Quelles caractéristiques matérielles devez-vous vérifier ?</li>
+<li>Que devez-vous faire des données personnelles avant l’installation ?</li>
+<li>Comment vérifiez-vous que l’image d’installation choisie est appropriée ?</li>
+<li>Comment préparez-vous le support USB ?</li>
+<li>Quelles vérifications effectuez-vous dans le firmware ou le menu de démarrage ?</li>
+<li>Quels pilotes ou renseignements serait-il utile de préparer à l’avance ?</li>
+<li>Quelles vérifications finales réalisez-vous avant de lancer l’installation ?</li>
+</ol>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>Activité de synthèse</h2>
+<p>Préparez un <strong>plan d’installation</strong> pour un poste informatique fictif. Votre document doit présenter :</p>
+<ul>
+<li>le besoin de l’utilisateur et le système choisi;</li>
+<li>la vérification des prérequis matériels;</li>
+<li>la stratégie de sauvegarde;</li>
+<li>l’identification du disque cible;</li>
+<li>la source et les caractéristiques de l’image ISO;</li>
+<li>la méthode de création du support USB amorçable;</li>
+<li>les vérifications UEFI/BIOS nécessaires;</li>
+<li>les ressources et pilotes à préparer;</li>
+<li>une checklist finale avant installation.</li>
+</ul>
+</section>
+
+
+<hr class="my-5">
+<section id="quiz-lecon-07">
+<h2>Quiz — Préparation à l’installation d’un système</h2>
+<p>Vérifiez votre compréhension des notions essentielles de la leçon. Sélectionnez une réponse par question, puis cliquez sur <strong>Corriger le quiz</strong>.</p>
+
+<div id="quiz07">
+<div class="card mb-3"><div class="card-body">
+<p class="fw-bold">1. Quelle opération doit être réalisée avant toute modification potentiellement destructive d’un disque contenant des données importantes ?</p>
+<label class="d-block mb-2"><input type="radio" name="q1" value="a"> Modifier l’ordre de démarrage.</label>
+<label class="d-block mb-2"><input type="radio" name="q1" value="b"> Effectuer et vérifier une sauvegarde des données importantes.</label>
+<label class="d-block mb-2"><input type="radio" name="q1" value="c"> Télécharger immédiatement l’image ISO.</label>
+<label class="d-block"><input type="radio" name="q1" value="d"> Supprimer les partitions existantes.</label>
+</div></div>
+
+<div class="card mb-3"><div class="card-body">
+<p class="fw-bold">2. Pourquoi faut-il vérifier les prérequis matériels avant l’installation ?</p>
+<label class="d-block mb-2"><input type="radio" name="q2" value="a"> Pour déterminer si l’ordinateur peut accueillir le système choisi.</label>
+<label class="d-block mb-2"><input type="radio" name="q2" value="b"> Pour transformer automatiquement un HDD en SSD.</label>
+<label class="d-block mb-2"><input type="radio" name="q2" value="c"> Pour supprimer le firmware.</label>
+<label class="d-block"><input type="radio" name="q2" value="d"> Pour éviter d’utiliser une clé USB.</label>
+</div></div>
+
+<div class="card mb-3"><div class="card-body">
+<p class="fw-bold">3. Qu’est-ce qu’une image ISO dans le contexte de cette leçon ?</p>
+<label class="d-block mb-2"><input type="radio" name="q3" value="a"> Une sauvegarde de la mémoire RAM.</label>
+<label class="d-block mb-2"><input type="radio" name="q3" value="b"> Un pilote destiné au processeur.</label>
+<label class="d-block mb-2"><input type="radio" name="q3" value="c"> Un fichier représentant le contenu d’un support d’installation.</label>
+<label class="d-block"><input type="radio" name="q3" value="d"> Une partition réservée aux documents personnels.</label>
+</div></div>
+
+<div class="card mb-3"><div class="card-body">
+<p class="fw-bold">4. Quelle source la leçon recommande-t-elle en priorité pour télécharger une image d’installation ?</p>
+<label class="d-block mb-2"><input type="radio" name="q4" value="a"> Une page officielle de l’éditeur.</label>
+<label class="d-block mb-2"><input type="radio" name="q4" value="b"> N’importe quel site proposant le fichier le plus rapidement.</label>
+<label class="d-block mb-2"><input type="radio" name="q4" value="c"> Un fichier reçu par courriel d’un utilisateur inconnu.</label>
+<label class="d-block"><input type="radio" name="q4" value="d"> Un ancien DVD, sans vérifier sa version.</label>
+</div></div>
+
+<div class="card mb-3"><div class="card-body">
+<p class="fw-bold">5. À quoi sert une somme de contrôle lorsqu’elle est publiée avec une image ISO ?</p>
+<label class="d-block mb-2"><input type="radio" name="q5" value="a"> À augmenter la capacité de la clé USB.</label>
+<label class="d-block mb-2"><input type="radio" name="q5" value="b"> À vérifier l’intégrité du fichier téléchargé.</label>
+<label class="d-block mb-2"><input type="radio" name="q5" value="c"> À modifier l’architecture du processeur.</label>
+<label class="d-block"><input type="radio" name="q5" value="d"> À créer automatiquement une partition de récupération.</label>
+</div></div>
+
+<div class="card mb-3"><div class="card-body">
+<p class="fw-bold">6. Copier simplement un fichier ISO sur une clé USB suffit-il généralement à rendre la clé amorçable ?</p>
+<label class="d-block mb-2"><input type="radio" name="q6" value="a"> Oui, dans tous les cas.</label>
+<label class="d-block mb-2"><input type="radio" name="q6" value="b"> Oui, si la clé contient suffisamment d’espace.</label>
+<label class="d-block mb-2"><input type="radio" name="q6" value="c"> Non, un outil de création de média doit généralement préparer le support.</label>
+<label class="d-block"><input type="radio" name="q6" value="d"> Non, car une image ISO ne peut jamais être utilisée avec une clé USB.</label>
+</div></div>
+
+<div class="card mb-3"><div class="card-body">
+<p class="fw-bold">7. La clé USB amorçable est correctement créée, mais l’ordinateur démarre toujours sur l’ancien système. Quelle vérification est pertinente ?</p>
+<label class="d-block mb-2"><input type="radio" name="q7" value="a"> Vérifier le menu ou l’ordre de démarrage dans UEFI/BIOS.</label>
+<label class="d-block mb-2"><input type="radio" name="q7" value="b"> Supprimer immédiatement toutes les partitions.</label>
+<label class="d-block mb-2"><input type="radio" name="q7" value="c"> Ajouter de la mémoire RAM sans autre diagnostic.</label>
+<label class="d-block"><input type="radio" name="q7" value="d"> Formater la clé depuis l’ancien système.</label>
+</div></div>
+
+<div class="card mb-3"><div class="card-body">
+<p class="fw-bold">8. Un ordinateur possède un SSD de 512 Go et un HDD de 2 To. Quelle précaution est essentielle avant de lancer l’installation ?</p>
+<label class="d-block mb-2"><input type="radio" name="q8" value="a"> Identifier précisément le disque cible et les données à conserver.</label>
+<label class="d-block mb-2"><input type="radio" name="q8" value="b"> Choisir automatiquement le disque ayant la plus grande capacité.</label>
+<label class="d-block mb-2"><input type="radio" name="q8" value="c"> Débrancher systématiquement tous les périphériques réseau.</label>
+<label class="d-block"><input type="radio" name="q8" value="d"> Supprimer les partitions des deux disques.</label>
+</div></div>
+
+<div class="card mb-3"><div class="card-body">
+<p class="fw-bold">9. Pourquoi peut-il être utile de préparer le pilote de la carte réseau avant une réinstallation complète ?</p>
+<label class="d-block mb-2"><input type="radio" name="q9" value="a"> Pour pouvoir rétablir la connectivité si le réseau n’est pas disponible immédiatement après l’installation.</label>
+<label class="d-block mb-2"><input type="radio" name="q9" value="b"> Pour remplacer l’image ISO.</label>
+<label class="d-block mb-2"><input type="radio" name="q9" value="c"> Pour augmenter la capacité du SSD.</label>
+<label class="d-block"><input type="radio" name="q9" value="d"> Pour convertir UEFI en mémoire vive.</label>
+</div></div>
+
+<div class="card mb-3"><div class="card-body">
+<p class="fw-bold">10. Une organisation souhaite repartir sur un environnement propre à cause de nombreux problèmes logiciels. Quelle approche décrite dans la leçon correspond à cet objectif ?</p>
+<label class="d-block mb-2"><input type="radio" name="q10" value="a"> Installation parallèle.</label>
+<label class="d-block mb-2"><input type="radio" name="q10" value="b"> Installation propre.</label>
+<label class="d-block mb-2"><input type="radio" name="q10" value="c"> Simple changement de l’ordre de démarrage.</label>
+<label class="d-block"><input type="radio" name="q10" value="d"> Vérification de la somme de contrôle uniquement.</label>
+</div></div>
+
+<button type="button" class="btn btn-primary me-2" onclick="corrigerQuiz07()">Corriger le quiz</button>
+<button type="button" class="btn btn-outline-secondary" onclick="reinitialiserQuiz07()">Réinitialiser</button>
+<div id="quiz07-resultat" class="alert mt-4 d-none" role="alert"></div>
+</div>
+</section>
+
+<section class="mt-5">
+<h2>À retenir</h2>
+<div class="alert alert-success mb-0">
+La préparation d’une installation est une étape essentielle de l’administration d’un poste informatique. Elle consiste à définir le besoin, vérifier la compatibilité matérielle, protéger les données, identifier le disque cible, choisir une image d’installation fiable, préparer un support amorçable et contrôler le mode de démarrage. Une préparation méthodique réduit les risques de perte de données, d’incompatibilité et d’échec pendant l’installation.
+</div>
+</section>
+</div></div></main>
+
+<script>
+function corrigerQuiz07(){
+ const rep={q1:"b",q2:"a",q3:"c",q4:"a",q5:"b",q6:"c",q7:"a",q8:"a",q9:"a",q10:"b"};
+ let score=0;
+ const quiz=document.getElementById("quiz07");
+ Object.entries(rep).forEach(([q,bonne])=>{
+   const radios=quiz.querySelectorAll(`input[name="${q}"]`);
+   radios.forEach(r=>{
+     const label=r.closest("label");
+     label.classList.remove("text-success","text-danger","fw-semibold");
+     if(r.value===bonne) label.classList.add("text-success","fw-semibold");
+     else if(r.checked) label.classList.add("text-danger","fw-semibold");
+   });
+   const choix=quiz.querySelector(`input[name="${q}"]:checked`);
+   if(choix && choix.value===bonne) score++;
+ });
+ const pct=Math.round(score/10*100);
+ const box=document.getElementById("quiz07-resultat");
+ let msg=score===10?"Excellente maîtrise de la préparation à l’installation."
+         :score>=8?"Très bonne compréhension. Revoyez les réponses signalées en rouge."
+         :score>=6?"Compréhension satisfaisante, mais certaines notions doivent être consolidées."
+         :"Revoyez les étapes essentielles de préparation avant de poursuivre.";
+ box.className="alert mt-4 "+(score>=8?"alert-success":score>=6?"alert-info":"alert-warning");
+ box.innerHTML=`<strong>Résultat : ${score}/10 (${pct} %)</strong><br>${msg}<br><span class="small">Les bonnes réponses apparaissent en vert; une réponse sélectionnée incorrecte apparaît en rouge.</span>`;
+}
+function reinitialiserQuiz07(){
+ const quiz=document.getElementById("quiz07");
+ quiz.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+ quiz.querySelectorAll("label").forEach(l=>l.classList.remove("text-success","text-danger","fw-semibold"));
+ const box=document.getElementById("quiz07-resultat");
+ box.className="alert mt-4 d-none";
+ box.innerHTML="";
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script></body></html>

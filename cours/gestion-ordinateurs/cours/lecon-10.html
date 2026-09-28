@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Leçon 10 — Partitionnement et préparation des disques</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<style>body{background:#f7f8fb;color:#42506c}.wrap{max-width:900px;margin:auto;padding:50px 20px}.card{border:1px solid #e5e9f1;border-radius:18px}h1{color:#152354}.badge{background:#eef2ff!important;color:#315eea!important}</style>
+<link href="../../../assets/css/navbar.css" rel="stylesheet"/><style id="astechai-navbar-embedded">:root{--as-navy:#07164d;--as-blue:#1267f3;--as-purple:#8d31f4}
+.as-navbar{min-height:80px;z-index:1050;font-family:Arial,"Segoe UI",sans-serif}
+.as-nav-container{max-width:1440px;padding-left:44px;padding-right:44px}
+.as-brand{display:flex;align-items:center;gap:12px;margin-right:36px}
+.as-brand>span:last-child{display:flex;flex-direction:column}
+.as-brand strong{font-size:27px;line-height:1;color:var(--as-navy);font-weight:850;letter-spacing:-.5px}
+.as-brand strong span{color:#4227c9}.as-brand small{font-size:12px;color:#71809e;margin-top:5px}
+.as-book{width:60px;height:48px;position:relative;display:inline-block;flex:0 0 60px}
+.as-book:before,.as-book:after{content:"";position:absolute;top:4px;width:28px;height:39px;border-radius:5px 5px 15px 5px}
+.as-book:before{left:0;background:linear-gradient(145deg,#0877ff,#1453ee);transform:skewY(8deg)}
+.as-book:after{right:0;background:linear-gradient(145deg,#7058ff,#a22ef2);transform:skewY(-8deg)}
+.as-main-links{gap:7px}.as-main-links .nav-link{color:#0b225c!important;font-size:14px;font-weight:700;padding:11px 18px!important;border-radius:12px}
+.as-main-links .nav-link:hover,.as-main-links .nav-link.active{background:#edf4ff;color:#075bd8!important}
+.as-search{width:255px;height:44px;border-radius:25px;background:#f0f5ff;align-items:center;gap:8px;padding:0 16px;margin-right:22px;color:#7b88a4}
+.as-search input{width:100%;border:0;outline:0;background:transparent;color:#5e6e8b}
+.as-login{border:0!important;border-radius:13px!important;padding:12px 22px!important;color:#fff!important;font-weight:700!important;white-space:nowrap;background:linear-gradient(100deg,#3a7df5,#8b30f4)!important}
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:690px;padding:18px;border:1px solid #e6ebf4;border-radius:18px;box-shadow:0 20px 48px rgba(23,48,96,.14)}
+.as-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.as-course-card{display:flex;align-items:center;gap:11px;min-height:78px;padding:12px;border:1px solid #edf0f6;border-radius:13px;background:#fff;color:#172958;text-decoration:none;transition:.15s ease}
+.as-course-card:hover{background:#f6f9ff;border-color:#dce7ff;transform:translateY(-1px)}
+.as-course-icon{width:42px;height:42px;flex:0 0 42px;border-radius:11px;background:#edf4ff;color:#1267f3;display:grid;place-items:center;font-size:19px;font-weight:800}
+.as-course-icon.orange{background:#fff0eb;color:#e84b27}.as-course-icon.purple{background:#f4eaff;color:#8429ef}
+.as-course-card strong{display:block;font-size:13px;line-height:1.25;color:#102252}.as-course-card small{display:block;margin-top:3px;font-size:10px;line-height:1.25;color:#7b89a5}
+@media(max-width:1199px){.as-nav-container{padding-left:22px;padding-right:22px}.as-brand{margin-right:12px}.as-main-links{gap:1px}.as-main-links .nav-link{padding:10px 11px!important}}
+@media(max-width:991px){.as-navbar{min-height:72px}.as-brand strong{font-size:23px}.as-book{width:50px;flex-basis:50px}.as-book:before,.as-book:after{width:23px;height:36px}.navbar-collapse{padding:12px 0 16px}.as-main-links{align-items:stretch!important}.as-course-menu{position:static!important;transform:none!important;width:100%;margin:5px 0 8px}.as-course-grid{grid-template-columns:1fr 1fr}.as-login{margin-top:8px}}
+@media(max-width:600px){.as-nav-container{padding-left:14px;padding-right:14px}.as-brand small{display:none}.as-course-grid{grid-template-columns:1fr}}
+</style></head>
+<body><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+<div class="container-fluid as-nav-container">
+<a class="navbar-brand as-brand" href="../../../index.html">
+<span aria-hidden="true" class="as-book"></span>
+<span>
+<strong>AsTech<span>AI</span></strong>
+<small>IT Learning Platform</small>
+</span>
+</a>
+<button aria-controls="asMainNavbar" aria-expanded="false" aria-label="Afficher la navigation" class="navbar-toggler" data-bs-target="#asMainNavbar" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="asMainNavbar">
+<ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+<li class="nav-item">
+<a class="nav-link active" href="../../../index.html">Accueil</a>
+</li>
+<li class="nav-item dropdown position-static">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#" role="button">Cours</a>
+<div class="dropdown-menu as-course-menu">
+<div class="as-course-grid">
+<a class="as-course-card" href="../../../cours/gestion-ordinateurs/index.html">
+<span class="as-course-icon">▣</span>
+<span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/microsoft-365/index.html">
+<span class="as-course-icon orange">M</span>
+<span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation/index.html">
+<span class="as-course-icon purple">&lt;/&gt;</span>
+<span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/bases-de-donnees/index.html">
+<span class="as-course-icon">◎</span>
+<span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation-orientee-objet/index.html">
+<span class="as-course-icon purple">◇</span>
+<span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+</a>
+</div>
+</div>
+</li>
+<li class="nav-item"><a class="nav-link" href="../../../projets/index.html">Projets</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#apropos">À propos</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#ressources">Ressources</a></li>
+</ul>
+<form class="d-none d-xl-flex as-search" onsubmit="return false;" role="search">
+<span aria-hidden="true">⌕</span>
+<input aria-label="Rechercher" placeholder="Rechercher..." type="search"/>
+</form>
+<a class="btn as-login" href="../../../connexion/index.html">♙   Connexion</a>
+</div>
+</div>
+</nav><main class="wrap"><a class="text-decoration-none" href="../index.html#lesson-10">← Retour aux leçons</a>
+<div class="card shadow-sm mt-4"><div class="card-body p-4 p-md-5"><span class="badge rounded-pill mb-3">Leçon 10</span><h1>Partitionnement et préparation des disques</h1>
+<p class="lead mt-3">Comprendre le partitionnement d’un disque, distinguer les principales structures de partition, préparer un support de stockage et effectuer les vérifications nécessaires avant l’installation d’un système d’exploitation.</p>
+
+<div class="alert alert-primary mt-4">
+<strong>Objectifs d’apprentissage.</strong> À la fin de cette leçon, l’étudiant sera capable d’expliquer le rôle du partitionnement, de distinguer disque physique, partition et volume, de comparer MBR et GPT, de reconnaître les principaux systèmes de fichiers, de préparer un disque pour une installation et d’identifier les précautions à prendre avant toute modification.
+</div>
+
+<section class="mt-5">
+<h2>1. Qu’est-ce que le partitionnement d’un disque ?</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Le <strong>partitionnement</strong> consiste à diviser logiquement l’espace disponible d’un support de stockage en une ou plusieurs zones appelées <strong>partitions</strong>. Chaque partition peut ensuite être utilisée pour stocker des données, accueillir un système d’exploitation ou remplir une fonction particulière.</p>
+<p>Le partitionnement ne découpe pas physiquement le disque. Il crée une organisation logique permettant au système de savoir où commencent et où se terminent les différentes zones du support.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Un SSD de 1 To peut être organisé avec une partition destinée au système d’exploitation et une autre destinée aux données. Pour l’utilisateur, ces espaces peuvent apparaître comme des unités distinctes alors qu’ils se trouvent sur le même support physique.</p>
+
+<div class="alert alert-warning"><strong>Exercice 1.</strong> Expliquez la différence entre la capacité physique d’un disque et son organisation en partitions.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>2. Pourquoi partitionner un disque ?</h2>
+<p>Le partitionnement permet d’organiser l’espace de stockage en fonction des besoins du système et de l’utilisateur. Il intervient notamment lors de l’installation d’un système d’exploitation.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Besoin</th><th>Rôle du partitionnement</th></tr></thead>
+<tbody>
+<tr><td>Installer un système</td><td>Préparer l’espace dans lequel les fichiers du système seront installés.</td></tr>
+<tr><td>Organiser les données</td><td>Séparer logiquement certains ensembles de fichiers.</td></tr>
+<tr><td>Utiliser plusieurs systèmes</td><td>Réserver des espaces distincts lorsque plusieurs systèmes doivent coexister.</td></tr>
+<tr><td>Maintenance</td><td>Faciliter certaines opérations de réinstallation, sauvegarde ou récupération lorsque l’organisation a été planifiée à l’avance.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 2.</strong> Donnez deux situations dans lesquelles la création de plusieurs partitions peut être utile. Justifiez chaque réponse.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>3. Disque physique, partition et volume</h2>
+<p>Ces trois notions sont liées mais ne désignent pas exactement la même chose.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Notion</th><th>Définition</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td><strong>Disque physique</strong></td><td>Support matériel de stockage, par exemple un SSD ou un HDD.</td><td>Un SSD interne de 500 Go.</td></tr>
+<tr><td><strong>Partition</strong></td><td>Zone logique définie dans l’espace d’un disque.</td><td>Une partition de 200 Go sur le SSD.</td></tr>
+<tr><td><strong>Volume</strong></td><td>Espace de stockage logique que le système peut préparer et utiliser pour enregistrer des données.</td><td>Un volume formaté en NTFS et monté comme unité C: sous Windows.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-info"><strong>À retenir :</strong> un disque est le support; une partition représente une division logique de ce support; un volume correspond à un espace que le système peut exploiter pour le stockage.</div>
+
+<div class="alert alert-warning"><strong>Exercice 3.</strong> Un ordinateur contient un SSD de 1 To divisé en trois zones logiques. Identifiez le disque physique et indiquez combien de partitions ont été créées.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>4. Table de partition : MBR et GPT</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Une <strong>table de partition</strong> décrit l’organisation des partitions présentes sur un disque. Deux schémas sont couramment rencontrés : <strong>MBR</strong> et <strong>GPT</strong>.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Caractéristique</th><th>MBR</th><th>GPT</th></tr></thead>
+<tbody>
+<tr><td>Signification</td><td>Master Boot Record</td><td>GUID Partition Table</td></tr>
+<tr><td>Contexte</td><td>Schéma historique, associé à de nombreux systèmes plus anciens.</td><td>Schéma moderne couramment associé aux systèmes utilisant UEFI.</td></tr>
+<tr><td>Capacité</td><td>Présente des limitations historiques, notamment pour les très grands disques.</td><td>Conçu pour gérer des disques de grande capacité.</td></tr>
+<tr><td>Nombre de partitions</td><td>Organisation plus restrictive.</td><td>Permet davantage de partitions sans recourir au même mécanisme de partition étendue.</td></tr>
+<tr><td>Fiabilité de la structure</td><td>Informations essentielles concentrées dans la structure MBR.</td><td>Utilise des informations de partitionnement redondantes et des mécanismes de vérification.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Sur un ordinateur moderne utilisant <strong>UEFI</strong>, GPT est généralement le schéma attendu. La relation entre BIOS, UEFI et le démarrage sera approfondie dans la leçon consacrée au firmware et au processus de démarrage.</p>
+
+<div class="alert alert-warning"><strong>Exercice 4.</strong> Expliquez pourquoi il est important de connaître le mode de démarrage prévu avant de choisir la structure de partition d’un disque.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>5. Formatage et systèmes de fichiers</h2>
+<h3 class="h5 mt-4">Définition du formatage</h3>
+<p>Le <strong>formatage</strong> prépare un volume afin qu’un système puisse y organiser et y enregistrer des fichiers. Il met en place un <strong>système de fichiers</strong>.</p>
+
+<h3 class="h5 mt-4">Système de fichiers</h3>
+<p>Un <strong>système de fichiers</strong> définit la manière dont les fichiers et dossiers sont organisés, nommés, localisés et gérés sur un volume.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Système de fichiers</th><th>Utilisation générale</th></tr></thead>
+<tbody>
+<tr><td><strong>NTFS</strong></td><td>Très utilisé par Windows pour les volumes système et les volumes de données.</td></tr>
+<tr><td><strong>FAT32</strong></td><td>Ancien format bénéficiant d’une large compatibilité; encore rencontré sur certains supports et partitions techniques.</td></tr>
+<tr><td><strong>exFAT</strong></td><td>Souvent utilisé pour des supports amovibles nécessitant une bonne interopérabilité entre plusieurs systèmes.</td></tr>
+<tr><td><strong>ext4</strong></td><td>Système de fichiers couramment utilisé dans les distributions Linux.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-danger"><strong>Précaution :</strong> le formatage peut rendre les données précédemment présentes sur le volume indisponibles. Une sauvegarde doit être réalisée avant toute opération susceptible de supprimer ou de modifier des données importantes.</div>
+
+<div class="alert alert-warning"><strong>Exercice 5.</strong> Distinguez partitionnement et formatage. Pourquoi ces deux opérations ne doivent-elles pas être considérées comme synonymes ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>6. Partitions utilisées lors d’une installation moderne</h2>
+<p>Lors d’une installation, toutes les partitions n’ont pas nécessairement le même rôle. Certaines accueillent les fichiers du système, tandis que d’autres sont utilisées pour le démarrage ou la récupération.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Type ou rôle</th><th>Fonction générale</th></tr></thead>
+<tbody>
+<tr><td><strong>Partition système</strong></td><td>Contient les éléments nécessaires au fonctionnement ou au démarrage du système selon l’architecture utilisée.</td></tr>
+<tr><td><strong>Partition EFI (ESP)</strong></td><td>Partition utilisée dans un environnement UEFI pour stocker des fichiers nécessaires au démarrage.</td></tr>
+<tr><td><strong>Partition principale du système</strong></td><td>Accueille le système d’exploitation, les applications et une partie des données.</td></tr>
+<tr><td><strong>Partition de récupération</strong></td><td>Peut contenir des outils permettant d’effectuer des opérations de réparation ou de récupération.</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Lorsqu’un installateur crée automatiquement certaines partitions techniques, il est important de comprendre leur fonction avant de les supprimer ou de les modifier.</p>
+
+<div class="alert alert-warning"><strong>Exercice 6.</strong> Pourquoi serait-il risqué de supprimer une petite partition simplement parce qu’elle ne contient pas les documents personnels de l’utilisateur ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>7. Préparer un disque avant l’installation</h2>
+<p>La préparation d’un disque doit être planifiée avant de commencer l’installation. L’objectif est d’éviter la perte de données et de s’assurer que l’organisation du stockage correspond au système que l’on souhaite installer.</p>
+
+<ol>
+<li><strong>Identifier le disque cible.</strong> Vérifier sa capacité, son type et sa position dans la machine.</li>
+<li><strong>Vérifier les données existantes.</strong> Déterminer si le disque contient des fichiers ou un système à conserver.</li>
+<li><strong>Effectuer une sauvegarde.</strong> Copier les données importantes sur un autre support.</li>
+<li><strong>Vérifier le mode de démarrage.</strong> Identifier le contexte BIOS/UEFI et le schéma de partition approprié.</li>
+<li><strong>Planifier les partitions.</strong> Déterminer leur rôle et l’espace nécessaire.</li>
+<li><strong>Créer, supprimer ou redimensionner avec prudence.</strong> Toute modification doit correspondre au plan établi.</li>
+<li><strong>Choisir le système de fichiers approprié.</strong> Le choix dépend du système d’exploitation et de l’utilisation du volume.</li>
+<li><strong>Vérifier avant de lancer l’installation.</strong> Confirmer une dernière fois que le bon disque et les bonnes partitions sont sélectionnés.</li>
+</ol>
+
+<div class="alert alert-warning"><strong>Exercice 7.</strong> Pourquoi la sauvegarde et l’identification précise du disque cible doivent-elles être réalisées avant toute suppression de partition ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>8. Manipulation guidée sous Windows : Gestion des disques</h2>
+<h3 class="h5 mt-4">Accès à l’outil</h3>
+<p><strong>Gestion des disques</strong> est un outil graphique de Windows permettant d’observer les disques et volumes et d’effectuer certaines opérations de gestion du stockage.</p>
+
+<ol>
+<li>Ouvrez le menu d’accès rapide de Windows et lancez <strong>Gestion des disques</strong>.</li>
+<li>Repérez les disques physiques affichés : Disque 0, Disque 1, etc.</li>
+<li>Observez les volumes, leur capacité, leur système de fichiers et leur état.</li>
+<li>Identifiez l’espace éventuellement indiqué comme <strong>non alloué</strong>.</li>
+<li>Avant toute modification, vérifiez deux fois le numéro et la capacité du disque concerné.</li>
+</ol>
+
+<h3 class="h5 mt-4">Opérations courantes</h3>
+<p>Selon l’état du disque, l’outil peut permettre notamment de créer un nouveau volume, réduire ou étendre certains volumes, attribuer une lettre de lecteur et effectuer un formatage.</p>
+
+<div class="alert alert-danger"><strong>Consigne de laboratoire :</strong> ne supprimez et ne formatez jamais une partition d’un ordinateur contenant des données réelles sans sauvegarde et sans autorisation. Pour l’apprentissage, utilisez de préférence un disque virtuel ou une machine virtuelle prévue à cet effet.</div>
+
+<div class="alert alert-warning"><strong>Exercice 8.</strong> Dans Gestion des disques, quelles informations devez-vous vérifier avant de sélectionner une partition pour une opération de modification ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>9. Espace non alloué, création et redimensionnement</h2>
+<h3 class="h5 mt-4">Espace non alloué</h3>
+<p>Un <strong>espace non alloué</strong> est une zone du disque qui n’appartient actuellement à aucune partition utilisable. Cet espace peut servir à créer une nouvelle partition ou, lorsque les conditions le permettent, à agrandir un volume existant.</p>
+
+<h3 class="h5 mt-4">Réduction d’un volume</h3>
+<p>Réduire un volume consiste à diminuer sa taille logique afin de libérer une partie de l’espace. L’espace libéré peut ensuite apparaître comme non alloué.</p>
+
+<h3 class="h5 mt-4">Extension d’un volume</h3>
+<p>Étendre un volume consiste à lui attribuer davantage d’espace disponible lorsque la configuration du disque et l’outil utilisé permettent cette opération.</p>
+
+<h4 class="h6 mt-4 fw-bold">Étape 1 — Repérer l’espace non alloué</h4>
+<p>Dans <strong>Gestion des disques</strong>, repérez d’abord le volume que vous souhaitez agrandir et l’espace indiqué comme <strong>Non alloué</strong>. Dans l’exemple ci-dessous, le disque 0 contient le volume <strong>OSDisk (C:)</strong> et un espace de <strong>1000 Mo non alloué</strong> situé immédiatement à sa droite.</p>
+<figure class="my-4 text-center">
+<img src="images/gestion-disques-espace-non-alloue.png" class="img-fluid rounded border shadow-sm" alt="Gestion des disques Windows montrant 1000 Mo d’espace non alloué à droite du volume C:">
+<figcaption class="text-muted small mt-2">Figure — Gestion des disques : identification de l’espace non alloué disponible à droite du volume C:.</figcaption>
+</figure>
+
+<div class="alert alert-info">
+<strong>Observation.</strong> Avant d’étendre un volume, vérifiez soigneusement le disque, le volume concerné et la position de l’espace non alloué. Dans cette capture, les 1000 Mo non alloués sont placés directement après C:.
+</div>
+
+<h4 class="h6 mt-4 fw-bold">Étape 2 — Choisir l’espace à ajouter</h4>
+<p>Après avoir lancé la commande d’extension du volume, l’<strong>Assistant Extension du volume</strong> affiche l’espace disponible. L’utilisateur peut alors vérifier le disque sélectionné et préciser la quantité d’espace, exprimée en mégaoctets (Mo), à ajouter au volume.</p>
+<figure class="my-4 text-center">
+<img src="images/assistant-extension-volume.png" class="img-fluid rounded border shadow-sm" alt="Assistant Extension du volume Windows montrant 999 Mo disponibles pour étendre le volume">
+<figcaption class="text-muted small mt-2">Figure — Assistant Extension du volume : 999 Mo sont disponibles et sélectionnés pour l’extension.</figcaption>
+</figure>
+
+<h4 class="h6 mt-4 fw-bold">Étape 3 — Vérifier avant de continuer</h4>
+<p>Dans la capture, le champ <strong>Maximum available space in MB</strong> indique <strong>999 Mo</strong> et la même valeur est sélectionnée dans <strong>Select the amount of space in MB</strong>. Cela signifie que l’assistant prévoit d’utiliser la totalité de l’espace disponible affiché pour agrandir le volume.</p>
+
+<div class="alert alert-warning">
+<strong>Avant de cliquer sur « Next » :</strong> vérifiez le disque sélectionné, la quantité d’espace à ajouter et assurez-vous qu’une sauvegarde des données importantes existe avant toute modification des partitions.
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 9.</strong> Un SSD de 500 Go contient un seul volume occupant presque tout le disque. Vous souhaitez créer une seconde partition sans effacer le premier volume. Décrivez conceptuellement les opérations à envisager et les précautions à prendre.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>10. Préparation d’un disque pour Windows et Linux</h2>
+<p>Les installateurs modernes peuvent automatiser une partie du partitionnement, mais l’administrateur doit comprendre ce qui sera créé et vérifier que le disque choisi est correct.</p>
+
+<h3 class="h5 mt-4">Installation de Windows</h3>
+<p>Dans un environnement moderne UEFI, une installation Windows utilise généralement GPT et peut créer automatiquement plusieurs partitions nécessaires au démarrage, au système et à la récupération.</p>
+
+<h3 class="h5 mt-4">Installation de Linux</h3>
+<p>Une distribution Linux peut également effectuer un partitionnement automatique. En mode manuel, l’administrateur peut être amené à définir les volumes et leurs points d’utilisation. La structure exacte dépend de la distribution, du mode d’installation et des besoins.</p>
+
+<div class="alert alert-info"><strong>Important :</strong> cette leçon présente la logique de préparation du disque. Les étapes détaillées d’installation de Windows et de Linux seront réalisées dans leurs leçons respectives.</div>
+
+<div class="alert alert-warning"><strong>Exercice 10.</strong> Expliquez pourquoi l’option de partitionnement automatique peut être pratique pour un débutant, mais pourquoi un technicien doit tout de même comprendre les partitions créées.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>11. Vérifications avant validation</h2>
+<p>Avant de confirmer une opération de partitionnement ou de formatage, une vérification méthodique réduit le risque d’erreur.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Vérification</th><th>Question à poser</th></tr></thead>
+<tbody>
+<tr><td>Disque cible</td><td>Ai-je sélectionné le bon disque physique ?</td></tr>
+<tr><td>Données</td><td>Les données importantes ont-elles été sauvegardées ?</td></tr>
+<tr><td>Schéma</td><td>MBR ou GPT correspond-il au contexte prévu ?</td></tr>
+<tr><td>Partitions</td><td>Le rôle et la taille des partitions sont-ils cohérents avec l’installation ?</td></tr>
+<tr><td>Système de fichiers</td><td>Le format choisi est-il adapté au système et à l’usage ?</td></tr>
+<tr><td>Démarrage</td><td>La configuration est-elle cohérente avec le mode de démarrage utilisé ?</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 11.</strong> Construisez votre propre liste de vérification en cinq étapes à utiliser systématiquement avant de modifier les partitions d’un ordinateur.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>12. Erreurs fréquentes et bonnes pratiques</h2>
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Erreur</th><th>Conséquence possible</th><th>Bonne pratique</th></tr></thead>
+<tbody>
+<tr><td>Choisir le mauvais disque</td><td>Suppression ou modification de données qui devaient être conservées.</td><td>Identifier le disque par son numéro, sa capacité et son contenu avant toute action.</td></tr>
+<tr><td>Formater sans sauvegarde</td><td>Perte d’accès aux données importantes.</td><td>Sauvegarder avant toute opération destructive.</td></tr>
+<tr><td>Confondre partition et système de fichiers</td><td>Mauvaise planification du stockage.</td><td>Distinguer la division logique du disque de l’organisation des fichiers.</td></tr>
+<tr><td>Modifier une partition technique sans connaître son rôle</td><td>Problèmes de démarrage ou de récupération.</td><td>Identifier la fonction de chaque partition avant de la modifier.</td></tr>
+<tr><td>Ignorer le contexte BIOS/UEFI</td><td>Configuration incohérente avec le mode de démarrage prévu.</td><td>Vérifier le firmware et le schéma de partition avant l’installation.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 12.</strong> Un étudiant voit plusieurs petites partitions sur un disque Windows et souhaite toutes les supprimer pour « récupérer de l’espace ». Expliquez pourquoi cette décision ne doit pas être prise sans analyse préalable.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>Mise en situation — Préparer un SSD pour une nouvelle installation</h2>
+<p>Vous devez préparer un SSD de 1 To pour installer un système d’exploitation. Le disque contient actuellement une ancienne installation et des fichiers personnels que l’utilisateur souhaite conserver.</p>
+<ol>
+<li>Quelles informations devez-vous recueillir avant toute modification ?</li>
+<li>Quelle opération doit être réalisée avant de supprimer ou formater une partition ?</li>
+<li>Comment vérifiez-vous que vous travaillez sur le bon disque ?</li>
+<li>Quels éléments influencent le choix entre MBR et GPT ?</li>
+<li>À quel moment choisissez-vous le système de fichiers ?</li>
+<li>Quelles vérifications effectuez-vous juste avant de valider l’installation ?</li>
+</ol>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>Activité de synthèse</h2>
+<p>À partir d’un disque fictif de 1 To, proposez un plan de préparation pour une nouvelle installation. Votre travail doit contenir :</p>
+<ul>
+<li>l’identification du disque et des données à conserver;</li>
+<li>le choix raisonné du schéma MBR ou GPT;</li>
+<li>un schéma simple représentant les partitions prévues;</li>
+<li>le système de fichiers prévu pour les volumes concernés;</li>
+<li>les étapes de sauvegarde et de vérification;</li>
+<li>les risques associés aux opérations proposées.</li>
+</ul>
+</section>
+
+
+<hr class="my-5">
+
+<section id="quiz-lecon-10">
+<h2>Quiz — Partitionnement et préparation des disques</h2>
+<p>Vérifiez votre compréhension des notions essentielles de la leçon. Sélectionnez une réponse par question, puis cliquez sur <strong>Corriger le quiz</strong>.</p>
+
+<div id="quiz10">
+  <div class="card mb-3"><div class="card-body">
+    <p class="fw-bold">1. Quelle définition décrit le mieux une partition ?</p>
+    <label class="d-block mb-2"><input type="radio" name="q1" value="a"> Une division physique du disque réalisée en usine.</label>
+    <label class="d-block mb-2"><input type="radio" name="q1" value="b"> Une zone logique définie dans l’espace d’un disque.</label>
+    <label class="d-block mb-2"><input type="radio" name="q1" value="c"> Un système de fichiers réservé à Windows.</label>
+    <label class="d-block"><input type="radio" name="q1" value="d"> Une copie de sauvegarde du disque.</label>
+  </div></div>
+
+  <div class="card mb-3"><div class="card-body">
+    <p class="fw-bold">2. Sur un ordinateur moderne utilisant UEFI, quel schéma de partition est généralement attendu ?</p>
+    <label class="d-block mb-2"><input type="radio" name="q2" value="a"> FAT32</label>
+    <label class="d-block mb-2"><input type="radio" name="q2" value="b"> NTFS</label>
+    <label class="d-block mb-2"><input type="radio" name="q2" value="c"> GPT</label>
+    <label class="d-block"><input type="radio" name="q2" value="d"> ext4</label>
+  </div></div>
+
+  <div class="card mb-3"><div class="card-body">
+    <p class="fw-bold">3. Quelle est la fonction principale du formatage d’un volume ?</p>
+    <label class="d-block mb-2"><input type="radio" name="q3" value="a"> Installer automatiquement un système d’exploitation.</label>
+    <label class="d-block mb-2"><input type="radio" name="q3" value="b"> Mettre en place un système de fichiers pour organiser les données.</label>
+    <label class="d-block mb-2"><input type="radio" name="q3" value="c"> Transformer un HDD en SSD.</label>
+    <label class="d-block"><input type="radio" name="q3" value="d"> Modifier le firmware UEFI.</label>
+  </div></div>
+
+  <div class="card mb-3"><div class="card-body">
+    <p class="fw-bold">4. À quoi sert principalement une partition EFI (ESP) dans un environnement UEFI ?</p>
+    <label class="d-block mb-2"><input type="radio" name="q4" value="a"> À stocker les fichiers nécessaires au démarrage.</label>
+    <label class="d-block mb-2"><input type="radio" name="q4" value="b"> À conserver uniquement les documents personnels.</label>
+    <label class="d-block mb-2"><input type="radio" name="q4" value="c"> À remplacer la mémoire RAM.</label>
+    <label class="d-block"><input type="radio" name="q4" value="d"> À sauvegarder automatiquement tous les volumes.</label>
+  </div></div>
+
+  <div class="card mb-3"><div class="card-body">
+    <p class="fw-bold">5. Dans Gestion des disques, que représente un espace « non alloué » ?</p>
+    <label class="d-block mb-2"><input type="radio" name="q5" value="a"> Une zone utilisée exclusivement par Windows.</label>
+    <label class="d-block mb-2"><input type="radio" name="q5" value="b"> Une zone du disque qui n’appartient actuellement à aucune partition utilisable.</label>
+    <label class="d-block mb-2"><input type="radio" name="q5" value="c"> Une partition de récupération obligatoire.</label>
+    <label class="d-block"><input type="radio" name="q5" value="d"> Un espace contenant des fichiers cachés.</label>
+  </div></div>
+
+  <div class="card mb-3"><div class="card-body">
+    <p class="fw-bold">6. Un SSD de 500 Go contient un seul volume occupant presque tout le disque. Vous voulez créer une seconde partition sans supprimer le premier volume. Quelle opération faut-il envisager d’abord ?</p>
+    <label class="d-block mb-2"><input type="radio" name="q6" value="a"> Réduire le volume existant afin de libérer de l’espace non alloué.</label>
+    <label class="d-block mb-2"><input type="radio" name="q6" value="b"> Formater immédiatement tout le SSD.</label>
+    <label class="d-block mb-2"><input type="radio" name="q6" value="c"> Supprimer la partition système.</label>
+    <label class="d-block"><input type="radio" name="q6" value="d"> Convertir le SSD en mémoire RAM.</label>
+  </div></div>
+
+  <div class="card mb-3"><div class="card-body">
+    <p class="fw-bold">7. Quelle précaution doit être prise avant une opération susceptible de modifier ou supprimer des partitions contenant des données importantes ?</p>
+    <label class="d-block mb-2"><input type="radio" name="q7" value="a"> Désactiver définitivement UEFI.</label>
+    <label class="d-block mb-2"><input type="radio" name="q7" value="b"> Changer systématiquement le disque en MBR.</label>
+    <label class="d-block mb-2"><input type="radio" name="q7" value="c"> Effectuer une sauvegarde et vérifier précisément le disque cible.</label>
+    <label class="d-block"><input type="radio" name="q7" value="d"> Supprimer les petites partitions techniques.</label>
+  </div></div>
+
+  <button type="button" class="btn btn-primary me-2" onclick="corrigerQuiz10()">Corriger le quiz</button>
+  <button type="button" class="btn btn-outline-secondary" onclick="reinitialiserQuiz10()">Réinitialiser</button>
+  <div id="quiz10-resultat" class="alert mt-4 d-none" role="alert"></div>
+</div>
+</section>
+
+<section class="mt-5">
+<h2>À retenir</h2>
+<div class="alert alert-success mb-0">
+Le partitionnement organise logiquement l’espace d’un disque. Il faut distinguer le disque physique, la partition, le volume et le système de fichiers. MBR et GPT représentent deux structures de partitionnement différentes, GPT étant couramment utilisé avec les systèmes modernes en mode UEFI. Toute préparation d’un disque doit commencer par l’identification du support et la sauvegarde des données, puis se terminer par une vérification du schéma de partition, des volumes, du système de fichiers et du disque cible avant validation.
+</div>
+</section>
+</div></div></main>
+
+<script>
+function corrigerQuiz10(){
+  const reponses={q1:"b",q2:"c",q3:"b",q4:"a",q5:"b",q6:"a",q7:"c"};
+  let score=0;
+  const quiz=document.getElementById("quiz10");
+
+  Object.entries(reponses).forEach(([q,bonne])=>{
+    const radios=quiz.querySelectorAll(`input[name="${q}"]`);
+    radios.forEach(r=>{
+      const label=r.closest("label");
+      label.classList.remove("text-success","text-danger","fw-semibold");
+      if(r.value===bonne){
+        label.classList.add("text-success","fw-semibold");
+      }else if(r.checked){
+        label.classList.add("text-danger","fw-semibold");
+      }
+    });
+    const choix=quiz.querySelector(`input[name="${q}"]:checked`);
+    if(choix && choix.value===bonne) score++;
+  });
+
+  const pct=Math.round(score/7*100);
+  const box=document.getElementById("quiz10-resultat");
+  let message="";
+  if(score===7) message="Excellente maîtrise des notions essentielles.";
+  else if(score>=5) message="Bonne compréhension. Revoyez les questions signalées en rouge.";
+  else message="Certaines notions doivent être revues avant de poursuivre.";
+
+  box.className="alert mt-4 "+(score>=5?"alert-success":"alert-warning");
+  box.innerHTML=`<strong>Résultat : ${score}/7 (${pct} %)</strong><br>${message}<br><span class="small">Les bonnes réponses apparaissent en vert; une réponse sélectionnée incorrecte apparaît en rouge.</span>`;
+}
+
+function reinitialiserQuiz10(){
+  const quiz=document.getElementById("quiz10");
+  quiz.querySelectorAll('input[type="radio"]').forEach(r=>r.checked=false);
+  quiz.querySelectorAll("label").forEach(l=>l.classList.remove("text-success","text-danger","fw-semibold"));
+  const box=document.getElementById("quiz10-resultat");
+  box.className="alert mt-4 d-none";
+  box.innerHTML="";
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script></body></html>

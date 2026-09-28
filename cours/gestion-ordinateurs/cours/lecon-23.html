@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Leçon 23 — Ligne de commande Windows</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<style>body{background:#f7f8fb;color:#42506c}.wrap{max-width:900px;margin:auto;padding:50px 20px}.card{border:1px solid #e5e9f1;border-radius:18px}h1{color:#152354}.badge{background:#eef2ff!important;color:#315eea!important}</style>
+<link href="../../../assets/css/navbar.css" rel="stylesheet"/><style id="astechai-navbar-embedded">:root{--as-navy:#07164d;--as-blue:#1267f3;--as-purple:#8d31f4}
+.as-navbar{min-height:80px;z-index:1050;font-family:Arial,"Segoe UI",sans-serif}
+.as-nav-container{max-width:1440px;padding-left:44px;padding-right:44px}
+.as-brand{display:flex;align-items:center;gap:12px;margin-right:36px}
+.as-brand>span:last-child{display:flex;flex-direction:column}
+.as-brand strong{font-size:27px;line-height:1;color:var(--as-navy);font-weight:850;letter-spacing:-.5px}
+.as-brand strong span{color:#4227c9}.as-brand small{font-size:12px;color:#71809e;margin-top:5px}
+.as-book{width:60px;height:48px;position:relative;display:inline-block;flex:0 0 60px}
+.as-book:before,.as-book:after{content:"";position:absolute;top:4px;width:28px;height:39px;border-radius:5px 5px 15px 5px}
+.as-book:before{left:0;background:linear-gradient(145deg,#0877ff,#1453ee);transform:skewY(8deg)}
+.as-book:after{right:0;background:linear-gradient(145deg,#7058ff,#a22ef2);transform:skewY(-8deg)}
+.as-main-links{gap:7px}.as-main-links .nav-link{color:#0b225c!important;font-size:14px;font-weight:700;padding:11px 18px!important;border-radius:12px}
+.as-main-links .nav-link:hover,.as-main-links .nav-link.active{background:#edf4ff;color:#075bd8!important}
+.as-search{width:255px;height:44px;border-radius:25px;background:#f0f5ff;align-items:center;gap:8px;padding:0 16px;margin-right:22px;color:#7b88a4}
+.as-search input{width:100%;border:0;outline:0;background:transparent;color:#5e6e8b}
+.as-login{border:0!important;border-radius:13px!important;padding:12px 22px!important;color:#fff!important;font-weight:700!important;white-space:nowrap;background:linear-gradient(100deg,#3a7df5,#8b30f4)!important}
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:690px;padding:18px;border:1px solid #e6ebf4;border-radius:18px;box-shadow:0 20px 48px rgba(23,48,96,.14)}
+.as-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.as-course-card{display:flex;align-items:center;gap:11px;min-height:78px;padding:12px;border:1px solid #edf0f6;border-radius:13px;background:#fff;color:#172958;text-decoration:none;transition:.15s ease}
+.as-course-card:hover{background:#f6f9ff;border-color:#dce7ff;transform:translateY(-1px)}
+.as-course-icon{width:42px;height:42px;flex:0 0 42px;border-radius:11px;background:#edf4ff;color:#1267f3;display:grid;place-items:center;font-size:19px;font-weight:800}
+.as-course-icon.orange{background:#fff0eb;color:#e84b27}.as-course-icon.purple{background:#f4eaff;color:#8429ef}
+.as-course-card strong{display:block;font-size:13px;line-height:1.25;color:#102252}.as-course-card small{display:block;margin-top:3px;font-size:10px;line-height:1.25;color:#7b89a5}
+@media(max-width:1199px){.as-nav-container{padding-left:22px;padding-right:22px}.as-brand{margin-right:12px}.as-main-links{gap:1px}.as-main-links .nav-link{padding:10px 11px!important}}
+@media(max-width:991px){.as-navbar{min-height:72px}.as-brand strong{font-size:23px}.as-book{width:50px;flex-basis:50px}.as-book:before,.as-book:after{width:23px;height:36px}.navbar-collapse{padding:12px 0 16px}.as-main-links{align-items:stretch!important}.as-course-menu{position:static!important;transform:none!important;width:100%;margin:5px 0 8px}.as-course-grid{grid-template-columns:1fr 1fr}.as-login{margin-top:8px}}
+@media(max-width:600px){.as-nav-container{padding-left:14px;padding-right:14px}.as-brand small{display:none}.as-course-grid{grid-template-columns:1fr}}
+</style><style id="lesson23-content-styles">.content-card{margin-bottom:1.5rem}.codebox{margin:.7rem 0;padding:1rem 1.1rem;background:#07142f;color:#eef5ff;border-radius:14px;white-space:pre-wrap;overflow:auto}.callout,.warn,.mini-exercise,.method-box{padding:1rem 1.1rem;border-radius:14px;margin:1rem 0}.callout{background:#eef5ff;border-left:4px solid #1265f3}.warn{background:#fff7e8;border-left:4px solid #f0a000}.mini-exercise{background:#f7f3ff;border:1px solid #ded2ff}.mini-exercise h3{color:#5b2bd9;font-size:1.05rem;font-weight:800}.method-box{background:#f6f9ff;border:1px solid #dfe8f7}.syntax-table code{white-space:nowrap}.content-card h2{color:#152354;margin-bottom:1rem}.content-card h3,.content-card h4{font-weight:750}.content-card code{font-size:.95em}</style></head>
+<body><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+<div class="container-fluid as-nav-container">
+<a class="navbar-brand as-brand" href="../../../index.html">
+<span aria-hidden="true" class="as-book"></span>
+<span>
+<strong>AsTech<span>AI</span></strong>
+<small>IT Learning Platform</small>
+</span>
+</a>
+<button aria-controls="asMainNavbar" aria-expanded="false" aria-label="Afficher la navigation" class="navbar-toggler" data-bs-target="#asMainNavbar" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="asMainNavbar">
+<ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+<li class="nav-item">
+<a class="nav-link active" href="../../../index.html">Accueil</a>
+</li>
+<li class="nav-item dropdown position-static">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#" role="button">Cours</a>
+<div class="dropdown-menu as-course-menu">
+<div class="as-course-grid">
+<a class="as-course-card" href="../../../cours/gestion-ordinateurs/index.html">
+<span class="as-course-icon">▣</span>
+<span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/microsoft-365/index.html">
+<span class="as-course-icon orange">M</span>
+<span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation/index.html">
+<span class="as-course-icon purple">&lt;/&gt;</span>
+<span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/bases-de-donnees/index.html">
+<span class="as-course-icon">◎</span>
+<span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation-orientee-objet/index.html">
+<span class="as-course-icon purple">◇</span>
+<span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+</a>
+</div>
+</div>
+</li>
+<li class="nav-item"><a class="nav-link" href="../../../projets/index.html">Projets</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#apropos">À propos</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#ressources">Ressources</a></li>
+</ul>
+<form class="d-none d-xl-flex as-search" onsubmit="return false;" role="search">
+<span aria-hidden="true">⌕</span>
+<input aria-label="Rechercher" placeholder="Rechercher..." type="search"/>
+</form>
+<a class="btn as-login" href="../../../connexion/index.html">♙   Connexion</a>
+</div>
+</div>
+</nav><main class="wrap"><a class="text-decoration-none" href="../index.html#lesson-23">← Retour aux leçons</a>
+<div class="card shadow-sm mt-4"><div class="card-body p-4 p-md-5"><span class="badge rounded-pill mb-3">Leçon 13</span><h1>Ligne de commande Windows</h1>
+<p class="lead mt-3">Comprendre CMD, sa syntaxe et ses commandes pour naviguer, manipuler des fichiers, consulter le système et vérifier chaque opération.</p><div class="alert alert-primary mt-4"><strong>Objectifs d’apprentissage.</strong> À la fin de cette leçon, l’étudiant sera capable d’utiliser l’Invite de commandes Windows, de naviguer dans une arborescence, de manipuler des fichiers et dossiers, de consulter des informations système et réseau, d’utiliser les redirections et de vérifier rigoureusement le résultat de chaque commande.</div>
+<section class="content-card">
+
+<h2>1. Qu’est-ce que l’invite de commandes Windows ?</h2>
+
+<h3 class="h5 mt-4">1.1 Définition</h3>
+
+<p><strong>CMD</strong> signifie ici <strong>Command Prompt</strong>, appelé en français <strong>Invite de commandes</strong>. Il s’agit d’une interface textuelle de Windows dans laquelle l’utilisateur écrit des commandes au clavier.</p>
+
+<p>Contrairement à une interface graphique, où l’on clique sur des fenêtres, boutons et menus, CMD permet de demander directement au système d’exécuter une opération à partir d’une instruction textuelle.</p>
+
+<h3 class="h5 mt-4">1.2 Pourquoi apprendre CMD ?</h3>
+
+<p>CMD permet notamment de naviguer dans les dossiers, créer ou manipuler des fichiers, consulter des informations système et réseau, lancer certains outils d’administration et automatiser des suites simples d’opérations.</p>
+
+<div class="callout"><strong>Exemple :</strong> au lieu d’ouvrir l’Explorateur de fichiers pour créer un dossier, on peut saisir <code>mkdir C:\TP_CMD</code>.</div>
+
+<h3 class="h5 mt-4">1.3 Interface graphique ou ligne de commande ?</h3>
+
+<p>Les deux approches sont complémentaires. L’interface graphique facilite la découverte visuelle. La ligne de commande devient particulièrement utile lorsqu’une opération doit être répétée, documentée ou exécutée rapidement.</p>
+
+<div class="mini-exercise"><h3>Mini-exercice 1</h3><ol>
+
+<li>Expliquez avec vos propres mots ce qu’est CMD.</li>
+
+<li>Donnez deux situations où une commande textuelle peut être utile.</li>
+
+<li>Expliquez une différence entre CMD et l’Explorateur de fichiers.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>2. Ouvrir CMD et comprendre l’invite</h2>
+
+<h3 class="h5 mt-4">2.1 Ouvrir une invite normale</h3>
+
+<ol><li>Ouvrez <strong>Démarrer</strong>.</li><li>Recherchez <strong>Invite de commandes</strong> ou <strong>cmd</strong>.</li><li>Ouvrez l’application.</li></ol>
+
+<p>Une ligne semblable à <code>C:\Users\Etudiant&gt;</code> apparaît. La partie avant <code>&gt;</code> indique généralement le <strong>chemin courant</strong>, c’est-à-dire le dossier dans lequel CMD travaille actuellement.</p>
+
+<h3 class="h5 mt-4">2.2 Invite normale et invite administrateur</h3>
+
+<p>Certaines commandes fonctionnent avec les droits ordinaires de l’utilisateur. D’autres opérations qui modifient des éléments protégés du système peuvent nécessiter une invite ouverte avec des privilèges administratifs.</p>
+
+<p><strong>UAC</strong> signifie <em>User Account Control</em>, ou <strong>Contrôle de compte d’utilisateur</strong>. Windows peut afficher une demande de confirmation lorsqu’une opération nécessite une élévation de privilèges.</p>
+
+<div class="warn"><strong>Règle :</strong> n’ouvrez pas systématiquement CMD en administrateur. Utilisez uniquement les privilèges nécessaires à la tâche.</div>
+
+<div class="mini-exercise"><h3>Mini-exercice 2</h3><ol>
+
+<li>Ouvrez CMD dans la VM.</li><li>Recopiez le chemin affiché avant le symbole <code>&gt;</code>.</li><li>Expliquez ce que représente ce chemin.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>3. Comment apprendre une commande Windows ?</h2>
+
+<p>Pour chaque nouvelle commande, utilisez toujours la même méthode :</p>
+
+<ol>
+
+<li><strong>Définition :</strong> à quoi sert la commande ?</li>
+
+<li><strong>Syntaxe générale :</strong> comment la commande est-elle structurée ?</li>
+
+<li><strong>Paramètres et options :</strong> quelles variantes peut-on demander ?</li>
+
+<li><strong>Exemples :</strong> remplacer les éléments génériques par des valeurs réelles.</li>
+
+<li><strong>Exécution :</strong> lancer la commande dans l’environnement de laboratoire.</li>
+
+<li><strong>Vérification :</strong> confirmer que le résultat obtenu correspond au résultat attendu.</li>
+
+</ol>
+
+<div class="method-box"><strong>Exemple de syntaxe générique :</strong><div class="codebox">commande &lt;source&gt; &lt;destination&gt; [option]</div>
+
+<p class="mb-0"><code>&lt;source&gt;</code> et <code>&lt;destination&gt;</code> sont des valeurs à remplacer. Les crochets signalent ici un élément facultatif dans la représentation pédagogique de la syntaxe.</p></div>
+
+<h3 class="h5 mt-4">Aide intégrée</h3>
+
+<p>Avant de mémoriser une option, consultez l’aide disponible sur le poste. Selon la commande, utilisez notamment :</p>
+
+<div class="codebox">help
+
+help &lt;commande&gt;
+
+&lt;commande&gt; /?</div>
+
+<div class="callout"><strong>Exemple :</strong> <code>dir /?</code> affiche l’aide de <code>dir</code> et les options prises en charge par la version de Windows utilisée.</div>
+
+<div class="mini-exercise"><h3>Mini-exercice 3</h3><ol>
+
+<li>Exécutez <code>help</code>.</li><li>Exécutez <code>dir /?</code>.</li><li>Choisissez une option affichée par l’aide et expliquez son rôle sans encore l’exécuter.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>4. Navigation : <code>dir</code> et <code>cd</code></h2>
+
+<h3 class="h5 mt-4">4.1 <code>dir</code> — afficher le contenu d’un dossier</h3>
+
+<p><strong>Définition :</strong> <code>dir</code> affiche les fichiers et sous-dossiers d’un emplacement.</p>
+
+<h4 class="h6 mt-3">Syntaxe générale</h4>
+
+<div class="codebox">dir [chemin] [options]</div>
+
+<h4 class="h6 mt-3">Options utiles</h4>
+
+<div class="table-responsive"><table class="table table-bordered syntax-table"><thead><tr><th>Option</th><th>Rôle</th><th>Exemple</th></tr></thead><tbody>
+
+<tr><td><code>/p</code></td><td>Afficher page par page</td><td><code>dir /p</code></td></tr>
+
+<tr><td><code>/w</code></td><td>Afficher une liste large et compacte</td><td><code>dir /w</code></td></tr>
+
+<tr><td><code>/a</code></td><td>Afficher selon les attributs; sans attribut précisé, inclure notamment les éléments masqués et système</td><td><code>dir /a</code></td></tr>
+
+</tbody></table></div>
+
+<h3 class="h5 mt-4">4.2 <code>cd</code> — changer de dossier courant</h3>
+
+<p><strong>Définition :</strong> <code>cd</code>, pour <em>change directory</em>, permet d’afficher ou de modifier le dossier courant.</p>
+
+<h4 class="h6 mt-3">Syntaxe générale</h4>
+
+<div class="codebox">cd [chemin]
+
+cd ..
+
+cd \\
+
+cd /d &lt;lecteur:\chemin&gt;</div>
+
+<p><code>..</code> représente le dossier parent. <code>\\</code> ramène à la racine du lecteur courant. L’option <code>/d</code> permet aussi de changer de lecteur lorsque le chemin cible se trouve sur un autre lecteur.</p>
+
+<div class="callout"><strong>Exemple guidé :</strong><div class="codebox">cd /d C:\\
+
+dir
+
+cd Users
+
+dir
+
+cd ..
+
+cd \\</div></div>
+
+<div class="mini-exercise"><h3>Mini-exercice 4</h3><ol>
+
+<li>Affichez le contenu de <code>C:\\</code>.</li><li>Entrez dans un dossier existant avec <code>cd</code>.</li><li>Revenez au dossier parent.</li><li>Expliquez la différence entre <code>dir</code> et <code>cd</code>.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>5. Créer et supprimer des dossiers : <code>mkdir</code> et <code>rmdir</code></h2>
+
+<h3 class="h5 mt-4">5.1 <code>mkdir</code></h3>
+
+<p><strong>Définition :</strong> <code>mkdir</code> crée un ou plusieurs dossiers. La forme courte <code>md</code> est également disponible.</p>
+
+<div class="codebox">mkdir &lt;dossier&gt;</div>
+
+<div class="callout"><strong>Exemple :</strong><div class="codebox">mkdir C:\TP_CMD
+
+mkdir C:\TP_CMD\Documents</div></div>
+
+<h3 class="h5 mt-4">5.2 <code>rmdir</code></h3>
+
+<p><strong>Définition :</strong> <code>rmdir</code> supprime un dossier. La forme courte est <code>rd</code>.</p>
+
+<div class="codebox">rmdir &lt;dossier&gt; [options]</div>
+
+<div class="table-responsive"><table class="table table-bordered"><thead><tr><th>Option</th><th>Rôle</th></tr></thead><tbody>
+
+<tr><td><code>/s</code></td><td>Supprimer l’arborescence du dossier, y compris son contenu.</td></tr>
+
+<tr><td><code>/q</code></td><td>Mode silencieux avec <code>/s</code>, sans demande de confirmation.</td></tr>
+
+</tbody></table></div>
+
+<div class="warn"><strong>Attention :</strong> <code>rmdir /s /q</code> peut supprimer une arborescence sans confirmation. Utilisez-le uniquement dans le dossier de laboratoire après avoir vérifié le chemin.</div>
+
+<div class="mini-exercise"><h3>Mini-exercice 5</h3><ol>
+
+<li>Créez <code>C:\TP_CMD\Travail</code> et <code>C:\TP_CMD\Sauvegarde</code>.</li><li>Utilisez <code>dir</code> pour vérifier leur création.</li><li>Créez un dossier temporaire, vérifiez-le puis supprimez-le avec <code>rmdir</code>.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>6. Copier, déplacer et renommer : <code>copy</code>, <code>move</code> et <code>ren</code></h2>
+
+<h3 class="h5 mt-4">6.1 <code>copy</code></h3>
+
+<p><strong>Définition :</strong> <code>copy</code> copie un ou plusieurs fichiers vers un autre emplacement.</p>
+
+<div class="codebox">copy &lt;source&gt; &lt;destination&gt;</div>
+
+<p><strong>Exemple :</strong> <code>copy C:\TP_CMD\note.txt C:\TP_CMD\Sauvegarde\\</code></p>
+
+<h3 class="h5 mt-4">6.2 <code>move</code></h3>
+
+<p><strong>Définition :</strong> <code>move</code> déplace un fichier ou un dossier vers un autre emplacement.</p>
+
+<div class="codebox">move &lt;source&gt; &lt;destination&gt;</div>
+
+<h3 class="h5 mt-4">6.3 <code>ren</code></h3>
+
+<p><strong>Définition :</strong> <code>ren</code> ou <code>rename</code> modifie le nom d’un fichier ou d’un dossier.</p>
+
+<div class="codebox">ren &lt;ancien_nom&gt; &lt;nouveau_nom&gt;</div>
+
+<div class="callout"><strong>Exemple progressif :</strong><div class="codebox">copy note.txt Sauvegarde\\
+
+ren note.txt rapport.txt
+
+move rapport.txt Travail\\
+
+dir Travail</div></div>
+
+<div class="mini-exercise"><h3>Mini-exercice 6</h3><ol>
+
+<li>Créez ou utilisez un petit fichier texte dans le dossier de laboratoire.</li><li>Copiez-le dans <code>Sauvegarde</code>.</li><li>Renommez l’original.</li><li>Déplacez-le dans <code>Travail</code>.</li><li>Vérifiez les deux dossiers avec <code>dir</code>.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>7. Supprimer des fichiers : <code>del</code></h2>
+
+<p><strong>Définition :</strong> <code>del</code> supprime un ou plusieurs fichiers. Cette commande agit sur les fichiers, tandis que <code>rmdir</code> est utilisée pour les dossiers.</p>
+
+<h3 class="h5 mt-4">Syntaxe générale</h3>
+
+<div class="codebox">del &lt;fichier&gt; [options]</div>
+
+<h3 class="h5 mt-4">Options utiles</h3>
+
+<div class="table-responsive"><table class="table table-bordered"><thead><tr><th>Option</th><th>Rôle</th></tr></thead><tbody>
+
+<tr><td><code>/p</code></td><td>Demander une confirmation avant de supprimer chaque fichier.</td></tr>
+
+<tr><td><code>/q</code></td><td>Ne pas demander de confirmation lors de certaines suppressions utilisant des caractères génériques.</td></tr>
+
+</tbody></table></div>
+
+<div class="warn"><strong>Précaution :</strong> avant une suppression, utilisez <code>dir</code> pour vérifier le chemin et le nom du fichier ciblé.</div>
+
+<div class="mini-exercise"><h3>Mini-exercice 7</h3><ol>
+
+<li>Créez un fichier temporaire dans votre dossier de laboratoire.</li><li>Vérifiez sa présence avec <code>dir</code>.</li><li>Supprimez-le avec <code>del /p</code>.</li><li>Utilisez de nouveau <code>dir</code> pour confirmer le résultat.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>8. Afficher et créer du contenu simple : <code>type</code> et <code>echo</code></h2>
+
+<h3 class="h5 mt-4">8.1 <code>type</code></h3>
+
+<p><strong>Définition :</strong> <code>type</code> affiche dans CMD le contenu d’un fichier texte.</p>
+
+<div class="codebox">type &lt;fichier&gt;</div>
+
+<h3 class="h5 mt-4">8.2 <code>echo</code></h3>
+
+<p><strong>Définition :</strong> <code>echo</code> affiche un texte dans la console. Combiné à une redirection, il peut écrire du texte dans un fichier.</p>
+
+<div class="codebox">echo &lt;texte&gt;</div>
+
+<div class="callout"><strong>Exemple :</strong><div class="codebox">echo Premier test CMD
+
+echo Premier test CMD > journal.txt
+
+type journal.txt</div></div>
+
+<div class="mini-exercise"><h3>Mini-exercice 8</h3><ol>
+
+<li>Affichez votre prénom avec <code>echo</code>.</li><li>Écrivez la phrase « Test de la ligne de commande » dans <code>test.txt</code>.</li><li>Affichez le fichier avec <code>type</code>.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>9. Redirections : <code>&gt;</code> et <code>&gt;&gt;</code></h2>
+
+<p><strong>Définition :</strong> une redirection envoie la sortie d’une commande vers un fichier au lieu de l’afficher uniquement dans la console.</p>
+
+<div class="table-responsive"><table class="table table-bordered"><thead><tr><th>Symbole</th><th>Rôle</th><th>Exemple</th></tr></thead><tbody>
+
+<tr><td><code>&gt;</code></td><td>Écrire la sortie dans un fichier; le contenu existant est remplacé.</td><td><code>dir &gt; liste.txt</code></td></tr>
+
+<tr><td><code>&gt;&gt;</code></td><td>Ajouter la sortie à la fin du fichier.</td><td><code>ipconfig &gt;&gt; journal.txt</code></td></tr>
+
+</tbody></table></div>
+
+<div class="callout"><strong>Pourquoi est-ce utile ?</strong> Un technicien peut conserver le résultat d’une commande avant et après une modification afin de documenter son intervention.</div>
+
+<div class="mini-exercise"><h3>Mini-exercice 9</h3><ol>
+
+<li>Enregistrez le résultat de <code>dir</code> dans <code>journal.txt</code> avec <code>&gt;</code>.</li><li>Ajoutez une deuxième sortie avec <code>&gt;&gt;</code>.</li><li>Affichez le fichier avec <code>type</code> et expliquez la différence entre les deux opérateurs.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>10. Le pipe <code>|</code></h2>
+
+<p><strong>Définition :</strong> le pipe transmet la sortie d’une commande à une autre commande qui l’utilise comme entrée.</p>
+
+<h3 class="h5 mt-4">Syntaxe générale</h3>
+
+<div class="codebox">commande1 | commande2</div>
+
+<p>Une utilisation fréquente consiste à filtrer une sortie avec <code>find</code> ou <code>findstr</code>.</p>
+
+<div class="callout"><strong>Exemple :</strong><div class="codebox">ipconfig | findstr "IPv4"</div><p class="mb-0">La première commande produit des informations réseau; <code>findstr</code> conserve les lignes contenant le texte recherché.</p></div>
+
+<div class="mini-exercise"><h3>Mini-exercice 10</h3><ol>
+
+<li>Exécutez <code>ipconfig</code>.</li><li>Exécutez ensuite <code>ipconfig | findstr "IPv4"</code>.</li><li>Comparez les deux sorties et expliquez le rôle du pipe.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>11. Informations système : <code>hostname</code>, <code>whoami</code> et <code>systeminfo</code></h2>
+
+<p>Ces commandes permettent d’identifier rapidement la machine, l’identité courante ou des informations sur Windows.</p>
+
+<div class="table-responsive"><table class="table table-bordered"><thead><tr><th>Commande</th><th>Rôle</th></tr></thead><tbody>
+
+<tr><td><code>hostname</code></td><td>Afficher le nom de l’ordinateur.</td></tr>
+
+<tr><td><code>whoami</code></td><td>Afficher l’identité du compte sous lequel la commande est exécutée.</td></tr>
+
+<tr><td><code>systeminfo</code></td><td>Afficher un ensemble d’informations sur le système Windows.</td></tr>
+
+</tbody></table></div>
+
+<div class="callout"><strong>Réflexe de diagnostic :</strong> avant de modifier une machine, commencez par identifier sur quel ordinateur et avec quel compte vous travaillez.</div>
+
+<div class="mini-exercise"><h3>Mini-exercice 11</h3><ol>
+
+<li>Affichez le nom de la VM.</li><li>Identifiez le compte courant.</li><li>Lancez <code>systeminfo</code> et relevez trois informations que vous jugez utiles.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>12. Informations réseau : <code>ipconfig</code>, <code>ping</code> et <code>nslookup</code></h2>
+
+<h3 class="h5 mt-4">12.1 <code>ipconfig</code></h3>
+
+<p><strong>Définition :</strong> <code>ipconfig</code> affiche la configuration IP des interfaces réseau Windows.</p>
+
+<div class="codebox">ipconfig
+
+ipconfig /all</div>
+
+<p><code>/all</code> affiche des informations plus détaillées sur la configuration.</p>
+
+<h3 class="h5 mt-4">12.2 <code>ping</code></h3>
+
+<p><strong>Définition :</strong> <code>ping</code> envoie des messages de test à une destination IP ou à un nom d’hôte afin d’observer si des réponses reviennent. L’absence de réponse ne prouve toutefois pas à elle seule qu’une machine est hors ligne, car le trafic peut être filtré.</p>
+
+<div class="codebox">ping &lt;destination&gt;</div>
+
+<h3 class="h5 mt-4">12.3 <code>nslookup</code></h3>
+
+<p><strong>Définition :</strong> <code>nslookup</code> permet d’interroger le service de résolution de noms DNS afin d’obtenir des informations associées à un nom ou à une adresse.</p>
+
+<div class="codebox">nslookup &lt;nom&gt;</div>
+
+<div class="mini-exercise"><h3>Mini-exercice 12</h3><ol>
+
+<li>Exécutez <code>ipconfig /all</code> et repérez une adresse IPv4.</li><li>Testez une destination autorisée dans le laboratoire avec <code>ping</code>.</li><li>Utilisez <code>nslookup</code> sur un nom fourni par l’enseignant.</li><li>Expliquez le rôle différent des trois commandes.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>13. Réutiliser les commandes d’administration</h2>
+
+<p>Les commandes étudiées précédemment peuvent être exécutées depuis une invite disposant des privilèges nécessaires. Dans cette leçon, l’objectif est surtout de les intégrer à une démarche de ligne de commande.</p>
+
+<div class="table-responsive"><table class="table table-bordered"><thead><tr><th>Commande</th><th>Objet administré</th><th>Exemple de consultation</th></tr></thead><tbody>
+
+<tr><td><code>net user</code></td><td>Comptes utilisateurs</td><td><code>net user</code></td></tr>
+
+<tr><td><code>net localgroup</code></td><td>Groupes locaux</td><td><code>net localgroup</code></td></tr>
+
+<tr><td><code>icacls</code></td><td>Permissions de fichiers et dossiers NTFS</td><td><code>icacls C:\TP_CMD</code></td></tr>
+
+</tbody></table></div>
+
+<p><strong>NTFS</strong> est un système de fichiers utilisé par Windows. Une <strong>ACL</strong>, ou liste de contrôle d’accès, décrit les autorisations associées à des identités sur une ressource.</p>
+
+<div class="warn"><strong>Précaution :</strong> les modifications de comptes et de permissions doivent être réalisées uniquement sur les objets de laboratoire prévus pour le TP.</div>
+
+<div class="mini-exercise"><h3>Mini-exercice 13</h3><ol>
+
+<li>Affichez la liste des comptes avec <code>net user</code>.</li><li>Affichez les groupes avec <code>net localgroup</code>.</li><li>Affichez les permissions du dossier de laboratoire avec <code>icacls</code>.</li><li>Pour chaque commande, indiquez ce qu’elle permet d’observer.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>14. Construire un journal de diagnostic</h2>
+
+<p>Une ligne de commande devient particulièrement utile lorsque les résultats sont conservés dans un fichier. On peut ainsi constituer un petit journal technique.</p>
+
+<div class="codebox">echo === IDENTITE === > diagnostic.txt
+
+whoami >> diagnostic.txt
+
+echo === MACHINE === >> diagnostic.txt
+
+hostname >> diagnostic.txt
+
+echo === RESEAU === >> diagnostic.txt
+
+ipconfig >> diagnostic.txt
+
+type diagnostic.txt</div>
+
+<p><strong>Explication :</strong> la première ligne crée ou remplace le fichier. Les commandes suivantes ajoutent leurs résultats grâce à <code>&gt;&gt;</code>. La dernière commande affiche le journal.</p>
+
+<div class="mini-exercise"><h3>Mini-exercice 14</h3><ol>
+
+<li>Créez votre propre <code>diagnostic.txt</code>.</li><li>Ajoutez le compte courant, le nom de la machine et les informations IP.</li><li>Ajoutez une quatrième information de votre choix.</li><li>Affichez le fichier et vérifiez que les informations sont organisées.</li>
+
+</ol></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>15. Exemple intégrateur — préparer un espace de travail depuis CMD</h2>
+
+<p><strong>Situation :</strong> un technicien doit préparer un dossier de test, conserver des informations sur la machine et produire une copie de sauvegarde du journal.</p>
+
+<div class="codebox">cd /d C:\\
+
+mkdir TP_CMD
+
+cd TP_CMD
+
+mkdir Travail
+
+mkdir Sauvegarde
+
+echo === DIAGNOSTIC === > Travail\journal.txt
+
+whoami >> Travail\journal.txt
+
+hostname >> Travail\journal.txt
+
+ipconfig >> Travail\journal.txt
+
+type Travail\journal.txt
+
+copy Travail\journal.txt Sauvegarde\\
+
+dir Travail
+
+dir Sauvegarde</div>
+
+<div class="method-box"><strong>Méthode à retenir :</strong> observer → planifier → exécuter → vérifier → tester → documenter.</div>
+
+<div class="mini-exercise"><h3>Mini-exercice 15</h3><p>Reproduisez le scénario dans la VM, puis adaptez-le : changez le nom du dossier principal, ajoutez une information système supplémentaire au journal et démontrez avec <code>dir</code> que la copie de sauvegarde existe.</p></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>16. Erreurs fréquentes et méthode de diagnostic</h2>
+
+<div class="table-responsive"><table class="table table-bordered"><thead><tr><th>Situation</th><th>Question à se poser</th><th>Action</th></tr></thead><tbody>
+
+<tr><td>« Le chemin spécifié est introuvable »</td><td>Le chemin existe-t-il et est-il correctement écrit ?</td><td>Vérifier avec <code>dir</code> et contrôler le chemin courant.</td></tr>
+
+<tr><td>Nom avec espaces</td><td>Le chemin doit-il être regroupé ?</td><td>Utiliser des guillemets, par exemple <code>cd "C:\Mon Dossier"</code>.</td></tr>
+
+<tr><td>« Accès refusé »</td><td>Le compte possède-t-il les permissions nécessaires ?</td><td>Vérifier l’identité, la ressource ciblée et les droits requis.</td></tr>
+
+<tr><td>Commande inconnue</td><td>Le nom est-il correct ?</td><td>Vérifier l’orthographe et consulter <code>help</code> ou <code>commande /?</code>.</td></tr>
+
+<tr><td>Résultat inattendu</td><td>Ai-je ciblé le bon dossier ou fichier ?</td><td>Afficher l’état avec <code>cd</code>, <code>dir</code> ou une commande de consultation.</td></tr>
+
+</tbody></table></div>
+
+<div class="mini-exercise"><h3>Mini-exercice 16</h3><p>Provoquez volontairement une erreur non destructive en utilisant un nom de dossier inexistant avec <code>cd</code>. Recopiez le message obtenu, expliquez sa cause, puis corrigez la commande.</p></div>
+
+</section>
+
+
+
+<section class="content-card">
+
+<h2>17. Synthèse des commandes</h2>
+
+<div class="table-responsive"><table class="table table-bordered align-middle"><thead><tr><th>Besoin</th><th>Commande</th><th>Vérification possible</th></tr></thead><tbody>
+
+<tr><td>Voir le contenu</td><td><code>dir</code></td><td>Relire la liste affichée</td></tr>
+
+<tr><td>Changer de dossier</td><td><code>cd</code></td><td><code>cd</code> ou observer l’invite</td></tr>
+
+<tr><td>Créer un dossier</td><td><code>mkdir</code></td><td><code>dir</code></td></tr>
+
+<tr><td>Copier</td><td><code>copy</code></td><td><code>dir destination</code></td></tr>
+
+<tr><td>Déplacer</td><td><code>move</code></td><td><code>dir</code> source et destination</td></tr>
+
+<tr><td>Renommer</td><td><code>ren</code></td><td><code>dir</code></td></tr>
+
+<tr><td>Supprimer un fichier</td><td><code>del</code></td><td><code>dir</code></td></tr>
+
+<tr><td>Supprimer un dossier</td><td><code>rmdir</code></td><td><code>dir</code></td></tr>
+
+<tr><td>Afficher un fichier texte</td><td><code>type</code></td><td>Lire la sortie</td></tr>
+
+<tr><td>Informations réseau</td><td><code>ipconfig</code></td><td>Examiner les interfaces</td></tr>
+
+<tr><td>Identité</td><td><code>whoami</code></td><td>Lire l’identité affichée</td></tr>
+
+</tbody></table></div>
+
+<div class="mini-exercise"><h3>Mini-exercice 17</h3><p>Sans consulter les sections précédentes, écrivez la commande que vous choisiriez pour : créer un dossier, entrer dans ce dossier, copier un fichier, renommer un fichier, afficher une configuration IP et enregistrer une sortie dans un fichier. Vérifiez ensuite vos réponses dans le cours.</p></div>
+
+</section>
+
+
+
+
+
+
+
+
+<section class="content-card" id="quiz-lecon-23">
+<h2>Quiz — Ligne de commande Windows</h2>
+<p>Répondez aux questions, puis cliquez sur <strong>Corriger le quiz</strong>. Une seule réponse est attendue par question.</p>
+
+<form id="quiz23">
+<div class="mini-exercise quiz-question" data-answer="b">
+<h3>Question 1</h3>
+<p>Quelle commande permet d’afficher les fichiers et les sous-dossiers de l’emplacement courant ?</p>
+<label class="d-block p-2 rounded"><input type="radio" name="q1" value="a"> <code>cd</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q1" value="b"> <code>dir</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q1" value="c"> <code>mkdir</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q1" value="d"> <code>move</code></label>
+<div class="quiz-feedback mt-2"></div>
+</div>
+
+<div class="mini-exercise quiz-question" data-answer="c">
+<h3>Question 2</h3>
+<p>Quelle commande permet de revenir au dossier parent ?</p>
+<label class="d-block p-2 rounded"><input type="radio" name="q2" value="a"> <code>cd \</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q2" value="b"> <code>dir ..</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q2" value="c"> <code>cd ..</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q2" value="d"> <code>cd /?</code></label>
+<div class="quiz-feedback mt-2"></div>
+</div>
+
+<div class="mini-exercise quiz-question" data-answer="a">
+<h3>Question 3</h3>
+<p>Quelle commande crée le dossier <code>C:\TP_CMD\Travail</code> ?</p>
+<label class="d-block p-2 rounded"><input type="radio" name="q3" value="a"> <code>mkdir C:\TP_CMD\Travail</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q3" value="b"> <code>dir C:\TP_CMD\Travail</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q3" value="c"> <code>del C:\TP_CMD\Travail</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q3" value="d"> <code>type C:\TP_CMD\Travail</code></label>
+<div class="quiz-feedback mt-2"></div>
+</div>
+
+<div class="mini-exercise quiz-question" data-answer="d">
+<h3>Question 4</h3>
+<p>Quelle commande copie <code>note.txt</code> dans le dossier <code>Sauvegarde</code> ?</p>
+<label class="d-block p-2 rounded"><input type="radio" name="q4" value="a"> <code>move note.txt Sauvegarde\</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q4" value="b"> <code>ren note.txt Sauvegarde\</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q4" value="c"> <code>type note.txt Sauvegarde\</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q4" value="d"> <code>copy note.txt Sauvegarde\</code></label>
+<div class="quiz-feedback mt-2"></div>
+</div>
+
+<div class="mini-exercise quiz-question" data-answer="b">
+<h3>Question 5</h3>
+<p>Vous voulez conserver le contenu actuel de <code>diagnostic.txt</code> et ajouter le résultat de <code>ipconfig</code> à la fin. Quelle commande convient ?</p>
+<label class="d-block p-2 rounded"><input type="radio" name="q5" value="a"> <code>ipconfig &gt; diagnostic.txt</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q5" value="b"> <code>ipconfig &gt;&gt; diagnostic.txt</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q5" value="c"> <code>ipconfig | diagnostic.txt</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q5" value="d"> <code>type ipconfig diagnostic.txt</code></label>
+<div class="quiz-feedback mt-2"></div>
+</div>
+
+<div class="mini-exercise quiz-question" data-answer="c">
+<h3>Question 6</h3>
+<p>Quel est le rôle du symbole <code>|</code> dans <code>ipconfig | findstr "IPv4"</code> ?</p>
+<label class="d-block p-2 rounded"><input type="radio" name="q6" value="a"> Supprimer les lignes contenant IPv4.</label>
+<label class="d-block p-2 rounded"><input type="radio" name="q6" value="b"> Enregistrer automatiquement la sortie dans un fichier.</label>
+<label class="d-block p-2 rounded"><input type="radio" name="q6" value="c"> Transmettre la sortie de la première commande à la seconde.</label>
+<label class="d-block p-2 rounded"><input type="radio" name="q6" value="d"> Exécuter CMD avec des privilèges administratifs.</label>
+<div class="quiz-feedback mt-2"></div>
+</div>
+
+<div class="mini-exercise quiz-question" data-answer="a">
+<h3>Question 7</h3>
+<p>Avant de supprimer un fichier avec <code>del</code>, quel réflexe est recommandé dans la leçon ?</p>
+<label class="d-block p-2 rounded"><input type="radio" name="q7" value="a"> Vérifier le chemin et le fichier ciblé avec <code>dir</code>.</label>
+<label class="d-block p-2 rounded"><input type="radio" name="q7" value="b"> Redémarrer Windows.</label>
+<label class="d-block p-2 rounded"><input type="radio" name="q7" value="c"> Exécuter systématiquement CMD comme administrateur.</label>
+<label class="d-block p-2 rounded"><input type="radio" name="q7" value="d"> Utiliser <code>rmdir /s /q</code> avant <code>del</code>.</label>
+<div class="quiz-feedback mt-2"></div>
+</div>
+
+<div class="mini-exercise quiz-question" data-answer="d">
+<h3>Question 8</h3>
+<p>Quelle commande affiche l’identité du compte sous lequel CMD est actuellement exécuté ?</p>
+<label class="d-block p-2 rounded"><input type="radio" name="q8" value="a"> <code>hostname</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q8" value="b"> <code>systeminfo</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q8" value="c"> <code>ipconfig</code></label>
+<label class="d-block p-2 rounded"><input type="radio" name="q8" value="d"> <code>whoami</code></label>
+<div class="quiz-feedback mt-2"></div>
+</div>
+
+<div class="d-flex flex-wrap gap-2 mt-4">
+<button type="button" class="btn btn-primary" id="quiz23-submit">Corriger le quiz</button>
+<button type="button" class="btn btn-outline-secondary" id="quiz23-reset">Réinitialiser</button>
+</div>
+<div id="quiz23-result" class="alert mt-3 d-none" role="status"></div>
+</form>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("quiz23");
+  if (!form) return;
+  const questions = [...form.querySelectorAll(".quiz-question")];
+  const explanations = [
+    "dir affiche les fichiers et les sous-dossiers d’un emplacement.",
+    "cd .. permet de revenir au dossier parent.",
+    "mkdir crée un dossier.",
+    "copy copie un ou plusieurs fichiers vers une destination.",
+    ">> ajoute la sortie à la fin du fichier sans remplacer son contenu existant.",
+    "Le pipe transmet la sortie d’une commande à une autre commande.",
+    "Avant une suppression, la leçon recommande de vérifier le chemin et la cible avec dir.",
+    "whoami affiche l’identité du compte sous lequel la commande est exécutée."
+  ];
+
+  document.getElementById("quiz23-submit").addEventListener("click", function () {
+    let score = 0;
+    questions.forEach((q, i) => {
+      const answer = q.dataset.answer;
+      const selected = q.querySelector("input:checked");
+      q.querySelectorAll("label").forEach(label => {
+        label.style.background = "";
+        label.style.border = "";
+      });
+      const correct = q.querySelector('input[value="' + answer + '"]');
+      if (correct) {
+        correct.closest("label").style.background = "#e8f7ee";
+        correct.closest("label").style.border = "1px solid #45a56a";
+      }
+      const feedback = q.querySelector(".quiz-feedback");
+      if (!selected) {
+        feedback.innerHTML = '<span class="text-warning-emphasis"><strong>Non répondu.</strong> ' + explanations[i] + '</span>';
+      } else if (selected.value === answer) {
+        score++;
+        feedback.innerHTML = '<span class="text-success"><strong>Bonne réponse.</strong> ' + explanations[i] + '</span>';
+      } else {
+        selected.closest("label").style.background = "#fdecec";
+        selected.closest("label").style.border = "1px solid #dc6b6b";
+        feedback.innerHTML = '<span class="text-danger"><strong>À revoir.</strong> ' + explanations[i] + '</span>';
+      }
+    });
+
+    const pct = Math.round((score / questions.length) * 100);
+    const result = document.getElementById("quiz23-result");
+    result.className = "alert mt-3 " + (pct >= 70 ? "alert-success" : "alert-warning");
+    result.innerHTML = "<strong>Résultat : " + score + "/" + questions.length + " (" + pct + " %)</strong><br>" +
+      (pct >= 70 ? "Bonne maîtrise des commandes essentielles de cette leçon." :
+       "Revoyez les commandes, leur syntaxe et la méthode de vérification avant de refaire le quiz.");
+  });
+
+  document.getElementById("quiz23-reset").addEventListener("click", function () {
+    form.reset();
+    questions.forEach(q => {
+      q.querySelectorAll("label").forEach(label => {
+        label.style.background = "";
+        label.style.border = "";
+      });
+      q.querySelector(".quiz-feedback").innerHTML = "";
+    });
+    const result = document.getElementById("quiz23-result");
+    result.className = "alert mt-3 d-none";
+    result.innerHTML = "";
+  });
+});
+</script>
+
+
+<section class="content-card">
+
+<h2>À retenir</h2>
+
+<p>CMD est une interface textuelle de Windows. Une utilisation rigoureuse repose sur la compréhension du chemin courant, la syntaxe des commandes, leurs options et surtout la vérification des résultats. Le technicien doit être capable d’expliquer ce qu’il fait, de choisir la commande adaptée et de documenter son intervention.</p>
+
+</section>
+</div></div></main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script></body></html>

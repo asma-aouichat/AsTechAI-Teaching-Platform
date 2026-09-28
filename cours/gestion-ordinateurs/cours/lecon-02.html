@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Leçon 2 — Composants matériels</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<style>body{background:#f7f8fb;color:#42506c}.wrap{max-width:900px;margin:auto;padding:50px 20px}.card{border:1px solid #e5e9f1;border-radius:18px}h1{color:#152354}.badge{background:#eef2ff!important;color:#315eea!important}</style>
+<link href="../../../assets/css/navbar.css" rel="stylesheet"/><style id="astechai-navbar-embedded">:root{--as-navy:#07164d;--as-blue:#1267f3;--as-purple:#8d31f4}
+.as-navbar{min-height:80px;z-index:1050;font-family:Arial,"Segoe UI",sans-serif}
+.as-nav-container{max-width:1440px;padding-left:44px;padding-right:44px}
+.as-brand{display:flex;align-items:center;gap:12px;margin-right:36px}
+.as-brand>span:last-child{display:flex;flex-direction:column}
+.as-brand strong{font-size:27px;line-height:1;color:var(--as-navy);font-weight:850;letter-spacing:-.5px}
+.as-brand strong span{color:#4227c9}.as-brand small{font-size:12px;color:#71809e;margin-top:5px}
+.as-book{width:60px;height:48px;position:relative;display:inline-block;flex:0 0 60px}
+.as-book:before,.as-book:after{content:"";position:absolute;top:4px;width:28px;height:39px;border-radius:5px 5px 15px 5px}
+.as-book:before{left:0;background:linear-gradient(145deg,#0877ff,#1453ee);transform:skewY(8deg)}
+.as-book:after{right:0;background:linear-gradient(145deg,#7058ff,#a22ef2);transform:skewY(-8deg)}
+.as-main-links{gap:7px}.as-main-links .nav-link{color:#0b225c!important;font-size:14px;font-weight:700;padding:11px 18px!important;border-radius:12px}
+.as-main-links .nav-link:hover,.as-main-links .nav-link.active{background:#edf4ff;color:#075bd8!important}
+.as-search{width:255px;height:44px;border-radius:25px;background:#f0f5ff;align-items:center;gap:8px;padding:0 16px;margin-right:22px;color:#7b88a4}
+.as-search input{width:100%;border:0;outline:0;background:transparent;color:#5e6e8b}
+.as-login{border:0!important;border-radius:13px!important;padding:12px 22px!important;color:#fff!important;font-weight:700!important;white-space:nowrap;background:linear-gradient(100deg,#3a7df5,#8b30f4)!important}
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:690px;padding:18px;border:1px solid #e6ebf4;border-radius:18px;box-shadow:0 20px 48px rgba(23,48,96,.14)}
+.as-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.as-course-card{display:flex;align-items:center;gap:11px;min-height:78px;padding:12px;border:1px solid #edf0f6;border-radius:13px;background:#fff;color:#172958;text-decoration:none;transition:.15s ease}
+.as-course-card:hover{background:#f6f9ff;border-color:#dce7ff;transform:translateY(-1px)}
+.as-course-icon{width:42px;height:42px;flex:0 0 42px;border-radius:11px;background:#edf4ff;color:#1267f3;display:grid;place-items:center;font-size:19px;font-weight:800}
+.as-course-icon.orange{background:#fff0eb;color:#e84b27}.as-course-icon.purple{background:#f4eaff;color:#8429ef}
+.as-course-card strong{display:block;font-size:13px;line-height:1.25;color:#102252}.as-course-card small{display:block;margin-top:3px;font-size:10px;line-height:1.25;color:#7b89a5}
+@media(max-width:1199px){.as-nav-container{padding-left:22px;padding-right:22px}.as-brand{margin-right:12px}.as-main-links{gap:1px}.as-main-links .nav-link{padding:10px 11px!important}}
+@media(max-width:991px){.as-navbar{min-height:72px}.as-brand strong{font-size:23px}.as-book{width:50px;flex-basis:50px}.as-book:before,.as-book:after{width:23px;height:36px}.navbar-collapse{padding:12px 0 16px}.as-main-links{align-items:stretch!important}.as-course-menu{position:static!important;transform:none!important;width:100%;margin:5px 0 8px}.as-course-grid{grid-template-columns:1fr 1fr}.as-login{margin-top:8px}}
+@media(max-width:600px){.as-nav-container{padding-left:14px;padding-right:14px}.as-brand small{display:none}.as-course-grid{grid-template-columns:1fr}}
+</style>
+<style id="lesson02-quiz-style">
+.quiz-question{border:1px solid #e5e9f1;border-radius:16px;padding:20px;margin-bottom:18px;background:#fff}
+.quiz-question legend{font-size:1rem;font-weight:700;color:#152354;margin-bottom:14px}
+.quiz-option{display:block;border:1px solid #e6eaf2;border-radius:12px;padding:11px 14px;margin:8px 0;cursor:pointer;background:#fafbfe}
+.quiz-option:hover{background:#f3f6ff}
+.quiz-option.correct{background:#eaf8ef;border-color:#72c98b}
+.quiz-option.incorrect{background:#fff0f0;border-color:#e58b8b}
+.quiz-feedback{font-size:.92rem;margin-top:10px;font-weight:600}
+.scenario-card{border:1px solid #dce5ff;border-radius:16px;padding:20px;margin-bottom:18px;background:#f8faff}
+.scenario-card h3{font-size:1.05rem;color:#152354}
+</style>
+
+</head>
+<body><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+<div class="container-fluid as-nav-container">
+<a class="navbar-brand as-brand" href="../../../index.html">
+<span aria-hidden="true" class="as-book"></span>
+<span>
+<strong>AsTech<span>AI</span></strong>
+<small>IT Learning Platform</small>
+</span>
+</a>
+<button aria-controls="asMainNavbar" aria-expanded="false" aria-label="Afficher la navigation" class="navbar-toggler" data-bs-target="#asMainNavbar" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="asMainNavbar">
+<ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+<li class="nav-item">
+<a class="nav-link active" href="../../../index.html">Accueil</a>
+</li>
+<li class="nav-item dropdown position-static">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#" role="button">Cours</a>
+<div class="dropdown-menu as-course-menu">
+<div class="as-course-grid">
+<a class="as-course-card" href="../../../cours/gestion-ordinateurs/index.html">
+<span class="as-course-icon">▣</span>
+<span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/microsoft-365/index.html">
+<span class="as-course-icon orange">M</span>
+<span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation/index.html">
+<span class="as-course-icon purple">&lt;/&gt;</span>
+<span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/bases-de-donnees/index.html">
+<span class="as-course-icon">◎</span>
+<span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation-orientee-objet/index.html">
+<span class="as-course-icon purple">◇</span>
+<span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+</a>
+</div>
+</div>
+</li>
+<li class="nav-item"><a class="nav-link" href="../../../projets/index.html">Projets</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#apropos">À propos</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#ressources">Ressources</a></li>
+</ul>
+<form class="d-none d-xl-flex as-search" onsubmit="return false;" role="search">
+<span aria-hidden="true">⌕</span>
+<input aria-label="Rechercher" placeholder="Rechercher..." type="search"/>
+</form>
+<a class="btn as-login" href="../../../connexion/index.html">♙   Connexion</a>
+</div>
+</div>
+</nav><main class="wrap">
+<a class="text-decoration-none" href="../index.html">← Retour aux leçons</a>
+
+<div class="card shadow-sm mt-4">
+<div class="card-body p-4 p-md-5">
+<span class="badge rounded-pill mb-3">Leçon 2</span>
+<h1>Composants matériels</h1>
+<p class="lead mt-3">Identifier les principaux composants matériels d’un ordinateur, comprendre leur rôle et analyser les critères essentiels permettant d’assurer leur compatibilité.</p>
+
+<div class="alert alert-primary mt-4">
+<strong>Objectifs d’apprentissage.</strong> À la fin de cette leçon, l’étudiant sera capable d’identifier les principaux composants d’un ordinateur, d’expliquer leur fonction et leurs caractéristiques essentielles, de décrire le rôle des bus et des interfaces dans les échanges internes, de distinguer les périphériques d’entrée et de sortie, puis de vérifier les contraintes matérielles et logicielles essentielles lors du choix ou du remplacement d’un composant.
+</div>
+
+<figure class="my-4 text-center">
+<img src="images/architecture-ordinateur.png" class="img-fluid rounded-4 border shadow-sm" alt="Vue générale des principaux composants matériels et périphériques d’un ordinateur" loading="lazy">
+<figcaption class="small text-secondary mt-2">Vue d’ensemble des principaux composants internes et périphériques d’un ordinateur.</figcaption>
+</figure>
+
+<section class="mt-5">
+<h2>1. Carte mère</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>La <strong>carte mère</strong> est le circuit imprimé principal d’un ordinateur. Elle accueille ou relie les composants essentiels et fournit les voies de communication nécessaires à leurs échanges.</p>
+<p>Elle comprend notamment le socket du processeur, les emplacements de mémoire, les connecteurs de stockage, les interfaces d’extension et différents connecteurs d’alimentation et de périphériques.</p>
+<figure class="my-4 text-center">
+<img src="images/carte-mere.png" class="img-fluid rounded-4 border shadow-sm" alt="Carte mère avec emplacements du processeur, de la RAM, de l’alimentation, du stockage et des ports" loading="lazy">
+<figcaption class="small text-secondary mt-2">Repérage de plusieurs zones importantes d’une carte mère.</figcaption>
+</figure>
+
+<h3 class="h5 mt-4">Éléments à repérer</h3>
+<div class="table-responsive">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Élément</th><th>Rôle</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td><strong>Socket</strong></td><td>Emplacement destiné à recevoir le processeur.</td><td>Le CPU doit utiliser un socket compatible.</td></tr>
+<tr><td><strong>Emplacements RAM</strong></td><td>Reçoivent les barrettes de mémoire vive.</td><td>Une carte mère peut proposer plusieurs emplacements.</td></tr>
+<tr><td><strong>Connecteurs de stockage</strong></td><td>Relient les unités de stockage à la carte mère.</td><td>SATA ou M.2 selon le matériel.</td></tr>
+<tr><td><strong>Emplacements d’extension</strong></td><td>Permettent d’ajouter des cartes spécialisées.</td><td>PCI Express pour une carte graphique ou réseau.</td></tr>
+<tr><td><strong>Connecteurs d’alimentation</strong></td><td>Distribuent l’énergie nécessaire à la carte mère et au processeur.</td><td>Connecteurs provenant du bloc d’alimentation.</td></tr>
+</tbody>
+</table>
+</div>
+<p>La carte mère ne réalise donc pas seule le traitement : elle constitue surtout la <strong>plateforme d’interconnexion</strong> sur laquelle les composants sont installés et communiquent.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Lorsqu’un SSD, de la mémoire RAM et une carte graphique sont installés dans un ordinateur, chacun utilise une interface prévue par la carte mère. Le choix de la carte mère détermine donc une partie importante des possibilités d’évolution de la machine.</p>
+<div class="alert alert-warning"><strong>Exercice 1.</strong> Expliquez pourquoi la carte mère peut être considérée comme le point central d’interconnexion d’un ordinateur. Citez quatre types de composants ou d’interfaces qu’elle relie.</div>
+<figure class="my-4 text-center">
+<img src="images/firmware-bios-uefi.png" class="img-fluid rounded-4 border shadow-sm" alt="Puce illustrant le firmware BIOS ou UEFI sur une carte mère" loading="lazy">
+<figcaption class="small text-secondary mt-2">Repère visuel : le firmware BIOS/UEFI est associé à la carte mère; son fonctionnement sera étudié dans une leçon dédiée.</figcaption>
+</figure>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>2. Bus et communication entre les composants</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Un <strong>bus</strong> désigne, dans un modèle architectural classique, un ensemble de voies de communication permettant de transporter des informations entre les différentes unités d’un ordinateur. Il contribue ainsi aux échanges entre le processeur, la mémoire et les autres composants du système.</p>
+<p>Cette notion prolonge la communication entre composants étudiée dans la leçon précédente. Ici, l’objectif est de comprendre comment les échanges sont organisés au niveau matériel, sans entrer dans les détails électroniques.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Type de bus</th><th>Rôle conceptuel</th><th>Exemple d’information transportée</th></tr></thead>
+<tbody>
+<tr><td><strong>Bus de données</strong></td><td>Transporte les données échangées entre les unités.</td><td>Valeur lue depuis la mémoire ou résultat transmis à un composant.</td></tr>
+<tr><td><strong>Bus d’adresses</strong></td><td>Indique l’emplacement ou la ressource concernée par une opération.</td><td>Adresse d’une zone mémoire à lire ou à modifier.</td></tr>
+<tr><td><strong>Bus de contrôle</strong></td><td>Transporte les signaux nécessaires à la coordination des opérations.</td><td>Demande de lecture, d’écriture ou signal de synchronisation.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-info mt-3">
+<strong>À distinguer :</strong> données, adresses et contrôle décrivent trois fonctions conceptuelles de communication. Dans les ordinateurs modernes, toutes les interconnexions ne prennent pas nécessairement la forme d’un bus partagé classique. Des liaisons point à point et des interfaces spécialisées sont également utilisées.
+</div>
+
+
+<h3 class="h5 mt-4">Pourquoi les bus sont-ils importants ?</h3>
+<p>Les performances d’un ordinateur ne dépendent pas uniquement de la vitesse du processeur. Les composants doivent aussi pouvoir <strong>échanger les informations suffisamment rapidement</strong>. Une interconnexion peut donc devenir un facteur limitant lorsque le volume de données à transférer est important.</p>
+<p>Il faut distinguer le <strong>modèle conceptuel</strong> des bus de données, d’adresses et de contrôle des <strong>interfaces concrètes</strong> rencontrées dans un ordinateur moderne. PCI Express, SATA ou certaines liaisons utilisées par les SSD répondent à des besoins d’interconnexion différents.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Lorsqu’un processeur doit obtenir une information en mémoire, il faut identifier la ressource concernée, préciser l’opération à effectuer et transférer la donnée. Le modèle des bus de données, d’adresses et de contrôle permet de représenter simplement ces trois besoins.</p>
+<p><strong>PCI Express (PCIe)</strong> constitue un exemple moderne d’interconnexion utilisée notamment pour des cartes graphiques et d’autres périphériques rapides. Il ne faut toutefois pas le confondre avec le modèle historique d’un unique bus parallèle partagé : PCIe utilise des liaisons série point à point.</p>
+
+<div class="alert alert-warning"><strong>Exercice 2.</strong> Un processeur demande la lecture d’une information en mémoire. Associez les trois éléments suivants au type de communication correspondant : l’emplacement de la donnée, l’ordre de lecture et la donnée retournée. Expliquez votre réponse.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>3. Processeur (CPU)</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Le <strong>processeur</strong>, ou <strong>CPU (Central Processing Unit)</strong>, est l’unité chargée d’exécuter les instructions des programmes et de réaliser des opérations arithmétiques, logiques et de contrôle.</p>
+<p>Un processeur moderne possède généralement plusieurs cœurs capables de participer à l’exécution de plusieurs tâches. Sa fréquence, son architecture, le nombre de cœurs et la mémoire cache font partie des caractéristiques qui influencent ses performances, sans qu’un seul de ces paramètres suffise à les déterminer.</p>
+<figure class="my-4 text-center">
+<img src="images/processeur-cpu.png" class="img-fluid rounded-4 border shadow-sm" alt="Exemple de processeur CPU" loading="lazy">
+<figcaption class="small text-secondary mt-2">Exemple d’un processeur destiné à être installé dans le socket compatible d’une carte mère.</figcaption>
+</figure>
+
+<h3 class="h5 mt-4">Fréquence</h3>
+<p>La <strong>fréquence</strong> représente le rythme de fonctionnement du processeur. Elle s’exprime en hertz (Hz), et couramment en gigahertz (GHz). <strong>1 GHz correspond à un milliard de cycles d’horloge par seconde.</strong> Il ne faut toutefois pas assimiler directement un cycle à un calcul complet : les performances dépendent aussi de l’architecture du processeur, du programme exécuté, du nombre de cœurs et de la mémoire cache.</p>
+
+<h3 class="h5 mt-4">Cœurs et exécution des tâches</h3>
+<p>Un <strong>cœur</strong> est une unité de traitement capable d’exécuter des instructions. Les processeurs modernes comportent souvent plusieurs cœurs. Cela permet de mieux répartir certaines charges de travail lorsque le système et les logiciels peuvent exploiter le parallélisme.</p>
+
+<h3 class="h5 mt-4">Mémoire cache</h3>
+<p>La <strong>mémoire cache</strong> est une mémoire très rapide située dans ou très près du processeur. Elle conserve temporairement des données et instructions fréquemment utilisées afin de réduire le temps nécessaire pour y accéder.</p>
+
+<h3 class="h5 mt-4">Refroidissement</h3>
+<p>Le processeur produit de la chaleur pendant son fonctionnement. Un système de refroidissement, généralement composé d’un <strong>dissipateur thermique</strong> et d’un ventilateur ou d’une autre solution adaptée, contribue à maintenir une température de fonctionnement appropriée.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Lorsqu’un tableur calcule une formule, les instructions nécessaires sont exécutées par le processeur à partir des données disponibles en mémoire.</p>
+<div class="alert alert-warning"><strong>Exercice 3.</strong> Deux processeurs possèdent la même fréquence, mais l’un dispose de davantage de cœurs. Expliquez pourquoi il serait incorrect de conclure uniquement à partir de ces deux caractéristiques lequel est systématiquement le plus performant.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>4. Mémoire RAM</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>La <strong>RAM (Random Access Memory)</strong> est une mémoire de travail utilisée pour conserver temporairement les données et instructions dont les programmes en cours d’exécution ont besoin.</p>
+<p>La RAM est généralement <strong>volatile</strong> : son contenu disparaît lorsque l’alimentation est coupée. Une capacité suffisante permet au système de maintenir davantage de données actives en mémoire et de limiter certains échanges avec le stockage, beaucoup plus lent.</p>
+<figure class="my-4 text-center">
+<img src="images/memoire-ram.png" class="img-fluid rounded-4 border shadow-sm" alt="Barrettes de mémoire vive RAM" loading="lazy">
+<figcaption class="small text-secondary mt-2">Exemple de barrettes de mémoire RAM.</figcaption>
+</figure>
+
+<h3 class="h5 mt-4">Capacité et utilisation</h3>
+<p>La capacité de la RAM est exprimée en octets, généralement en <strong>gigaoctets (Go)</strong>. Plus les applications utilisent simultanément de données, plus les besoins en mémoire peuvent augmenter. Lorsque la mémoire disponible devient insuffisante, le système peut devoir utiliser davantage le stockage comme espace de travail, ce qui est généralement plus lent.</p>
+<div class="alert alert-info"><strong>RAM ≠ stockage :</strong> la RAM sert principalement au travail temporaire en cours, tandis que le SSD ou le HDD assure la conservation durable des données.</div>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Lorsqu’un utilisateur ouvre simultanément un navigateur, un traitement de texte et plusieurs documents, une partie des données nécessaires à ces programmes est conservée en RAM afin d’être rapidement accessible.</p>
+<div class="alert alert-warning"><strong>Exercice 4.</strong> Expliquez la différence fondamentale entre la RAM et un dispositif de stockage permanent. Pourquoi augmenter la RAM ne remplace-t-il pas l’ajout d’un SSD de plus grande capacité ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>5. Stockage : SSD et HDD</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Le <strong>stockage</strong> conserve durablement le système d’exploitation, les applications et les fichiers. Deux technologies courantes sont le <strong>SSD (Solid-State Drive)</strong> et le <strong>HDD (Hard Disk Drive)</strong>. Au-delà de la technologie de stockage, les performances et la compatibilité dépendent aussi de l’<strong>interface de communication</strong> utilisée pour relier le dispositif au système.</p>
+<figure class="my-4 text-center">
+<img src="images/stockage-ssd-hdd.png" class="img-fluid rounded-4 border shadow-sm" alt="Comparaison visuelle d’un disque dur HDD et d’un SSD" loading="lazy">
+<figcaption class="small text-secondary mt-2">Deux technologies de stockage : HDD et SSD.</figcaption>
+</figure>
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Critère</th><th>SSD</th><th>HDD</th></tr></thead>
+<tbody>
+<tr><td>Technologie</td><td>Mémoire électronique, sans pièce mécanique mobile</td><td>Plateaux magnétiques et mécanisme de lecture/écriture</td></tr>
+<tr><td>Accès aux données</td><td>Très rapide</td><td>Plus lent</td></tr>
+<tr><td>Bruit</td><td>Silencieux</td><td>Peut produire du bruit mécanique</td></tr>
+<tr><td>Usage courant</td><td>Système, applications, données nécessitant un accès rapide</td><td>Stockage de grande capacité lorsque le coût par capacité est prioritaire</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="h5 mt-4">Technologie, format et interface</h3>
+<p>Il est important de ne pas confondre la <strong>technologie de stockage</strong> avec son <strong>format physique</strong> ou son <strong>interface</strong>. Un SSD désigne une technologie sans plateaux mécaniques, tandis que M.2 désigne notamment un format de module. Selon le matériel, les unités de stockage peuvent utiliser différentes interfaces.</p>
+<p><strong>SATA</strong> est couramment utilisé pour des HDD et certains SSD. Les SSD au format M.2 peuvent, selon le modèle et la plateforme, utiliser différentes interfaces. Il faut donc consulter les spécifications du SSD et de la carte mère avant l’installation.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Un ordinateur peut utiliser un SSD pour le système d’exploitation et les applications, et un HDD de grande capacité pour l’archivage de fichiers volumineux.</p>
+<div class="alert alert-warning"><strong>Exercice 5.</strong> Une station doit démarrer rapidement tout en conservant plusieurs téraoctets d’archives. Proposez une organisation SSD/HDD et justifiez votre choix.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>6. Cartes d’extension</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Une <strong>carte d’extension</strong> ajoute ou améliore une fonction matérielle de l’ordinateur. Elle est installée dans une interface d’extension compatible de la carte mère.</p>
+<p>Les cartes graphiques dédiées, certaines cartes réseau, cartes son ou cartes d’acquisition sont des exemples de cartes d’extension. Dans les ordinateurs modernes, <strong>PCI Express (PCIe)</strong> fournit une interconnexion rapide entre ces périphériques et le système. Les connecteurs PCIe peuvent avoir différentes tailles physiques et offrir un nombre différent de lignes de communication, ce qui doit être pris en compte lors de la vérification de compatibilité.</p>
+
+<h3 class="h5 mt-4">Quelques catégories</h3>
+<p>Une carte d’extension peut assurer une fonction graphique, réseau, audio, acquisition vidéo ou ajouter des interfaces supplémentaires. Avant son installation, il faut vérifier le <strong>type d’emplacement disponible</strong>, l’espace physique dans le boîtier et, pour certains composants, les besoins en alimentation.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Une station destinée à la modélisation 3D peut recevoir une carte graphique dédiée afin de disposer de ressources graphiques adaptées aux applications utilisées.</p>
+<div class="alert alert-warning"><strong>Exercice 6.</strong> Donnez trois exemples de cartes d’extension et précisez la fonction ajoutée par chacune.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>7. Alimentation</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Le <strong>bloc d’alimentation</strong> fournit aux composants de l’ordinateur l’énergie électrique nécessaire à leur fonctionnement. Il convertit l’électricité provenant du secteur en tensions adaptées aux circuits internes.</p>
+<p>Son choix doit prendre en compte la puissance nécessaire au système, les connecteurs requis par les composants, le format physique et la qualité de l’alimentation.</p>
+
+<h3 class="h5 mt-4">Puissance et connecteurs</h3>
+<p>La puissance d’une alimentation est exprimée en <strong>watts (W)</strong>. Elle doit être suffisante pour l’ensemble de la configuration, mais ce critère ne suffit pas à lui seul. Il faut également vérifier les connecteurs nécessaires, le format du bloc d’alimentation et les exigences des composants installés.</p>
+<p>Le processeur, la carte mère, les unités de stockage et certaines cartes graphiques n’utilisent pas nécessairement les mêmes connecteurs d’alimentation. La vérification doit donc être réalisée à partir des spécifications des composants.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>L’ajout d’une carte graphique plus exigeante peut nécessiter une alimentation disposant d’une puissance et de connecteurs adaptés. Une puissance nominale élevée ne suffit donc pas à garantir à elle seule la compatibilité.</p>
+<div class="alert alert-warning"><strong>Exercice 7.</strong> Expliquez pourquoi le choix d’une alimentation ne doit pas être basé uniquement sur sa puissance exprimée en watts.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>8. Périphériques d’entrée et de sortie</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Un <strong>périphérique</strong> est un équipement permettant au système informatique d’échanger des informations avec l’utilisateur ou son environnement. Un périphérique d’<strong>entrée</strong> fournit des données au système; un périphérique de <strong>sortie</strong> restitue des informations produites par le système.</p>
+<figure class="my-4 text-center">
+<img src="images/peripheriques-entree-sortie.png" class="img-fluid rounded-4 border shadow-sm" alt="Exemples de périphériques informatiques d’entrée, de sortie et de stockage externe" loading="lazy">
+<figcaption class="small text-secondary mt-2">Exemples de périphériques reliés à un ordinateur.</figcaption>
+</figure>
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Catégorie</th><th>Fonction</th><th>Exemples</th></tr></thead>
+<tbody>
+<tr><td>Entrée</td><td>Envoyer des données vers le système</td><td>Clavier, souris, microphone, scanner</td></tr>
+<tr><td>Sortie</td><td>Restituer des informations</td><td>Écran, haut-parleurs, imprimante</td></tr>
+<tr><td>Entrée / sortie</td><td>Échanger dans les deux directions</td><td>Écran tactile, interface réseau</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="h5 mt-4">Périphériques bidirectionnels</h3>
+<p>Certains périphériques ne sont pas exclusivement des entrées ou des sorties. Une <strong>interface réseau</strong>, par exemple, reçoit et transmet des données. Un <strong>écran tactile</strong> affiche des informations tout en recevant les actions tactiles de l’utilisateur.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Lors d’une visioconférence, le microphone et la caméra fournissent des données au système, tandis que l’écran et les haut-parleurs restituent les informations reçues.</p>
+<div class="alert alert-warning"><strong>Exercice 8.</strong> Classez les éléments suivants : webcam, imprimante, écran tactile, microphone, casque audio et interface réseau. Justifiez les éléments pouvant appartenir à plusieurs catégories.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>9. Connecteurs et ports</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Un <strong>connecteur</strong> fournit une interface physique permettant de relier des composants ou des périphériques. Le terme <strong>port</strong> désigne couramment le point de connexion accessible permettant cet échange.</p>
+<p>USB, HDMI, DisplayPort, Ethernet et les connecteurs audio répondent à des usages différents. La forme d’un connecteur ne suffit pas toujours à déterminer toutes les fonctions ou performances disponibles : celles-ci dépendent aussi de la norme et de la configuration du matériel.</p>
+
+<h3 class="h5 mt-4">Interface physique et norme</h3>
+<p>Deux connecteurs qui se ressemblent ne garantissent pas nécessairement les mêmes fonctions ou performances. Lors d’une installation, il faut distinguer la <strong>forme physique du connecteur</strong>, la <strong>norme de communication</strong> utilisée et les fonctions réellement prises en charge par l’équipement.</p>
+<div class="table-responsive">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Connexion</th><th>Usage courant</th></tr></thead>
+<tbody>
+<tr><td><strong>USB</strong></td><td>Périphériques et échanges de données; certaines variantes peuvent aussi fournir de l’alimentation.</td></tr>
+<tr><td><strong>HDMI / DisplayPort</strong></td><td>Connexion d’un écran et transport de signaux audiovisuels selon l’équipement.</td></tr>
+<tr><td><strong>Ethernet</strong></td><td>Connexion à un réseau filaire.</td></tr>
+<tr><td><strong>Audio</strong></td><td>Connexion de périphériques sonores selon les interfaces disponibles.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Un écran peut être connecté à un ordinateur par HDMI ou DisplayPort. Le choix dépend des interfaces disponibles sur les deux appareils et des caractéristiques nécessaires à l’affichage.</p>
+<div class="alert alert-warning"><strong>Exercice 9.</strong> Associez un type de connexion approprié aux besoins suivants : écran externe, réseau Ethernet, clavier USB et casque audio. Expliquez votre choix.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>10. Compatibilité entre les composants</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>La <strong>compatibilité matérielle</strong> signifie que plusieurs composants peuvent être installés et fonctionner ensemble en respectant leurs contraintes mécaniques, électriques et techniques.</p>
+<p>Avant une installation ou une mise à niveau, il faut notamment vérifier le socket du processeur, le type de mémoire pris en charge, les <strong>interfaces et interconnexions disponibles</strong>, les dimensions physiques, les connecteurs d’alimentation et les capacités du système. Pour une carte d’extension ou un dispositif de stockage, il faut donc vérifier non seulement qu’un connecteur existe, mais aussi que l’interface utilisée est compatible avec le composant choisi.</p>
+<figure class="my-4 text-center">
+<img src="images/pilotes-peripheriques.png" class="img-fluid rounded-4 border shadow-sm" alt="Exemples de périphériques nécessitant des pilotes : imprimante, carte graphique, carte réseau et audio" loading="lazy">
+<figcaption class="small text-secondary mt-2">La compatibilité ne se limite pas au branchement physique : certains périphériques nécessitent aussi un pilote adapté au système d’exploitation.</figcaption>
+</figure>
+<div class="alert alert-info">
+<strong>Méthode de vérification :</strong> identifier le composant → relever son interface et ses exigences → consulter les spécifications de la carte mère ou du système → vérifier l’alimentation et l’espace disponible → confirmer la prise en charge logicielle si nécessaire.
+</div>
+
+<h3 class="h5 mt-4">Compatibilité matérielle et logicielle</h3>
+<p>La compatibilité doit être vérifiée à plusieurs niveaux. Un composant peut avoir besoin d’un emplacement physique adapté, d’une alimentation suffisante et d’une interface compatible. Il peut également nécessiter une prise en charge par le système d’exploitation.</p>
+<p>Un <strong>pilote de périphérique (driver)</strong> est un logiciel permettant au système d’exploitation de communiquer correctement avec un matériel. Une imprimante, une carte graphique, une carte réseau ou un périphérique audio peut nécessiter un pilote approprié.</p>
+<div class="alert alert-light border"><strong>Exemple :</strong> une carte peut être correctement installée dans l’ordinateur mais rester inutilisable ou fonctionner de manière limitée si le système d’exploitation ne dispose pas du pilote approprié.</div>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Une barrette de mémoire ne doit pas être choisie uniquement selon sa capacité. Il faut également vérifier que sa génération et ses caractéristiques sont prises en charge par la carte mère et le processeur concernés.</p>
+<div class="alert alert-warning"><strong>Exercice 10.</strong> Vous devez remplacer la RAM, ajouter un SSD et installer une carte graphique. Dressez, pour chacun des trois composants, la liste des informations que vous vérifieriez avant l’achat.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>Exemple guidé : ouverture d’une application</h2>
+<p>Cette situation permet de relier plusieurs composants étudiés dans la leçon :</p>
+<ol>
+<li>L’utilisateur déclenche l’ouverture de l’application à l’aide d’un périphérique d’entrée.</li>
+<li>Le système localise les fichiers nécessaires sur le <strong>SSD ou le HDD</strong>.</li>
+<li>Les données utiles à l’exécution sont chargées dans la <strong>RAM</strong>.</li>
+<li>Le <strong>CPU</strong> exécute les instructions du programme.</li>
+<li>Les composants communiquent à travers les interconnexions fournies par la plateforme matérielle.</li>
+<li>Le système graphique prépare les informations destinées à l’affichage.</li>
+<li>L’<strong>écran</strong> restitue le résultat à l’utilisateur.</li>
+</ol>
+<div class="alert alert-success"><strong>À observer :</strong> aucun composant ne fonctionne isolément. Les performances et le fonctionnement global résultent de la coopération entre traitement, mémoire, stockage, interconnexions, alimentation et périphériques.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>Activité de synthèse</h2>
+<p>Vous devez préparer un poste destiné à la bureautique, à la visioconférence et au stockage de documents. Proposez une configuration matérielle cohérente sans imposer de marque particulière.</p>
+<ol>
+<li>Identifiez les composants indispensables.</li>
+<li>Expliquez le rôle de chaque composant proposé.</li>
+<li>Précisez quels périphériques d’entrée et de sortie sont nécessaires.</li>
+<li>Indiquez les connecteurs, interfaces et interconnexions importants.</li>
+<li>Expliquez brièvement comment les composants concernés échangent des informations.</li>
+<li>Présentez au moins quatre vérifications de compatibilité à effectuer avant l’assemblage ou la mise à niveau.</li>
+</ol>
+</section>
+
+<section class="mt-5">
+<h2>À retenir</h2>
+<div class="alert alert-success mb-0">
+Un ordinateur fonctionne grâce à la coopération de composants spécialisés. La carte mère assure leur interconnexion; les voies de communication permettent le transfert des données et des signaux nécessaires à leur coordination; le processeur exécute les instructions; la RAM fournit un espace de travail rapide; le stockage conserve durablement les données; les cartes d’extension ajoutent des fonctions; l’alimentation fournit l’énergie; et les périphériques assurent les échanges avec l’environnement. Le choix d’un composant doit toujours être accompagné d’une vérification de ses interfaces et de sa compatibilité avec le reste du système.
+</div>
+</section>
+
+
+<hr class="my-5">
+
+<section id="quiz-lecon-02">
+<h2>Quiz — Composants matériels</h2>
+<p class="text-secondary">Répondez aux questions, puis cliquez sur <strong>Soumettre mes réponses</strong>. La correction et votre résultat seront affichés automatiquement.</p>
+
+<form id="lesson02Quiz">
+
+<fieldset class="quiz-question" data-answer="b">
+<legend>1. Quel est le rôle principal de la carte mère ?</legend>
+<label class="quiz-option"><input type="radio" name="q1" value="a"> Stocker durablement les fichiers de l’utilisateur.</label>
+<label class="quiz-option"><input type="radio" name="q1" value="b"> Accueillir et interconnecter les principaux composants de l’ordinateur.</label>
+<label class="quiz-option"><input type="radio" name="q1" value="c"> Exécuter directement toutes les instructions des applications.</label>
+<label class="quiz-option"><input type="radio" name="q1" value="d"> Produire uniquement le signal vidéo envoyé à l’écran.</label>
+<div class="quiz-feedback"></div>
+</fieldset>
+
+<fieldset class="quiz-question" data-answer="c">
+<legend>2. Dans le modèle conceptuel des bus, quel bus indique l’emplacement mémoire concerné par une opération ?</legend>
+<label class="quiz-option"><input type="radio" name="q2" value="a"> Le bus de données.</label>
+<label class="quiz-option"><input type="radio" name="q2" value="b"> Le bus de contrôle.</label>
+<label class="quiz-option"><input type="radio" name="q2" value="c"> Le bus d’adresses.</label>
+<label class="quiz-option"><input type="radio" name="q2" value="d"> Le port d’affichage.</label>
+<div class="quiz-feedback"></div>
+</fieldset>
+
+<fieldset class="quiz-question" data-answer="d">
+<legend>3. Pourquoi une fréquence CPU plus élevée ne garantit-elle pas, à elle seule, un ordinateur toujours plus performant ?</legend>
+<label class="quiz-option"><input type="radio" name="q3" value="a"> Parce que la fréquence concerne uniquement le stockage.</label>
+<label class="quiz-option"><input type="radio" name="q3" value="b"> Parce que le processeur ne participe pas à l’exécution des programmes.</label>
+<label class="quiz-option"><input type="radio" name="q3" value="c"> Parce que tous les processeurs ayant la même fréquence sont identiques.</label>
+<label class="quiz-option"><input type="radio" name="q3" value="d"> Parce que l’architecture, les cœurs, le cache, la mémoire et la charge exécutée influencent aussi les performances.</label>
+<div class="quiz-feedback"></div>
+</fieldset>
+
+<fieldset class="quiz-question" data-answer="a">
+<legend>4. Quelle affirmation décrit correctement la différence entre RAM et stockage ?</legend>
+<label class="quiz-option"><input type="radio" name="q4" value="a"> La RAM conserve temporairement les données actives; le SSD/HDD assure leur conservation durable.</label>
+<label class="quiz-option"><input type="radio" name="q4" value="b"> La RAM et le SSD ont exactement le même rôle.</label>
+<label class="quiz-option"><input type="radio" name="q4" value="c"> La RAM sert uniquement à conserver les fichiers après l’arrêt de l’ordinateur.</label>
+<label class="quiz-option"><input type="radio" name="q4" value="d"> Le SSD est une mémoire volatile utilisée seulement pendant l’exécution.</label>
+<div class="quiz-feedback"></div>
+</fieldset>
+
+<fieldset class="quiz-question" data-answer="c">
+<legend>5. Avant d’installer une carte graphique dédiée, quelle vérification est la plus complète ?</legend>
+<label class="quiz-option"><input type="radio" name="q5" value="a"> Vérifier uniquement la couleur de la carte mère.</label>
+<label class="quiz-option"><input type="radio" name="q5" value="b"> Vérifier uniquement la quantité de RAM installée.</label>
+<label class="quiz-option"><input type="radio" name="q5" value="c"> Vérifier l’emplacement compatible, l’espace physique et les besoins en alimentation.</label>
+<label class="quiz-option"><input type="radio" name="q5" value="d"> Vérifier uniquement que l’ordinateur possède un port USB.</label>
+<div class="quiz-feedback"></div>
+</fieldset>
+
+<fieldset class="quiz-question" data-answer="b">
+<legend>6. Quel périphérique peut fonctionner à la fois comme périphérique d’entrée et de sortie ?</legend>
+<label class="quiz-option"><input type="radio" name="q6" value="a"> Une imprimante classique.</label>
+<label class="quiz-option"><input type="radio" name="q6" value="b"> Un écran tactile.</label>
+<label class="quiz-option"><input type="radio" name="q6" value="c"> Un microphone.</label>
+<label class="quiz-option"><input type="radio" name="q6" value="d"> Un haut-parleur.</label>
+<div class="quiz-feedback"></div>
+</fieldset>
+
+<fieldset class="quiz-question" data-answer="d">
+<legend>7. Une carte est physiquement installée correctement, mais le système d’exploitation ne peut pas l’utiliser normalement. Quelle cause est cohérente avec la leçon ?</legend>
+<label class="quiz-option"><input type="radio" name="q7" value="a"> La présence d’un SSD dans l’ordinateur.</label>
+<label class="quiz-option"><input type="radio" name="q7" value="b"> La présence d’un clavier USB.</label>
+<label class="quiz-option"><input type="radio" name="q7" value="c"> Le fait que la RAM soit volatile.</label>
+<label class="quiz-option"><input type="radio" name="q7" value="d"> L’absence d’un pilote approprié.</label>
+<div class="quiz-feedback"></div>
+</fieldset>
+
+<div class="d-flex flex-wrap gap-2 mt-4">
+<button class="btn btn-primary px-4" type="submit">Soumettre mes réponses</button>
+<button class="btn btn-outline-secondary px-4" type="button" id="resetLesson02Quiz">Recommencer</button>
+</div>
+<div id="lesson02QuizResult" class="mt-4" aria-live="polite"></div>
+</form>
+</section>
+
+<hr class="my-5">
+
+<section id="scenarios-lecon-02">
+<h2>Mises en situation — Analyse d’une configuration</h2>
+<p>Pour les situations suivantes, il ne suffit pas de nommer un composant. <strong>Analysez les symptômes, identifiez les ressources susceptibles de limiter le système et justifiez votre réponse.</strong> Certaines situations peuvent avoir plusieurs facteurs limitants.</p>
+
+<div class="scenario-card">
+<h3>Scénario 1 — Jeu vidéo sur une configuration très limitée</h3>
+<p>Un utilisateur possède un ordinateur avec <strong>1 Go de RAM</strong>, un <strong>processeur à un seul cœur</strong> et un stockage HDD. Il lance un jeu vidéo récent qui demande beaucoup de ressources.</p>
+<ol>
+<li>Que risque-t-il d’observer pendant le lancement et l’utilisation du jeu ?</li>
+<li>Pourquoi la faible quantité de RAM peut-elle ralentir fortement le système ?</li>
+<li>Quel effet le processeur à un seul cœur peut-il avoir sur l’exécution de tâches exigeantes ?</li>
+<li>Le remplacement du HDD par un SSD résoudrait-il à lui seul tous les problèmes ? Justifiez.</li>
+<li>Quelles informations supplémentaires faudrait-il connaître avant de proposer une mise à niveau complète ?</li>
+</ol>
+</div>
+
+<div class="scenario-card">
+<h3>Scénario 2 — Plusieurs applications ouvertes simultanément</h3>
+<p>Un étudiant travaille avec un navigateur contenant de nombreux onglets, un logiciel de visioconférence et un traitement de texte. L’ordinateur devient progressivement très lent alors que plusieurs programmes restent ouverts.</p>
+<ol>
+<li>Quel composant de la leçon examineriez-vous en priorité et pourquoi ?</li>
+<li>Que peut faire le système lorsque la mémoire de travail disponible devient insuffisante ?</li>
+<li>Pourquoi un stockage plus lent peut-il rendre la situation encore plus perceptible ?</li>
+<li>Quelle amélioration matérielle pourrait être pertinente ? Quelle vérification de compatibilité faut-il effectuer avant l’achat ?</li>
+</ol>
+</div>
+
+<div class="scenario-card">
+<h3>Scénario 3 — Nouvelle carte graphique</h3>
+<p>Une utilisatrice achète une carte graphique performante. L’ordinateur possède un emplacement PCIe, mais la carte est longue et demande une alimentation supplémentaire.</p>
+<ol>
+<li>Le fait de disposer d’un emplacement PCIe suffit-il pour conclure que la carte est compatible ?</li>
+<li>Quelles contraintes physiques faut-il vérifier ?</li>
+<li>Quelles caractéristiques du bloc d’alimentation faut-il vérifier ?</li>
+<li>Quel élément logiciel peut également être nécessaire pour que le système d’exploitation exploite correctement la carte ?</li>
+</ol>
+</div>
+
+<div class="scenario-card">
+<h3>Scénario 4 — Mise à niveau de la mémoire</h3>
+<p>Un ordinateur possède <strong>4 Go de RAM</strong>. L’utilisateur souhaite acheter une barrette de <strong>16 Go</strong> simplement parce que sa capacité est plus élevée.</p>
+<ol>
+<li>Pourquoi la capacité ne suffit-elle pas pour choisir la nouvelle barrette ?</li>
+<li>Quelles informations de la carte mère et du processeur faut-il consulter ?</li>
+<li>Que peut-il se passer si la génération ou les caractéristiques de la mémoire ne sont pas prises en charge ?</li>
+<li>Proposez une méthode de vérification avant l’achat.</li>
+</ol>
+</div>
+
+<div class="scenario-card">
+<h3>Scénario 5 — Ordinateur lent au démarrage et espace presque saturé</h3>
+<p>Un poste utilise un HDD ancien et dispose de très peu d’espace libre. L’utilisateur souhaite améliorer la réactivité générale et conserver plusieurs téraoctets d’archives.</p>
+<ol>
+<li>Quel type de stockage pourrait être privilégié pour le système d’exploitation et les applications ?</li>
+<li>Quel rôle pourrait conserver le HDD ?</li>
+<li>Pourquoi faut-il vérifier l’interface de stockage disponible sur la carte mère avant l’achat ?</li>
+<li>Proposez une organisation cohérente du stockage et justifiez-la.</li>
+</ol>
+</div>
+
+<div class="alert alert-primary mt-4">
+<strong>Défi intégrateur.</strong> Un ordinateur destiné au jeu, à la visioconférence et au travail universitaire doit être mis à niveau. Établissez une liste de contrôle couvrant au minimum : CPU, RAM, stockage, carte graphique, alimentation, carte mère, périphériques, ports/interfaces et pilotes. Pour chaque élément, indiquez <strong>ce que vous vérifiez</strong> et <strong>pourquoi</strong>.
+</div>
+</section>
+
+</div>
+</div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("lesson02Quiz");
+  const result = document.getElementById("lesson02QuizResult");
+  const resetBtn = document.getElementById("resetLesson02Quiz");
+  if (!form) return;
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const questions = [...form.querySelectorAll(".quiz-question")];
+    let score = 0;
+
+    questions.forEach((question) => {
+      const correct = question.dataset.answer;
+      const selected = question.querySelector("input[type=radio]:checked");
+      const feedback = question.querySelector(".quiz-feedback");
+
+      question.querySelectorAll(".quiz-option").forEach((label) => {
+        label.classList.remove("correct", "incorrect");
+        const input = label.querySelector("input");
+        if (input.value === correct) label.classList.add("correct");
+        if (selected && input === selected && input.value !== correct) label.classList.add("incorrect");
+      });
+
+      if (!selected) {
+        feedback.textContent = "Question non répondue. La bonne réponse est indiquée en vert.";
+        feedback.className = "quiz-feedback text-warning";
+      } else if (selected.value === correct) {
+        score++;
+        feedback.textContent = "Bonne réponse.";
+        feedback.className = "quiz-feedback text-success";
+      } else {
+        feedback.textContent = "Réponse à revoir. La bonne réponse est indiquée en vert.";
+        feedback.className = "quiz-feedback text-danger";
+      }
+    });
+
+    const percent = Math.round((score / questions.length) * 100);
+    let cls = "alert-danger";
+    let message = "Certaines notions importantes sont à revoir avant de poursuivre.";
+    if (percent >= 80) {
+      cls = "alert-success";
+      message = "Très bonne maîtrise des notions essentielles de la leçon.";
+    } else if (percent >= 60) {
+      cls = "alert-warning";
+      message = "Les bases sont acquises, mais quelques notions méritent une révision.";
+    }
+
+    result.innerHTML = '<div class="alert ' + cls + '"><strong>Résultat : ' +
+      score + '/' + questions.length + ' (' + percent + ' %)</strong><br>' + message + '</div>';
+    result.scrollIntoView({behavior:"smooth", block:"nearest"});
+  });
+
+  resetBtn.addEventListener("click", function () {
+    form.reset();
+    form.querySelectorAll(".quiz-option").forEach((label) => label.classList.remove("correct", "incorrect"));
+    form.querySelectorAll(".quiz-feedback").forEach((feedback) => {
+      feedback.textContent = "";
+      feedback.className = "quiz-feedback";
+    });
+    result.innerHTML = "";
+  });
+});
+</script>
+
+</body></html>

@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Leçon 6 — Introduction à la virtualisation</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<style>body{background:#f7f8fb;color:#42506c}.wrap{max-width:900px;margin:auto;padding:50px 20px}.card{border:1px solid #e5e9f1;border-radius:18px}h1{color:#152354}.badge{background:#eef2ff!important;color:#315eea!important}</style>
+<link href="../../../assets/css/navbar.css" rel="stylesheet"/><style id="astechai-navbar-embedded">:root{--as-navy:#07164d;--as-blue:#1267f3;--as-purple:#8d31f4}
+.as-navbar{min-height:80px;z-index:1050;font-family:Arial,"Segoe UI",sans-serif}
+.as-nav-container{max-width:1440px;padding-left:44px;padding-right:44px}
+.as-brand{display:flex;align-items:center;gap:12px;margin-right:36px}
+.as-brand>span:last-child{display:flex;flex-direction:column}
+.as-brand strong{font-size:27px;line-height:1;color:var(--as-navy);font-weight:850;letter-spacing:-.5px}
+.as-brand strong span{color:#4227c9}.as-brand small{font-size:12px;color:#71809e;margin-top:5px}
+.as-book{width:60px;height:48px;position:relative;display:inline-block;flex:0 0 60px}
+.as-book:before,.as-book:after{content:"";position:absolute;top:4px;width:28px;height:39px;border-radius:5px 5px 15px 5px}
+.as-book:before{left:0;background:linear-gradient(145deg,#0877ff,#1453ee);transform:skewY(8deg)}
+.as-book:after{right:0;background:linear-gradient(145deg,#7058ff,#a22ef2);transform:skewY(-8deg)}
+.as-main-links{gap:7px}.as-main-links .nav-link{color:#0b225c!important;font-size:14px;font-weight:700;padding:11px 18px!important;border-radius:12px}
+.as-main-links .nav-link:hover,.as-main-links .nav-link.active{background:#edf4ff;color:#075bd8!important}
+.as-search{width:255px;height:44px;border-radius:25px;background:#f0f5ff;align-items:center;gap:8px;padding:0 16px;margin-right:22px;color:#7b88a4}
+.as-search input{width:100%;border:0;outline:0;background:transparent;color:#5e6e8b}
+.as-login{border:0!important;border-radius:13px!important;padding:12px 22px!important;color:#fff!important;font-weight:700!important;white-space:nowrap;background:linear-gradient(100deg,#3a7df5,#8b30f4)!important}
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:690px;padding:18px;border:1px solid #e6ebf4;border-radius:18px;box-shadow:0 20px 48px rgba(23,48,96,.14)}
+.as-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.as-course-card{display:flex;align-items:center;gap:11px;min-height:78px;padding:12px;border:1px solid #edf0f6;border-radius:13px;background:#fff;color:#172958;text-decoration:none;transition:.15s ease}
+.as-course-card:hover{background:#f6f9ff;border-color:#dce7ff;transform:translateY(-1px)}
+.as-course-icon{width:42px;height:42px;flex:0 0 42px;border-radius:11px;background:#edf4ff;color:#1267f3;display:grid;place-items:center;font-size:19px;font-weight:800}
+.as-course-icon.orange{background:#fff0eb;color:#e84b27}.as-course-icon.purple{background:#f4eaff;color:#8429ef}
+.as-course-card strong{display:block;font-size:13px;line-height:1.25;color:#102252}.as-course-card small{display:block;margin-top:3px;font-size:10px;line-height:1.25;color:#7b89a5}
+@media(max-width:1199px){.as-nav-container{padding-left:22px;padding-right:22px}.as-brand{margin-right:12px}.as-main-links{gap:1px}.as-main-links .nav-link{padding:10px 11px!important}}
+@media(max-width:991px){.as-navbar{min-height:72px}.as-brand strong{font-size:23px}.as-book{width:50px;flex-basis:50px}.as-book:before,.as-book:after{width:23px;height:36px}.navbar-collapse{padding:12px 0 16px}.as-main-links{align-items:stretch!important}.as-course-menu{position:static!important;transform:none!important;width:100%;margin:5px 0 8px}.as-course-grid{grid-template-columns:1fr 1fr}.as-login{margin-top:8px}}
+@media(max-width:600px){.as-nav-container{padding-left:14px;padding-right:14px}.as-brand small{display:none}.as-course-grid{grid-template-columns:1fr}}
+</style></head>
+<body><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+<div class="container-fluid as-nav-container">
+<a class="navbar-brand as-brand" href="../../../index.html">
+<span aria-hidden="true" class="as-book"></span>
+<span>
+<strong>AsTech<span>AI</span></strong>
+<small>IT Learning Platform</small>
+</span>
+</a>
+<button aria-controls="asMainNavbar" aria-expanded="false" aria-label="Afficher la navigation" class="navbar-toggler" data-bs-target="#asMainNavbar" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="asMainNavbar">
+<ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+<li class="nav-item">
+<a class="nav-link active" href="../../../index.html">Accueil</a>
+</li>
+<li class="nav-item dropdown position-static">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#" role="button">Cours</a>
+<div class="dropdown-menu as-course-menu">
+<div class="as-course-grid">
+<a class="as-course-card" href="../../../cours/gestion-ordinateurs/index.html">
+<span class="as-course-icon">▣</span>
+<span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/microsoft-365/index.html">
+<span class="as-course-icon orange">M</span>
+<span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation/index.html">
+<span class="as-course-icon purple">&lt;/&gt;</span>
+<span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/bases-de-donnees/index.html">
+<span class="as-course-icon">◎</span>
+<span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation-orientee-objet/index.html">
+<span class="as-course-icon purple">◇</span>
+<span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+</a>
+</div>
+</div>
+</li>
+<li class="nav-item"><a class="nav-link" href="../../../projets/index.html">Projets</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#apropos">À propos</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#ressources">Ressources</a></li>
+</ul>
+<form class="d-none d-xl-flex as-search" onsubmit="return false;" role="search">
+<span aria-hidden="true">⌕</span>
+<input aria-label="Rechercher" placeholder="Rechercher..." type="search"/>
+</form>
+<a class="btn as-login" href="../../../connexion/index.html">♙   Connexion</a>
+</div>
+</div>
+</nav><main class="wrap"><a class="text-decoration-none" href="../index.html#lesson-6">← Retour aux leçons</a>
+<div class="card shadow-sm mt-4"><div class="card-body p-4 p-md-5"><span class="badge rounded-pill mb-3">Leçon 6</span><h1>Introduction à la virtualisation</h1>
+<p class="lead mt-3">Comprendre le principe de la virtualisation, le rôle d’un hyperviseur et le fonctionnement d’une machine virtuelle avant de créer et d’utiliser un environnement virtualisé.</p>
+
+<div class="alert alert-primary mt-4">
+<strong>Objectifs d’apprentissage.</strong> À la fin de cette leçon, l’étudiant sera capable de définir la virtualisation, de distinguer machine physique et machine virtuelle, d’expliquer le rôle d’un hyperviseur, de différencier système hôte et système invité, d’identifier les principales ressources attribuées à une machine virtuelle et de préparer la création d’une VM destinée à l’installation d’un système d’exploitation.
+</div>
+
+<section class="mt-5">
+<h2>1. Qu’est-ce que la virtualisation ?</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>La <strong>virtualisation</strong> est une technique permettant de créer un environnement informatique simulé à l’intérieur d’un ordinateur physique. Cet environnement peut se comporter comme un ordinateur indépendant disposant de son propre processeur virtuel, de sa mémoire, de son stockage et de ses périphériques virtuels.</p>
+<p>Grâce à la virtualisation, un même ordinateur physique peut exécuter plusieurs environnements isolés sans nécessiter une machine physique distincte pour chacun.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Un ordinateur sous Windows peut exécuter une machine virtuelle contenant Ubuntu Linux. L’étudiant peut alors manipuler Linux dans une fenêtre sans remplacer le système Windows installé sur l’ordinateur.</p>
+<figure class="my-4 text-center">
+  <img src="images/virtualisation-hote-vm.png" class="img-fluid rounded border shadow-sm" alt="Ordinateur physique hôte partageant ses ressources avec des machines virtuelles Windows et Linux">
+  <figcaption class="text-muted small mt-2">Figure — Une machine physique fournit des ressources matérielles aux machines virtuelles exécutées comme systèmes invités.</figcaption>
+</figure>
+
+
+<div class="alert alert-warning"><strong>Exercice 1.</strong> Expliquez avec vos propres mots ce que signifie « virtualiser un ordinateur ». Donnez un exemple d’utilisation dans un laboratoire informatique.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>2. Machine physique et machine virtuelle</h2>
+<h3 class="h5 mt-4">Machine physique</h3>
+<p>Une <strong>machine physique</strong> est l’ordinateur réel : processeur, mémoire RAM, SSD ou HDD, carte réseau et autres composants matériels.</p>
+
+<h3 class="h5 mt-4">Machine virtuelle</h3>
+<p>Une <strong>machine virtuelle</strong>, souvent abrégée <strong>VM</strong> pour <em>Virtual Machine</em>, est un ordinateur simulé par logiciel. Elle possède une configuration virtuelle qui lui est propre.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Élément</th><th>Machine physique</th><th>Machine virtuelle</th></tr></thead>
+<tbody>
+<tr><td>Processeur</td><td>CPU physique</td><td>Processeur(s) virtuel(s) / vCPU</td></tr>
+<tr><td>Mémoire</td><td>RAM installée</td><td>Quantité de RAM attribuée à la VM</td></tr>
+<tr><td>Stockage</td><td>SSD/HDD réel</td><td>Disque virtuel stocké sous forme de fichier(s)</td></tr>
+<tr><td>Réseau</td><td>Carte réseau physique</td><td>Carte réseau virtuelle</td></tr>
+<tr><td>Système</td><td>Système installé sur la machine réelle</td><td>Système installé dans la VM</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 2.</strong> Un ordinateur possède 16 Go de RAM et exécute une VM à laquelle 4 Go sont attribués. Identifiez la ressource physique et la ressource virtuelle dans cet exemple.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>3. Pourquoi utiliser la virtualisation ?</h2>
+<p>La virtualisation permet de créer des environnements séparés sur une même machine. Elle est particulièrement utile pour l’apprentissage, les tests, le développement, l’administration et certains scénarios de déploiement.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Utilisation</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr><td><strong>Apprentissage</strong></td><td>Installer Linux dans une VM pour pratiquer les commandes sans modifier le système principal.</td></tr>
+<tr><td><strong>Tests</strong></td><td>Tester une configuration ou une application dans un environnement isolé.</td></tr>
+<tr><td><strong>Développement</strong></td><td>Créer différents environnements pour tester un logiciel.</td></tr>
+<tr><td><strong>Administration</strong></td><td>Reproduire un environnement de laboratoire comprenant plusieurs systèmes.</td></tr>
+<tr><td><strong>Isolation</strong></td><td>Limiter les effets d’une mauvaise configuration au système invité plutôt qu’au poste principal.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-info"><strong>Dans ce cours :</strong> la virtualisation servira notamment à expérimenter l’installation et la configuration de systèmes d’exploitation dans un environnement contrôlé.</div>
+
+<div class="alert alert-warning"><strong>Exercice 3.</strong> Donnez trois situations dans lesquelles une VM est préférable à l’installation directe d’un nouveau système sur l’ordinateur de l’étudiant.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>4. Le rôle de l’hyperviseur</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Un <strong>hyperviseur</strong> est la couche logicielle qui permet de créer, configurer, exécuter et gérer des machines virtuelles. Il organise l’accès des VM aux ressources de la machine physique.</p>
+<p>Lorsque plusieurs VM fonctionnent sur un même ordinateur, l’hyperviseur contribue à répartir les ressources disponibles entre les différents environnements virtuels.</p>
+<figure class="my-4 text-center">
+  <img src="images/elements-virtualisation.png" class="img-fluid rounded border shadow-sm" alt="Schéma montrant une machine physique, un hyperviseur et plusieurs machines virtuelles">
+  <figcaption class="text-muted small mt-2">Figure — L’hyperviseur constitue la couche de virtualisation entre la machine physique et les différentes machines virtuelles.</figcaption>
+</figure>
+
+
+<h3 class="h5 mt-4">Exemples</h3>
+<p>Parmi les solutions de virtualisation couramment rencontrées figurent <strong>Hyper-V</strong>, <strong>Oracle VirtualBox</strong> et les solutions de virtualisation de <strong>VMware</strong>.</p>
+
+<h3 class="h5 mt-4">Télécharger ou activer un logiciel de virtualisation</h3>
+<p>Pour réaliser les manipulations de cette leçon, utilisez de préférence le site officiel de l’éditeur. Le choix dépend du système hôte utilisé et des exigences du laboratoire.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Solution</th><th>Systèmes hôtes / usage</th><th>Accès officiel</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>Oracle VirtualBox</strong></td>
+<td>Solution de virtualisation de bureau disponible pour plusieurs plateformes. Elle convient bien aux laboratoires et à la création de VM Windows ou Linux.</td>
+<td><a class="btn btn-outline-primary btn-sm" href="https://www.virtualbox.org/wiki/Downloads" target="_blank" rel="noopener noreferrer">Télécharger VirtualBox</a></td>
+</tr>
+<tr>
+<td><strong>VMware Workstation Pro</strong></td>
+<td>Hyperviseur de bureau destiné notamment aux hôtes Windows et Linux. Le téléchargement actuel passe par le portail Broadcom.</td>
+<td><a class="btn btn-outline-primary btn-sm" href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro&freeDownloads=true" target="_blank" rel="noopener noreferrer">Télécharger VMware Workstation Pro</a></td>
+</tr>
+<tr>
+<td><strong>VMware Fusion</strong></td>
+<td>Solution VMware destinée aux ordinateurs Mac.</td>
+<td><a class="btn btn-outline-primary btn-sm" href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Fusion&freeDownloads=true" target="_blank" rel="noopener noreferrer">Accéder à VMware Fusion</a></td>
+</tr>
+<tr>
+<td><strong>Microsoft Hyper-V</strong></td>
+<td>Hyper-V est une fonctionnalité intégrée aux éditions Windows compatibles : il ne se télécharge pas comme une application indépendante.</td>
+<td><a class="btn btn-outline-primary btn-sm" href="https://learn.microsoft.com/fr-fr/windows-server/virtualization/hyper-v/get-started/install-hyper-v" target="_blank" rel="noopener noreferrer">Activer Hyper-V — Microsoft</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-info">
+<strong>Pour le laboratoire :</strong> si l’objectif est de découvrir simplement la création d’une machine virtuelle, VirtualBox constitue une option pratique et multiplateforme. Sur un poste Windows compatible, Hyper-V peut également être utilisé. Les étapes et l’interface diffèrent selon l’hyperviseur, mais les notions de vCPU, RAM, disque virtuel, réseau et image ISO restent applicables.
+</div>
+
+<div class="alert alert-warning">
+<strong>Avant l’installation :</strong> vérifiez le système hôte, l’architecture du processeur, la mémoire disponible, l’espace disque et l’activation de la virtualisation matérielle lorsque la solution choisie l’exige. Pour VMware Workstation Pro/Fusion, le portail Broadcom peut demander la création ou la connexion à un compte avant le téléchargement.
+</div>
+
+
+<div class="alert alert-warning"><strong>Exercice 4.</strong> Quel est le rôle principal d’un hyperviseur ? Pourquoi une machine virtuelle dépend-elle de cette couche de virtualisation ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>5. Hyperviseur de type 1 et de type 2</h2>
+<p>Les hyperviseurs sont souvent présentés en deux grandes catégories selon leur position par rapport au matériel et au système d’exploitation.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Type</th><th>Principe</th><th>Contexte général</th></tr></thead>
+<tbody>
+<tr><td><strong>Type 1</strong></td><td>L’hyperviseur fonctionne directement au niveau de la plateforme matérielle, sans dépendre d’un système d’exploitation hôte classique pour exécuter les VM.</td><td>Serveurs, infrastructures de virtualisation et environnements professionnels.</td></tr>
+<tr><td><strong>Type 2</strong></td><td>Le logiciel de virtualisation fonctionne au-dessus d’un système d’exploitation hôte.</td><td>Postes personnels, enseignement, laboratoires et tests.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="h5 mt-4">Exemple conceptuel</h3>
+<p>Dans un laboratoire, un étudiant peut lancer un logiciel de virtualisation depuis son système Windows ou macOS, puis démarrer Ubuntu dans une VM. Cette organisation correspond au modèle couramment associé à un hyperviseur hébergé.</p>
+
+<div class="alert alert-warning"><strong>Exercice 5.</strong> Comparez un hyperviseur de type 1 et un hyperviseur de type 2 en une ou deux phrases. Dans quel contexte un hyperviseur hébergé est-il pratique pour un étudiant ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>6. Système hôte et système invité</h2>
+<h3 class="h5 mt-4">Système hôte</h3>
+<p>Le <strong>système hôte</strong> (<em>host</em>) désigne, dans une configuration de virtualisation hébergée, le système d’exploitation principal sur lequel le logiciel de virtualisation est exécuté.</p>
+
+<h3 class="h5 mt-4">Système invité</h3>
+<p>Le <strong>système invité</strong> (<em>guest</em>) est le système d’exploitation installé et exécuté à l’intérieur de la machine virtuelle.</p>
+
+<div class="alert alert-light border">
+<strong>Exemple :</strong> un ordinateur utilise Windows 11. VirtualBox y est installé et une VM Ubuntu est créée. Dans ce scénario, Windows 11 est le <strong>système hôte</strong> et Ubuntu est le <strong>système invité</strong>.
+</div>
+<figure class="my-4 text-center">
+  <img src="images/virtualisation-exemple.png" class="img-fluid rounded border shadow-sm" alt="Exemple d'un ordinateur Windows hôte exécutant plusieurs machines virtuelles">
+  <figcaption class="text-muted small mt-2">Figure — Exemple d’un système Windows hôte utilisant un logiciel de virtualisation pour exécuter plusieurs systèmes invités.</figcaption>
+</figure>
+
+
+<div class="alert alert-warning"><strong>Exercice 6.</strong> Un Mac exécute un logiciel de virtualisation dans lequel une VM Linux est démarrée. Identifiez l’hôte, l’invité et la machine virtuelle.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>7. Les ressources d’une machine virtuelle</h2>
+<p>Lors de la création d’une VM, l’administrateur attribue une partie des ressources disponibles sur l’ordinateur physique. Ces ressources doivent être suffisantes pour le système invité sans empêcher le système hôte de fonctionner correctement.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Ressource virtuelle</th><th>Rôle</th><th>Point d’attention</th></tr></thead>
+<tbody>
+<tr><td><strong>vCPU</strong></td><td>Capacité de traitement présentée au système invité.</td><td>Ne pas attribuer les ressources sans tenir compte des besoins de l’hôte.</td></tr>
+<tr><td><strong>RAM</strong></td><td>Mémoire disponible pour le système invité.</td><td>Une VM trop gourmande peut réduire les ressources disponibles pour l’hôte.</td></tr>
+<tr><td><strong>Disque virtuel</strong></td><td>Stockage utilisé par le système et les fichiers de la VM.</td><td>Le disque physique doit disposer de suffisamment d’espace libre.</td></tr>
+<tr><td><strong>Carte réseau virtuelle</strong></td><td>Permet à la VM de communiquer selon le mode réseau configuré.</td><td>Le comportement dépend du mode de réseau virtuel choisi.</td></tr>
+<tr><td><strong>Affichage / périphériques</strong></td><td>Fournissent à l’invité les interfaces virtuelles nécessaires.</td><td>Certaines fonctions dépendent de l’hyperviseur et de sa configuration.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="h5 mt-4">Exemple de raisonnement</h3>
+<p>Un ordinateur possède 16 Go de RAM. Attribuer 14 Go à une VM laisserait très peu de mémoire au système hôte et aux autres applications. L’allocation doit donc tenir compte des besoins du système invité <strong>et</strong> de ceux de la machine hôte.</p>
+
+<div class="alert alert-warning"><strong>Exercice 7.</strong> Un poste possède 8 Go de RAM. Expliquez pourquoi il serait imprudent d’attribuer la totalité des 8 Go à une seule VM.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>8. Le disque virtuel</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Un <strong>disque virtuel</strong> est un stockage présenté à la VM comme s’il s’agissait d’un disque réel. Pour l’ordinateur hôte, il est généralement représenté par un ou plusieurs fichiers gérés par le logiciel de virtualisation.</p>
+
+<h3 class="h5 mt-4">Allocation dynamique et taille fixe</h3>
+<p>Selon l’hyperviseur et le format utilisé, un disque virtuel peut être configuré pour occuper progressivement de l’espace jusqu’à une limite définie ou pour réserver plus directement la capacité prévue.</p>
+
+<div class="alert alert-info"><strong>À distinguer :</strong> définir un disque virtuel de 80 Go ne signifie pas nécessairement qu’un fichier de 80 Go est immédiatement occupé sur l’hôte. Le comportement dépend du type d’allocation choisi.</div>
+
+<div class="alert alert-warning"><strong>Exercice 8.</strong> Expliquez la différence entre la capacité maximale annoncée d’un disque virtuel et l’espace réellement occupé sur le disque physique dans le cas d’une allocation dynamique.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>9. Réseau d’une machine virtuelle</h2>
+<p>Une VM peut utiliser une <strong>carte réseau virtuelle</strong>. L’hyperviseur relie cette interface virtuelle au réseau selon un mode configuré par l’administrateur.</p>
+
+<h3 class="h5 mt-4">Modes courants</h3>
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Mode</th><th>Principe général</th></tr></thead>
+<tbody>
+<tr><td><strong>NAT</strong></td><td>La VM utilise la connectivité de l’hôte par l’intermédiaire du mécanisme de traduction fourni par l’environnement virtuel.</td></tr>
+<tr><td><strong>Accès par pont / Bridged</strong></td><td>La VM est reliée plus directement au réseau auquel l’hôte est connecté et peut y apparaître comme une machine distincte selon la configuration.</td></tr>
+<tr><td><strong>Réseau privé / Host-only</strong></td><td>Permet de créer un réseau limité entre l’hôte et certaines VM, sans fournir nécessairement un accès direct au réseau externe.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 9.</strong> Vous souhaitez qu’une VM accède à Internet tout en utilisant simplement la connexion de l’ordinateur hôte. Quel mode réseau est couramment adapté à ce besoin dans un laboratoire ? Expliquez.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>10. Image ISO et lecteur virtuel</h2>
+<p>Une VM peut démarrer à partir d’une <strong>image ISO</strong> montée dans un lecteur optique virtuel. Cela permet d’installer un système d’exploitation sans graver de DVD ni nécessairement créer une clé USB physique.</p>
+<p>Le processus conceptuel est le suivant : créer la VM, lui attribuer des ressources, associer l’image ISO au lecteur virtuel, démarrer la VM, puis lancer l’installation du système invité.</p>
+
+<div class="alert alert-light border"><strong>Exemple :</strong> pour installer Ubuntu dans une VM, l’étudiant télécharge l’image ISO officielle d’Ubuntu, l’associe au lecteur virtuel de la VM puis démarre celle-ci.</div>
+
+<div class="alert alert-warning"><strong>Exercice 10.</strong> Quel rôle joue l’image ISO lors de l’installation d’un système dans une VM ? Pourquoi une clé USB physique n’est-elle pas nécessaire dans ce scénario ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>11. Instantané (snapshot) et état d’une VM</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>Un <strong>instantané</strong> ou <em>snapshot</em> enregistre un état de référence d’une machine virtuelle afin de pouvoir revenir à cet état selon les possibilités offertes par l’hyperviseur.</p>
+<p>Cette fonction est particulièrement utile dans un laboratoire : avant une manipulation risquée, l’étudiant peut créer un point de retour et restaurer l’environnement si l’exercice provoque une mauvaise configuration.</p>
+
+<div class="alert alert-warning"><strong>Attention :</strong> un snapshot facilite le retour à un état antérieur de la VM, mais il ne doit pas être considéré comme un remplacement universel d’une stratégie de sauvegarde.</div>
+
+<div class="alert alert-warning"><strong>Exercice 11.</strong> Avant de tester une configuration susceptible de rendre le système invité inutilisable, pourquoi un snapshot peut-il être utile ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>12. Avantages et limites de la virtualisation</h2>
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Avantages</th><th>Limites / contraintes</th></tr></thead>
+<tbody>
+<tr><td>Plusieurs environnements sur une même machine.</td><td>Les VM partagent les ressources physiques disponibles.</td></tr>
+<tr><td>Environnement pratique pour les tests et l’apprentissage.</td><td>Une machine hôte insuffisamment équipée limite les performances.</td></tr>
+<tr><td>Isolation entre différents environnements de travail.</td><td>La configuration réseau, le stockage et les ressources doivent être planifiés.</td></tr>
+<tr><td>Création, suppression et duplication d’environnements facilitée.</td><td>Certaines charges de travail ou certains périphériques peuvent nécessiter une configuration plus avancée.</td></tr>
+<tr><td>Possibilité d’utiliser des snapshots selon l’hyperviseur.</td><td>Un snapshot n’est pas une sauvegarde complète à lui seul.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 12.</strong> Présentez deux avantages et deux limites de la virtualisation dans un laboratoire universitaire.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>13. Préparer la création d’une machine virtuelle</h2>
+<p>Avant de créer une VM, il faut vérifier que l’ordinateur hôte dispose des ressources nécessaires et que la virtualisation matérielle requise par la solution choisie est disponible et activée lorsque cela est nécessaire.</p>
+
+<h3 class="h5 mt-4">Checklist de préparation</h3>
+<ol>
+<li>Identifier le système invité à installer.</li>
+<li>Vérifier les exigences du système invité.</li>
+<li>Vérifier les ressources disponibles sur l’hôte.</li>
+<li>Prévoir le nombre de vCPU.</li>
+<li>Déterminer la quantité de RAM à attribuer.</li>
+<li>Prévoir la capacité du disque virtuel.</li>
+<li>Choisir le mode réseau approprié.</li>
+<li>Préparer l’image ISO d’installation.</li>
+<li>Vérifier que l’hôte conserve suffisamment de ressources pour fonctionner.</li>
+</ol>
+
+<div class="alert alert-warning"><strong>Exercice 13.</strong> Vous devez créer une VM Linux sur un ordinateur possédant 16 Go de RAM et 200 Go d’espace libre. Quelles décisions devez-vous prendre avant de cliquer sur « Créer » dans l’hyperviseur ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>14. Manipulation guidée — créer une VM avec Oracle VirtualBox</h2>
+<p>Cette manipulation applique concrètement les notions étudiées dans la leçon. L’objectif est d’utiliser <strong>Oracle VirtualBox</strong> pour préparer une machine virtuelle et lui associer une image ISO d’installation.</p>
+
+<h3 class="h5 mt-4">Étape 1 — Ouvrir Oracle VirtualBox</h3>
+<p>Après l’installation de VirtualBox, lancez <strong>Oracle VM VirtualBox Manager</strong>. La fenêtre principale permet de consulter les machines virtuelles existantes et d’accéder aux principales commandes de gestion.</p>
+
+<figure class="my-4 text-center">
+  <img src="images/virtualbox-manager.png" class="img-fluid rounded border shadow-sm" alt="Fenêtre principale Oracle VM VirtualBox Manager montrant plusieurs machines virtuelles">
+  <figcaption class="text-muted small mt-2">Figure — Interface principale d’Oracle VM VirtualBox Manager. Le bouton <strong>New</strong> permet de commencer la création d’une nouvelle machine virtuelle.</figcaption>
+</figure>
+
+<div class="alert alert-light border">
+<strong>Repères dans l’interface :</strong>
+<ul class="mb-0 mt-2">
+<li><strong>New</strong> : créer une nouvelle VM;</li>
+<li><strong>Add</strong> : ajouter une VM déjà existante;</li>
+<li><strong>Settings</strong> : modifier la configuration de la VM sélectionnée;</li>
+<li><strong>Start</strong> : démarrer la machine virtuelle sélectionnée;</li>
+<li>le panneau central affiche notamment la mémoire, l’ordre de démarrage, l’affichage et le stockage de la VM.</li>
+</ul>
+</div>
+
+<h3 class="h5 mt-4">Étape 2 — Commencer la création de la VM</h3>
+<p>Cliquez sur <strong>New</strong>. L’assistant <em>Create Virtual Machine</em> s’ouvre. Cette première étape sert à identifier la VM et à sélectionner le système d’exploitation qui sera installé.</p>
+
+<figure class="my-4 text-center">
+  <img src="images/virtualbox-creation-vm.png" class="img-fluid rounded border shadow-sm" alt="Assistant Create Virtual Machine de VirtualBox avec nom, dossier, image ISO, type et version">
+  <figcaption class="text-muted small mt-2">Figure — Première étape de création d’une VM : nom de la machine, dossier de stockage, image ISO, type et version du système invité.</figcaption>
+</figure>
+
+<h3 class="h5 mt-4">Étape 3 — Donner un nom à la machine virtuelle</h3>
+<p>Dans le champ <strong>Name</strong>, saisissez un nom explicite. Dans la capture, la machine est nommée <code>win10-vm</code>. Un nom clair facilite l’identification lorsque plusieurs VM sont utilisées dans le laboratoire.</p>
+
+<div class="alert alert-info"><strong>Bonne pratique :</strong> utilisez un nom qui décrit le système et éventuellement sa fonction, par exemple <code>ubuntu-lab</code>, <code>win11-test</code> ou <code>linux-admin</code>.</div>
+
+<h3 class="h5 mt-4">Étape 4 — Choisir le dossier de la VM</h3>
+<p>Le champ <strong>Folder</strong> indique l’emplacement où VirtualBox conservera les fichiers associés à la machine virtuelle. Vérifiez que le disque physique choisi possède suffisamment d’espace libre pour le disque virtuel et les autres fichiers de la VM.</p>
+
+<h3 class="h5 mt-4">Étape 5 — Sélectionner l’image ISO</h3>
+<p>Dans <strong>ISO Image</strong>, sélectionnez l’image ISO du système à installer. Dans la capture, un fichier <code>Windows10.iso</code> est associé à la nouvelle VM.</p>
+<p>L’image ISO joue ici le rôle de <strong>support d’installation virtuel</strong>. Elle sera utilisée au démarrage de la VM pour installer le système invité, de la même manière qu’un support USB amorçable peut être utilisé sur une machine physique.</p>
+
+<h3 class="h5 mt-4">Étape 6 — Vérifier le type et la version du système</h3>
+<p>VirtualBox peut identifier ou proposer le <strong>Type</strong> et la <strong>Version</strong> du système invité à partir des informations fournies. Dans l’exemple illustré, le type est <strong>Microsoft Windows</strong> et la version sélectionnée est <strong>Windows 10 (64-bit)</strong>.</p>
+<p>Avant de continuer, vérifiez que ces informations correspondent bien au système que vous souhaitez installer.</p>
+
+<h3 class="h5 mt-4">Étape 7 — Installation automatique ou installation manuelle</h3>
+<p>L’option <strong>Skip Unattended Installation</strong> visible dans l’assistant permet de choisir de ne pas utiliser l’installation automatisée proposée par VirtualBox. Dans un contexte pédagogique, une installation manuelle peut être utile lorsque l’objectif est d’observer et de réaliser soi-même les différentes étapes de l’installation du système d’exploitation.</p>
+
+<h3 class="h5 mt-4">Étape 8 — Continuer la configuration</h3>
+<p>Cliquez sur <strong>Next</strong> pour poursuivre. Les écrans suivants permettent, selon la version de VirtualBox et le mode choisi, de définir les ressources et le stockage de la VM.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Paramètre</th><th>Question à se poser</th></tr></thead>
+<tbody>
+<tr><td><strong>RAM</strong></td><td>Quelle quantité peut être attribuée sans priver le système hôte de la mémoire dont il a besoin ?</td></tr>
+<tr><td><strong>vCPU</strong></td><td>Combien de processeurs virtuels sont nécessaires pour le système invité ?</td></tr>
+<tr><td><strong>Disque virtuel</strong></td><td>Quelle capacité faut-il prévoir pour le système, les applications et les travaux du laboratoire ?</td></tr>
+<tr><td><strong>Réseau</strong></td><td>La VM doit-elle simplement accéder à Internet ou être directement visible sur le réseau du laboratoire ?</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="h5 mt-4">Étape 9 — Vérifier la machine créée</h3>
+<p>Une fois la création terminée, la nouvelle VM apparaît dans la liste de VirtualBox Manager. Sélectionnez-la et vérifiez sa configuration avant de la démarrer : mémoire, processeurs, stockage, image ISO et réseau.</p>
+<p>Dans la première capture, la VM <code>win10-vm</code> est arrêtée (<em>Powered Off</em>) et sa configuration générale est visible dans le panneau de droite. Le bouton <strong>Start</strong> permettra ensuite de la démarrer.</p>
+
+<h3 class="h5 mt-4">Étape 10 — Démarrer la VM</h3>
+<p>Cliquez sur <strong>Start</strong>. Si l’image ISO et l’ordre de démarrage sont correctement configurés, la machine virtuelle démarre sur le support virtuel et l’installateur du système d’exploitation peut être lancé.</p>
+
+<div class="alert alert-info"><strong>Objectif de la manipulation :</strong> à cette étape, l’objectif principal est de savoir préparer une machine virtuelle capable de recevoir un système d’exploitation. L’installation détaillée de Windows ou de Linux sera étudiée dans les leçons consacrées à ces systèmes.</div>
+
+<div class="alert alert-warning"><strong>Exercice 14.</strong> À partir des deux captures, identifiez : 1) le bouton permettant de créer une VM; 2) le nom de la VM illustrée; 3) le fichier ISO sélectionné; 4) le type et la version du système invité; 5) le bouton permettant de démarrer une VM existante. Expliquez ensuite pourquoi il faut vérifier les ressources de l’hôte avant d’attribuer la RAM et les vCPU à la nouvelle VM.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>Mise en situation — Laboratoire Windows/Linux</h2>
+<p>Vous disposez d’un ordinateur hôte équipé de 16 Go de RAM, d’un processeur multicœur et de 250 Go d’espace libre. Vous devez conserver le système principal et créer un environnement Linux pour les travaux pratiques.</p>
+<ol>
+<li>Pourquoi la virtualisation est-elle adaptée à ce scénario ?</li>
+<li>Quel sera le système hôte et quel sera le système invité ?</li>
+<li>Quelles ressources devez-vous attribuer à la VM ?</li>
+<li>Pourquoi ne faut-il pas attribuer toutes les ressources de l’ordinateur à la VM ?</li>
+<li>Quel rôle jouera l’image ISO ?</li>
+<li>Quel mode réseau pourriez-vous choisir si la VM doit simplement accéder à Internet via l’hôte ?</li>
+<li>À quel moment un snapshot pourrait-il être utile ?</li>
+</ol>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>Activité de synthèse</h2>
+<p>Concevez la configuration d’une machine virtuelle destinée à un laboratoire d’administration système. Votre proposition doit identifier :</p>
+<ul>
+<li>le système hôte;</li>
+<li>le système invité;</li>
+<li>l’hyperviseur envisagé;</li>
+<li>le nombre de vCPU;</li>
+<li>la quantité de RAM;</li>
+<li>la capacité et le type d’allocation du disque virtuel;</li>
+<li>le mode réseau;</li>
+<li>l’image ISO à utiliser;</li>
+<li>l’utilisation éventuelle d’un snapshot;</li>
+<li>les ressources qui doivent rester disponibles pour l’hôte.</li>
+</ul>
+</section>
+
+
+<hr class="my-5">
+
+<section id="mini-quiz">
+<h2>Mini quiz — Introduction à la virtualisation</h2>
+<p>Vérifiez votre compréhension des notions essentielles de la leçon. Sélectionnez une réponse pour chaque question, puis cliquez sur <strong>Corriger le quiz</strong>.</p>
+
+<form id="quizVirtualisation" class="mt-4">
+
+<div class="card mb-3">
+<div class="card-body">
+<p class="fw-bold">1. Quel est le rôle principal d’un hyperviseur ?</p>
+<label class="d-block mb-2"><input type="radio" name="q1" value="a"> Installer automatiquement Windows sur l’ordinateur physique</label>
+<label class="d-block mb-2"><input type="radio" name="q1" value="b"> Créer, exécuter et gérer des machines virtuelles</label>
+<label class="d-block mb-2"><input type="radio" name="q1" value="c"> Remplacer la mémoire RAM physique</label>
+<label class="d-block"><input type="radio" name="q1" value="d"> Transformer une image ISO en disque physique</label>
+<div class="quiz-feedback mt-2" data-feedback="q1"></div>
+</div>
+</div>
+
+<div class="card mb-3">
+<div class="card-body">
+<p class="fw-bold">2. Un ordinateur Windows 11 exécute VirtualBox avec une VM Ubuntu. Quel est le système invité ?</p>
+<label class="d-block mb-2"><input type="radio" name="q2" value="a"> Windows 11</label>
+<label class="d-block mb-2"><input type="radio" name="q2" value="b"> VirtualBox</label>
+<label class="d-block mb-2"><input type="radio" name="q2" value="c"> Ubuntu</label>
+<label class="d-block"><input type="radio" name="q2" value="d"> Le BIOS/UEFI</label>
+<div class="quiz-feedback mt-2" data-feedback="q2"></div>
+</div>
+</div>
+
+<div class="card mb-3">
+<div class="card-body">
+<p class="fw-bold">3. Un ordinateur possède 16 Go de RAM. Pourquoi ne faut-il généralement pas attribuer les 16 Go à une seule VM ?</p>
+<label class="d-block mb-2"><input type="radio" name="q3" value="a"> Le système hôte doit conserver suffisamment de mémoire pour fonctionner</label>
+<label class="d-block mb-2"><input type="radio" name="q3" value="b"> Une VM ne peut jamais utiliser plus de 4 Go de RAM</label>
+<label class="d-block mb-2"><input type="radio" name="q3" value="c"> La RAM ne peut pas être utilisée par une machine virtuelle</label>
+<label class="d-block"><input type="radio" name="q3" value="d"> La RAM sert uniquement au stockage des fichiers ISO</label>
+<div class="quiz-feedback mt-2" data-feedback="q3"></div>
+</div>
+</div>
+
+<div class="card mb-3">
+<div class="card-body">
+<p class="fw-bold">4. Quel est le rôle de l’image ISO lors de la création d’une VM destinée à recevoir un système d’exploitation ?</p>
+<label class="d-block mb-2"><input type="radio" name="q4" value="a"> Fournir un support d’installation virtuel</label>
+<label class="d-block mb-2"><input type="radio" name="q4" value="b"> Augmenter automatiquement le nombre de vCPU</label>
+<label class="d-block mb-2"><input type="radio" name="q4" value="c"> Remplacer l’hyperviseur</label>
+<label class="d-block"><input type="radio" name="q4" value="d"> Fournir une carte réseau physique à la VM</label>
+<div class="quiz-feedback mt-2" data-feedback="q4"></div>
+</div>
+</div>
+
+<div class="card mb-3">
+<div class="card-body">
+<p class="fw-bold">5. Dans VirtualBox Manager, quel bouton permet de démarrer une machine virtuelle existante ?</p>
+<label class="d-block mb-2"><input type="radio" name="q5" value="a"> New</label>
+<label class="d-block mb-2"><input type="radio" name="q5" value="b"> Settings</label>
+<label class="d-block mb-2"><input type="radio" name="q5" value="c"> Add</label>
+<label class="d-block"><input type="radio" name="q5" value="d"> Start</label>
+<div class="quiz-feedback mt-2" data-feedback="q5"></div>
+</div>
+</div>
+
+<button type="button" class="btn btn-primary me-2" id="corrigerQuizVirtualisation">Corriger le quiz</button>
+<button type="reset" class="btn btn-outline-secondary" id="reinitialiserQuizVirtualisation">Réinitialiser</button>
+</form>
+
+<div id="resultatQuizVirtualisation" class="alert mt-4 d-none" role="alert"></div>
+</section>
+
+<section class="mt-5">
+<h2>À retenir</h2>
+<div class="alert alert-success mb-0">
+La virtualisation permet d’exécuter un ou plusieurs environnements virtuels sur une machine physique. L’hyperviseur gère les machines virtuelles et leur accès aux ressources. Une VM possède notamment des vCPU, de la RAM, un disque et une interface réseau virtuels. Pour utiliser efficacement la virtualisation, il faut distinguer l’hôte de l’invité, attribuer les ressources avec prudence, préparer l’image ISO et comprendre les modes réseau et les snapshots.
+</div>
+</section>
+</div></div></main>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const answers = {
+    q1: {value:"b", explanation:"Un hyperviseur permet de créer, configurer, exécuter et gérer des machines virtuelles."},
+    q2: {value:"c", explanation:"Ubuntu est installé et exécuté dans la VM : il constitue donc le système invité."},
+    q3: {value:"a", explanation:"Les ressources physiques sont partagées. Le système hôte doit conserver suffisamment de RAM pour continuer à fonctionner correctement."},
+    q4: {value:"a", explanation:"L’image ISO sert de support d’installation virtuel pour installer le système d’exploitation invité."},
+    q5: {value:"d", explanation:"Dans VirtualBox Manager, le bouton Start permet de démarrer la VM sélectionnée."}
+  };
+
+  const form = document.getElementById("quizVirtualisation");
+  const result = document.getElementById("resultatQuizVirtualisation");
+
+  document.getElementById("corrigerQuizVirtualisation").addEventListener("click", function () {
+    let score = 0;
+
+    Object.entries(answers).forEach(([name, answer]) => {
+      const radios = form.querySelectorAll('input[name="' + name + '"]');
+      const selected = form.querySelector('input[name="' + name + '"]:checked');
+      const feedback = form.querySelector('[data-feedback="' + name + '"]');
+
+      radios.forEach(radio => {
+        const label = radio.closest("label");
+        label.classList.remove("text-success", "text-danger", "fw-semibold");
+        if (radio.value === answer.value) {
+          label.classList.add("text-success", "fw-semibold");
+        }
+      });
+
+      if (selected && selected.value === answer.value) {
+        score++;
+        feedback.className = "quiz-feedback mt-2 text-success";
+        feedback.innerHTML = "<strong>Bonne réponse.</strong> " + answer.explanation;
+      } else {
+        if (selected) {
+          selected.closest("label").classList.add("text-danger", "fw-semibold");
+        }
+        feedback.className = "quiz-feedback mt-2 text-danger";
+        feedback.innerHTML = "<strong>À revoir.</strong> " + answer.explanation;
+      }
+    });
+
+    const percent = Math.round((score / 5) * 100);
+    result.classList.remove("d-none", "alert-success", "alert-warning", "alert-danger");
+    result.classList.add(percent >= 80 ? "alert-success" : percent >= 60 ? "alert-warning" : "alert-danger");
+
+    let message = percent >= 80
+      ? "Très bonne maîtrise des notions essentielles."
+      : percent >= 60
+        ? "Les notions principales sont comprises, mais quelques éléments méritent une révision."
+        : "Relisez les notions sur l’hyperviseur, l’hôte et l’invité, les ressources et l’image ISO.";
+
+    result.innerHTML = "<strong>Résultat : " + score + "/5 (" + percent + " %).</strong> " + message;
+  });
+
+  document.getElementById("reinitialiserQuizVirtualisation").addEventListener("click", function () {
+    form.querySelectorAll("label").forEach(label => {
+      label.classList.remove("text-success", "text-danger", "fw-semibold");
+    });
+    form.querySelectorAll(".quiz-feedback").forEach(feedback => {
+      feedback.innerHTML = "";
+      feedback.className = "quiz-feedback mt-2";
+    });
+    result.className = "alert mt-4 d-none";
+    result.innerHTML = "";
+  });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script></body></html>

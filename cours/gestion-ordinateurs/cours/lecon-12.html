@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Leçon 12 — Configuration après installation</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<style>body{background:#f7f8fb;color:#42506c}.wrap{max-width:900px;margin:auto;padding:50px 20px}.card{border:1px solid #e5e9f1;border-radius:18px}h1{color:#152354}.badge{background:#eef2ff!important;color:#315eea!important}</style>
+<link href="../../../assets/css/navbar.css" rel="stylesheet"/><style id="astechai-navbar-embedded">:root{--as-navy:#07164d;--as-blue:#1267f3;--as-purple:#8d31f4}
+.as-navbar{min-height:80px;z-index:1050;font-family:Arial,"Segoe UI",sans-serif}
+.as-nav-container{max-width:1440px;padding-left:44px;padding-right:44px}
+.as-brand{display:flex;align-items:center;gap:12px;margin-right:36px}
+.as-brand>span:last-child{display:flex;flex-direction:column}
+.as-brand strong{font-size:27px;line-height:1;color:var(--as-navy);font-weight:850;letter-spacing:-.5px}
+.as-brand strong span{color:#4227c9}.as-brand small{font-size:12px;color:#71809e;margin-top:5px}
+.as-book{width:60px;height:48px;position:relative;display:inline-block;flex:0 0 60px}
+.as-book:before,.as-book:after{content:"";position:absolute;top:4px;width:28px;height:39px;border-radius:5px 5px 15px 5px}
+.as-book:before{left:0;background:linear-gradient(145deg,#0877ff,#1453ee);transform:skewY(8deg)}
+.as-book:after{right:0;background:linear-gradient(145deg,#7058ff,#a22ef2);transform:skewY(-8deg)}
+.as-main-links{gap:7px}.as-main-links .nav-link{color:#0b225c!important;font-size:14px;font-weight:700;padding:11px 18px!important;border-radius:12px}
+.as-main-links .nav-link:hover,.as-main-links .nav-link.active{background:#edf4ff;color:#075bd8!important}
+.as-search{width:255px;height:44px;border-radius:25px;background:#f0f5ff;align-items:center;gap:8px;padding:0 16px;margin-right:22px;color:#7b88a4}
+.as-search input{width:100%;border:0;outline:0;background:transparent;color:#5e6e8b}
+.as-login{border:0!important;border-radius:13px!important;padding:12px 22px!important;color:#fff!important;font-weight:700!important;white-space:nowrap;background:linear-gradient(100deg,#3a7df5,#8b30f4)!important}
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:690px;padding:18px;border:1px solid #e6ebf4;border-radius:18px;box-shadow:0 20px 48px rgba(23,48,96,.14)}
+.as-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.as-course-card{display:flex;align-items:center;gap:11px;min-height:78px;padding:12px;border:1px solid #edf0f6;border-radius:13px;background:#fff;color:#172958;text-decoration:none;transition:.15s ease}
+.as-course-card:hover{background:#f6f9ff;border-color:#dce7ff;transform:translateY(-1px)}
+.as-course-icon{width:42px;height:42px;flex:0 0 42px;border-radius:11px;background:#edf4ff;color:#1267f3;display:grid;place-items:center;font-size:19px;font-weight:800}
+.as-course-icon.orange{background:#fff0eb;color:#e84b27}.as-course-icon.purple{background:#f4eaff;color:#8429ef}
+.as-course-card strong{display:block;font-size:13px;line-height:1.25;color:#102252}.as-course-card small{display:block;margin-top:3px;font-size:10px;line-height:1.25;color:#7b89a5}
+@media(max-width:1199px){.as-nav-container{padding-left:22px;padding-right:22px}.as-brand{margin-right:12px}.as-main-links{gap:1px}.as-main-links .nav-link{padding:10px 11px!important}}
+@media(max-width:991px){.as-navbar{min-height:72px}.as-brand strong{font-size:23px}.as-book{width:50px;flex-basis:50px}.as-book:before,.as-book:after{width:23px;height:36px}.navbar-collapse{padding:12px 0 16px}.as-main-links{align-items:stretch!important}.as-course-menu{position:static!important;transform:none!important;width:100%;margin:5px 0 8px}.as-course-grid{grid-template-columns:1fr 1fr}.as-login{margin-top:8px}}
+@media(max-width:600px){.as-nav-container{padding-left:14px;padding-right:14px}.as-brand small{display:none}.as-course-grid{grid-template-columns:1fr}}
+.lesson-shot{margin:22px auto 26px;text-align:center}.lesson-shot img{max-width:100%;height:auto;border:1px solid #dfe5ef;border-radius:14px;box-shadow:0 10px 28px rgba(23,48,96,.10)}.lesson-shot figcaption{font-size:.9rem;color:#71809e;margin-top:9px}</style></head>
+<body><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+<div class="container-fluid as-nav-container">
+<a class="navbar-brand as-brand" href="../../../index.html">
+<span aria-hidden="true" class="as-book"></span>
+<span>
+<strong>AsTech<span>AI</span></strong>
+<small>IT Learning Platform</small>
+</span>
+</a>
+<button aria-controls="asMainNavbar" aria-expanded="false" aria-label="Afficher la navigation" class="navbar-toggler" data-bs-target="#asMainNavbar" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="asMainNavbar">
+<ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+<li class="nav-item">
+<a class="nav-link active" href="../../../index.html">Accueil</a>
+</li>
+<li class="nav-item dropdown position-static">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#" role="button">Cours</a>
+<div class="dropdown-menu as-course-menu">
+<div class="as-course-grid">
+<a class="as-course-card" href="../../../cours/gestion-ordinateurs/index.html">
+<span class="as-course-icon">▣</span>
+<span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/microsoft-365/index.html">
+<span class="as-course-icon orange">M</span>
+<span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation/index.html">
+<span class="as-course-icon purple">&lt;/&gt;</span>
+<span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/bases-de-donnees/index.html">
+<span class="as-course-icon">◎</span>
+<span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation-orientee-objet/index.html">
+<span class="as-course-icon purple">◇</span>
+<span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+</a>
+</div>
+</div>
+</li>
+<li class="nav-item"><a class="nav-link" href="../../../projets/index.html">Projets</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#apropos">À propos</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#ressources">Ressources</a></li>
+</ul>
+<form class="d-none d-xl-flex as-search" onsubmit="return false;" role="search">
+<span aria-hidden="true">⌕</span>
+<input aria-label="Rechercher" placeholder="Rechercher..." type="search"/>
+</form>
+<a class="btn as-login" href="../../../connexion/index.html">♙   Connexion</a>
+</div>
+</div>
+</nav><main class="wrap"><a class="text-decoration-none" href="../index.html#lesson-12">← Retour aux leçons</a>
+<div class="card shadow-sm mt-4"><div class="card-body p-4 p-md-5"><span class="badge rounded-pill mb-3">Leçon 12</span><h1>Configuration après installation</h1>
+<p class="lead mt-3">Finaliser un poste Windows après l’installation : vérifier le système, configurer les paramètres essentiels, préparer les pilotes, le réseau et la sécurité de base, puis valider que le poste est prêt à être utilisé.</p>
+
+<div class="alert alert-primary mt-4">
+<strong>Objectifs d’apprentissage.</strong> À la fin de cette leçon, l’étudiant sera capable d’effectuer les principales vérifications après une installation de Windows, de configurer les paramètres essentiels du poste, d’identifier les périphériques nécessitant une intervention, de vérifier le réseau et l’activation, et de documenter l’état final de la machine.
+</div>
+
+<section class="mt-5">
+<h2>1. Qu’est-ce que la configuration après installation ?</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>La <strong>configuration après installation</strong> regroupe les opérations réalisées après l’installation du système d’exploitation afin de rendre le poste fonctionnel, cohérent avec son environnement et prêt pour les étapes suivantes de déploiement.</p>
+<p>L’apparition du bureau Windows ne signifie donc pas que le travail est terminé. Le technicien doit encore vérifier le matériel détecté, le réseau, les paramètres régionaux, l’état de Windows, les mises à jour disponibles et plusieurs paramètres essentiels.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Windows démarre correctement, mais la carte réseau n’est pas reconnue et la résolution d’écran est limitée. Le système est installé, mais le poste n’est pas encore correctement configuré.</p>
+
+<div class="alert alert-warning"><strong>Exercice 1.</strong> Expliquez la différence entre « Windows est installé » et « le poste est prêt à être utilisé ».</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>2. Effectuer une première vérification du système</h2>
+<p>La première étape consiste à confirmer que l’installation correspond au scénario prévu et que Windows fonctionne normalement.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Élément</th><th>Question de vérification</th></tr></thead>
+<tbody>
+<tr><td><strong>Édition de Windows</strong></td><td>L’édition installée correspond-elle à celle prévue ?</td></tr>
+<tr><td><strong>Architecture</strong></td><td>Le système est-il bien en 64 bits lorsque cela est attendu ?</td></tr>
+<tr><td><strong>Processeur et RAM</strong></td><td>Les ressources principales sont-elles correctement détectées ?</td></tr>
+<tr><td><strong>Stockage</strong></td><td>Le volume système et sa capacité correspondent-ils au disque préparé ?</td></tr>
+<tr><td><strong>Démarrage</strong></td><td>Windows démarre-t-il normalement depuis le disque installé ?</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3 class="h5 mt-4">Accès</h3>
+<p>Dans Windows 11, les informations générales peuvent être consultées dans <strong>Paramètres → Système → Informations système</strong>. L’intitulé exact de certains éléments peut varier légèrement selon la version de Windows.</p>
+<figure class="lesson-shot"><img src="images/informations-systeme.png" alt="Informations système : édition de Windows, processeur, mémoire RAM et type du système." loading="lazy"><figcaption>Informations système : édition de Windows, processeur, mémoire RAM et type du système.</figcaption></figure>
+
+
+<div class="alert alert-warning"><strong>Exercice 2.</strong> Relevez l’édition de Windows, le type du système, le processeur et la quantité de RAM d’un poste ou d’une VM de laboratoire.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>3. Vérifier la date, l’heure, la région et le clavier</h2>
+<p>Ces paramètres influencent l’utilisation quotidienne du poste, l’affichage des dates, la saisie et certains services réseau. Une heure incorrecte peut également provoquer des problèmes avec des services qui dépendent d’une synchronisation temporelle correcte.</p>
+
+
+<figure class="lesson-shot"><img src="images/date-heure-region.png" alt="Paramètres de date, heure, fuseau horaire et région dans Windows 11." loading="lazy"><figcaption>Paramètres de date, heure, fuseau horaire et région dans Windows 11.</figcaption></figure>
+<h3 class="h5 mt-4">Points à contrôler</h3>
+<ul>
+<li>fuseau horaire;</li>
+<li>date et heure;</li>
+<li>synchronisation automatique lorsque le contexte le permet;</li>
+<li>pays ou région;</li>
+<li>langue d’affichage;</li>
+<li>disposition du clavier.</li>
+</ul>
+
+<div class="alert alert-light border"><strong>Exemple :</strong> un clavier physique canadien-français configuré avec une disposition différente peut produire des caractères inattendus lors de la saisie d’un mot de passe.</div>
+
+<div class="alert alert-warning"><strong>Exercice 3.</strong> Pourquoi faut-il vérifier le clavier et le fuseau horaire immédiatement après l’installation ? Donnez un problème possible pour chacun.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>4. Donner un nom cohérent à l’ordinateur</h2>
+<h3 class="h5 mt-4">Nom de l’ordinateur</h3>
+<p>Le <strong>nom de l’ordinateur</strong> permet d’identifier le poste dans Windows et dans différents contextes réseau ou administratifs. Dans un laboratoire ou une organisation, une convention de nommage facilite la gestion des machines.</p>
+
+<div class="alert alert-light border"><strong>Exemples de conventions :</strong> <code>LAB-A-01</code>, <code>PC-COMPTA-07</code> ou <code>VM-W11-TEST</code>. La convention doit être définie par l’organisation plutôt qu’inventée différemment sur chaque poste.</div>
+
+<p>Le renommage peut être effectué depuis les paramètres système. Un redémarrage peut être demandé pour appliquer complètement le changement.</p>
+<figure class="lesson-shot"><img src="images/renommer-ordinateur.png" alt="Renommage du poste selon une convention de laboratoire, par exemple LAB-A-01." loading="lazy"><figcaption>Renommage du poste selon une convention de laboratoire, par exemple LAB-A-01.</figcaption></figure>
+
+
+<div class="alert alert-warning"><strong>Exercice 4.</strong> Proposez une convention de nommage pour 20 ordinateurs répartis dans deux laboratoires A et B. Expliquez votre logique.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>5. Vérifier les périphériques détectés</h2>
+<p>Après l’installation, Windows doit reconnaître les composants nécessaires au fonctionnement du poste. Le <strong>Gestionnaire de périphériques</strong> permet d’examiner le matériel détecté et d’identifier les périphériques présentant un problème.</p>
+
+<h3 class="h5 mt-4">Accès</h3>
+<p>Une méthode simple consiste à effectuer un clic droit sur le bouton <strong>Démarrer</strong>, puis à ouvrir <strong>Gestionnaire de périphériques</strong>.</p>
+
+
+<figure class="lesson-shot"><img src="images/gestionnaire-peripheriques.png" alt="Gestionnaire de périphériques : vérifier l’absence d’icônes d’avertissement." loading="lazy"><figcaption>Gestionnaire de périphériques : vérifier l’absence d’icônes d’avertissement.</figcaption></figure>
+<h3 class="h5 mt-4">Que rechercher ?</h3>
+<ul>
+<li>un périphérique inconnu;</li>
+<li>un périphérique signalé avec un avertissement;</li>
+<li>une carte réseau absente;</li>
+<li>un contrôleur non reconnu;</li>
+<li>un affichage utilisant uniquement un pilote générique lorsque le matériel nécessite un pilote spécifique.</li>
+</ul>
+
+<div class="alert alert-info"><strong>À retenir :</strong> un <strong>pilote</strong> est le logiciel qui permet au système d’exploitation de communiquer correctement avec un périphérique. L’étude détaillée de l’installation et de la gestion des pilotes sera approfondie dans la leçon consacrée aux pilotes et périphériques.</div>
+
+<div class="alert alert-warning"><strong>Exercice 5.</strong> Un poste fonctionne, mais aucun adaptateur Wi-Fi n’apparaît dans les paramètres réseau. Quelle console Windows devriez-vous examiner en premier et que cherchez-vous ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>6. Vérifier la configuration réseau</h2>
+<p>Un poste nouvellement installé doit être capable d’utiliser le réseau prévu par le laboratoire ou l’organisation. La présence d’une icône réseau ne suffit pas : il faut vérifier l’interface et tester la connectivité.</p>
+
+<h3 class="h5 mt-4">Vérifications de base</h3>
+<ol>
+<li>Confirmer que l’adaptateur réseau est détecté.</li>
+<li>Vérifier que la connexion Ethernet ou Wi-Fi attendue est disponible.</li>
+<li>Contrôler que le poste reçoit une configuration IP adaptée au réseau.</li>
+<li>Tester l’accès aux ressources prévues ou à Internet lorsque cela est autorisé.</li>
+</ol>
+
+
+<figure class="lesson-shot"><img src="images/ipconfig-reseau.png" alt="Invite de commandes : utilisation de ipconfig pour vérifier l’adresse IPv4 et la passerelle." loading="lazy"><figcaption>Invite de commandes : utilisation de ipconfig pour vérifier l’adresse IPv4 et la passerelle.</figcaption></figure>
+<h3 class="h5 mt-4">Commande utile</h3>
+<p>Dans l’Invite de commandes, la commande suivante affiche les informations principales de configuration IP :</p>
+<pre class="bg-light border rounded p-3"><code>ipconfig</code></pre>
+<p>Pour obtenir davantage de détails sur les interfaces réseau :</p>
+<pre class="bg-light border rounded p-3"><code>ipconfig /all</code></pre>
+
+<div class="alert alert-info"><strong>Portée de cette leçon :</strong> l’objectif est ici de <em>vérifier</em> que le réseau fonctionne après l’installation. L’adressage IP et la configuration réseau seront étudiés plus en profondeur dans la leçon dédiée au réseau.</div>
+
+<div class="alert alert-warning"><strong>Exercice 6.</strong> Exécutez <code>ipconfig</code> dans une VM Windows. Identifiez l’interface active et l’adresse IPv4 affichée.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>7. Vérifier l’état de l’activation Windows</h2>
+<h3 class="h5 mt-4">Définition</h3>
+<p>L’<strong>activation</strong> est le mécanisme utilisé par Windows pour vérifier l’état de licence du système. Elle est distincte de l’installation : un système peut être installé avant que son état d’activation ne soit vérifié ou finalisé.</p>
+
+<h3 class="h5 mt-4">Accès</h3>
+<p>Dans Windows 11, l’état d’activation peut être consulté dans <strong>Paramètres → Système → Activation</strong>.</p>
+<figure class="lesson-shot"><img src="images/activation-windows.png" alt="État d’activation de Windows 11." loading="lazy"><figcaption>État d’activation de Windows 11.</figcaption></figure>
+
+
+<div class="alert alert-warning"><strong>Exercice 7.</strong> Expliquez pourquoi « Windows est installé » et « Windows est activé » ne signifient pas la même chose.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>8. Configurer Windows Update</h2>
+<p><strong>Windows Update</strong> est le service de Windows utilisé pour rechercher et appliquer différents types de mises à jour du système. Après une nouvelle installation, plusieurs mises à jour peuvent être nécessaires.</p>
+
+
+<figure class="lesson-shot"><img src="images/windows-update.png" alt="Windows Update : rechercher, installer les mises à jour et redémarrer si nécessaire." loading="lazy"><figcaption>Windows Update : rechercher, installer les mises à jour et redémarrer si nécessaire.</figcaption></figure>
+<h3 class="h5 mt-4">Procédure générale</h3>
+<ol>
+<li>Ouvrir <strong>Paramètres → Windows Update</strong>.</li>
+<li>Lancer une recherche de mises à jour.</li>
+<li>Examiner les mises à jour proposées.</li>
+<li>Laisser les téléchargements et installations se terminer.</li>
+<li>Redémarrer si Windows le demande.</li>
+<li>Revenir dans Windows Update et vérifier de nouveau l’état du système.</li>
+</ol>
+
+<div class="alert alert-info"><strong>Pourquoi recommencer la vérification ?</strong> certaines mises à jour peuvent dépendre d’autres composants ou n’apparaître qu’après un redémarrage. Une seule recherche ne garantit donc pas nécessairement que toutes les étapes de mise à jour sont terminées.</div>
+
+<div class="alert alert-warning"><strong>Exercice 8.</strong> Pourquoi un technicien doit-il revenir dans Windows Update après un redémarrage demandé par une mise à jour ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>9. Vérifier le stockage après installation</h2>
+<p>Le technicien doit confirmer que Windows utilise le volume prévu et que la structure du stockage correspond au scénario d’installation.</p>
+
+<h3 class="h5 mt-4">Vérifications</h3>
+<ul>
+<li>capacité du volume système;</li>
+<li>espace libre disponible;</li>
+<li>présence des volumes de données attendus;</li>
+<li>lettres de lecteur lorsque celles-ci sont utilisées;</li>
+<li>absence de volume important oublié ou inaccessible;</li>
+<li>cohérence avec le partitionnement prévu avant l’installation.</li>
+</ul>
+
+<p>La console <strong>Gestion des disques</strong> permet d’observer les disques, partitions et volumes. À cette étape, privilégiez l’observation : ne supprimez ou ne reformatez pas une partition simplement pour « tester ».</p>
+<figure class="lesson-shot"><img src="images/gestion-disques.png" alt="Gestion des disques : identifier le disque système, les partitions et l’espace disponible." loading="lazy"><figcaption>Gestion des disques : identifier le disque système, les partitions et l’espace disponible.</figcaption></figure>
+
+
+<div class="alert alert-warning"><strong>Exercice 9.</strong> Ouvrez Gestion des disques dans une VM. Identifiez le disque système, le volume contenant Windows et les autres partitions créées pendant l’installation.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>10. Vérifier la sécurité de base</h2>
+<p>Après l’installation, le poste doit disposer des protections attendues par l’environnement. Windows intègre plusieurs fonctions de sécurité accessibles notamment à travers l’application <strong>Sécurité Windows</strong>.</p>
+
+
+<figure class="lesson-shot"><img src="images/securite-windows.png" alt="Sécurité Windows : vérifier l’état des protections du poste." loading="lazy"><figcaption>Sécurité Windows : vérifier l’état des protections du poste.</figcaption></figure>
+<h3 class="h5 mt-4">Contrôles de base</h3>
+<ul>
+<li>vérifier l’état général présenté par Sécurité Windows;</li>
+<li>confirmer que le pare-feu est dans l’état prévu par l’organisation;</li>
+<li>vérifier la protection antivirus/antimalware prévue;</li>
+<li>s’assurer que les mises à jour de sécurité peuvent être reçues;</li>
+<li>ne pas désactiver une protection uniquement pour faire disparaître un avertissement.</li>
+</ul>
+
+<div class="alert alert-info"><strong>Portée :</strong> cette section constitue une vérification après installation. La sécurité des systèmes sera étudiée plus en profondeur dans les leçons dédiées.</div>
+
+<div class="alert alert-warning"><strong>Exercice 10.</strong> Pourquoi la désactivation du pare-feu ne constitue-t-elle pas une solution correcte à un problème de connectivité ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>11. Vérifier les paramètres d’alimentation</h2>
+<p>Les paramètres d’alimentation déterminent notamment le comportement de l’écran, de la mise en veille et de certains scénarios énergétiques. Ils doivent correspondre à l’utilisation prévue du poste.</p>
+
+<h3 class="h5 mt-4">Exemple</h3>
+<p>Un ordinateur portable destiné à un étudiant et un poste de laboratoire qui doit rester disponible pendant une longue installation n’ont pas nécessairement les mêmes besoins de mise en veille.</p>
+
+<div class="alert alert-warning"><strong>Exercice 11.</strong> Une mise en veille automatique interrompt régulièrement une longue manipulation de laboratoire. Quel type de paramètre devez-vous examiner ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>12. Configurer les options d’affichage essentielles</h2>
+<figure class="lesson-shot"><img src="images/affichage-alimentation.png" alt="Paramètres d’affichage et d’alimentation : résolution, luminosité et mode d’alimentation." loading="lazy"><figcaption>Paramètres d’affichage et d’alimentation : résolution, luminosité et mode d’alimentation.</figcaption></figure>
+
+<p>Après l’installation, vérifiez que la résolution, la mise à l’échelle et la disposition des écrans correspondent au matériel et au contexte d’utilisation.</p>
+
+<h3 class="h5 mt-4">Signes d’un problème</h3>
+<ul>
+<li>résolution anormalement faible;</li>
+<li>écran secondaire non détecté;</li>
+<li>mise à l’échelle inadaptée;</li>
+<li>absence du pilote graphique approprié.</li>
+</ul>
+
+<p>Un problème d’affichage peut provenir d’un paramètre, mais également d’un pilote. Il faut donc observer le Gestionnaire de périphériques avant de conclure à une panne matérielle.</p>
+
+<div class="alert alert-warning"><strong>Exercice 12.</strong> Après une nouvelle installation, Windows propose seulement une faible résolution. Donnez deux vérifications à effectuer.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>13. Créer un point de contrôle de l’état du poste</h2>
+<p>Une fois les vérifications principales terminées, il est utile de documenter l’état du poste. Dans un environnement de laboratoire virtualisé, un <strong>snapshot</strong> peut également servir de point de retour avant de commencer des manipulations ultérieures.</p>
+
+<div class="alert alert-info"><strong>Attention :</strong> un snapshot d’une VM est pratique pour revenir à un état antérieur du laboratoire, mais il ne remplace pas à lui seul une stratégie complète de sauvegarde.</div>
+
+<h3 class="h5 mt-4">Informations à documenter</h3>
+<ul>
+<li>nom du poste;</li>
+<li>édition et version de Windows;</li>
+<li>état de l’activation;</li>
+<li>état des périphériques;</li>
+<li>état de Windows Update;</li>
+<li>configuration réseau de base;</li>
+<li>capacité de stockage;</li>
+<li>problèmes restant à résoudre.</li>
+</ul>
+
+<div class="alert alert-warning"><strong>Exercice 13.</strong> Pourquoi est-il utile de documenter l’état d’un poste immédiatement après sa configuration ?</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>14. Manipulation guidée — finaliser une installation Windows</h2>
+<p>Réalisez cette manipulation sur la VM Windows créée pendant la leçon d’installation.</p>
+
+<ol>
+<li><strong>Ouvrir les informations système</strong> et relever l’édition, l’architecture, le processeur et la RAM.</li>
+<li><strong>Vérifier la date, l’heure, la région et le clavier.</strong></li>
+<li><strong>Vérifier ou attribuer le nom du poste</strong> selon la convention du laboratoire.</li>
+<li><strong>Ouvrir le Gestionnaire de périphériques</strong> et rechercher les périphériques signalés.</li>
+<li><strong>Vérifier le réseau</strong> et relever les informations principales avec <code>ipconfig</code>.</li>
+<li><strong>Consulter l’état de l’activation.</strong></li>
+<li><strong>Ouvrir Windows Update</strong> et vérifier les mises à jour.</li>
+<li><strong>Observer Gestion des disques</strong> et identifier le volume système.</li>
+<li><strong>Consulter Sécurité Windows</strong> et relever les éventuels avertissements.</li>
+<li><strong>Vérifier l’affichage et l’alimentation.</strong></li>
+<li><strong>Redémarrer la VM</strong> lorsque les opérations effectuées le nécessitent.</li>
+<li><strong>Compléter une fiche de validation</strong> avant de déclarer le poste prêt.</li>
+</ol>
+
+<div class="alert alert-warning"><strong>Exercice 14.</strong> Réalisez la manipulation et produisez une fiche contenant, pour chaque étape, l’état observé, l’action effectuée et le résultat final.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>15. Diagnostic — le poste est-il réellement prêt ?</h2>
+<p>Un poste est considéré comme correctement préparé lorsque les vérifications essentielles sont cohérentes avec son usage prévu. Un seul symptôme peut nécessiter plusieurs vérifications.</p>
+
+<div class="table-responsive mt-3">
+<table class="table table-bordered align-middle">
+<thead><tr><th>Observation</th><th>Premières vérifications</th></tr></thead>
+<tbody>
+<tr><td>Pas d’accès réseau</td><td>Adaptateur détecté, pilote, connexion, configuration IP et réseau du laboratoire.</td></tr>
+<tr><td>Résolution très faible</td><td>Paramètres d’affichage et pilote graphique.</td></tr>
+<tr><td>Périphérique inconnu</td><td>Gestionnaire de périphériques et identification du matériel.</td></tr>
+<tr><td>Heure incorrecte</td><td>Fuseau horaire, réglage automatique et synchronisation.</td></tr>
+<tr><td>Mises à jour en attente</td><td>Windows Update, redémarrage puis nouvelle vérification.</td></tr>
+<tr><td>Volume attendu absent</td><td>Gestion des disques et structure du stockage.</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="alert alert-warning"><strong>Exercice 15.</strong> Après l’installation, un poste présente simultanément une faible résolution, aucun accès réseau et deux périphériques inconnus. Proposez un ordre de diagnostic logique et justifiez-le.</div>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>Mise en situation — Préparer un poste pour un étudiant</h2>
+<p>Une nouvelle VM Windows vient d’être installée. Le bureau apparaît correctement, mais le nom du poste est générique, plusieurs mises à jour sont disponibles et l’étudiant signale que le réseau ne fonctionne pas.</p>
+<ol>
+<li>Quelles informations système vérifiez-vous en premier ?</li>
+<li>Comment déterminez-vous si le problème réseau provient d’un périphérique non reconnu ?</li>
+<li>Pourquoi faut-il vérifier Windows Update ?</li>
+<li>Quel nom pourriez-vous attribuer au poste si la convention du laboratoire est <code>LAB-A-XX</code> ?</li>
+<li>Quelles vérifications finales effectuer avant de remettre le poste à l’étudiant ?</li>
+</ol>
+</section>
+
+<hr class="my-5">
+
+<section>
+<h2>Activité de synthèse — Fiche de validation après installation</h2>
+<p>Créez une fiche de validation professionnelle comportant les catégories suivantes :</p>
+<ul>
+<li>identification du poste;</li>
+<li>version et édition de Windows;</li>
+<li>processeur et mémoire détectés;</li>
+<li>date, heure, région et clavier;</li>
+<li>état des périphériques;</li>
+<li>état du réseau;</li>
+<li>activation;</li>
+<li>Windows Update;</li>
+<li>stockage;</li>
+<li>sécurité de base;</li>
+<li>affichage et alimentation;</li>
+<li>anomalies observées et actions correctives.</li>
+</ul>
+<p>Pour chaque catégorie, indiquez <strong>Conforme</strong>, <strong>À corriger</strong> ou <strong>Non vérifié</strong>, puis ajoutez une courte observation.</p>
+</section>
+
+<section class="mt-5">
+<h2>À retenir</h2>
+<div class="alert alert-success mb-0">
+Après l’installation de Windows, le technicien doit valider le système plutôt que se limiter à l’apparition du bureau. Les contrôles essentiels concernent les informations système, les paramètres régionaux, les périphériques, le réseau, l’activation, Windows Update, le stockage, la sécurité de base, l’affichage et l’alimentation. Une configuration correctement documentée facilite ensuite l’installation des applications, l’administration et le dépannage du poste.
+</div>
+</section>
+</div></div></main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script></body></html>

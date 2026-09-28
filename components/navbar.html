@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+  <div class="container-fluid as-nav-container">
+    <a class="navbar-brand as-brand" data-root-href="index.html" href="#">
+      <span class="as-book" aria-hidden="true"></span>
+      <span>
+        <strong>AsTech<span>AI</span></strong>
+        <small>IT Learning Platform</small>
+      </span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#asMainNavbar" aria-controls="asMainNavbar"
+            aria-expanded="false" aria-label="Afficher la navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="asMainNavbar">
+      <ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+        <li class="nav-item">
+          <a class="nav-link active" data-root-href="index.html" href="#">Accueil</a>
+        </li>
+
+        <li class="nav-item dropdown position-static">
+          <a class="nav-link dropdown-toggle" href="#" role="button"
+             data-bs-toggle="dropdown" data-bs-auto-close="outside"
+             aria-expanded="false">Cours</a>
+
+          <div class="dropdown-menu as-course-menu">
+            <div class="as-course-grid">
+              <a class="as-course-card" data-root-href="cours/gestion-ordinateurs/index.html" href="#">
+                <span class="as-course-icon">▣</span>
+                <span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="https://asma-aouichat.github.io/microsoft365-learning-hub/" href="#">
+                <span class="as-course-icon orange">M</span>
+                <span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+              </a>
+              <!-- <a class="as-course-card" data-root-href="cours/programmation/index.html" href="#">
+                <span class="as-course-icon purple">&lt;/&gt;</span>
+                <span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="cours/bases-de-donnees/index.html" href="#">
+                <span class="as-course-icon">◎</span>
+                <span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="cours/programmation-orientee-objet/index.html" href="#">
+                <span class="as-course-icon purple">◇</span>
+                <span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+              </a> -->
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" data-root-href="projets/index.html" href="#">Projets</a></li>
+        <li class="nav-item"><a class="nav-link" data-root-href="index.html#apropos" href="#">À propos</a></li>
+        <li class="nav-item"><a class="nav-link" data-root-href="index.html#ressources" href="#">Ressources</a></li>
+      </ul>
+
+      <form class="d-none d-xl-flex as-search" role="search" onsubmit="return false;">
+        <span aria-hidden="true">⌕</span>
+        <input type="search" placeholder="Rechercher..." aria-label="Rechercher">
+      </form>
+
+      <a class="btn as-login" data-root-href="connexion/index.html" href="#">♙ &nbsp; Connexion</a>
+    </div>
+  </div>
+</nav>

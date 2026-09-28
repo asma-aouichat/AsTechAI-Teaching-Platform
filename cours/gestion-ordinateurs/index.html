@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+
+
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>AsTechAI — Parcours complet</title><style>\*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f7f8fb;color:#42506c;font:15px/1.55 Inter,system-ui,sans-serif}.layout{display:grid;grid-template-columns:270px 1fr;min-height:100vh}aside{position:sticky;top:0;height:100vh;overflow:auto;background:#fff;border-right:1px solid #e7eaf1;padding:25px 15px}.brand{padding:0 10px 20px;border-bottom:1px solid #e7eaf1;margin-bottom:17px}.brand strong{display:block;color:#152354;font-size:23px}.brand span{font-size:12px;color:#8993a7}nav{display:flex;flex-direction:column;gap:2px}nav a{display:grid;grid-template-columns:31px 1fr;gap:7px;padding:7px 8px;border-radius:8px;text-decoration:none;color:#59657d;font-size:12px}nav a:hover{background:#f2f5fd;color:#315eea}nav b{color:#315eea}main{width:min(100%);}.hero{border:1px solid #e3e7f0;background:linear-gradient(120deg,#f0f5ff,#fff 60%,#f5f1ff)}.hero small{color:#315eea;font-weight:800;text-transform:uppercase;letter-spacing:.12em}.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.03;letter-spacing:-.045em;color:#152354;margin:8px 0 13px}.hero p{margin:0;color:#6d7890}.tools{display:flex;gap:8px;margin-bottom:15px}.tools button{background:#fff;border:1px solid #e1e5ee;border-radius:9px;padding:8px 12px;color:#536079;font-weight:700;cursor:pointer}.lesson{background:#fff;border:1px solid #e6e9f0;border-radius:13px;margin-bottom:9px;overflow:hidden}.lesson[open]{border-color:#d7dff0}.lesson summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:46px 1fr auto 25px;gap:12px;align-items:center;padding:15px 17px}.lesson summary::-webkit-details-marker{display:none}.n{width:40px;height:40px;display:grid;place-items:center;border-radius:10px;background:#f0f3f9;color:#3155bd;font-weight:850}.lesson[open] .n{background:#315eea;color:#fff}.t{color:#293a61;font-weight:750}.t small{display:block;color:#9aa3b4;font-size:10px;text-transform:uppercase}.c{font-size:11px;color:#939caf;background:#f7f8fb;padding:5px 8px;border-radius:20px}.ch{font-size:20px;color:#929bae;transition:.2s}.lesson[open] .ch{transform:rotate(180deg)}.body{border-top:1px solid #edf0f5;background:#fdfdfe;padding:17px 24px 20px 73px}.body ol{margin:0;padding-left:20px;columns:2;column-gap:40px}.body li{padding:4px 0;break-inside:avoid}.body li::marker{color:#315eea;font-weight:800}@media(max-width:800px){.layout{display:block}aside{position:relative;height:auto}aside nav{display:none}.body{padding-left:24px}.body ol{columns:1}.lesson summary{grid-template-columns:44px 1fr 24px}.c{display:none}}</style><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/><style>
+
+.course-accordion{--bs-accordion-border-color:#e6e9f0;--bs-accordion-btn-focus-box-shadow:none;--bs-accordion-active-bg:#f4f7ff;--bs-accordion-active-color:#244fc8}
+
+.course-accordion .accordion-item{border:1px solid #e6e9f0!important;border-radius:13px!important;overflow:hidden;margin-bottom:9px;background:#fff}
+
+.course-accordion .accordion-button{font-weight:750;color:#293a61;padding:15px 17px;background:#fff}
+
+.course-accordion .accordion-button:not(.collapsed){background:#f5f7ff;color:#244fc8;box-shadow:none}
+
+.course-accordion .accordion-button::after{opacity:.55}
+
+.lesson-badge{flex:0 0 40px;width:40px;height:40px;display:inline-grid;place-items:center;border-radius:10px;background:#f0f3f9;color:#3155bd;font-weight:850}
+
+.accordion-button:not(.collapsed) .lesson-badge{background:#315eea;color:#fff}
+
+.course-accordion .accordion-body{padding:18px 28px 22px 73px;background:#fdfdfe;border-top:1px solid #edf0f5}
+
+.lesson-outline{columns:2;column-gap:40px;padding-left:20px}
+
+.lesson-outline li{break-inside:avoid;padding:4px 0;color:#536079}
+
+.lesson-outline li::marker{color:#315eea;font-weight:800}
+
+@media(max-width:800px){.lesson-outline{columns:1}.course-accordion .accordion-body{padding-left:25px}}
+
+</style><style>
+
+.lesson-actions{display:flex;justify-content:flex-end}
+
+.lesson-actions .btn{border-radius:9px;font-weight:700;background:#315eea;border-color:#315eea}
+
+.lesson-actions .btn:hover{background:#244fc8;border-color:#244fc8}
+
+</style>
+
+<style id="course-nav-offset">
+
+.layout{min-height:calc(100vh - 80px)!important}
+
+.layout>aside{top:80px!important;height:calc(100vh - 80px)!important}
+
+@media(max-width:800px){.layout>aside{top:auto!important;height:auto!important}}
+
+</style>
+
+<link href="../../assets/css/navbar.css" rel="stylesheet"/><style id="shared-navbar-course-offset">.layout{min-height:calc(100vh - 80px)!important}.layout>aside{top:80px!important;height:calc(100vh - 80px)!important}@media(max-width:800px){.layout>aside{top:auto!important;height:auto!important}}</style><style id="astechai-navbar-embedded">:root{--as-navy:#07164d;--as-blue:#1267f3;--as-purple:#8d31f4}
+
+.as-navbar{min-height:80px;z-index:1050;font-family:Arial,"Segoe UI",sans-serif}
+
+.as-nav-container{max-width:1440px;padding-left:44px;padding-right:44px}
+
+.as-brand{display:flex;align-items:center;gap:12px;margin-right:36px}
+
+.as-brand>span:last-child{display:flex;flex-direction:column}
+
+.as-brand strong{font-size:27px;line-height:1;color:var(--as-navy);font-weight:850;letter-spacing:-.5px}
+
+.as-brand strong span{color:#4227c9}.as-brand small{font-size:12px;color:#71809e;margin-top:5px}
+
+.as-book{width:60px;height:48px;position:relative;display:inline-block;flex:0 0 60px}
+
+.as-book:before,.as-book:after{content:"";position:absolute;top:4px;width:28px;height:39px;border-radius:5px 5px 15px 5px}
+
+.as-book:before{left:0;background:linear-gradient(145deg,#0877ff,#1453ee);transform:skewY(8deg)}
+
+.as-book:after{right:0;background:linear-gradient(145deg,#7058ff,#a22ef2);transform:skewY(-8deg)}
+
+.as-main-links{gap:7px}.as-main-links .nav-link{color:#0b225c!important;font-size:14px;font-weight:700;padding:11px 18px!important;border-radius:12px}
+
+.as-main-links .nav-link:hover,.as-main-links .nav-link.active{background:#edf4ff;color:#075bd8!important}
+
+.as-search{width:255px;height:44px;border-radius:25px;background:#f0f5ff;align-items:center;gap:8px;padding:0 16px;margin-right:22px;color:#7b88a4}
+
+.as-search input{width:100%;border:0;outline:0;background:transparent;color:#5e6e8b}
+
+.as-login{border:0!important;border-radius:13px!important;padding:12px 22px!important;color:#fff!important;font-weight:700!important;white-space:nowrap;background:linear-gradient(100deg,#3a7df5,#8b30f4)!important}
+
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:690px;padding:18px;border:1px solid #e6ebf4;border-radius:18px;box-shadow:0 20px 48px rgba(23,48,96,.14)}
+
+.as-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+
+.as-course-card{display:flex;align-items:center;gap:11px;min-height:78px;padding:12px;border:1px solid #edf0f6;border-radius:13px;background:#fff;color:#172958;text-decoration:none;transition:.15s ease}
+
+.as-course-card:hover{background:#f6f9ff;border-color:#dce7ff;transform:translateY(-1px)}
+
+.as-course-icon{width:42px;height:42px;flex:0 0 42px;border-radius:11px;background:#edf4ff;color:#1267f3;display:grid;place-items:center;font-size:19px;font-weight:800}
+
+.as-course-icon.orange{background:#fff0eb;color:#e84b27}.as-course-icon.purple{background:#f4eaff;color:#8429ef}
+
+.as-course-card strong{display:block;font-size:13px;line-height:1.25;color:#102252}.as-course-card small{display:block;margin-top:3px;font-size:10px;line-height:1.25;color:#7b89a5}
+
+@media(max-width:1199px){.as-nav-container{padding-left:22px;padding-right:22px}.as-brand{margin-right:12px}.as-main-links{gap:1px}.as-main-links .nav-link{padding:10px 11px!important}}
+
+@media(max-width:991px){.as-navbar{min-height:72px}.as-brand strong{font-size:23px}.as-book{width:50px;flex-basis:50px}.as-book:before,.as-book:after{width:23px;height:36px}.navbar-collapse{padding:12px 0 16px}.as-main-links{align-items:stretch!important}.as-course-menu{position:static!important;transform:none!important;width:100%;margin:5px 0 8px}.as-course-grid{grid-template-columns:1fr 1fr}.as-login{margin-top:8px}}
+
+@media(max-width:600px){.as-nav-container{padding-left:14px;padding-right:14px}.as-brand small{display:none}.as-course-grid{grid-template-columns:1fr}}
+
+</style><style id="course-banner-style">
+
+.course-banner{
+
+  padding:0!important;
+
+  overflow:hidden;
+
+  /\* border-radius:20px!important; \*/
+
+  background:#fff!important;
+
+  border:1px solid #e3e7f0!important;
+
+}
+
+.course-banner img{
+
+  display:block;
+
+  width:100%;
+
+  height:auto;
+
+  object-fit:cover;
+
+}
+
+@media(max-width:800px){
+
+  .course-banner{border-radius:14px!important}
+
+  .course-banner img{min-height:220px;object-fit:cover;object-position:center}
+
+}
+
+</style></head><body><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+
+<div class="container-fluid as-nav-container">
+
+<a class="navbar-brand as-brand" href="../../index.html">
+
+<span aria-hidden="true" class="as-book"></span>
+
+<span>
+
+<strong>AsTech<span>AI</span></strong>
+
+<small>IT Learning Platform</small>
+
+</span>
+
+</a>
+
+<button aria-controls="asMainNavbar" aria-expanded="false" aria-label="Afficher la navigation" class="navbar-toggler" data-bs-target="#asMainNavbar" data-bs-toggle="collapse" type="button">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+<div class="collapse navbar-collapse" id="asMainNavbar">
+
+<ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+
+<li class="nav-item">
+
+<a class="nav-link active" href="../../index.html">Accueil</a>
+
+</li>
+
+<li class="nav-item dropdown position-static">
+
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#" role="button">Cours</a>
+
+<div class="dropdown-menu as-course-menu">
+
+<div class="as-course-grid">
+
+<a class="as-course-card" href="../../cours/gestion-ordinateurs/index.html">
+
+<span class="as-course-icon">▣</span>
+
+<span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+
+</a>
+
+<a class="as-course-card" href="https://asma-aouichat.github.io/microsoft365-learning-hub/">
+
+<span class="as-course-icon orange">M</span>
+
+<span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+
+</a>
+
+<!-- <a class="as-course-card" href="../../cours/programmation/index.html">
+
+<span class="as-course-icon purple"></></span>
+
+<span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+
+</a>
+
+<a class="as-course-card" href="../../cours/bases-de-donnees/index.html">
+
+<span class="as-course-icon">◎</span>
+
+<span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+
+</a>
+
+<a class="as-course-card" href="../../cours/programmation-orientee-objet/index.html">
+
+<span class="as-course-icon purple">◇</span>
+
+<span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+
+</a> -->
+
+</div>
+
+</div>
+
+</li>
+
+<li class="nav-item"><a class="nav-link" href="../../projets/index.html">Projets</a></li>
+
+<li class="nav-item"><a class="nav-link" href="../../index.html#apropos">À propos</a></li>
+
+<li class="nav-item"><a class="nav-link" href="../../index.html#ressources">Ressources</a></li>
+
+</ul>
+
+<form class="d-none d-xl-flex as-search" onsubmit="return false;" role="search">
+
+<span aria-hidden="true">⌕</span>
+
+<input aria-label="Rechercher" placeholder="Rechercher..." type="search"/>
+
+</form>
+
+<a class="btn as-login" href="../../connexion/index.html">♙   Connexion</a>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<section class="hero course-banner" style="width: 100%;padding: 0px; margin-bottom: 20px;">
+
+    <img alt="AsTechAI — Installation et gestion des ordinateurs" src="images/banniere-installation-gestion-ordinateurs.png"/>
+
+  </section>
+
+
+<div class="layout">
+
+  <aside>
+
+    <nav>
+
+    <h4> Plan de cours </h4> 
+
+      <a href="#lesson-01"><b>01</b><span>Architecture d’un ordinateur</span></a><a href="#lesson-02"><b>02</b><span>Composants matériels</span></a><a href="#lesson-03"><b>03</b><span>Systèmes d’exploitation</span></a><a href="#lesson-04"><b>04</b><span>Stockage et systèmes de fichiers</span></a><a href="#lesson-05"><b>05</b><span>BIOS, UEFI et démarrage</span></a>
+
+      <a href="#lesson-07"><b>06</b><span>Partitionnement et préparation des disques</span></a>
+      
+      <a href="#lesson-06"><b>07</b><span>Préparation à l’installation d’un système</span></a>
+      
+      <a href="#lesson-08"><b>08</b><span>Introduction à la virtualisation</span></a>
+      <a href="#lesson-09"><b>09</b><span>Installation de Windows</span></a>
+      <a href="#lesson-11"><b>10</b><span>Configuration après installation</span></a>
+      <a href="#lesson-13"><b>11</b><span>Installation d’applications</span></a>
+      <!-- <a href="#lesson-20"><b>12</b><span>Disques, volumes et partitions</span></a> -->
+      <a href="#lesson-22"><b>13</b><span>Ligne de commande Windows</span></a>
+      <a href="#lesson-18"><b>14</b><span>Comptes utilisateurs et groupes Windows</span></a>
+      <a href="#lesson-19"><b>15</b><span>Permissions et contrôle d’accès</span></a>
+      <!-- <a href="#lesson-10"><b>16</b><span>Pilotes et périphériques</span></a>
+      <a href="#lesson-12"><b>17</b><span>Mise à jour des systèmes</span></a>
+      <a href="#lesson-14"><b>18</b><span>Configuration et validation d’un poste</span></a>
+      <a href="#lesson-21"><b>19</b><span>Configuration réseau</span></a>
+      <a href="#lesson-17"><b>20</b><span>Configuration avancée de Windows</span></a>
+      <a href="#lesson-16"><b>21</b><span>Révision / évaluation de l’installation et du déploiement</span></a>
+      <a href="#lesson-23"><b>22</b><span>Introduction à PowerShell</span></a>
+
+
+
+
+
+
+
+
+     
+      
+      
+      
+      
+      
+      
+      <a href="#lesson-24"><b>23</b><span>Installation de Linux</span></a>
+      <a href="#lesson-25"><b>24</b><span>Shell Linux</span></a>
+      <a href="#lesson-26"><b>25</b><span>Utilisateurs, groupes et permissions Linux</span></a>
+      <a href="#lesson-27"><b>26</b><span>Authentification, autorisation et journalisation</span></a>
+      <a href="#lesson-28"><b>27</b><span>Révision / évaluation de l’administration</span></a> -->
+    
+    
+    </nav>
+
+    </aside>
+
+    <main>
+
+  <div class="accordion accordion-flush course-accordion" id="courseAccordion" style ="padding: 10px 35px 70px;">
+
+    <div class="d-flex gap-2 mb-3 flex-wrap" >
+
+    <button class="btn btn-outline-primary btn-sm" onclick="document.querySelectorAll('.accordion-collapse').forEach(el=>bootstrap.Collapse.getOrCreateInstance(el,{toggle:false}).show())" type="button">Tout développer</button><button class="btn btn-outline-secondary btn-sm" onclick="document.querySelectorAll('.accordion-collapse').forEach(el=>bootstrap.Collapse.getOrCreateInstance(el,{toggle:false}).hide())" type="button">Tout réduire</button>
+
+  </div>
+
+
+    <!-- <div class="accordion-item" id="lesson-01">
+              <h2 class="accordion-header" id="heading-01">
+                     <button aria-controls="collapse-01" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-01" data-bs-toggle="collapse" type="button">
+                               <span class="lesson-badge me-3">01</span><span>Architecture d’un ordinateur</span></button>
+              </h2>
+                               
+                               <div aria-labelledby="heading-01" class="accordion-collapse collapse" id="collapse-01"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Architecture matérielle et logicielle</li>
+<li>Entrée, traitement, stockage et sortie</li>
+      <li>Carte mère</li>
+      <li>Processeur (CPU)</li>
+      <li>Mémoire RAM</li>
+      <li>SSD et HDD</li>
+      <li>Périphériques</li>
+      <li>Firmware</li>
+      <li>Système d’exploitation</li>
+      <li>Applications</li>
+      <li>Pilotes</li>
+      <li>Middleware</li>
+      <li>Composants de sécurité</li>
+      </ol>
+      
+      <div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-01.html">Lire le cours en détail</a></div>
+    </div>
+  </div></div>
+  <div class="accordion-item" id="lesson-02"><h2 class="accordion-header" id="heading-02"><button aria-controls="collapse-02" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-02" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">02</span><span>Composants matériels</span></button></h2><div aria-labelledby="heading-02" class="accordion-collapse collapse" id="collapse-02"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Composants internes</li>
+<li>Carte mère</li>
+<li>CPU</li>
+<li>RAM</li>
+<li>Stockage</li>
+<li>Cartes d’extension</li>
+<li>Alimentation</li>
+<li>Connecteurs et ports</li>
+<li>Compatibilité entre composants</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-02.html">Lire le cours en détail</a></div></div></div></div><div class="accordion-item" id="lesson-03"><h2 class="accordion-header" id="heading-03"><button aria-controls="collapse-03" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-03" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">03</span><span>Systèmes d’exploitation</span></button></h2><div aria-labelledby="heading-03" class="accordion-collapse collapse" id="collapse-03"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Définition et rôle d’un système d’exploitation</li>
+<li>Windows</li>
+<li>Linux</li>
+<li>Interface graphique et ligne de commande</li>
+<li>Gestion du matériel</li>
+<li>Gestion des applications</li>
+<li>Gestion des fichiers</li>
+<li>Gestion des utilisateurs</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-03.html">Lire le cours en détail</a></div></div></div></div><div class="accordion-item" id="lesson-04"><h2 class="accordion-header" id="heading-04"><button aria-controls="collapse-04" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-04" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">04</span><span>Stockage et systèmes de fichiers</span></button></h2><div aria-labelledby="heading-04" class="accordion-collapse collapse" id="collapse-04"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>HDD et SSD</li>
+<li>Capacité de stockage</li>
+<li>Partition</li>
+<li>Volume</li>
+<li>Système de fichiers</li>
+<li>NTFS</li>
+<li>FAT32 / exFAT</li>
+<li>ext4</li>
+<li>Organisation des fichiers et dossiers</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-04.html">Lire le cours en détail</a></div></div></div></div><div class="accordion-item" id="lesson-05"><h2 class="accordion-header" id="heading-05"><button aria-controls="collapse-05" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-05" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">05</span><span>BIOS, UEFI et démarrage</span></button></h2><div aria-labelledby="heading-05" class="accordion-collapse collapse" id="collapse-05"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Firmware</li>
+<li>BIOS</li>
+<li>UEFI</li>
+<li>POST</li>
+<li>Séquence de démarrage</li>
+<li>Boot order</li>
+<li>Périphérique de démarrage</li>
+<li>Accès au BIOS/UEFI</li>
+<li>Secure Boot</li>
+<li>Préparation à l’installation d’un OS</li></ol>
+<div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-05.html">Lire le cours en détail</a></div></div></div></div> -->
+
+<div class="accordion-item" id="lesson-01">
+  <h2 class="accordion-header" id="heading-01">
+    <button aria-controls="collapse-01"
+            aria-expanded="false"
+            class="accordion-button collapsed"
+            data-bs-target="#collapse-01"
+            data-bs-toggle="collapse"
+            type="button">
+      <span class="lesson-badge me-3">01</span>
+      <span>Architecture d’un ordinateur</span>
+    </button>
+  </h2>
+
+  <div aria-labelledby="heading-01"
+       class="accordion-collapse collapse"
+       id="collapse-01">
+    <div class="accordion-body">
+      <ol class="lesson-outline mb-0">
+        <li>Définition de l’architecture d’un ordinateur</li>
+        <li>Architecture matérielle et architecture logicielle</li>
+        <li>Les quatre fonctions : entrée, traitement, stockage et sortie</li>
+        <li>Organisation générale d’un système informatique</li>
+        <li>Communication entre les composants</li>
+        <li>Relation entre matériel, système d’exploitation et applications</li>
+        <li>Vue d’ensemble du fonctionnement d’un ordinateur</li>
+      </ol>
+
+      <div class="lesson-actions mt-3 pt-3 border-top">
+        <a class="btn btn-primary btn-sm px-3"
+           href="cours/lecon-01.html">
+          Lire le cours en détail
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="accordion-item" id="lesson-02">
+  <h2 class="accordion-header" id="heading-02">
+    <button aria-controls="collapse-02"
+            aria-expanded="false"
+            class="accordion-button collapsed"
+            data-bs-target="#collapse-02"
+            data-bs-toggle="collapse"
+            type="button">
+      <span class="lesson-badge me-3">02</span>
+      <span>Composants matériels</span>
+    </button>
+  </h2>
+
+  <div aria-labelledby="heading-02"
+       class="accordion-collapse collapse"
+       id="collapse-02">
+    <div class="accordion-body">
+      <ol class="lesson-outline mb-0">
+        <li>Carte mère</li>
+        <li>Processeur (CPU)</li>
+        <li>Mémoire RAM</li>
+        <li>Stockage : SSD et HDD</li>
+        <li>Cartes d’extension</li>
+        <li>Alimentation</li>
+        <li>Périphériques d’entrée et de sortie</li>
+        <li>Connecteurs et ports</li>
+        <li>Compatibilité entre les composants</li>
+      </ol>
+
+      <div class="lesson-actions mt-3 pt-3 border-top">
+        <a class="btn btn-primary btn-sm px-3"
+           href="cours/lecon-02.html">
+          Lire le cours en détail
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="accordion-item" id="lesson-03"><h2 class="accordion-header" id="heading-03"><button aria-controls="collapse-03" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-03" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">03</span><span>Systèmes d’exploitation</span></button></h2><div aria-labelledby="heading-03" class="accordion-collapse collapse" id="collapse-03"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Définition et rôle d’un système d’exploitation</li>
+
+<li>Windows</li>
+
+<li>Linux</li>
+
+<li>Interface graphique et ligne de commande</li>
+
+<li>Gestion du matériel</li>
+
+<li>Gestion des applications</li>
+
+<li>Gestion des fichiers</li>
+
+<li>Gestion des utilisateurs</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-03.html">Lire le cours en détail</a></div></div></div>
+</div>
+
+
+
+
+
+<div class="accordion-item" id="lesson-07"><h2 class="accordion-header" id="heading-07"><button aria-controls="collapse-07" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-07" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">06</span><span>Partitionnement et préparation des disques</span></button></h2><div aria-labelledby="heading-07" class="accordion-collapse collapse" id="collapse-07"><div class="accordion-body">
+  <ol class="lesson-outline mb-0"><li>Disque physique</li>
+<li>Partition</li>
+<li>Volume</li>
+<li>Table de partition</li>
+<li>GPT</li>
+<li>MBR</li>
+<li>Partition système</li>
+<li>Partition principale</li>
+<li>Formatage</li>
+<li>Système de fichiers</li></ol>
+
+<div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-10.html">Lire le cours en détail</a></div></div></div></div>
+
+
+<div class="accordion-item" id="lesson-06"><h2 class="accordion-header" id="heading-06"><button aria-controls="collapse-06" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-06" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">07</span><span>Préparation à l’installation d’un système</span></button></h2><div aria-labelledby="heading-06" class="accordion-collapse collapse" id="collapse-06"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Vérification du matériel</li>
+<li>Configuration minimale</li>
+<li>Architecture 64 bits</li>
+<li>Image ISO</li>
+<li>Support d’installation</li>
+<li>Clé USB bootable</li>
+<li>Ordre de démarrage</li>
+<li>Sauvegarde avant installation</li></ol>
+<div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-07.html">Lire le cours en détail</a></div></div></div></div>
+
+
+
+<div class="accordion-item" id="lesson-08"><h2 class="accordion-header" id="heading-08"><button aria-controls="collapse-08" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-08" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">08</span><span>Introduction à la virtualisation</span></button></h2><div aria-labelledby="heading-08" class="accordion-collapse collapse" id="collapse-08"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Virtualisation</li>
+<li>Machine physique, hôte et machine invitée</li>
+<li>Hyperviseur : Type 1 et Type 2</li>
+<li>CPU, RAM, disque et réseau virtuels</li>
+<li>Fichier ISO</li>
+<li>Fonctionnement d’une VM</li>
+<li>Avantages et limites</li>
+<li>Installation de VirtualBox</li>
+<li>Création d’une première VM</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-06.html">Lire le cours en détail</a></div></div></div></div>
+
+<div class="accordion-item" id="lesson-09"><h2 class="accordion-header" id="heading-09"><button aria-controls="collapse-09" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-09" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">09</span><span>Installation de Windows</span></button></h2><div aria-labelledby="heading-09" class="accordion-collapse collapse" id="collapse-09"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Préparation du média</li>
+<li>Démarrage sur le support</li>
+<li>Assistant d’installation</li>
+<li>Choix du disque</li>
+<li>Partitionnement</li>
+<li>Installation</li>
+<li>Première configuration</li>
+<li>Création du compte</li>
+<li>Vérifications</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-08.html">Lire le cours en détail</a></div></div></div></div>
+
+
+<div class="accordion-item" id="lesson-11"><h2 class="accordion-header" id="heading-11"><button aria-controls="collapse-11" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-11" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">10</span><span>Configuration après installation</span></button></h2><div aria-labelledby="heading-11" class="accordion-collapse collapse" id="collapse-11"><div class="accordion-body">
+  <ol class="lesson-outline mb-0"><li>Paramètres système</li>
+<li>Nom de l’ordinateur</li>
+<li>Date et heure</li>
+<li>Langue</li>
+<li>Réseau</li>
+<li>Comptes</li>
+<li>Applications</li>
+<li>Mises à jour</li>
+<li>Sécurité de base</li>
+</ol>
+<div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-12.html">Lire le cours en détail</a></div></div></div></div>
+
+<div class="accordion-item" id="lesson-13"><h2 class="accordion-header" id="heading-13"><button aria-controls="collapse-13" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-13" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">11</span><span>Installation d’applications</span></button></h2><div aria-labelledby="heading-13" class="accordion-collapse collapse" id="collapse-13"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Types d’applications</li>
+<li>Installateur</li>
+<li>Installation</li>
+<li>Options</li>
+<li>Emplacement</li>
+<li>Dépendances</li>
+<li>Mise à jour</li>
+<li>Désinstallation</li>
+<li>Vérification</li></ol>
+<div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-15.html">Lire le cours en détail</a></div></div></div></div>
+
+
+
+
+<!-- <div class="accordion-item" id="lesson-20"><h2 class="accordion-header" id="heading-20"><button aria-controls="collapse-20" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-20" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">12</span><span>Disques, volumes et partitions</span></button></h2><div aria-labelledby="heading-20" class="accordion-collapse collapse" id="collapse-20"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Disque</li>
+<li>Partition</li>
+<li>Volume</li>
+<li>Gestion des disques</li>
+<li>Création de volume</li>
+<li>Formatage</li>
+<li>Lettre de lecteur</li>
+<li>Extension / réduction</li>
+<li>Vérification</li></ol>
+<div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-21.html">Lire le cours en détail</a></div></div></div></div> -->
+
+
+
+
+
+<div class="accordion-item" id="lesson-22"><h2 class="accordion-header" id="heading-22"><button aria-controls="collapse-22" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-22" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">13</span><span>Ligne de commande Windows</span></button></h2><div aria-labelledby="heading-22" class="accordion-collapse collapse" id="collapse-22"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>CMD</li>
+<li>Invite normale / administrateur</li>
+<li>UAC</li>
+<li>Syntaxe et aide</li>
+<li>dir et cd</li>
+<li>mkdir et rmdir</li>
+<li>copy, move et ren</li>
+<li>del</li>
+<li>type et echo</li>
+<li>Redirections</li>
+<li>Pipe</li>
+<li>hostname, whoami et systeminfo</li>
+<li>ipconfig, ping et nslookup</li>
+<li>Journal de diagnostic</li></ol>
+
+<div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-23.html">Lire le cours en détail</a></div></div></div></div>
+
+
+<div class="accordion-item" id="lesson-18"><h2 class="accordion-header" id="heading-18"><button aria-controls="collapse-18" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-18" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">14</span><span>Comptes utilisateurs et groupes Windows</span></button></h2><div aria-labelledby="heading-18" class="accordion-collapse collapse" id="collapse-18"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Compte utilisateur</li>
+<li>Compte local et compte Microsoft</li>
+<li>Standard vs administrateur</li>
+<li>Principe du moindre privilège</li>
+<li>Groupes</li>
+<li>net user</li>
+<li>net localgroup</li>
+<li>Introduction aux permissions</li>
+<li>Vérification</li></ol>
+<div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-19.html">Lire le cours en détail</a></div></div></div></div>
+
+
+
+<div class="accordion-item" id="lesson-19"><h2 class="accordion-header" id="heading-19"><button aria-controls="collapse-19" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-19" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">15</span><span>Permissions et contrôle d’accès</span></button></h2><div aria-labelledby="heading-19" class="accordion-collapse collapse" id="collapse-19"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Autorisation</li>
+<li>NTFS</li>
+<li>ACL</li>
+<li>Permissions explicites</li>
+<li>Héritage</li>
+<li>Lecture, écriture, modification, contrôle total</li>
+<li>icacls</li>
+<li>/grant</li>
+<li>/grant:r</li>
+<li>/remove:g</li>
+<li>Vérification</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-20.html">Lire le cours en détail</a></div></div></div></div>
+
+<!-- 
+<div class="accordion-item" id="lesson-10"><h2 class="accordion-header" id="heading-10"><button aria-controls="collapse-10" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-10" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">16</span><span>Pilotes et périphériques</span></button></h2><div aria-labelledby="heading-10" class="accordion-collapse collapse" id="collapse-10"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Définition et rôle d’un pilote</li>
+<li>Détection du matériel</li>
+<li>Gestionnaire de périphériques</li>
+<li>Installation</li>
+<li>Mise à jour</li>
+<li>Désinstallation</li>
+<li>Vérification</li>
+<li>Problèmes de pilotes</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-11.html">Lire le cours en détail</a></div></div></div></div>
+
+
+
+<div class="accordion-item" id="lesson-12"><h2 class="accordion-header" id="heading-12"><button aria-controls="collapse-12" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-12" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">17</span><span>Mise à jour des systèmes</span></button></h2><div aria-labelledby="heading-12" class="accordion-collapse collapse" id="collapse-12"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Importance des mises à jour</li>
+<li>Windows Update</li>
+<li>Mises à jour Linux</li>
+<li>Correctifs</li>
+<li>Sécurité</li>
+<li>Redémarrage</li>
+<li>Vérification de la version</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-13.html">Lire le cours en détail</a></div></div></div></div>
+
+
+<div class="accordion-item" id="lesson-14"><h2 class="accordion-header" id="heading-14"><button aria-controls="collapse-14" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-14" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">18</span><span>Configuration et validation d’un poste</span></button></h2><div aria-labelledby="heading-14" class="accordion-collapse collapse" id="collapse-14"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Vérification matérielle</li>
+<li>Vérification du système</li>
+<li>Pilotes</li>
+<li>Réseau</li>
+<li>Applications</li>
+<li>Mises à jour</li>
+<li>Comptes</li>
+<li>Sécurité</li>
+<li>Tests finaux</li></ol>
+<div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-16.html">Lire le cours en détail</a></div></div></div></div>
+
+
+
+
+
+<div class="accordion-item" id="lesson-21"><h2 class="accordion-header" id="heading-21"><button aria-controls="collapse-21" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-21" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">19</span><span>Configuration réseau</span></button></h2><div aria-labelledby="heading-21" class="accordion-collapse collapse" id="collapse-21"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Adresse IP</li>
+<li>IPv4</li>
+<li>Masque de sous-réseau</li>
+<li>Passerelle par défaut</li>
+<li>DNS</li>
+<li>DHCP</li>
+<li>Configuration automatique</li>
+<li>Configuration statique</li>
+<li>Vérification de la connectivité</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-22.html">Lire le cours en détail</a></div></div></div></div>
+
+
+
+<div class="accordion-item" id="lesson-17"><h2 class="accordion-header" id="heading-17"><button aria-controls="collapse-17" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-17" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">20</span><span>Configuration avancée de Windows</span></button></h2><div aria-labelledby="heading-17" class="accordion-collapse collapse" id="collapse-17"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Outils d’administration Windows</li>
+<li>Paramètres système</li>
+<li>Informations système</li>
+<li>Services</li>
+<li>Gestionnaire de tâches</li>
+<li>Configuration avancée</li>
+<li>Vérification des changements</li></ol>
+<div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-18.html">Lire le cours en détail</a></div></div></div></div>
+
+
+
+<div class="accordion-item" id="lesson-16"><h2 class="accordion-header" id="heading-16"><button aria-controls="collapse-16" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-16" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">21</span><span>Révision / évaluation de l’installation et du déploiement</span></button></h2><div aria-labelledby="heading-16" class="accordion-collapse collapse" id="collapse-16"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Préparation</li>
+<li>Installation</li>
+<li>Partitionnement</li>
+<li>Pilotes</li>
+<li>Configuration</li>
+<li>Mise à jour</li>
+<li>Validation</li></ol>
+<div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-17.html">Lire le cours en détail</a></div></div></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+<div class="accordion-item" id="lesson-23"><h2 class="accordion-header" id="heading-23"><button aria-controls="collapse-23" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-23" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">22</span><span>Introduction à PowerShell</span></button></h2><div aria-labelledby="heading-23" class="accordion-collapse collapse" id="collapse-23"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>PowerShell</li>
+<li>Différence CMD / PowerShell</li>
+<li>Cmdlet</li>
+<li>Syntaxe Verbe-Nom</li>
+<li>Get-Help</li>
+<li>Get-Command</li>
+<li>Navigation</li>
+<li>Fichiers et dossiers</li>
+<li>Processus</li>
+<li>Services</li>
+<li>Pipeline</li>
+<li>Premières automatisations</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-24.html">Lire le cours en détail</a></div></div></div></div><div class="accordion-item" id="lesson-24"><h2 class="accordion-header" id="heading-24"><button aria-controls="collapse-24" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-24" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">23</span><span>Installation de Linux</span></button></h2><div aria-labelledby="heading-24" class="accordion-collapse collapse" id="collapse-24"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Distribution Linux</li>
+<li>Ubuntu</li>
+<li>Téléchargement de l’ISO</li>
+<li>Démarrage</li>
+<li>Installation</li>
+<li>Partitionnement</li>
+<li>Compte utilisateur</li>
+<li>Configuration initiale</li>
+<li>Vérification</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-09.html">Lire le cours en détail</a></div></div></div></div><div class="accordion-item" id="lesson-25"><h2 class="accordion-header" id="heading-25"><button aria-controls="collapse-25" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-25" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">24</span><span>Shell Linux</span></button></h2><div aria-labelledby="heading-25" class="accordion-collapse collapse" id="collapse-25"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Terminal</li>
+<li>Shell</li>
+<li>Invite Linux</li>
+<li>Chemins absolus et relatifs</li>
+<li>pwd</li>
+<li>ls</li>
+<li>cd</li>
+<li>mkdir</li>
+<li>rmdir</li>
+<li>cp</li>
+<li>mv</li>
+<li>rm</li>
+<li>cat</li>
+<li>touch</li>
+<li>echo</li>
+<li>Redirections</li>
+<li>Pipe</li>
+<li>man</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-25.html">Lire le cours en détail</a></div></div></div></div><div class="accordion-item" id="lesson-26"><h2 class="accordion-header" id="heading-26"><button aria-controls="collapse-26" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-26" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">25</span><span>Utilisateurs, groupes et permissions Linux</span></button></h2><div aria-labelledby="heading-26" class="accordion-collapse collapse" id="collapse-26"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Utilisateur</li>
+<li>Groupe</li>
+<li>root</li>
+<li>sudo</li>
+<li>Création d’utilisateurs</li>
+<li>Groupes</li>
+<li>Propriétaire</li>
+<li>Permissions Linux</li>
+<li>Lecture, écriture, exécution</li>
+<li>chmod</li>
+<li>chown</li>
+<li>chgrp</li>
+<li>Vérification</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-26.html">Lire le cours en détail</a></div></div></div></div><div class="accordion-item" id="lesson-27"><h2 class="accordion-header" id="heading-27"><button aria-controls="collapse-27" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-27" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">26</span><span>Authentification, autorisation et journalisation</span></button></h2><div aria-labelledby="heading-27" class="accordion-collapse collapse" id="collapse-27"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Identification</li>
+<li>Authentification</li>
+<li>Autorisation</li>
+<li>Mot de passe</li>
+<li>Privilèges</li>
+<li>Principe du moindre privilège</li>
+<li>Journaux système</li>
+<li>Événements</li>
+<li>Traçabilité</li>
+<li>Vérification</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-27.html">Lire le cours en détail</a></div></div></div></div><div class="accordion-item" id="lesson-28"><h2 class="accordion-header" id="heading-28"><button aria-controls="collapse-28" aria-expanded="false" class="accordion-button collapsed" data-bs-target="#collapse-28" data-bs-toggle="collapse" type="button"><span class="lesson-badge me-3">27</span><span>Révision / évaluation de l’administration</span></button></h2><div aria-labelledby="heading-28" class="accordion-collapse collapse" id="collapse-28"><div class="accordion-body"><ol class="lesson-outline mb-0"><li>Administration Windows</li>
+<li>Utilisateurs et groupes</li>
+<li>Permissions</li>
+<li>Disques et volumes</li>
+<li>Configuration réseau</li>
+<li>CMD</li>
+<li>PowerShell</li>
+<li>Shell Linux</li>
+<li>Utilisateurs et permissions Linux</li>
+<li>Authentification et journalisation</li></ol><div class="lesson-actions mt-3 pt-3 border-top"><a class="btn btn-primary btn-sm px-3" href="cours/lecon-28.html">Lire le cours en détail</a></div></div></div></div>
+-->
+</div>
+</main></div><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> 
+
+</body></html>
+
