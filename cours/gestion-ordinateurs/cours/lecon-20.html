@@ -51,7 +51,6 @@
 .syntax-parts{margin:.6rem 0 1rem}
 .syntax-parts li{margin:.35rem 0}
 </style>
-
 <style id="solution-toggle-styles">
 details.solution-toggle{
   margin:1rem 0;
@@ -80,7 +79,6 @@ details.solution-toggle .solution-content{
   padding:0 1.1rem 1rem;
 }
 </style>
-
 <style id="lesson20-design-fixes">
 .wrap{max-width:980px;padding:42px 22px 64px}
 .card.shadow-sm{border:1px solid #e4e9f2;box-shadow:0 14px 38px rgba(26,45,85,.07)!important}
@@ -152,15 +150,11 @@ figure img{max-height:560px;object-fit:contain}
   .content-card h2{font-size:1.24rem}
 }
 </style>
-
-
 <style id="exercise-solution-styles">
 .exercise-solution{margin-top:-.15rem!important;margin-bottom:1.35rem!important}
 .exercise-solution summary{color:#17643a}
 .exercise-solution .solution-content p{line-height:1.65}
 </style>
-
-
 <style id="lab-examen-styles">
 .lab-card{border-top:4px solid #315eea}
 .lab-card>h2{font-size:1.55rem}
@@ -170,7 +164,6 @@ figure img{max-height:560px;object-fit:contain}
 .lab-solution>summary{font-size:1.02rem}
 .lab-solution .solution-content h3{margin-top:1.3rem}
 </style>
-
 </head>
 <body><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
 <div class="container-fluid as-nav-container">
@@ -229,12 +222,29 @@ figure img{max-height:560px;object-fit:contain}
 </div>
 </nav><main class="wrap"><a class="text-decoration-none" href="../index.html#lesson-20">← Retour aux leçons</a>
 <div class="card shadow-sm mt-4"><div class="card-body p-4 p-md-5"><span class="badge rounded-pill mb-3">Leçon 20</span><h1>Permissions et contrôle d’accès</h1>
-
-<p class="lead mt-3">Comprendre comment Windows contrôle l’accès aux fichiers et dossiers, puis configurer, vérifier et diagnostiquer les permissions NTFS à l’aide de l’interface graphique et de la commande <code>icacls</code>.</p>
-
+<p class="lead mt-3">Comprendre comment Windows contrôle l’accès aux fichiers et dossiers, puis configurer, vérifier, auditer et diagnostiquer les permissions NTFS avec l’interface graphique, ICACLS et PowerShell.</p>
 <div class="alert alert-primary mt-4">
 <strong>Objectifs d’apprentissage.</strong> À la fin de cette leçon, l’étudiant sera capable de définir NTFS, une permission et une ACL, de distinguer permissions explicites et héritées, d’expliquer le rôle des groupes dans le contrôle d’accès, de configurer des permissions avec l’interface graphique et <code>icacls</code>, puis de vérifier l’accès obtenu.
-</div>
+</div><div class="method-box" id="parcours-pedagogique"><strong>Parcours pédagogique progressif</strong><p>Fondements → Identités et ACL → Permissions et héritage → Configuration graphique → ICACLS → Droits avancés et vérification → Sauvegarde et PowerShell → Partage et audit → Exercices pratiques.</p></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <section class="content-card">
 <h2>1. Qu’est-ce qu’une permission ?</h2>
@@ -249,9 +259,7 @@ figure img{max-height:560px;object-fit:contain}
 <p><strong>Proposition :</strong> pour les étudiants, <code>R</code> (Lecture) convient afin de consulter les consignes sans les modifier. Pour les enseignants, <code>M</code> (Modification) peut convenir s’ils doivent mettre à jour les documents. Ce choix respecte le principe du moindre privilège.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
+</section><section class="content-card">
 <h2>2. NTFS et contrôle d’accès</h2>
 <p><strong>NTFS</strong> signifie <em>New Technology File System</em>. C’est un système de fichiers Windows qui prend notamment en charge des mécanismes de sécurité permettant d’associer des permissions aux fichiers et dossiers.</p>
 <p>Les permissions étudiées dans cette leçon sont donc des <strong>permissions NTFS</strong>. Elles concernent les ressources stockées sur un volume utilisant NTFS.</p>
@@ -263,14 +271,12 @@ figure img{max-height:560px;object-fit:contain}
 <p>Il faut d’abord vérifier le système de fichiers, car la procédure étudiée concerne les <strong>permissions NTFS</strong>. Si la ressource n’est pas stockée sur un volume NTFS, on ne peut pas supposer que les mêmes mécanismes et la même procédure s’appliquent.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
+</section><section class="content-card">
 <h2>3. Utilisateurs, groupes et permissions</h2>
 <p>Windows peut attribuer des permissions à une identité telle qu’un utilisateur ou un groupe. Dans un environnement comportant plusieurs utilisateurs, l’utilisation des <strong>groupes</strong> facilite l’administration.</p>
 <div class="permission-flow">Utilisateur → membre d’un groupe → groupe associé à une permission → accès à la ressource</div>
 <figure class="my-4 text-center">
-<img src="images/utilisateur-groupe-permission-acces.png" class="img-fluid rounded-4 border shadow-sm" alt="Schéma montrant la relation entre un utilisateur, son groupe, les permissions accordées au groupe et l’accès à une ressource Windows"/>
+<img alt="Schéma montrant la relation entre un utilisateur, son groupe, les permissions accordées au groupe et l’accès à une ressource Windows" class="img-fluid rounded-4 border shadow-sm" src="images/utilisateur-groupe-permission-acces.png"/>
 <figcaption class="text-muted small mt-2">Utilisateur → membre d’un groupe → groupe associé à une permission → accès à la ressource.</figcaption>
 </figure>
 <p>Cette approche évite de configurer séparément les mêmes permissions pour de nombreux comptes. Lorsqu’un nouvel utilisateur doit recevoir les mêmes accès que ses collègues, il peut être ajouté au groupe approprié.</p>
@@ -282,9 +288,9 @@ figure img{max-height:560px;object-fit:contain}
 <p>Attribuer les permissions individuellement oblige à configurer et maintenir les droits de 25 comptes. Avec un groupe <code>Etudiants</code>, on attribue la permission au groupe, puis les étudiants membres bénéficient de l’accès correspondant. Cette méthode est plus simple à administrer.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
+<h3>3.1 Utilisateurs, groupes et SID</h3><p>Un compte utilisateur représente une identité Windows. Un groupe rassemble des identités pour simplifier l’attribution des droits. Le SID (<em>Security Identifier</em>) identifie un compte ou groupe indépendamment de la langue du système.</p>
+<div class="table-responsive"><table class="table table-bordered align-middle"><thead><tr><th>SID</th><th>Identité</th></tr></thead><tbody><tr><td><code>S-1-5-32-544</code></td><td>Administrateurs</td></tr><tr><td><code>S-1-5-32-545</code></td><td>Utilisateurs</td></tr><tr><td><code>S-1-5-11</code></td><td>Utilisateurs authentifiés</td></tr><tr><td><code>S-1-5-18</code></td><td>SYSTEM</td></tr><tr><td><code>S-1-1-0</code></td><td>Tout le monde</td></tr></tbody></table></div>
+</section><section class="content-card">
 <h2>4. Qu’est-ce qu’une ACL ?</h2>
 <p><strong>ACL</strong> signifie <em>Access Control List</em>, ou <strong>liste de contrôle d’accès</strong>. Une ACL contient des entrées décrivant les permissions associées à différentes identités sur une ressource.</p>
 <p>Chaque entrée de contrôle d’accès associe notamment une identité à des droits. Lorsqu’un utilisateur tente d’accéder à une ressource, Windows évalue les informations de sécurité applicables afin de déterminer l’accès effectif.</p>
@@ -296,9 +302,11 @@ figure img{max-height:560px;object-fit:contain}
 <p>Un <strong>groupe</strong> rassemble des comptes afin de faciliter leur administration. Une <strong>ACL</strong> est une liste de règles d’accès attachée à une ressource et indiquant quelles identités disposent de quels droits.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
+<h3>4.2 ACL, ACE, DACL et SACL</h3><p>Une <strong>ACL</strong> est une liste de contrôle d’accès ; une <strong>ACE</strong> est une entrée associant une identité, une règle d’autorisation ou de refus et des droits. La <strong>DACL</strong> intervient dans le contrôle des accès ; la <strong>SACL</strong> sert notamment à définir les événements d’accès à auditer.</p>
+<div class="table-responsive"><table class="table table-bordered align-middle"><thead><tr><th>Code</th><th>Permission</th><th>Effet principal</th></tr></thead><tbody><tr><td>F</td><td>Contrôle total</td><td>Lire, écrire, supprimer et administrer les permissions</td></tr><tr><td>M</td><td>Modification</td><td>Lire, écrire, exécuter et supprimer</td></tr><tr><td>RX</td><td>Lecture et exécution</td><td>Lire et exécuter</td></tr><tr><td>R</td><td>Lecture</td><td>Lire les données et attributs autorisés</td></tr><tr><td>W</td><td>Écriture</td><td>Écrire ou créer selon les droits élémentaires</td></tr></tbody></table></div>
+<div class="warn"><strong>Attention :</strong> W n’inclut pas nécessairement R. Les droits effectifs dépendent des groupes, de l’héritage, des ACL du parent et de certains privilèges.</div>
+<div class="mini-exercise"><h3>Mini-exercice 17</h3><p>Expliquez la différence entre le SID d’un groupe et son nom localisé. Pourquoi est-il utile de reconnaître <code>S-1-5-32-544</code> ?</p></div>
+</section><section class="content-card">
 <h2>5. Permissions NTFS courantes</h2>
 <p>Les permissions peuvent être simples ou composées de plusieurs droits. Pour cette leçon, nous utilisons principalement les niveaux suivants.</p>
 <div class="table-responsive"><table class="table table-bordered align-middle">
@@ -318,9 +326,7 @@ figure img{max-height:560px;object-fit:contain}
 <p>La permission <code>R</code> est la plus adaptée : l’étudiant doit seulement consulter les documents. <code>M</code> et <code>F</code> accorderaient davantage de droits que nécessaire.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
+</section><section class="content-card">
 <h2>6. Permissions explicites et permissions héritées</h2>
 <p>Une <strong>permission explicite</strong> est configurée directement sur le fichier ou le dossier concerné pour une identité donnée.</p>
 <p>Une <strong>permission héritée</strong> provient d’un dossier parent. L’héritage permet de propager des règles d’accès dans une arborescence sans devoir configurer manuellement chaque fichier et chaque sous-dossier.</p>
@@ -333,9 +339,7 @@ figure img{max-height:560px;object-fit:contain}
 <p>Deux explications possibles : l’utilisateur reçoit encore une <strong>permission héritée</strong> d’un dossier parent, ou il appartient à un <strong>autre groupe</strong> auquel une permission donnant accès à la ressource est accordée.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
+</section><section class="content-card">
 <h2>7. Autoriser, refuser et déterminer l’accès effectif</h2>
 <p>Le contrôle d’accès peut comprendre des autorisations et, dans certains contextes, des refus explicites. L’accès réellement obtenu par un utilisateur peut dépendre de plusieurs entrées : permissions directes, permissions héritées et appartenance à différents groupes.</p>
 <p>L’<strong>accès effectif</strong> représente les droits dont l’utilisateur dispose réellement après l’évaluation des règles applicables.</p>
@@ -347,9 +351,7 @@ figure img{max-height:560px;object-fit:contain}
 <p>Les groupes doivent être examinés parce qu’un utilisateur peut recevoir des permissions indirectement grâce à son appartenance à un ou plusieurs groupes. L’accès effectif ne dépend donc pas uniquement des permissions attribuées directement au compte.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
+</section><section class="content-card">
 <h2>8. Configurer les permissions avec l’interface graphique</h2>
 <p>Windows permet d’observer et de modifier les permissions NTFS depuis les propriétés d’un fichier ou d’un dossier.</p>
 <div class="method-box">
@@ -372,9 +374,7 @@ figure img{max-height:560px;object-fit:contain}
 <p><strong>Exemple de résultat attendu :</strong> après avoir créé <code>C:\PartageTP</code>, ouvrez <strong>Propriétés → Sécurité</strong>. Relevez trois identités réellement affichées dans votre VM et notez les permissions de l’une d’elles. Les identités peuvent varier selon l’installation Windows : la réponse doit donc être basée sur l’observation de votre propre machine.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
+</section><section class="content-card">
 <h2>9. Méthode de travail avant une modification</h2>
 <p>Une modification de permissions doit être préparée et vérifiée. Avant d’appliquer un changement, identifiez clairement la ressource, l’identité concernée et le niveau d’accès attendu.</p>
 <div class="method-box"><strong>Méthode :</strong> observer l’état actuel → identifier le besoin → choisir l’identité → choisir la permission → appliquer → relire l’ACL → tester avec le compte concerné.</div>
@@ -386,25 +386,19 @@ figure img{max-height:560px;object-fit:contain}
 <p>Relever les permissions existantes permet de connaître l’état initial de l’ACL, d’identifier les règles explicites ou héritées déjà présentes et de comparer cet état avec le résultat obtenu après la modification. Cela facilite aussi le diagnostic en cas de résultat inattendu.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
-<h2>10. Commande <code>icacls</code> — afficher les permissions</h2>
-
+</section><section class="content-card">
+<h2>10. Commande icacls — afficher les permissions</h2>
 <h3>10.1 Définition</h3>
 <p><code>icacls</code> est une commande Windows permettant d’afficher et de modifier les listes de contrôle d’accès (ACL) des fichiers et des dossiers. Avant toute modification, il est recommandé de commencer par afficher l’état actuel des permissions.</p>
-
 <h3>10.2 Syntaxe générale</h3>
 <div class="codebox">icacls &lt;chemin&gt;</div>
 <ul class="syntax-parts">
 <li><code>icacls</code> : nom de la commande.</li>
 <li><code>&lt;chemin&gt;</code> : fichier ou dossier dont on souhaite afficher les permissions.</li>
 </ul>
-
 <h3>10.3 Exemple simple</h3>
 <div class="codebox">icacls C:\PartageTP</div>
 <div class="explain-box"><code>icacls</code> demande à Windows d’afficher l’ACL du dossier <code>C:\PartageTP</code>. La commande ne modifie rien : elle permet d’observer les identités présentes et les permissions associées.</div>
-
 <h3>10.4 Exemple 2</h3>
 <div class="scenario-box"><strong>Scénario :</strong> un enseignant vous demande de vérifier les permissions actuelles du dossier <code>C:\Cours</code> avant d’apporter une modification. Vous devez d’abord savoir quels utilisateurs et groupes apparaissent dans son ACL.</div>
 <details class="solution-toggle">
@@ -414,11 +408,9 @@ figure img{max-height:560px;object-fit:contain}
 <p class="mb-0">Analysez ensuite le résultat affiché. Cette étape permet d’observer les permissions actuelles avant toute modification.</p>
 </div>
 </details>
-
 <h3>10.5 Obtenir l’aide de la commande</h3>
 <div class="codebox">icacls /?</div>
 <div class="explain-box">l’option <code>/?</code> affiche l’aide intégrée de <code>icacls</code>, notamment les opérations et paramètres disponibles.</div>
-
 <div class="mini-exercise"><h3>Mini-exercice 10</h3><p>Créez <code>C:\PartageTP</code>, affichez son ACL avec <code>icacls</code> et identifiez les identités visibles dans le résultat.</p></div>
 <details class="solution-toggle exercise-solution">
 <summary>Voir la solution du mini-exercice 10</summary>
@@ -427,14 +419,10 @@ figure img{max-height:560px;object-fit:contain}
 icacls C:\PartageTP</div><p>La première commande crée le dossier s’il n’existe pas. La seconde affiche son ACL. Il faut ensuite relever dans la sortie les utilisateurs ou groupes visibles et les permissions associées.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
-<h2>11. Accorder une permission avec <code>icacls /grant</code></h2>
-
+</section><section class="content-card">
+<h2>11. Accorder une permission avec icacls /grant</h2>
 <h3>11.1 Rôle</h3>
 <p>L’opération <code>/grant</code> permet d’accorder une permission à un utilisateur ou à un groupe sur une ressource.</p>
-
 <h3>11.2 Syntaxe générale</h3>
 <div class="codebox">icacls &lt;chemin&gt; /grant &lt;utilisateur_ou_groupe&gt;:&lt;permission&gt;</div>
 <ul class="syntax-parts">
@@ -443,42 +431,35 @@ icacls C:\PartageTP</div><p>La première commande crée le dossier s’il n’ex
 <li><code>&lt;utilisateur_ou_groupe&gt;</code> : identité qui recevra la permission.</li>
 <li><code>&lt;permission&gt;</code> : niveau d’accès, par exemple <code>R</code>, <code>RX</code>, <code>W</code>, <code>M</code> ou <code>F</code>.</li>
 </ul>
-
-<h3>11.3 Exemple 1 — Lecture (<code>R</code>)</h3>
+<h3>11.3 Exemple 1 — Lecture ( R )</h3>
 <div class="scenario-box"><strong>Scénario :</strong> les membres du groupe <code>Etudiants</code> doivent consulter les documents de <code>C:\PartageTP</code> sans recevoir inutilement une permission plus élevée.</div>
 <div class="codebox">icacls C:\PartageTP /grant Etudiants:R</div>
 <p>La permission <code>R</code> signifie <em>Lecture</em>. Le groupe peut lire le contenu autorisé.</p>
-
-<h3>11.4 Exemple 2 — Lecture et exécution (<code>RX</code>)</h3>
+<h3>11.4 Exemple 2 — Lecture et exécution ( RX )</h3>
 <div class="scenario-box"><strong>Scénario :</strong> le groupe <code>UtilisateursLab</code> doit pouvoir lire et exécuter les éléments autorisés dans <code>C:\Outils</code>.</div>
 <div class="codebox">icacls C:\Outils /grant UtilisateursLab:RX</div>
 <p><code>RX</code> signifie Lecture et exécution.</p>
-
-<h3>11.5 Exemple 3 — Écriture (<code>W</code>)</h3>
+<h3>11.5 Exemple 3 — Écriture ( W )</h3>
 <div class="scenario-box"><strong>Scénario :</strong> le groupe <code>DepotTP</code> doit recevoir un droit d’écriture sur le dossier <code>C:\Depot</code>.</div>
 <div class="codebox">icacls C:\Depot /grant DepotTP:W</div>
 <p><code>W</code> signifie <em>Écriture</em>. Cette permission concerne les opérations d’écriture autorisées par ce niveau de droit.</p>
-
-<h3>11.6 Exemple 4 — Modification (<code>M</code>)</h3>
+<h3>11.6 Exemple 4 — Modification ( M )</h3>
 <div class="scenario-box"><strong>Scénario :</strong> les membres du groupe <code>Projet</code> doivent travailler sur les fichiers du dossier <code>C:\Projet</code> : lire, écrire, modifier et supprimer selon les droits associés.</div>
 <div class="codebox">icacls C:\Projet /grant Projet:M</div>
 <p><code>M</code> signifie <em>Modification</em>. Il convient lorsqu’un groupe doit réellement travailler sur le contenu plutôt que seulement le consulter.</p>
-
-<h3>11.7 Exemple 5 — Contrôle total (<code>F</code>)</h3>
+<h3>11.7 Exemple 5 — Contrôle total ( F )</h3>
 <div class="scenario-box"><strong>Scénario :</strong> dans un dossier de laboratoire créé uniquement pour l’exercice, le groupe <code>AdminsLab</code> doit recevoir un contrôle très étendu sur la ressource.</div>
 <div class="codebox">icacls C:\LabTest /grant AdminsLab:F</div>
 <p><code>F</code> signifie <em>Contrôle total</em>. Cette permission est beaucoup plus étendue et ne doit pas être accordée automatiquement lorsqu’un niveau inférieur suffit.</p>
 <div class="warn"><strong>Principe du moindre privilège :</strong> choisissez toujours le niveau de permission nécessaire au besoin réel. N’utilisez pas <code>F</code> simplement pour éviter d’analyser le besoin.</div>
-
 <h3>11.8 Vérifier le résultat</h3>
 <p>Après un <code>/grant</code>, affichez de nouveau l’ACL. Par exemple :</p>
 <div class="codebox">icacls C:\PartageTP</div>
 <p>La capture suivante illustre le type de résultat attendu après l’attribution de la lecture au groupe <code>Etudiants</code>.</p>
 <figure class="my-4 text-center">
-<img src="images/resultat-icacls-grant.png" class="img-fluid rounded-4 border shadow-sm" alt="Capture illustrative du résultat de la commande icacls après attribution de la permission de lecture au groupe Etudiants"/>
+<img alt="Capture illustrative du résultat de la commande icacls après attribution de la permission de lecture au groupe Etudiants" class="img-fluid rounded-4 border shadow-sm" src="images/resultat-icacls-grant.png"/>
 <figcaption class="text-muted small mt-2">Capture illustrative — vérification de l’ACL après <code>/grant Etudiants:R</code>.</figcaption>
 </figure>
-
 <h3>11.9 Comparaison rapide</h3>
 <div class="table-responsive"><table class="table table-bordered align-middle">
 <thead><tr><th>Permission</th><th>Commande d’exemple</th><th>Besoin illustré</th></tr></thead>
@@ -489,7 +470,6 @@ icacls C:\PartageTP</div><p>La première commande crée le dossier s’il n’ex
 <tr><td><code>M</code></td><td><code>icacls C:\Projet /grant Projet:M</code></td><td>Travailler et modifier le contenu.</td></tr>
 <tr><td><code>F</code></td><td><code>icacls C:\LabTest /grant AdminsLab:F</code></td><td>Contrôle total dans le laboratoire.</td></tr>
 </tbody></table></div>
-
 <details class="solution-toggle">
 <summary>Voir la solution</summary>
 <div class="solution-content">
@@ -499,7 +479,6 @@ icacls C:\Documentation</div>
 <p class="mb-0">La première commande accorde la lecture. La seconde affiche l’ACL pour vérifier le résultat.</p>
 </div>
 </details>
-
 <div class="mini-exercise"><h3>Mini-exercice 11</h3><p>Pour chacun des besoins suivants, choisissez entre <code>R</code>, <code>RX</code>, <code>W</code>, <code>M</code> et <code>F</code>, puis écrivez la commande <code>icacls /grant</code> correspondante : consulter des documents, exécuter un outil, déposer du contenu, modifier un projet et administrer complètement un dossier de laboratoire.</p></div>
 <details class="solution-toggle exercise-solution">
 <summary>Voir la solution du mini-exercice 11</summary>
@@ -513,14 +492,10 @@ icacls C:\LabTest /grant AdminsLab:F</div>
 <p><code>R</code> sert à consulter, <code>RX</code> à lire et exécuter, <code>W</code> à écrire, <code>M</code> à travailler sur le contenu et <code>F</code> au contrôle total dans le contexte de laboratoire.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
-<h2>12. Accorder une permission avec héritage : <code>(OI)</code> et <code>(CI)</code></h2>
-
+</section><section class="content-card">
+<h2>12. Accorder une permission avec héritage : (OI) et (CI)</h2>
 <h3>12.1 Rôle</h3>
 <p>Lorsqu’une permission est configurée sur un dossier, il peut être nécessaire de préciser comment cette permission doit être héritée par son contenu. Avec <code>icacls</code>, <code>(OI)</code> et <code>(CI)</code> sont des indicateurs d’héritage.</p>
-
 <h3>12.2 Syntaxe générale</h3>
 <div class="codebox">icacls &lt;chemin&gt; /grant &lt;utilisateur_ou_groupe&gt;:(OI)(CI)&lt;permission&gt;</div>
 <div class="table-responsive"><table class="table table-bordered">
@@ -530,11 +505,9 @@ icacls C:\LabTest /grant AdminsLab:F</div>
 <tr><td><code>(CI)</code></td><td><em>Container inherit</em> : héritage vers les sous-dossiers.</td></tr>
 </tbody></table></div>
 <p><code>(OI)</code> et <code>(CI)</code> sont des indicateurs placés dans la spécification de permission ; ce ne sont pas des options commençant par <code>/</code>.</p>
-
 <h3>12.3 Exemple simple</h3>
 <div class="codebox">icacls C:\PartageTP /grant Etudiants:(OI)(CI)R</div>
 <div class="explain-box">la permission de lecture <code>R</code> est accordée au groupe <code>Etudiants</code>. <code>(OI)</code> prévoit l’héritage vers les fichiers et <code>(CI)</code> vers les sous-dossiers.</div>
-
 <h3>12.4 Exemple 2</h3>
 <div class="scenario-box"><strong>Scénario :</strong> le dossier <code>C:\Cours</code> contient plusieurs fichiers et sous-dossiers. Le groupe <code>Etudiants</code> doit pouvoir lire le contenu actuel et les éléments auxquels la règle d’héritage s’applique.</div>
 <details class="solution-toggle">
@@ -545,7 +518,6 @@ icacls C:\Cours</div>
 <p class="mb-0">La première commande accorde la lecture avec héritage. La deuxième affiche l’ACL pour vérifier le résultat.</p>
 </div>
 </details>
-
 <div class="mini-exercise"><h3>Mini-exercice 12</h3><p>Expliquez pourquoi les indicateurs <code>(OI)</code> et <code>(CI)</code> sont utiles lorsqu’un dossier contient des fichiers et des sous-dossiers.</p></div>
 <details class="solution-toggle exercise-solution">
 <summary>Voir la solution du mini-exercice 12</summary>
@@ -553,23 +525,17 @@ icacls C:\Cours</div>
 <p><code>(OI)</code> permet l’héritage vers les <strong>fichiers</strong>, tandis que <code>(CI)</code> permet l’héritage vers les <strong>sous-dossiers</strong>. Ils sont donc utiles lorsqu’une règle appliquée au dossier parent doit également concerner son contenu.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
-<h2>13. Remplacer une permission explicitement accordée avec <code>icacls /grant:r</code></h2>
-
+</section><section class="content-card">
+<h2>13. Remplacer une permission explicitement accordée avec icacls /grant:r</h2>
 <h3>13.1 Rôle</h3>
 <p><code>/grant:r</code> est utilisé ici pour remplacer les permissions explicitement accordées à l’identité concernée par la nouvelle permission indiquée.</p>
-
 <h3>13.2 Syntaxe générale</h3>
 <div class="codebox">icacls &lt;chemin&gt; /grant:r &lt;utilisateur_ou_groupe&gt;:&lt;permission&gt;</div>
 <p>Avec héritage vers les fichiers et sous-dossiers :</p>
 <div class="codebox">icacls &lt;chemin&gt; /grant:r &lt;utilisateur_ou_groupe&gt;:(OI)(CI)&lt;permission&gt;</div>
-
 <h3>13.3 Exemple simple</h3>
 <div class="codebox">icacls C:\PartageTP /grant:r Etudiants:(OI)(CI)M</div>
 <div class="explain-box"><code>/grant:r</code> remplace les permissions explicitement accordées au groupe <code>Etudiants</code> sur cette ressource par <code>M</code> (<em>Modify</em>), avec les indicateurs d’héritage <code>(OI)(CI)</code>.</div>
-
 <h3>13.4 Exemple 2</h3>
 <div class="scenario-box"><strong>Scénario :</strong> le groupe <code>Projet</code> possédait initialement la lecture sur <code>C:\Projet</code>. Les membres doivent maintenant pouvoir modifier le contenu du dossier. Vous voulez remplacer l’entrée explicite étudiée dans le TP.</div>
 <details class="solution-toggle">
@@ -580,7 +546,6 @@ icacls C:\Projet</div>
 <p class="mb-0"><code>/grant:r</code> remplace les permissions explicites accordées au groupe par <code>M</code>. La deuxième commande vérifie l’ACL.</p>
 </div>
 </details>
-
 <div class="mini-exercise"><h3>Mini-exercice 13</h3><p>Après avoir accordé la lecture au groupe de test, remplacez cette entrée par <code>M</code>. Vérifiez l’ACL avant et après la modification et décrivez le changement.</p></div>
 <details class="solution-toggle exercise-solution">
 <summary>Voir la solution du mini-exercice 13</summary>
@@ -591,14 +556,10 @@ icacls C:\PartageTP</div>
 <p>La première commande relève l’état initial. La deuxième remplace les permissions explicitement accordées au groupe <code>Etudiants</code> par <code>M</code> avec héritage. La troisième permet de vérifier le changement dans l’ACL.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
-<h2>14. Retirer une permission explicitement accordée avec <code>icacls /remove:g</code></h2>
-
+</section><section class="content-card">
+<h2>14. Retirer une permission explicitement accordée avec icacls /remove:g</h2>
 <h3>14.1 Rôle</h3>
 <p><code>/remove:g</code> permet de retirer les permissions accordées explicitement à l’identité indiquée. Cette opération ne permet pas, à elle seule, de conclure que l’utilisateur n’a plus aucun accès : d’autres groupes ou l’héritage peuvent encore lui fournir des droits.</p>
-
 <h3>14.2 Syntaxe générale</h3>
 <div class="codebox">icacls &lt;chemin&gt; /remove:g &lt;utilisateur_ou_groupe&gt;</div>
 <ul class="syntax-parts">
@@ -606,11 +567,9 @@ icacls C:\PartageTP</div>
 <li><code>/remove:g</code> : retire les permissions explicitement accordées à l’identité.</li>
 <li><code>&lt;utilisateur_ou_groupe&gt;</code> : identité dont l’entrée accordée doit être retirée.</li>
 </ul>
-
 <h3>14.3 Exemple simple</h3>
 <div class="codebox">icacls C:\PartageTP /remove:g Etudiants</div>
 <div class="explain-box">Windows retire de <code>C:\PartageTP</code> les permissions explicitement accordées au groupe <code>Etudiants</code> visées par cette opération.</div>
-
 <h3>14.4 Exemple 2</h3>
 <div class="scenario-box"><strong>Scénario :</strong> le groupe temporaire <code>Stagiaires</code> avait reçu une permission explicite sur <code>C:\Archives</code>. Le stage est terminé et cette entrée explicitement accordée doit être retirée.</div>
 <details class="solution-toggle">
@@ -621,7 +580,6 @@ icacls C:\Archives</div>
 <p class="mb-0">La première commande retire les permissions explicitement accordées au groupe. La deuxième affiche l’ACL pour vérifier le résultat.</p>
 </div>
 </details>
-
 <div class="warn"><strong>Important :</strong> retirer une entrée explicitement accordée ne prouve pas que l’identité n’a plus accès à la ressource. L’accès effectif doit être vérifié.</div>
 <div class="mini-exercise"><h3>Mini-exercice 14</h3><p>Retirez l’entrée explicitement accordée au groupe de test, affichez l’ACL et expliquez pourquoi un test d’accès avec le compte concerné reste nécessaire.</p></div>
 <details class="solution-toggle exercise-solution">
@@ -632,42 +590,87 @@ icacls C:\PartageTP</div>
 <p>La première commande retire les permissions explicitement accordées au groupe. La seconde vérifie l’ACL. Un test avec le compte concerné reste nécessaire, car un accès peut encore provenir de l’héritage ou d’un autre groupe.</p>
 </div>
 </details>
-</section>
-
-<section class="content-card">
-<h2>15. Résumé des commandes <code>icacls</code></h2>
-<p>Voici les principales opérations étudiées pour gérer les permissions d’un dossier.</p>
-
-<div class="table-responsive"><table class="table table-bordered align-middle">
-<thead><tr><th>Action</th><th>Commande</th><th>Rôle</th></tr></thead>
-<tbody>
-<tr><td><strong>Afficher</strong></td><td><code>icacls C:\PartageTP</code></td><td>Afficher les permissions actuelles.</td></tr>
-<tr><td><strong>Accorder</strong></td><td><code>icacls C:\PartageTP /grant Etudiants:R</code></td><td>Accorder la permission de lecture au groupe <code>Etudiants</code>.</td></tr>
-<tr><td><strong>Accorder avec héritage</strong></td><td><code>icacls C:\PartageTP /grant Etudiants:(OI)(CI)R</code></td><td>Accorder la lecture et permettre son héritage par les fichiers et sous-dossiers.</td></tr>
-<tr><td><strong>Remplacer</strong></td><td><code>icacls C:\PartageTP /grant:r Etudiants:(OI)(CI)M</code></td><td>Remplacer les permissions explicites accordées au groupe par <code>M</code> (Modification).</td></tr>
-<tr><td><strong>Retirer</strong></td><td><code>icacls C:\PartageTP /remove:g Etudiants</code></td><td>Retirer les permissions explicitement accordées au groupe.</td></tr>
-</tbody></table></div>
-
-<div class="method-box"><strong>Méthode :</strong> afficher l’ACL → appliquer la commande nécessaire → afficher de nouveau l’ACL → tester l’accès.</div>
-
-<div class="mini-exercise">
-<h3>Mini-exercice 15</h3>
-<p>Sur le dossier <code>C:\PartageTP</code>, accordez au groupe <code>Etudiants</code> la permission de lecture avec héritage. Vérifiez ensuite le résultat avec <code>icacls</code>.</p>
-</div>
-
-<details class="solution-toggle exercise-solution">
-<summary>Voir la solution du mini-exercice 15</summary>
-<div class="solution-content">
-<div class="codebox">icacls C:\PartageTP /grant Etudiants:(OI)(CI)R
-icacls C:\PartageTP</div>
-<p class="mb-0">La première commande accorde au groupe <code>Etudiants</code> la permission de lecture <code>R</code> avec héritage vers les fichiers <code>(OI)</code> et les sous-dossiers <code>(CI)</code>. La deuxième commande affiche l’ACL afin de vérifier que l’entrée attendue est présente.</p>
-</div>
-</details>
-
-</section>
-
-<section class="content-card">
-<h2>16. Manipulation guidée — sécuriser un dossier de laboratoire</h2>
+</section><section class="content-card"><h2>15. Commandes ICACLS complémentaires : parcours, suppression et refus</h2>
+<p>Les exemples suivants s’exécutent dans un dossier de laboratoire <code>C:\LaboNTFS</code>. Créez-le avant les manipulations et relevez les ACL initiales.</p>
+<h3>/T — parcours récursif</h3><p><strong>Définition :</strong> Parcourt les sous-dossiers et fichiers.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /T</code></p><div class="codebox">icacls C:\LaboNTFS /T</div>
+<h3>/C — continuer</h3><p><strong>Définition :</strong> Continue le traitement malgré certaines erreurs.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /T /C</code></p><div class="codebox">icacls C:\LaboNTFS /T /C</div>
+<h3>/Q — sortie réduite</h3><p><strong>Définition :</strong> Réduit les messages de réussite lors des opérations.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /reset /T /C /Q</code></p><div class="codebox">icacls C:\TestReset /reset /T /C /Q</div>
+<div class="explain-box"><strong>Explication :</strong> La commande /reset peut supprimer les règles personnalisées : ne l’exécuter que sur un dossier de test après sauvegarde.</div>
+<h3>/remove — retirer</h3><p><strong>Définition :</strong> Retire les ACE explicites d’une identité.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /remove Identité</code></p><div class="codebox">icacls C:\LaboNTFS /remove Employe</div>
+<h3>/remove:g et /remove:d</h3><p><strong>Définition :</strong> Retire respectivement les ACE d’autorisation et les ACE de refus explicites.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /remove:g Identité</code></p><div class="codebox">icacls C:\LaboNTFS /remove:g Employe
+icacls C:\LaboNTFS /remove:d Employe</div>
+<h3>/deny — refuser</h3><p><strong>Définition :</strong> Ajoute une ACE de refus explicite sur les droits indiqués.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /deny "Identité:Droits"</code></p><div class="codebox">icacls C:\LaboNTFS /deny "Employe:W"</div>
+<div class="explain-box"><strong>Explication :</strong> Refuser W ne revient pas à interdire toute lecture ou toute autre opération.</div>
+<div class="mini-exercise"><h3>Mini-exercice 18</h3><p>Sur un dossier de test, attribuez RX à un groupe, remplacez RX par M, retirez l’autorisation explicite puis comparez les ACL à chaque étape.</p></div>
+</section><section class="content-card"><h2>16. Héritage des permissions</h2>
+<p>L’héritage évite de reproduire manuellement les règles d’accès sur tous les fichiers et sous-dossiers.</p>
+<div class="table-responsive"><table class="table table-bordered align-middle"><thead><tr><th>Marqueur</th><th>Signification</th></tr></thead><tbody><tr><td>(OI)</td><td>Object inherit : vers les fichiers</td></tr><tr><td>(CI)</td><td>Container inherit : vers les sous-dossiers</td></tr><tr><td>(I)</td><td>Inherited : ACE héritée</td></tr><tr><td>(IO)</td><td>Inherit only : non applicable directement à l’objet courant</td></tr><tr><td>(NP)</td><td>No propagate : limite la propagation</td></tr></tbody></table></div>
+<h3>/inheritance:e</h3><p><strong>Définition :</strong> Active l’héritage depuis le dossier parent.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /inheritance:e</code></p><div class="codebox">icacls C:\LaboNTFS\Documents /inheritance:e</div>
+<h3>/inheritance:d</h3><p><strong>Définition :</strong> Désactive l’héritage et convertit les ACE héritées en explicites.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /inheritance:d</code></p><div class="codebox">icacls C:\LaboNTFS\Documents /inheritance:d</div>
+<h3>/inheritance:r</h3><p><strong>Définition :</strong> Désactive l’héritage et retire les ACE héritées.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /inheritance:r</code></p><div class="codebox">icacls C:\LaboNTFS\Confidentiel /inheritance:r</div>
+<div class="explain-box"><strong>Explication :</strong> Vérifier les droits restants, notamment SYSTEM et Administrateurs, avant de quitter la session.</div>
+<div class="mini-exercise"><h3>Mini-exercice 19</h3><p>Comparez les ACL d’un dossier après <code>/inheritance:d</code> et celles d’un second dossier après <code>/inheritance:r</code>. Expliquez la différence.</p></div>
+</section><section class="content-card"><h2>17. Permissions élémentaires avancées</h2>
+<p>Ces droits permettent d’affiner une politique d’accès au-delà de R, W, RX, M et F.</p>
+<div class="table-responsive"><table class="table table-bordered align-middle"><thead><tr><th>Code</th><th>Droit</th><th>Sens</th></tr></thead><tbody><tr><td>RD</td><td>Read Data / List Directory</td><td>Lire des données ou lister un dossier</td></tr><tr><td>WD</td><td>Write Data / Add File</td><td>Écrire ou créer un fichier</td></tr><tr><td>AD</td><td>Append Data / Add Subdirectory</td><td>Ajouter des données ou créer un sous-dossier</td></tr><tr><td>REA</td><td>Read Extended Attributes</td><td>Lire les attributs étendus</td></tr><tr><td>WEA</td><td>Write Extended Attributes</td><td>Modifier les attributs étendus</td></tr><tr><td>X</td><td>Execute / Traverse</td><td>Exécuter ou traverser</td></tr><tr><td>DC</td><td>Delete Child</td><td>Supprimer les éléments enfants</td></tr><tr><td>RA</td><td>Read Attributes</td><td>Lire les attributs</td></tr><tr><td>WA</td><td>Write Attributes</td><td>Modifier les attributs</td></tr><tr><td>DE</td><td>Delete</td><td>Supprimer l’objet</td></tr><tr><td>RC</td><td>Read Control</td><td>Lire les informations de sécurité autorisées</td></tr><tr><td>WDAC</td><td>Write DAC</td><td>Modifier la DACL</td></tr><tr><td>WO</td><td>Write Owner</td><td>Modifier le propriétaire selon les droits</td></tr><tr><td>S</td><td>Synchronize</td><td>Synchronisation</td></tr></tbody></table></div>
+<h3>Combiner plusieurs droits</h3><p><strong>Définition :</strong> Permet de composer une autorisation à partir de droits élémentaires.</p><p><strong>Syntaxe :</strong> <code>icacls Fichier /grant "Identité:(Droit1,Droit2)"</code></p><div class="codebox">icacls C:\LaboNTFS\rapport.txt /grant "Employe:(RD,RA,REA,RC)"
+icacls C:\LaboNTFS\journal.txt /grant "Employe:(AD)"
+icacls C:\LaboNTFS\rapport.txt /grant "Employe:(DE)"</div>
+<div class="explain-box"><strong>Explication :</strong> DE sur l’objet et DC sur le parent peuvent tous deux intervenir lors d’une suppression.</div>
+<div class="mini-exercise"><h3>Mini-exercice 20</h3><p>Concevez un dépôt où un compte peut créer des fichiers sans lire ceux des autres. Justifiez les droits du dossier parent et ceux des fichiers enfants.</p></div>
+</section><section class="content-card"><h2>18. Permissions effectives, refus et vérification</h2>
+<p>ICACLS présente les ACE, mais ne calcule pas à lui seul tous les droits effectifs d’un compte. Il faut considérer les groupes, l’héritage, l’ordre des ACE, le parent et les privilèges.</p>
+<div class="codebox">whoami /groups
+icacls C:\LaboNTFS /T
+dir C:\LaboNTFS
+echo Test &gt; C:\LaboNTFS\test_utilisateur.txt</div>
+<p>Utilisez également <strong>Propriétés → Sécurité → Avancé → Accès effectif</strong>, puis testez avec le compte cible. L’ordre canonique habituel est : refus explicites, autorisations explicites, refus hérités, autorisations héritées. Un refus n’est pas une règle universellement prioritaire sans tenir compte de sa place et de son origine.</p>
+<h3>/verify</h3><p><strong>Définition :</strong> Détecte certaines incohérences ou ACL non canoniques.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /verify /T</code></p><div class="codebox">icacls C:\LaboNTFS /verify /T</div>
+<h3>/findsid</h3><p><strong>Définition :</strong> Recherche les ACL faisant référence à un compte, groupe ou SID.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /findsid Identité /T</code></p><div class="codebox">icacls C:\LaboNTFS /findsid Employe /T
+icacls C:\LaboNTFS /findsid *S-1-5-32-545 /T</div>
+</section><section class="content-card"><h2>19. Sauvegarde, restauration et réinitialisation</h2>
+<h3>icacls /save</h3><p><strong>Définition :</strong> Enregistre les DACL ; ne sauvegarde ni les fichiers ni l’ensemble des informations de sécurité.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /save Fichier /T</code></p><div class="codebox">mkdir C:\SauvegardesACL
+icacls C:\LaboNTFS /save C:\SauvegardesACL\acl.txt /T</div>
+<h3>icacls /restore</h3><p><strong>Définition :</strong> Restaure les DACL sauvegardées relativement au dossier parent.</p><p><strong>Syntaxe :</strong> <code>icacls DossierParent /restore Fichier</code></p><div class="codebox">icacls C:\ /restore C:\SauvegardesACL\acl.txt</div>
+<div class="explain-box"><strong>Explication :</strong> La sauvegarde de C:\LaboNTFS se restaure depuis son parent C:\.</div>
+<h3>icacls /reset</h3><p><strong>Définition :</strong> Réinitialise les ACL personnalisées vers les ACL héritées par défaut.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /reset /T</code></p><div class="codebox">icacls C:\TestReset /reset /T</div>
+<div class="explain-box"><strong>Explication :</strong> Commande potentiellement destructrice : ne jamais l’utiliser sur un dossier système dans ce laboratoire.</div>
+</section><section class="content-card"><h2>20. Propriété et liens symboliques</h2>
+<h3>takeown</h3><p><strong>Définition :</strong> Prend possession d’un fichier ou dossier avec les privilèges requis.</p><p><strong>Syntaxe :</strong> <code>takeown /F Chemin [/R]</code></p><div class="codebox">takeown /F C:\LaboNTFS\rapport.txt
+takeown /F C:\LaboNTFS /R</div>
+<div class="explain-box"><strong>Explication :</strong> Être propriétaire permet généralement de modifier la DACL, sous réserve de protections particulières.</div>
+<h3>icacls /setowner</h3><p><strong>Définition :</strong> Définit un propriétaire si les droits et privilèges le permettent.</p><p><strong>Syntaxe :</strong> <code>icacls Chemin /setowner Identité</code></p><div class="codebox">icacls C:\LaboNTFS\rapport.txt /setowner Employe</div>
+<h3>icacls /L</h3><p><strong>Définition :</strong> Cible le lien symbolique plutôt que sa cible.</p><p><strong>Syntaxe :</strong> <code>icacls Lien /L</code></p><div class="codebox">icacls C:\LaboNTFS\LienSymbolique /L</div>
+</section><section class="content-card"><h2>21. Gestion des ACL avec PowerShell</h2>
+<h3>Get-Acl</h3><p><strong>Définition :</strong> Lit le descripteur de sécurité d’un objet.</p><p><strong>Syntaxe :</strong> <code>Get-Acl -Path Chemin</code></p><div class="codebox">Get-Acl "C:\LaboNTFS"
+(Get-Acl "C:\LaboNTFS").Access
+(Get-Acl "C:\LaboNTFS").Owner</div>
+<h3>Set-Acl</h3><p><strong>Définition :</strong> Applique un descripteur de sécurité à un objet.</p><p><strong>Syntaxe :</strong> <code>Set-Acl -Path Destination -AclObject $acl</code></p><div class="codebox">$acl = Get-Acl "C:\LaboNTFS\Modele"
+Set-Acl -Path "C:\LaboNTFS\Destination" -AclObject $acl</div>
+<div class="explain-box"><strong>Explication :</strong> Les dossiers Modele et Destination doivent exister ; vérifiez le propriétaire et les règles copiées.</div>
+<h3>FileSystemAccessRule</h3><p><strong>Définition :</strong> Construit une règle d’autorisation NTFS dans PowerShell.</p><p><strong>Syntaxe :</strong> <code>New-Object System.Security.AccessControl.FileSystemAccessRule(...)</code></p><div class="codebox">$acl = Get-Acl "C:\LaboNTFS"
+$regle = New-Object System.Security.AccessControl.FileSystemAccessRule("Employe", "ReadAndExecute", "ContainerInherit,ObjectInherit", "None", "Allow")
+$acl.AddAccessRule($regle)
+Set-Acl -Path "C:\LaboNTFS" -AclObject $acl</div>
+<h3>RemoveAccessRuleSpecific</h3><p><strong>Définition :</strong> Retire une règle d’accès précise du descripteur en mémoire.</p><p><strong>Syntaxe :</strong> <code>$acl.RemoveAccessRuleSpecific($regle)</code></p><div class="codebox">$acl = Get-Acl "C:\LaboNTFS"
+$regles = @($acl.Access | Where-Object { $_.IdentityReference.Value -eq "$env:COMPUTERNAME\Employe" -and -not $_.IsInherited -and $_.AccessControlType -eq "Allow" })
+foreach ($regle in $regles) { $acl.RemoveAccessRuleSpecific($regle) }
+Set-Acl -Path "C:\LaboNTFS" -AclObject $acl</div>
+</section><section class="content-card"><h2>22. Partage réseau et audit</h2>
+<p>Lors d’un accès SMB, les autorisations du partage et les permissions NTFS doivent toutes deux permettre l’opération demandée.</p>
+<h3>net share</h3><p><strong>Définition :</strong> Affiche, crée ou supprime un partage réseau Windows.</p><p><strong>Syntaxe :</strong> <code>net share [Nom=Chemin] [options]</code></p><div class="codebox">net share
+net share DocumentsLab=C:\LaboNTFS /GRANT:Utilisateurs,READ
+net share DocumentsLab /delete</div>
+<div class="explain-box"><strong>Explication :</strong> Le groupe Utilisateurs peut s’appeler Users sur un Windows anglais. La suppression du partage ne supprime pas le dossier.</div>
+<h3>auditpol</h3><p><strong>Définition :</strong> Consulte et configure les stratégies d’audit Windows.</p><p><strong>Syntaxe :</strong> <code>auditpol /get /category:*</code></p><div class="codebox">auditpol /get /category:*
+auditpol /list /subcategory:*
+auditpol /set /subcategory:"File System" /success:enable /failure:enable</div>
+<div class="explain-box"><strong>Explication :</strong> La dernière commande utilise le nom anglais de la sous-catégorie. Pour auditer les accès à un fichier précis, configurez également sa SACL.</div>
+</section><section class="content-card"><h2>23. Diagnostic et méthode professionnelle</h2>
+<ol><li>Identifier le compte : <code>whoami /all</code>.</li><li>Examiner les ACL : <code>icacls Chemin /T</code>.</li><li>Contrôler groupes, héritage, refus et ACL des dossiers parents.</li><li>Consulter l’onglet Accès effectif de Windows.</li><li>Tester sous le compte concerné et noter les résultats.</li><li>Appliquer la correction minimale, vérifier, puis sauvegarder.</li></ol>
+<div class="mini-exercise"><h3>Mini-exercice 21 — Diagnostic</h3><p>Un utilisateur a perdu le droit de modifier un fichier après une réorganisation des groupes. Établissez une procédure de diagnostic, les commandes à lancer et les éléments à consigner.</p></div>
+</section><section class="content-card">
+<h2>24. Manipulation guidée — sécuriser un dossier de laboratoire</h2>
 <p><strong>Situation :</strong> le groupe <code>Etudiants</code> existe déjà et contient des comptes de test. Vous devez préparer un dossier <code>C:\Travaux</code>.</p>
 <ol>
 <li>Créer le dossier <code>C:\Travaux</code>.</li>
@@ -699,14 +702,8 @@ icacls C:\Travaux</div>
 <p>Entre ces étapes, créez un fichier et un sous-dossier de test, observez leurs permissions héritées et testez l’accès avec un compte membre du groupe. Le tableau demandé doit distinguer la commande exécutée, le résultat attendu et le résultat réellement observé dans la VM.</p>
 </div>
 </details>
-</section>
-
-
-
-
-
-<section class="content-card">
-<h2>19. Exercice intégrateur</h2>
+</section><section class="content-card">
+<h2>25. Exercice intégrateur</h2>
 <p>Préparez dans votre VM un environnement comprenant deux utilisateurs de test, un groupe <code>Projet</code> et un dossier <code>C:\Projet</code>. Les utilisateurs doivent être membres du groupe.</p>
 <p>Votre travail doit :</p>
 <ol>
@@ -720,7 +717,6 @@ icacls C:\Travaux</div>
 <li>expliquer si un accès subsiste et d’où il pourrait provenir.</li>
 </ol>
 <p>Présentez les commandes, les résultats observés et une courte justification pour chaque étape.</p>
-
 <details class="solution-toggle exercise-solution">
 <summary>Voir une proposition de solution</summary>
 <div class="solution-content">
@@ -737,20 +733,13 @@ icacls C:\Projet</div>
 <p class="mb-0"><strong>Vérification finale :</strong> si un utilisateur conserve un accès, examinez les permissions héritées et les autres groupes auxquels il appartient. L’ACL doit être relue après chaque modification et l’accès doit être testé avec le compte concerné.</p>
 </div>
 </details>
-
-</section>
-
-
-<section class="content-card lab-card">
-<h2>Laboratoire — Gestion des accès à un dossier d’examen</h2>
-
+</section><section class="content-card lab-card">
+<h2>26. Laboratoire — Gestion des accès à un dossier d’examen</h2>
 <div class="scenario-box">
 <strong>Scénario :</strong> vous devez préparer un dossier sécurisé contenant des fichiers d’examen. Trois utilisateurs et deux groupes doivent être créés. Le groupe <code>Enseignants</code> doit pouvoir accéder au dossier, tandis que le groupe <code>Etudiants</code> ne doit pas pouvoir y accéder.
 </div>
-
 <h3>Objectifs</h3>
 <p>À la fin de ce laboratoire, vous serez capable de créer des utilisateurs et des groupes locaux, d’organiser les utilisateurs dans les groupes appropriés, de créer des ressources de test et de configurer puis vérifier leurs permissions.</p>
-
 <h3>Situation à mettre en place</h3>
 <div class="table-responsive">
 <table class="table table-bordered align-middle">
@@ -762,7 +751,6 @@ icacls C:\Projet</div>
 </tbody>
 </table>
 </div>
-
 <h3>Travail demandé</h3>
 <ol class="lab-steps">
 <li><strong>Créer les utilisateurs.</strong> Créez trois comptes locaux nommés <code>Enseignant1</code>, <code>Etudiant1</code> et <code>Etudiant2</code>.</li>
@@ -777,7 +765,6 @@ icacls C:\Projet</div>
 <li><strong>Vérifier les permissions.</strong> Affichez de nouveau l’ACL du dossier et relevez les entrées correspondant aux deux groupes.</li>
 <li><strong>Tester.</strong> Testez l’accès avec <code>Enseignant1</code>, <code>Etudiant1</code> et <code>Etudiant2</code> et notez le résultat obtenu pour chaque compte.</li>
 </ol>
-
 <h3>Résultats attendus</h3>
 <div class="table-responsive">
 <table class="table table-bordered align-middle">
@@ -789,25 +776,20 @@ icacls C:\Projet</div>
 </tbody>
 </table>
 </div>
-
 <h3>À remettre</h3>
 <p>Présentez les commandes utilisées, les vérifications effectuées et un court tableau indiquant le résultat du test pour chacun des trois utilisateurs.</p>
-
 <details class="solution-toggle lab-solution">
 <summary>Voir la solution du laboratoire</summary>
 <div class="solution-content">
-
 <h3>1. Créer les utilisateurs</h3>
 <div class="codebox">net user Enseignant1 * /add
 net user Etudiant1 * /add
 net user Etudiant2 * /add</div>
 <p>Vérifiez ensuite les comptes :</p>
 <div class="codebox">net user</div>
-
 <h3>2. Créer les groupes</h3>
 <div class="codebox">net localgroup Enseignants /add
 net localgroup Etudiants /add</div>
-
 <h3>3. Ajouter les utilisateurs aux groupes</h3>
 <div class="codebox">net localgroup Enseignants Enseignant1 /add
 net localgroup Etudiants Etudiant1 /add
@@ -815,25 +797,19 @@ net localgroup Etudiants Etudiant2 /add</div>
 <p>Vérifiez les membres :</p>
 <div class="codebox">net localgroup Enseignants
 net localgroup Etudiants</div>
-
 <h3>4. Créer le dossier et les fichiers</h3>
 <p>Créez le dossier <code>Examen</code> sur le Bureau, puis créez à l’intérieur <code>Examen-mi-session.txt</code> et <code>Examen-final.txt</code>.</p>
-
 <h3>5. Afficher l’ACL initiale</h3>
 <div class="codebox">icacls "%USERPROFILE%\Desktop\Examen"</div>
-
 <h3>6. Accorder l’accès aux professeurs</h3>
 <div class="codebox">icacls "%USERPROFILE%\Desktop\Examen" /grant Enseignants:(OI)(CI)M</div>
 <p><code>M</code> accorde la permission de modification. <code>(OI)</code> applique l’héritage aux fichiers et <code>(CI)</code> aux sous-dossiers.</p>
-
 <h3>7. Refuser l’accès aux étudiants</h3>
 <div class="codebox">icacls "%USERPROFILE%\Desktop\Examen" /deny Etudiants:(OI)(CI)F</div>
 <p>Cette règle de laboratoire refuse au groupe <code>Etudiants</code> les droits visés sur le dossier et son contenu. Un refus explicite doit être utilisé avec prudence.</p>
-
 <h3>8. Vérifier les permissions</h3>
 <div class="codebox">icacls "%USERPROFILE%\Desktop\Examen"</div>
 <p>Vérifiez que les entrées des groupes <code>Enseignants</code> et <code>Etudiants</code> apparaissent dans l’ACL.</p>
-
 <h3>9. Tester les comptes</h3>
 <div class="table-responsive">
 <table class="table table-bordered align-middle mb-0">
@@ -845,15 +821,36 @@ net localgroup Etudiants</div>
 </tbody>
 </table>
 </div>
-
 <div class="method-box mt-3"><strong>Vérification finale :</strong> ne concluez pas uniquement à partir de la commande. Testez réellement l’accès avec les trois comptes.</div>
 </div>
 </details>
-</section>
-
-
-<section class="content-card">
-<h2>20. Synthèse</h2>
+</section><section class="content-card">
+<h2>27. Résumé des commandes icacls</h2>
+<p>Voici les principales opérations étudiées pour gérer les permissions d’un dossier.</p>
+<div class="table-responsive"><table class="table table-bordered align-middle">
+<thead><tr><th>Action</th><th>Commande</th><th>Rôle</th></tr></thead>
+<tbody>
+<tr><td><strong>Afficher</strong></td><td><code>icacls C:\PartageTP</code></td><td>Afficher les permissions actuelles.</td></tr>
+<tr><td><strong>Accorder</strong></td><td><code>icacls C:\PartageTP /grant Etudiants:R</code></td><td>Accorder la permission de lecture au groupe <code>Etudiants</code>.</td></tr>
+<tr><td><strong>Accorder avec héritage</strong></td><td><code>icacls C:\PartageTP /grant Etudiants:(OI)(CI)R</code></td><td>Accorder la lecture et permettre son héritage par les fichiers et sous-dossiers.</td></tr>
+<tr><td><strong>Remplacer</strong></td><td><code>icacls C:\PartageTP /grant:r Etudiants:(OI)(CI)M</code></td><td>Remplacer les permissions explicites accordées au groupe par <code>M</code> (Modification).</td></tr>
+<tr><td><strong>Retirer</strong></td><td><code>icacls C:\PartageTP /remove:g Etudiants</code></td><td>Retirer les permissions explicitement accordées au groupe.</td></tr>
+</tbody></table></div>
+<div class="method-box"><strong>Méthode :</strong> afficher l’ACL → appliquer la commande nécessaire → afficher de nouveau l’ACL → tester l’accès.</div>
+<div class="mini-exercise">
+<h3>Mini-exercice 15</h3>
+<p>Sur le dossier <code>C:\PartageTP</code>, accordez au groupe <code>Etudiants</code> la permission de lecture avec héritage. Vérifiez ensuite le résultat avec <code>icacls</code>.</p>
+</div>
+<details class="solution-toggle exercise-solution">
+<summary>Voir la solution du mini-exercice 15</summary>
+<div class="solution-content">
+<div class="codebox">icacls C:\PartageTP /grant Etudiants:(OI)(CI)R
+icacls C:\PartageTP</div>
+<p class="mb-0">La première commande accorde au groupe <code>Etudiants</code> la permission de lecture <code>R</code> avec héritage vers les fichiers <code>(OI)</code> et les sous-dossiers <code>(CI)</code>. La deuxième commande affiche l’ACL afin de vérifier que l’entrée attendue est présente.</p>
+</div>
+</details>
+</section><section class="content-card">
+<h2>28. Synthèse</h2>
 <div class="table-responsive"><table class="table table-bordered align-middle">
 <thead><tr><th>Notion</th><th>Idée essentielle</th></tr></thead>
 <tbody>
@@ -869,12 +866,8 @@ net localgroup Etudiants</div>
 <tr><td><code>/remove:g</code></td><td>Retire les permissions explicitement accordées à l’identité.</td></tr>
 <tr><td><code>(OI)</code> / <code>(CI)</code></td><td>Indicateurs d’héritage vers les fichiers et sous-dossiers.</td></tr>
 </tbody></table></div>
-</section>
 
-<section class="content-card">
-<h2>À retenir</h2>
+
 <p>Le contrôle d’accès Windows repose sur l’association entre des identités, des ressources et des permissions. Avec NTFS, les ACL permettent de décrire ces règles. Une administration fiable tient compte des groupes, distingue permissions explicites et héritées, applique le principe du moindre privilège et vérifie toujours l’accès après une modification. L’interface graphique permet d’observer les règles, tandis que <code>icacls</code> permet de les afficher et de les administrer en ligne de commande.</p>
-</section>
-
-</div></div></main>
+</section></div></div></main>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script></body></html>

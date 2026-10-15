@@ -1,0 +1,308 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapitre 1 — Introduction aux mathématiques appliquées à l’informatique | AsTechAI</title><style>
+:root{--navy:#0b245d;--blue:#1268f3;--purple:#7c35f6;--bg:#f5f7fb;--text:#202020}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+
+
+
+
+
+main{max-width:1080px;margin:auto;padding:64px 22px 80px}.back{display:inline-block;color:#0870ff;text-decoration:none;font-size:18px;margin-bottom:30px}
+.lesson-card{background:#fff;border:1px solid #dfe4ec;border-radius:22px;padding:66px 62px;box-shadow:0 1px 4px #0f234612}.badge{display:inline-block;background:#edf3ff;color:#2567dc;font-size:14px;font-weight:700;padding:5px 11px;border-radius:20px;margin-bottom:20px}
+h1{font-size:46px;line-height:1.14;color:#10265e;margin:0 0 20px;font-weight:500}.lead{font-size:23px;line-height:1.55;margin:0 0 28px}.objectives{background:#dbe9ff;border:1px solid #83b3ff;border-radius:8px;padding:20px 22px;color:#10356d;font-size:18px;margin:28px 0 54px}.objectives strong{font-weight:800}
+h2{font-size:34px;line-height:1.25;margin:44px 0 22px}p{font-size:18px;margin:0 0 18px}footer{text-align:center;padding:28px;color:#6b7280}
+@media(max-width:950px){.lesson-card{padding:40px}}
+@media(max-width:650px){.lesson-card{padding:28px 22px}h1{font-size:34px}h2{font-size:28px}}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+.as-navbar{min-height:100px;z-index:1030}
+.as-nav-container{max-width:1540px;margin:auto;padding:0 34px}
+.as-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.as-book{width:76px;height:52px;display:inline-block;position:relative}
+.as-book::before,.as-book::after{content:"";position:absolute;top:2px;width:35px;height:49px;border-radius:7px 7px 12px 7px;transform:skewY(7deg)}
+.as-book::before{left:0;background:#0967f6}
+.as-book::after{right:0;background:#8237f4}
+.as-brand strong{display:block;font-size:32px;line-height:1;color:#081d54}
+.as-brand strong span{color:#5936e8}
+.as-brand small{display:block;margin-top:7px;color:#63718d;font-size:14px}
+.as-main-links{gap:20px}
+.as-main-links .nav-link{font-weight:700;color:#0b245d!important;padding:15px 18px!important;border-radius:16px}
+.as-main-links .nav-link.active{background:#edf3ff;color:#1268f3!important}
+.as-search{width:320px;height:56px;border-radius:30px;background:#f0f4fc;align-items:center;padding:0 20px;gap:10px;margin-right:26px}
+.as-search input{border:0;outline:0;background:transparent;width:100%;font-size:17px}
+.as-login{background:linear-gradient(90deg,#3c72f5,#8732ef);border:0!important;color:#fff!important;font-weight:700;padding:15px 24px;border-radius:16px;white-space:nowrap}
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:min(760px,92vw);padding:18px;border:1px solid #e1e6ef;border-radius:18px;box-shadow:0 18px 50px rgba(16,38,94,.15)}
+.as-course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.as-course-card{display:flex;gap:14px;align-items:center;text-decoration:none;color:#10265e;padding:14px;border-radius:12px}
+.as-course-card:hover{background:#f3f6fc}
+.as-course-card small{display:block;color:#71809b}
+.as-course-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:10px;background:#eaf2ff;color:#1769ef;font-weight:800;font-size:20px}
+.as-course-icon.orange{background:#fff1e5;color:#f28a24}.as-course-icon.purple{background:#f0e9ff;color:#7737ef}
+@media(max-width:991px){.as-navbar{min-height:auto}.as-nav-container{padding:12px 20px}.as-course-grid{grid-template-columns:1fr}.as-brand strong{font-size:26px}.as-book{transform:scale(.85);transform-origin:left center}}
+</style>
+
+
+<style>
+.lesson-card{overflow:hidden}
+.lesson-card h2{color:#10265e;border-bottom:2px solid #edf2fa;padding-bottom:12px}
+.lesson-card h3{font-size:24px;color:#173b7a;margin:30px 0 12px}
+.lesson-card h4{font-size:19px;color:#243b67;margin:22px 0 8px}
+.lesson-card ul,.lesson-card ol{font-size:18px;padding-left:28px}
+.lesson-card li{margin:8px 0}
+.key-box,.example-box,.activity-box,.remember-box,.warning-box,.summary-box{border-radius:12px;padding:20px 22px;margin:22px 0}
+.key-box{background:#f2f7ff;border-left:5px solid #1769ef}
+.example-box{background:#f7f4ff;border-left:5px solid #7c35f6}
+.activity-box{background:#f1fbf6;border-left:5px solid #27a56a}
+.remember-box{background:#fff8e8;border-left:5px solid #e8a51b}
+.warning-box{background:#fff2f2;border-left:5px solid #d94b4b}
+.summary-box{background:#eef4ff;border:1px solid #b9d2ff}
+.concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.concept-card{border:1px solid #e0e6ef;border-radius:14px;padding:20px;background:#fff;box-shadow:0 3px 12px rgba(16,38,94,.05)}
+.concept-card strong{color:#10265e;font-size:19px}
+.flow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:25px 0}
+.flow span{padding:12px 16px;background:#edf3ff;color:#143c83;border-radius:10px;font-weight:700}
+.flow b{color:#7c35f6;font-size:22px}
+.ped-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:17px}
+.ped-table th,.ped-table td{border:1px solid #dce3ed;padding:12px 14px;vertical-align:top}
+.ped-table th{background:#10265e;color:#fff}
+.ped-table tr:nth-child(even) td{background:#f8faff}
+.check-question{padding:16px 18px;border:1px solid #dfe6f0;border-radius:10px;margin:12px 0;background:#fff}
+.answer{margin-top:8px;color:#52627d;font-size:16px}
+.mini-title{font-weight:800;color:#10265e}
+@media(max-width:700px){.concept-grid{grid-template-columns:1fr}.ped-table{font-size:15px}}
+</style>
+
+</head><body>
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+  <div class="container-fluid as-nav-container">
+    <a class="navbar-brand as-brand" data-root-href="index.html" href="#">
+      <span class="as-book" aria-hidden="true"></span>
+      <span>
+        <strong>AsTech<span>AI</span></strong>
+        <small>IT Learning Platform</small>
+      </span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#asMainNavbar" aria-controls="asMainNavbar"
+            aria-expanded="false" aria-label="Afficher la navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="asMainNavbar">
+      <ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+        <li class="nav-item">
+          <a class="nav-link active" data-root-href="index.html" href="#">Accueil</a>
+        </li>
+
+        <li class="nav-item dropdown position-static">
+          <a class="nav-link dropdown-toggle" href="#" role="button"
+             data-bs-toggle="dropdown" data-bs-auto-close="outside"
+             aria-expanded="false">Cours</a>
+
+          <div class="dropdown-menu as-course-menu">
+            <div class="as-course-grid">
+              <a class="as-course-card" data-root-href="cours/gestion-ordinateurs/index.html" href="#">
+                <span class="as-course-icon">▣</span>
+                <span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="https://asma-aouichat.github.io/microsoft365-learning-hub/" href="#">
+                <span class="as-course-icon orange">M</span>
+                <span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="cours/mathematiques-resolution-probleme/index.html" href="#">
+                <span class="as-course-icon purple">∑</span>
+                <span><strong>Mathématiques — Résolution de problème</strong><small>Raisonnement, méthodes et stratégies de résolution</small></span>
+              </a>
+              <!-- <a class="as-course-card" data-root-href="cours/programmation/index.html" href="#">
+                <span class="as-course-icon purple">&lt;/&gt;</span>
+                <span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="cours/bases-de-donnees/index.html" href="#">
+                <span class="as-course-icon">◎</span>
+                <span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="cours/programmation-orientee-objet/index.html" href="#">
+                <span class="as-course-icon purple">◇</span>
+                <span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+              </a> -->
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" data-root-href="projets/index.html" href="#">Projets</a></li>
+        <li class="nav-item"><a class="nav-link" data-root-href="index.html#apropos" href="#">À propos</a></li>
+        <li class="nav-item"><a class="nav-link" data-root-href="index.html#ressources" href="#">Ressources</a></li>
+      </ul>
+
+      <form class="d-none d-xl-flex as-search" role="search" onsubmit="return false;">
+        <span aria-hidden="true">⌕</span>
+        <input type="search" placeholder="Rechercher..." aria-label="Rechercher">
+      </form>
+
+      <a class="btn as-login" data-root-href="connexion/index.html" href="#">♙ &nbsp; Connexion</a>
+    </div>
+  </div>
+</nav>
+<main><a class="back" href="../index.html">← Retour aux leçons</a><article class="lesson-card"><span class="badge">Leçon 7</span>
+<h1>Statistiques descriptives et analyse de données</h1>
+<p class="lead">Organiser, résumer et interpréter des données afin de résoudre des problèmes informatiques et d'introduire l'analyse de données appliquée à la cybersécurité.</p>
+
+<div class="objectives"><strong>Objectifs d’apprentissage</strong><br>À la fin de ce chapitre, l’étudiant sera capable de distinguer population et échantillon, reconnaître les principaux types de données, construire un tableau de fréquences, choisir une représentation graphique adaptée, calculer et interpréter la moyenne, la médiane, le mode, l’étendue, la variance et l’écart type, comparer des séries de données et utiliser ces mesures pour analyser des données informatiques simples.</div>
+
+<h2>1. Pourquoi utiliser les statistiques en informatique ?</h2>
+<p>Les systèmes informatiques produisent constamment des données : temps de réponse, nombre de connexions, utilisation du processeur, taille des fichiers, trafic réseau, résultats de tests, erreurs et événements enregistrés dans les journaux. Une liste de centaines ou de milliers de valeurs est difficile à interpréter directement. Les <strong>statistiques descriptives</strong> permettent de transformer ces données brutes en informations plus faciles à comprendre.</p>
+<div class="flow"><span>Données brutes</span><b>→</b><span>Organisation</span><b>→</b><span>Calculs statistiques</span><b>→</b><span>Interprétation</span><b>→</b><span>Décision</span></div>
+<div class="key-box"><strong>Idée essentielle.</strong> La statistique descriptive décrit les données observées. Elle répond à des questions comme : Quelle est la valeur typique ? Les valeurs sont-elles dispersées ? Existe-t-il une valeur inhabituelle ?</div>
+<div class="example-box"><strong>Exemple informatique.</strong> Un administrateur mesure le nombre de tentatives de connexion par minute : <code>8, 10, 9, 11, 10, 9, 42</code>. La valeur 42 semble très différente des autres. Les statistiques permettent de quantifier cette observation avant de chercher une explication.</div>
+
+<h2>2. Vocabulaire fondamental</h2>
+<h3>2.1 Population et individu</h3>
+<p>La <strong>population</strong> est l’ensemble complet des éléments étudiés. Un <strong>individu</strong> est un élément de cette population.</p>
+<div class="example-box"><p>On étudie les temps de réponse de toutes les requêtes reçues par un serveur pendant une heure.</p><ul><li><strong>Population :</strong> toutes les requêtes de cette heure.</li><li><strong>Individu :</strong> une requête.</li><li><strong>Variable observée :</strong> son temps de réponse en millisecondes.</li></ul></div>
+<h3>2.2 Échantillon</h3>
+<p>Un <strong>échantillon</strong> est une partie de la population sélectionnée pour l’étude. Il est utilisé lorsqu’il est difficile, coûteux ou inutile d’observer toute la population.</p>
+<div class="warning-box"><strong>Attention.</strong> Un échantillon doit être suffisamment représentatif de la population pour que son analyse soit utile. Un échantillon mal choisi peut conduire à une interprétation trompeuse.</div>
+
+<h2>3. Types de données</h2>
+<p>Avant de calculer une moyenne ou de construire un graphique, il faut identifier la nature des données.</p>
+<table class="ped-table"><thead><tr><th>Type</th><th>Description</th><th>Exemple informatique</th></tr></thead><tbody>
+<tr><td><strong>Qualitative nominale</strong></td><td>Catégories sans ordre naturel.</td><td>Windows, Linux, macOS</td></tr>
+<tr><td><strong>Qualitative ordinale</strong></td><td>Catégories possédant un ordre.</td><td>Faible, moyen, élevé, critique</td></tr>
+<tr><td><strong>Quantitative discrète</strong></td><td>Valeurs numériques dénombrables, souvent entières.</td><td>Nombre d’échecs de connexion</td></tr>
+<tr><td><strong>Quantitative continue</strong></td><td>Mesure pouvant prendre de nombreuses valeurs dans un intervalle.</td><td>Temps de réponse : 18,4 ms</td></tr>
+</tbody></table>
+<div class="remember-box"><strong>À retenir.</strong> Une moyenne a du sens pour des données quantitatives. Calculer « la moyenne » de systèmes d’exploitation ou d’adresses IP n’a pas de signification statistique utile.</div>
+
+<h2>4. Série statistique, effectif et fréquence</h2>
+<p>Une <strong>série statistique</strong> est l’ensemble des valeurs observées. L’<strong>effectif</strong> d’une valeur indique combien de fois elle apparaît. L’effectif total est noté <strong>N</strong>.</p>
+<p>La <strong>fréquence</strong> d’une valeur est :</p>
+<div class="key-box"><strong>Fréquence = effectif de la valeur ÷ effectif total</strong><br><br>Pour obtenir un pourcentage : <strong>fréquence × 100</strong>.</div>
+<div class="example-box"><strong>Exemple.</strong> Nombre d’alertes par poste : <code>0, 1, 1, 2, 1, 0, 3, 1, 2, 1</code>. Il y a N = 10 observations. La valeur 1 apparaît 5 fois : son effectif est 5, sa fréquence est 5/10 = 0,5, donc <strong>50 %</strong>.</div>
+<table class="ped-table"><thead><tr><th>Nombre d’alertes</th><th>Effectif</th><th>Fréquence</th><th>Pourcentage</th></tr></thead><tbody><tr><td>0</td><td>2</td><td>0,20</td><td>20 %</td></tr><tr><td>1</td><td>5</td><td>0,50</td><td>50 %</td></tr><tr><td>2</td><td>2</td><td>0,20</td><td>20 %</td></tr><tr><td>3</td><td>1</td><td>0,10</td><td>10 %</td></tr><tr><td><strong>Total</strong></td><td><strong>10</strong></td><td><strong>1,00</strong></td><td><strong>100 %</strong></td></tr></tbody></table>
+
+<h2>5. Représenter les données graphiquement</h2>
+<p>Un graphique permet de voir rapidement une distribution, une comparaison ou une évolution. Le type de graphique doit correspondre à la question étudiée.</p>
+<div class="concept-grid"><div class="concept-card"><strong>Diagramme en barres</strong><p>Comparer des catégories ou des valeurs discrètes : nombre d’alertes par type, incidents par jour.</p></div><div class="concept-card"><strong>Diagramme circulaire</strong><p>Illustrer simplement la répartition d’un total en catégories, lorsqu’il y en a peu.</p></div><div class="concept-card"><strong>Histogramme</strong><p>Observer la distribution d’une variable quantitative continue regroupée en intervalles.</p></div><div class="concept-card"><strong>Courbe</strong><p>Observer l’évolution d’une mesure dans le temps : trafic réseau, latence, charge CPU.</p></div></div>
+<div class="warning-box"><strong>Un graphique peut tromper.</strong> Vérifiez toujours le titre, les unités, les axes et leur échelle. Un axe vertical tronqué peut exagérer visuellement une petite différence.</div>
+
+<h2>6. Les mesures de tendance centrale</h2>
+<p>Les mesures de tendance centrale cherchent à représenter une série par une valeur caractéristique. Les trois principales sont la <strong>moyenne</strong>, la <strong>médiane</strong> et le <strong>mode</strong>.</p>
+
+<h3>6.1 Moyenne arithmétique</h3>
+<div class="key-box"><strong>Moyenne :</strong> x̄ = (x₁ + x₂ + … + xₙ) / n</div>
+<div class="example-box"><strong>Exemple.</strong> Temps de réponse : <code>20, 25, 30, 35, 40 ms</code>.<br><br>x̄ = (20 + 25 + 30 + 35 + 40) / 5 = 150 / 5 = <strong>30 ms</strong>.</div>
+<p>La moyenne utilise toutes les valeurs. Elle est donc informative, mais elle peut être fortement influencée par une valeur très grande ou très petite.</p>
+<div class="example-box"><strong>Effet d’une valeur extrême.</strong> Pour <code>20, 25, 30, 35, 140</code>, la moyenne devient 50 ms. Pourtant, quatre valeurs sur cinq sont inférieures ou égales à 35 ms.</div>
+
+<h3>6.2 Médiane</h3>
+<p>La <strong>médiane</strong> partage une série ordonnée en deux parties : environ 50 % des observations se trouvent de chaque côté.</p>
+<div class="activity-box"><strong>Méthode :</strong><ol><li>Classer les valeurs en ordre croissant.</li><li>Si n est impair, prendre la valeur centrale.</li><li>Si n est pair, calculer la moyenne des deux valeurs centrales.</li></ol></div>
+<div class="example-box"><strong>Nombre impair :</strong> <code>12, 15, 18, 20, 90</code> → médiane = <strong>18</strong>.<br><br><strong>Nombre pair :</strong> <code>12, 15, 18, 20</code> → médiane = (15 + 18)/2 = <strong>16,5</strong>.</div>
+<div class="remember-box">La médiane est généralement moins sensible aux valeurs extrêmes que la moyenne.</div>
+
+<h3>6.3 Mode</h3>
+<p>Le <strong>mode</strong> est la valeur qui apparaît le plus souvent.</p>
+<div class="example-box">Pour <code>2, 4, 4, 4, 5, 7, 7</code>, le mode est <strong>4</strong>. Une série peut avoir plusieurs modes ou ne pas avoir de mode unique.</div>
+
+<h3>6.4 Quelle mesure choisir ?</h3>
+<table class="ped-table"><thead><tr><th>Mesure</th><th>Utile lorsque…</th><th>Limite principale</th></tr></thead><tbody><tr><td>Moyenne</td><td>On veut utiliser l’ensemble des valeurs.</td><td>Sensible aux valeurs extrêmes.</td></tr><tr><td>Médiane</td><td>La distribution contient des valeurs extrêmes.</td><td>N’utilise pas directement l’amplitude de toutes les valeurs.</td></tr><tr><td>Mode</td><td>On cherche la valeur ou catégorie la plus fréquente.</td><td>Peut être absent ou multiple.</td></tr></tbody></table>
+
+<h2>7. Les mesures de dispersion</h2>
+<p>Deux séries peuvent avoir la même moyenne tout en étant très différentes. Les mesures de dispersion indiquent à quel point les valeurs sont regroupées ou éloignées.</p>
+
+<h3>7.1 Étendue</h3>
+<div class="key-box"><strong>Étendue = valeur maximale − valeur minimale</strong></div>
+<div class="example-box">Pour <code>12, 15, 18, 20, 27</code> : étendue = 27 − 12 = <strong>15</strong>.</div>
+
+<h3>7.2 Variance</h3>
+<p>La variance mesure la dispersion des valeurs autour de la moyenne. Dans ce chapitre, lorsqu’on considère la série observée comme la population étudiée, on utilise :</p>
+<div class="key-box"><strong>Variance :</strong> σ² = [Σ(xᵢ − x̄)²] / N</div>
+<p>Pourquoi mettre les écarts au carré ? Sans le carré, les écarts positifs et négatifs autour de la moyenne s’annuleraient.</p>
+<div class="example-box"><strong>Exemple détaillé : série 2, 4, 4, 6.</strong><br><br>1. Moyenne : x̄ = (2+4+4+6)/4 = <strong>4</strong>.<br>2. Écarts : −2, 0, 0, +2.<br>3. Carrés : 4, 0, 0, 4.<br>4. Somme : 8.<br>5. Variance : σ² = 8/4 = <strong>2</strong>.</div>
+<table class="ped-table"><thead><tr><th>xᵢ</th><th>xᵢ − x̄</th><th>(xᵢ − x̄)²</th></tr></thead><tbody><tr><td>2</td><td>−2</td><td>4</td></tr><tr><td>4</td><td>0</td><td>0</td></tr><tr><td>4</td><td>0</td><td>0</td></tr><tr><td>6</td><td>2</td><td>4</td></tr><tr><td colspan="2"><strong>Somme</strong></td><td><strong>8</strong></td></tr></tbody></table>
+
+<h3>7.3 Écart type</h3>
+<div class="key-box"><strong>Écart type :</strong> σ = √σ²</div>
+<p>Pour l’exemple précédent, σ = √2 ≈ <strong>1,41</strong>. Contrairement à la variance, l’écart type s’exprime dans la <strong>même unité que les données</strong>.</p>
+<div class="remember-box"><strong>Interprétation.</strong> Un petit écart type indique des valeurs relativement regroupées autour de la moyenne. Un grand écart type indique une plus forte dispersion. Il faut toujours l’interpréter avec le contexte et l’échelle des données.</div>
+
+<h2>8. Comparer deux séries</h2>
+<div class="example-box"><strong>Série A :</strong> 48, 49, 50, 51, 52<br><strong>Série B :</strong> 20, 35, 50, 65, 80<br><br>Les deux séries ont une moyenne de <strong>50</strong>. Pourtant, B est beaucoup plus dispersée. La moyenne seule ne suffit donc pas pour décrire les données.</div>
+<p>Pour comparer des séries, observez ensemble leur centre (moyenne ou médiane), leur dispersion (étendue ou écart type), leur taille et leur contexte.</p>
+
+<h2>9. Valeurs atypiques</h2>
+<p>Une <strong>valeur atypique</strong> est une observation qui semble éloignée de la majorité des autres. Elle peut être due à un événement réel, une erreur de mesure, une erreur de saisie ou un comportement inhabituel.</p>
+<div class="warning-box"><strong>Important en cybersécurité :</strong> « inhabituel » ne signifie pas automatiquement « malveillant ». Une anomalie statistique est un signal à examiner, pas une preuve d’attaque.</div>
+<div class="example-box">Connexions par minute : <code>11, 9, 12, 10, 11, 10, 73</code>. La valeur 73 mérite une investigation : maintenance ? test automatisé ? activité légitime ? erreur ? incident ? Les statistiques permettent de repérer le changement, mais le contexte permet de l’expliquer.</div>
+
+<h2>10. Statistiques et cybersécurité</h2>
+<p>En cybersécurité, les statistiques descriptives peuvent aider à construire une image du comportement habituel d’un système et à repérer des changements qui méritent une analyse.</p>
+<table class="ped-table"><thead><tr><th>Donnée</th><th>Mesure possible</th><th>Question</th></tr></thead><tbody><tr><td>Tentatives de connexion</td><td>Moyenne, maximum, fréquence</td><td>Le volume actuel est-il inhabituel ?</td></tr><tr><td>Temps de réponse</td><td>Médiane, moyenne, écart type</td><td>Le service devient-il instable ?</td></tr><tr><td>Types d’événements de journal</td><td>Effectifs, fréquences, mode</td><td>Quel événement est le plus fréquent ?</td></tr><tr><td>Trafic réseau par intervalle</td><td>Moyenne, dispersion, courbe</td><td>Observe-t-on une variation importante ?</td></tr></tbody></table>
+<div class="key-box"><strong>Approche conceptuelle.</strong> Une valeur qui s’éloigne fortement d’un comportement de référence peut déclencher une alerte ou une investigation. En pratique, un système de sécurité ne devrait pas prendre une décision uniquement à partir d’une moyenne ou d’un écart type : plusieurs indicateurs et le contexte sont nécessaires.</div>
+
+<h2>11. Méthode de résolution d’un problème statistique</h2>
+<div class="flow"><span>1. Comprendre</span><b>→</b><span>2. Identifier les données</span><b>→</b><span>3. Organiser</span><b>→</b><span>4. Calculer</span><b>→</b><span>5. Vérifier</span><b>→</b><span>6. Interpréter</span></div>
+<ol><li><strong>Comprendre la question :</strong> que cherche-t-on à savoir ?</li><li><strong>Identifier la population, l’échantillon et la variable.</strong></li><li><strong>Organiser les données :</strong> tri, tableau d’effectifs ou fréquences.</li><li><strong>Choisir les mesures adaptées :</strong> moyenne, médiane, mode, dispersion.</li><li><strong>Effectuer et vérifier les calculs :</strong> unités, ordre de grandeur, total des fréquences.</li><li><strong>Interpréter :</strong> écrire une conclusion en contexte plutôt que donner seulement un nombre.</li></ol>
+
+<h2>12. Exemple complet — Analyse d’un journal de connexion</h2>
+<div class="activity-box"><p>Un système enregistre le nombre d’échecs de connexion pendant dix intervalles successifs :</p><p><code>3, 5, 4, 4, 6, 5, 4, 5, 4, 20</code></p></div>
+<h3>Étape 1 — Effectif</h3><p>N = 10 observations.</p>
+<h3>Étape 2 — Moyenne</h3><p>Somme = 60. Moyenne = 60/10 = <strong>6</strong>.</p>
+<h3>Étape 3 — Médiane</h3><p>Série ordonnée : <code>3, 4, 4, 4, 4, 5, 5, 5, 6, 20</code>. Les deux valeurs centrales sont 4 et 5 : médiane = <strong>4,5</strong>.</p>
+<h3>Étape 4 — Mode</h3><p>La valeur 4 apparaît quatre fois : mode = <strong>4</strong>.</p>
+<h3>Étape 5 — Étendue</h3><p>20 − 3 = <strong>17</strong>.</p>
+<h3>Étape 6 — Interprétation</h3><p>La moyenne (6) est supérieure à la médiane (4,5), notamment parce que la valeur 20 tire la moyenne vers le haut. Cette observation mérite d’être contextualisée. Elle ne suffit pas, à elle seule, à conclure à un incident de sécurité.</p>
+
+<h2>13. Erreurs fréquentes</h2>
+<div class="warning-box"><ul><li>Calculer la médiane sans trier les données.</li><li>Confondre effectif et fréquence.</li><li>Oublier de diviser par le nombre d’observations pour la moyenne.</li><li>Comparer des mesures exprimées dans des unités différentes.</li><li>Interpréter une moyenne sans regarder la dispersion.</li><li>Considérer toute valeur atypique comme une attaque.</li><li>Donner un résultat numérique sans phrase d’interprétation.</li></ul></div>
+
+<h2>14. Exercices guidés</h2>
+<div class="check-question"><strong>Exercice 1 — Vocabulaire.</strong> Une entreprise possède 500 ordinateurs. On choisit 40 ordinateurs pour mesurer leur temps de démarrage. Identifiez la population, l’échantillon, un individu et la variable étudiée.</div>
+<div class="check-question"><strong>Exercice 2 — Types de données.</strong> Classez les variables suivantes : système d’exploitation, nombre d’erreurs, temps de réponse, niveau de priorité d’une alerte.</div>
+<div class="check-question"><strong>Exercice 3 — Effectifs.</strong> Pour <code>1, 2, 0, 1, 3, 1, 2, 1, 0, 2</code>, construisez le tableau des effectifs, fréquences et pourcentages.</div>
+<div class="check-question"><strong>Exercice 4 — Tendance centrale.</strong> Pour <code>12, 15, 15, 18, 20, 22, 24</code>, calculez la moyenne, la médiane et le mode. Interprétez chaque résultat.</div>
+<div class="check-question"><strong>Exercice 5 — Valeur extrême.</strong> Reprenez l’exercice 4 en remplaçant 24 par 100. Recalculez moyenne et médiane. Laquelle a le plus changé ? Expliquez.</div>
+<div class="check-question"><strong>Exercice 6 — Dispersion.</strong> Pour <code>2, 4, 4, 6</code>, calculez l’étendue, la variance de population et l’écart type. Montrez toutes les étapes.</div>
+<div class="check-question"><strong>Exercice 7 — Comparaison.</strong> Comparez A = <code>18, 19, 20, 21, 22</code> et B = <code>5, 10, 20, 30, 35</code>. Calculez leur moyenne et leur étendue, puis expliquez pourquoi deux séries de même moyenne peuvent décrire des situations différentes.</div>
+<div class="check-question"><strong>Exercice 8 — Graphique.</strong> Une application reçoit 120, 145, 130, 170, 210 et 190 requêtes entre 8 h et 13 h. Quel graphique choisiriez-vous pour montrer l’évolution ? Justifiez votre choix et tracez-le.</div>
+
+<h2>15. Activité — Analyse de données de sécurité</h2>
+<div class="activity-box"><p>Le nombre d’échecs d’authentification observé toutes les dix minutes est :</p><p><code>5, 4, 6, 5, 7, 4, 5, 6, 5, 28</code></p><ol><li>Ordonnez la série.</li><li>Calculez la moyenne.</li><li>Calculez la médiane.</li><li>Déterminez le mode.</li><li>Calculez l’étendue.</li><li>Identifiez une observation qui mérite une analyse supplémentaire.</li><li>Expliquez pourquoi cette observation ne permet pas de conclure automatiquement à une cyberattaque.</li><li>Proposez deux informations supplémentaires à examiner avant de tirer une conclusion.</li></ol></div>
+
+<h2>16. Mini-projet — Tableau de bord d’un serveur</h2>
+<p>Un serveur fournit les temps de réponse suivants, en millisecondes :</p>
+<div class="key-box"><code>42, 45, 41, 44, 47, 43, 46, 44, 45, 82, 43, 44</code></div>
+<p>Préparez un mini-rapport contenant :</p><ol><li>le nombre d’observations ;</li><li>la valeur minimale et maximale ;</li><li>l’étendue ;</li><li>la moyenne ;</li><li>la médiane ;</li><li>le mode, s’il existe ;</li><li>la variance et l’écart type ;</li><li>un graphique adapté ;</li><li>une identification des valeurs qui semblent inhabituelles ;</li><li>une conclusion de 3 à 5 phrases expliquant ce que les statistiques permettent d’affirmer et ce qu’elles ne permettent pas d’affirmer.</li></ol>
+
+<h2>17. Questions de vérification</h2>
+<div class="check-question"><strong>1.</strong> Quelle est la différence entre une population et un échantillon ?</div>
+<div class="check-question"><strong>2.</strong> Quelle est la différence entre une variable quantitative discrète et continue ?</div>
+<div class="check-question"><strong>3.</strong> Pourquoi faut-il ordonner les données avant de calculer la médiane ?</div>
+<div class="check-question"><strong>4.</strong> Dans quelle situation la médiane peut-elle être plus représentative que la moyenne ?</div>
+<div class="check-question"><strong>5.</strong> Que mesure l’écart type ?</div>
+<div class="check-question"><strong>6.</strong> Deux séries ont la même moyenne. Peut-on conclure qu’elles sont semblables ? Justifiez.</div>
+<div class="check-question"><strong>7.</strong> Pourquoi une anomalie statistique n’est-elle pas automatiquement un incident de cybersécurité ?</div>
+
+<h2>18. Synthèse du chapitre</h2>
+<div class="summary-box"><ul><li>La statistique descriptive sert à <strong>organiser, résumer, représenter et interpréter</strong> des données observées.</li><li>Une <strong>population</strong> représente l’ensemble étudié ; un <strong>échantillon</strong> en représente une partie.</li><li>Les effectifs et fréquences décrivent la distribution des observations.</li><li>La <strong>moyenne</strong>, la <strong>médiane</strong> et le <strong>mode</strong> décrivent le centre d’une série de façons différentes.</li><li>L’<strong>étendue</strong>, la <strong>variance</strong> et l’<strong>écart type</strong> décrivent sa dispersion.</li><li>Une bonne analyse ne se limite pas au calcul : elle exige une <strong>interprétation dans le contexte</strong>.</li><li>En informatique et en cybersécurité, les statistiques peuvent aider à repérer des comportements inhabituels, mais une anomalie doit être investiguée avant d’être interprétée comme un incident.</li></ul></div>
+</article></main><footer>© AsTechAI-Teaching</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const ROOT = "../../../";
+  document.querySelectorAll("[data-root-href]").forEach(el => {
+    const target = el.getAttribute("data-root-href");
+    if (/^https?:\/\//i.test(target)) {
+      el.href = target;
+    } else {
+      el.href = ROOT + target;
+    }
+  });
+});
+</script>
+
+</body></html>

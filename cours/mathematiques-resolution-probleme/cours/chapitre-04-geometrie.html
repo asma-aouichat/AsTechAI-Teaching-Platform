@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapitre 3 — Représentation des nombres en mémoire | AsTechAI</title>
+<style>
+:root{--navy:#0b245d;--blue:#1268f3;--purple:#7c35f6;--bg:#f5f7fb;--text:#202020}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+main{max-width:1080px;margin:auto;padding:64px 22px 80px}.back{display:inline-block;color:#0870ff;text-decoration:none;font-size:18px;margin-bottom:30px}
+.lesson-card{background:#fff;border:1px solid #dfe4ec;border-radius:22px;padding:66px 62px;box-shadow:0 1px 4px #0f234612;overflow:hidden}.badge{display:inline-block;background:#edf3ff;color:#2567dc;font-size:14px;font-weight:700;padding:5px 11px;border-radius:20px;margin-bottom:20px}
+h1{font-size:46px;line-height:1.14;color:#10265e;margin:0 0 20px;font-weight:500}.lead{font-size:23px;line-height:1.55;margin:0 0 28px}.objectives{background:#dbe9ff;border:1px solid #83b3ff;border-radius:8px;padding:20px 22px;color:#10356d;font-size:18px;margin:28px 0 54px}.objectives strong{font-weight:800}
+h2{font-size:34px;line-height:1.25;margin:44px 0 22px;color:#10265e;border-bottom:2px solid #edf2fa;padding-bottom:12px}h3{font-size:24px;color:#173b7a;margin:30px 0 12px}h4{font-size:19px;color:#243b67;margin:22px 0 8px}p{font-size:18px;margin:0 0 18px}footer{text-align:center;padding:28px;color:#6b7280}
+.lesson-card ul,.lesson-card ol{font-size:18px;padding-left:28px}.lesson-card li{margin:8px 0}.key-box,.example-box,.activity-box,.remember-box,.warning-box,.summary-box,.cyber-box{border-radius:12px;padding:20px 22px;margin:22px 0}.key-box{background:#f2f7ff;border-left:5px solid #1769ef}.example-box{background:#f7f4ff;border-left:5px solid #7c35f6}.activity-box{background:#f1fbf6;border-left:5px solid #27a56a}.remember-box{background:#fff8e8;border-left:5px solid #e8a51b}.warning-box{background:#fff2f2;border-left:5px solid #d94b4b}.summary-box{background:#eef4ff;border:1px solid #b9d2ff}.cyber-box{background:#f5f1ff;border-left:5px solid #7c35f6}.concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}.concept-card{border:1px solid #e0e6ef;border-radius:14px;padding:20px;background:#fff;box-shadow:0 3px 12px rgba(16,38,94,.05)}.concept-card strong{color:#10265e;font-size:19px}.flow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:25px 0}.flow span{padding:12px 16px;background:#edf3ff;color:#143c83;border-radius:10px;font-weight:700}.flow b{color:#7c35f6;font-size:22px}.ped-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:17px}.ped-table th,.ped-table td{border:1px solid #dce3ed;padding:12px 14px;vertical-align:top}.ped-table th{background:#10265e;color:#fff}.ped-table tr:nth-child(even) td{background:#f8faff}.mini-title{font-weight:800;color:#10265e}.binary{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#f5f7fb;border:1px solid #e1e6ef;border-radius:10px;padding:16px 18px;font-size:18px;overflow:auto;white-space:pre}.formula{text-align:center;font-size:21px;font-weight:700;color:#10265e;margin:16px 0}.check-question{padding:16px 18px;border:1px solid #dfe6f0;border-radius:10px;margin:12px 0;background:#fff}.answer{margin-top:8px;color:#52627d;font-size:16px}
+.as-navbar{min-height:100px;z-index:1030}.as-nav-container{max-width:1540px;margin:auto;padding:0 34px}.as-brand{display:flex;align-items:center;gap:14px;text-decoration:none}.as-book{width:76px;height:52px;display:inline-block;position:relative}.as-book::before,.as-book::after{content:"";position:absolute;top:2px;width:35px;height:49px;border-radius:7px 7px 12px 7px;transform:skewY(7deg)}.as-book::before{left:0;background:#0967f6}.as-book::after{right:0;background:#8237f4}.as-brand strong{display:block;font-size:32px;line-height:1;color:#081d54}.as-brand strong span{color:#5936e8}.as-brand small{display:block;margin-top:7px;color:#63718d;font-size:14px}.as-main-links{gap:20px}.as-main-links .nav-link{font-weight:700;color:#0b245d!important;padding:15px 18px!important;border-radius:16px}.as-main-links .nav-link.active{background:#edf3ff;color:#1268f3!important}.as-search{width:320px;height:56px;border-radius:30px;background:#f0f4fc;align-items:center;padding:0 20px;gap:10px;margin-right:26px}.as-search input{border:0;outline:0;background:transparent;width:100%;font-size:17px}.as-login{background:linear-gradient(90deg,#3c72f5,#8732ef);border:0!important;color:#fff!important;font-weight:700;padding:15px 24px;border-radius:16px;white-space:nowrap}.as-course-menu{left:50%!important;transform:translateX(-50%);width:min(760px,92vw);padding:18px;border:1px solid #e1e6ef;border-radius:18px;box-shadow:0 18px 50px rgba(16,38,94,.15)}.as-course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.as-course-card{display:flex;gap:14px;align-items:center;text-decoration:none;color:#10265e;padding:14px;border-radius:12px}.as-course-card:hover{background:#f3f6fc}.as-course-card small{display:block;color:#71809b}.as-course-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:10px;background:#eaf2ff;color:#1769ef;font-weight:800;font-size:20px}.as-course-icon.orange{background:#fff1e5;color:#f28a24}.as-course-icon.purple{background:#f0e9ff;color:#7737ef}
+@media(max-width:991px){.as-navbar{min-height:auto}.as-nav-container{padding:12px 20px}.as-course-grid{grid-template-columns:1fr}.as-brand strong{font-size:26px}.as-book{transform:scale(.85);transform-origin:left center}}@media(max-width:950px){.lesson-card{padding:40px}}@media(max-width:700px){.concept-grid{grid-template-columns:1fr}.ped-table{font-size:15px}}@media(max-width:650px){.lesson-card{padding:28px 22px}h1{font-size:34px}h2{font-size:28px}}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head><body>
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar"><div class="container-fluid as-nav-container">
+<a class="navbar-brand as-brand" data-root-href="index.html" href="#"><span class="as-book" aria-hidden="true"></span><span><strong>AsTech<span>AI</span></strong><small>IT Learning Platform</small></span></a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#asMainNavbar"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="asMainNavbar"><ul class="navbar-nav mx-auto align-items-lg-center as-main-links"><li class="nav-item"><a class="nav-link active" data-root-href="index.html" href="#">Accueil</a></li><li class="nav-item dropdown position-static"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside">Cours</a><div class="dropdown-menu as-course-menu"><div class="as-course-grid"><a class="as-course-card" data-root-href="cours/gestion-ordinateurs/index.html" href="#"><span class="as-course-icon">▣</span><span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span></a><a class="as-course-card" data-root-href="https://asma-aouichat.github.io/microsoft365-learning-hub/" href="#"><span class="as-course-icon orange">M</span><span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span></a><a class="as-course-card" data-root-href="cours/mathematiques-resolution-probleme/index.html" href="#"><span class="as-course-icon purple">∑</span><span><strong>Mathématiques — Résolution de problème</strong><small>Raisonnement, méthodes et stratégies de résolution</small></span></a></div></div></li><li class="nav-item"><a class="nav-link" data-root-href="projets/index.html" href="#">Projets</a></li><li class="nav-item"><a class="nav-link" data-root-href="index.html#apropos" href="#">À propos</a></li><li class="nav-item"><a class="nav-link" data-root-href="index.html#ressources" href="#">Ressources</a></li></ul><form class="d-none d-xl-flex as-search" role="search" onsubmit="return false;"><span>⌕</span><input type="search" placeholder="Rechercher..."></form><a class="btn as-login" data-root-href="connexion/index.html" href="#">♙ &nbsp; Connexion</a></div></div></nav>
+<main><a class="back" href="../index.html">← Retour aux leçons</a><article class="lesson-card"><span class="badge">Leçon 4</span>
+<h1>Géométrie et représentation numérique</h1>
+<p class="lead">Utiliser les coordonnées, les distances et les transformations géométriques pour comprendre comment un ordinateur positionne, déplace et redimensionne des objets dans un espace numérique.</p>
+<div class="objectives"><strong>Objectifs d’apprentissage.</strong> À la fin de ce chapitre, l’étudiant sera capable de :<ul><li>repérer et représenter un point dans un plan cartésien ;</li><li>calculer une distance et déterminer le milieu de deux points ;</li><li>reconnaître et utiliser l’équation simple d’une droite ;</li><li>distinguer le repère mathématique du système de coordonnées d’un écran ;</li><li>interpréter la résolution et les dimensions d’une image numérique ;</li><li>appliquer une translation, une rotation et une homothétie à des coordonnées ;</li><li>combiner des transformations simples ;</li><li>relier ces notions aux interfaces, images, visualisation de données et à quelques usages spécialisés en cybersécurité.</li></ul></div>
+
+<h2>1. Pourquoi étudier la géométrie en informatique ?</h2>
+<p>En informatique, de nombreuses informations possèdent une <strong>position</strong>, une <strong>dimension</strong> ou une <strong>orientation</strong>. Une icône sur un écran, un pixel dans une image, un objet dans un jeu ou un point dans un graphique peuvent être décrits à l’aide de coordonnées.</p>
+<div class="flow"><span>Position</span><b>→</b><span>Coordonnées</span><b>→</b><span>Calcul</span><b>→</b><span>Transformation</span><b>→</b><span>Affichage</span></div>
+<div class="concept-grid"><div class="concept-card"><strong>Interfaces graphiques</strong><p>Positionner boutons, fenêtres, textes et images.</p></div><div class="concept-card"><strong>Images numériques</strong><p>Localiser et manipuler des pixels.</p></div><div class="concept-card"><strong>Jeux et simulations</strong><p>Déplacer, tourner et redimensionner des objets.</p></div><div class="concept-card"><strong>Visualisation de données</strong><p>Transformer des valeurs numériques en positions graphiques.</p></div></div>
+<div class="cyber-box"><strong>Place dans un parcours cybersécurité.</strong> La géométrie n’est pas une base centrale de la cybersécurité comme le binaire, l’algèbre de Boole ou la cryptographie. Elle reste utile pour comprendre la représentation numérique des images, certaines visualisations de données et, plus tard, des domaines spécialisés comme l’analyse d’images. Dans ce chapitre, l’objectif principal reste la <strong>résolution de problèmes informatiques</strong>.</div>
+
+<h2>2. Le plan cartésien</h2>
+<p>Un <strong>plan cartésien</strong> est formé de deux axes perpendiculaires : l’axe horizontal <strong>x</strong>, appelé axe des abscisses, et l’axe vertical <strong>y</strong>, appelé axe des ordonnées. Leur intersection est l’<strong>origine O(0,0)</strong>.</p>
+<div class="binary">              y
+              ↑
+        II    |    I
+              |
+←-------------O-------------→ x
+              |
+       III    |    IV
+              ↓</div>
+<table class="ped-table"><tr><th>Quadrant</th><th>Signe de x</th><th>Signe de y</th><th>Exemple</th></tr><tr><td>I</td><td>+</td><td>+</td><td>A(3,2)</td></tr><tr><td>II</td><td>−</td><td>+</td><td>B(−4,3)</td></tr><tr><td>III</td><td>−</td><td>−</td><td>C(−2,−5)</td></tr><tr><td>IV</td><td>+</td><td>−</td><td>D(5,−2)</td></tr></table>
+<div class="remember-box"><strong>À retenir.</strong> Pour un point <strong>P(x,y)</strong>, on lit toujours d’abord la position horizontale <strong>x</strong>, puis la position verticale <strong>y</strong>.</div>
+
+<h2>3. Points et coordonnées</h2>
+<p>Un point est généralement noté par une lettre majuscule et ses coordonnées entre parenthèses. Par exemple, <strong>A(4,3)</strong> signifie : partir de l’origine, se déplacer de 4 unités horizontalement puis de 3 unités verticalement.</p>
+<div class="example-box"><div class="mini-title">Exemple</div><p>Pour A(4,3), x = 4 et y = 3. Le point appartient au quadrant I. Pour B(−2,5), x = −2 et y = 5 : le point appartient au quadrant II.</p></div>
+<h3>3.1 Lire et comparer des coordonnées</h3><p>Deux points peuvent partager la même abscisse ou la même ordonnée. Si A(2,4) et B(2,−1), ils sont alignés verticalement car leur valeur de x est identique. Si C(−3,5) et D(4,5), ils sont alignés horizontalement car leur valeur de y est identique.</p>
+
+<h2>4. Distance entre deux points</h2>
+<p>La distance entre deux points A(x₁,y₁) et B(x₂,y₂) est obtenue à partir du théorème de Pythagore.</p>
+<div class="formula">d(A,B) = √[(x₂ − x₁)² + (y₂ − y₁)²]</div>
+<div class="example-box"><div class="mini-title">Exemple — A(1,2) et B(4,6)</div><p>Variation horizontale : 4 − 1 = 3. Variation verticale : 6 − 2 = 4.</p><div class="formula">d = √(3² + 4²) = √(9 + 16) = √25 = 5</div><p>La distance entre A et B est donc <strong>5 unités</strong>.</p></div>
+<div class="key-box"><strong>Cas particuliers.</strong> Si deux points ont la même valeur de y, la distance est simplement la différence absolue entre leurs x. S’ils ont la même valeur de x, on utilise la différence absolue entre leurs y.</div>
+
+<h2>5. Milieu d’un segment</h2>
+<p>Le milieu M d’un segment [AB] est le point situé exactement à mi-chemin entre A et B.</p>
+<div class="formula">M = ((x₁+x₂)/2 , (y₁+y₂)/2)</div>
+<div class="example-box"><div class="mini-title">Exemple — A(2,2), B(8,6)</div><div class="formula">M = ((2+8)/2 , (2+6)/2) = (5,4)</div></div>
+<p>En informatique graphique, cette idée permet par exemple de trouver le centre géométrique entre deux positions.</p>
+
+<h2>6. Droites et pente</h2>
+<p>La <strong>pente</strong> mesure la variation verticale par rapport à la variation horizontale entre deux points.</p>
+<div class="formula">m = (y₂ − y₁) / (x₂ − x₁), si x₂ ≠ x₁</div>
+<div class="example-box"><div class="mini-title">Exemple — A(1,2), B(4,8)</div><div class="formula">m = (8−2)/(4−1) = 6/3 = 2</div><p>Lorsque x augmente de 1, y augmente ici de 2.</p></div>
+<table class="ped-table"><tr><th>Type de droite</th><th>Observation</th></tr><tr><td>Horizontale</td><td>Pente = 0 ; y reste constant.</td></tr><tr><td>Montante</td><td>Pente positive.</td></tr><tr><td>Descendante</td><td>Pente négative.</td></tr><tr><td>Verticale</td><td>x reste constant ; la formule de la pente implique une division par zéro.</td></tr></table>
+<h3>6.1 Forme simple d’une équation de droite</h3><p>Une droite non verticale peut être écrite sous la forme :</p><div class="formula">y = mx + b</div><p>où <strong>m</strong> est la pente et <strong>b</strong> l’ordonnée à l’origine.</p>
+
+<h2>7. Coordonnées mathématiques et coordonnées d’écran</h2>
+<p>Dans le plan cartésien classique, l’origine est souvent représentée au centre et y augmente vers le haut. Dans de nombreux systèmes graphiques 2D, l’origine est placée dans le coin supérieur gauche et y augmente vers le bas.</p>
+<div class="concept-grid"><div class="concept-card"><strong>Repère mathématique</strong><p>Origine O(0,0). x augmente vers la droite et y augmente vers le haut.</p></div><div class="concept-card"><strong>Écran 2D courant</strong><p>Origine (0,0) en haut à gauche. x augmente vers la droite et y augmente vers le bas.</p></div></div>
+<div class="binary">Écran numérique
+(0,0) ----------------------→ x
+  |
+  |       • P(300,150)
+  |
+  ↓ y</div>
+<div class="warning-box"><strong>Attention.</strong> Les conventions peuvent varier selon l’API, le logiciel ou le moteur graphique. Il faut toujours vérifier le système de coordonnées utilisé.</div>
+
+<h2>8. Pixels, dimensions et résolution d’une image</h2>
+<p>Une image numérique peut être vue comme une grille de <strong>pixels</strong>. Ses dimensions sont généralement indiquées par <strong>largeur × hauteur</strong>.</p>
+<div class="example-box"><div class="mini-title">Exemple — 1920 × 1080</div><p>Une image de 1920 × 1080 contient :</p><div class="formula">1920 × 1080 = 2 073 600 pixels</div><p>Elle possède donc environ 2,07 millions de pixels.</p></div>
+<h3>8.1 Position d’un pixel</h3><p>Dans une image de largeur W et de hauteur H dont l’origine est en haut à gauche, un pixel peut être repéré par (x,y). Si l’indexation commence à 0, les positions vont généralement de x = 0 à W−1 et de y = 0 à H−1.</p>
+<div class="example-box"><div class="mini-title">Exemple — image 800 × 600</div><p>Avec une indexation commençant à 0, le pixel supérieur gauche est (0,0) et le pixel inférieur droit est (799,599).</p></div>
+<h3>8.2 Rapport largeur/hauteur</h3><p>Le <strong>rapport d’aspect</strong> compare la largeur à la hauteur. Une image 1920 × 1080 possède le rapport 16:9, car 1920/1080 se simplifie en 16/9.</p>
+<div class="key-box"><strong>Important.</strong> Le nombre de pixels ne suffit pas à déterminer à lui seul la taille d’un fichier. Le format, la compression, le nombre de bits par pixel et les métadonnées influencent également l’espace de stockage.</div>
+
+<h2>9. Transformation géométrique : la translation</h2>
+<p>Une <strong>translation</strong> déplace un point sans modifier sa forme ni son orientation. Si le déplacement est (tₓ,tᵧ), alors :</p>
+<div class="formula">x' = x + tₓ &nbsp;&nbsp;&nbsp; ; &nbsp;&nbsp;&nbsp; y' = y + tᵧ</div>
+<div class="example-box"><div class="mini-title">Exemple</div><p>A(2,3) est déplacé de 4 unités vers la droite et de 2 unités vers le haut dans un repère cartésien.</p><div class="formula">A' = (2+4, 3+2) = (6,5)</div></div>
+<div class="activity-box"><div class="mini-title">Application informatique</div><p>Si un bouton graphique situé en (100,50) est déplacé de (20,30) dans un système où les deux coordonnées augmentent dans le sens du déplacement choisi, sa nouvelle position est (120,80).</p></div>
+
+<h2>10. La rotation</h2>
+<p>Une <strong>rotation</strong> fait tourner un point autour d’un centre. Pour commencer, on considère des rotations autour de l’origine O(0,0) dans le plan cartésien.</p>
+<table class="ped-table"><tr><th>Rotation antihoraire autour de O</th><th>Transformation</th></tr><tr><td>90°</td><td>(x,y) → (−y,x)</td></tr><tr><td>180°</td><td>(x,y) → (−x,−y)</td></tr><tr><td>270°</td><td>(x,y) → (y,−x)</td></tr><tr><td>360°</td><td>(x,y) → (x,y)</td></tr></table>
+<div class="example-box"><div class="mini-title">Exemple — rotation de 90°</div><p>A(3,2) devient :</p><div class="formula">A'(−2,3)</div><p>car (x,y) → (−y,x).</p></div>
+<div class="remember-box"><strong>Méthode.</strong> Pour éviter les erreurs, écrivez d’abord la règle de transformation, remplacez ensuite x et y par leurs valeurs, puis vérifiez le quadrant du résultat.</div>
+
+<h2>11. Homothétie et mise à l’échelle</h2>
+<p>Une <strong>homothétie</strong> modifie la taille d’un objet. Avec l’origine comme centre et un facteur k :</p>
+<div class="formula">(x,y) → (kx,ky)</div>
+<div class="example-box"><div class="mini-title">Exemple — facteur 2</div><p>A(3,2) devient A'(6,4). Les distances à l’origine sont multipliées par 2.</p></div>
+<table class="ped-table"><tr><th>Facteur k</th><th>Effet</th></tr><tr><td>k &gt; 1</td><td>Agrandissement.</td></tr><tr><td>0 &lt; k &lt; 1</td><td>Réduction.</td></tr><tr><td>k = 1</td><td>Aucun changement de taille.</td></tr><tr><td>k &lt; 0</td><td>Changement d’échelle accompagné d’un changement de direction par rapport au centre.</td></tr></table>
+<h3>11.1 Mise à l’échelle d’une image</h3><div class="example-box"><div class="mini-title">Exemple</div><p>Une image de 800 × 600 est réduite avec k = 0,5.</p><div class="formula">800×0,5 = 400 &nbsp;&nbsp; et &nbsp;&nbsp; 600×0,5 = 300</div><p>Les nouvelles dimensions sont <strong>400 × 300</strong>. Le rapport largeur/hauteur est conservé parce que le même facteur est appliqué aux deux dimensions.</p></div>
+
+<h2>12. Combiner plusieurs transformations</h2>
+<p>Un objet numérique peut subir plusieurs transformations successives. L’ordre des opérations est important.</p>
+<div class="example-box"><div class="mini-title">Exemple — translation puis rotation</div><p>Partons de A(1,2). On effectue d’abord une translation de (3,1), puis une rotation de 90° antihoraire autour de l’origine.</p><div class="binary">1. Translation : (1,2) → (4,3)
+2. Rotation 90° : (4,3) → (−3,4)</div><p>Le résultat final est <strong>(−3,4)</strong>.</p></div>
+<div class="warning-box"><strong>L’ordre compte.</strong> Faire d’abord la rotation puis la translation peut produire un résultat différent. Une transformation composée doit donc être exécutée dans l’ordre indiqué.</div>
+
+<h2>13. Résoudre un problème géométrique en informatique</h2>
+<p>Pour éviter de mélanger les coordonnées, les unités et les conventions, utilisez une méthode systématique.</p>
+<ol><li><strong>Identifier les données</strong> : coordonnées, dimensions, angle, facteur ou déplacement.</li><li><strong>Identifier le repère</strong> : cartésien ou écran.</li><li><strong>Choisir la formule</strong> appropriée.</li><li><strong>Remplacer les variables</strong> par les valeurs.</li><li><strong>Calculer étape par étape.</strong></li><li><strong>Vérifier</strong> le signe, l’ordre des coordonnées et les unités.</li><li><strong>Interpréter</strong> le résultat dans le contexte informatique.</li></ol>
+<div class="flow"><span>Données</span><b>→</b><span>Repère</span><b>→</b><span>Formule</span><b>→</b><span>Calcul</span><b>→</b><span>Vérification</span></div>
+
+<h2>14. Applications informatiques</h2>
+<table class="ped-table"><tr><th>Domaine</th><th>Notions géométriques</th><th>Exemple</th></tr><tr><td>Interface utilisateur</td><td>Coordonnées, dimensions, translation</td><td>Positionner ou déplacer un composant.</td></tr><tr><td>Image numérique</td><td>Pixels, coordonnées, échelle</td><td>Redimensionner ou localiser une zone.</td></tr><tr><td>Jeux / simulation</td><td>Distance, rotation, translation</td><td>Déplacer un objet ou mesurer sa proximité.</td></tr><tr><td>Visualisation de données</td><td>Axes, coordonnées, mise à l’échelle</td><td>Afficher des mesures dans un graphique.</td></tr><tr><td>Cartographie</td><td>Positions, distances, transformations</td><td>Transformer des coordonnées pour un affichage.</td></tr></table>
+
+<h2>15. Connexion avec la cybersécurité</h2>
+<p>Pour un programme de cybersécurité, cette partie doit rester <strong>contextuelle</strong>. La géométrie n’est pas utilisée dans tous les métiers de la sécurité, mais certaines notions du chapitre peuvent apparaître dans des situations spécialisées.</p>
+<div class="concept-grid"><div class="concept-card"><strong>Analyse d’images</strong><p>Comprendre les pixels, les coordonnées et les dimensions aide à raisonner sur la structure d’une image numérique.</p></div><div class="concept-card"><strong>Visualisation</strong><p>Des événements ou mesures de sécurité peuvent être représentés dans des graphiques afin de faciliter leur analyse.</p></div><div class="concept-card"><strong>Données numériques</strong><p>Dimensions, indices et coordonnées doivent respecter les limites attendues par un programme.</p></div><div class="concept-card"><strong>Domaines spécialisés</strong><p>L’analyse multimédia et certaines techniques de traitement d’image peuvent mobiliser davantage de géométrie.</p></div></div>
+<div class="cyber-box"><strong>Message pédagogique.</strong> Pour ces étudiants, il est préférable d’enseigner la géométrie comme un outil de <strong>représentation et de raisonnement informatique</strong>, sans présenter artificiellement chaque formule comme une technique de cybersécurité.</div>
+
+<h2>16. Exercices guidés</h2>
+<h3>A. Coordonnées</h3><div class="check-question">1. Dans quel quadrant se trouve A(5,3) ? B(−2,4) ? C(−3,−6) ? D(4,−2) ?</div><div class="check-question">2. Les points P(3,2) et Q(3,8) sont-ils alignés horizontalement ou verticalement ? Justifier.</div>
+<h3>B. Distance et milieu</h3><div class="check-question">3. Calculer la distance entre A(1,1) et B(4,5).</div><div class="check-question">4. Déterminer le milieu du segment reliant C(2,6) à D(8,10).</div>
+<h3>C. Pente</h3><div class="check-question">5. Calculer la pente de la droite passant par A(2,1) et B(6,9).</div><div class="check-question">6. Quelle est la pente d’une droite horizontale ? Pourquoi une droite verticale demande-t-elle un traitement particulier ?</div>
+<h3>D. Images numériques</h3><div class="check-question">7. Combien de pixels contient une image 1280 × 720 ?</div><div class="check-question">8. Dans une image 640 × 480 indexée à partir de 0, quelles sont les coordonnées du pixel inférieur droit ?</div><div class="check-question">9. Une image 1200 × 800 est réduite à 50 %. Quelles sont ses nouvelles dimensions ?</div>
+<h3>E. Transformations</h3><div class="check-question">10. Appliquer à A(2,5) une translation de (3,−2).</div><div class="check-question">11. Faire tourner B(4,1) de 90° dans le sens antihoraire autour de l’origine.</div><div class="check-question">12. Appliquer à C(−2,3) une rotation de 180°.</div><div class="check-question">13. Appliquer une homothétie de facteur 3 à D(2,−1), avec l’origine comme centre.</div>
+<h3>F. Raisonnement informatique</h3><div class="check-question">14. Un objet graphique se trouve en (100,80). Il est déplacé de 25 pixels vers la droite et 40 pixels vers le bas dans un repère écran. Donner sa nouvelle position.</div><div class="check-question">15. Expliquez pourquoi il est important de connaître la convention de l’axe y avant d’appliquer une translation dans une interface graphique.</div>
+
+<h2>17. Mini étude de cas — interface graphique</h2>
+<p>Une application affiche une image de <strong>800 × 600 pixels</strong>. Un marqueur est placé au point P(200,150), avec l’origine en haut à gauche.</p>
+<ol><li>Quelle est la largeur et quelle est la hauteur de l’image ?</li><li>Le point P est-il à l’intérieur de l’image ? Justifier à partir des intervalles valides.</li><li>Le marqueur est déplacé de 300 pixels vers la droite et de 100 pixels vers le bas. Quelles sont ses nouvelles coordonnées ?</li><li>La nouvelle position reste-t-elle dans l’image ?</li><li>Si l’image est réduite à 50 % et que le marqueur doit conserver la même position relative, quelles deviennent les dimensions de l’image et les coordonnées du marqueur ?</li></ol>
+<div class="activity-box"><div class="mini-title">Objectif</div><p>Cette étude de cas combine coordonnées, limites d’une image, translation et mise à l’échelle. Elle montre comment plusieurs notions mathématiques interviennent dans un même problème informatique.</p></div>
+
+<h2>18. Défi de synthèse</h2>
+<p>Un triangle possède les sommets A(1,1), B(5,1) et C(3,4).</p><ol><li>Calculer la distance AB.</li><li>Déterminer le milieu de [AB].</li><li>Appliquer une translation de (2,3) aux trois sommets.</li><li>À partir des points d’origine, appliquer une rotation de 90° antihoraire autour de O.</li><li>À partir des points d’origine, appliquer une homothétie de facteur 2.</li><li>Comparer les trois transformations : laquelle change seulement la position ? laquelle change l’orientation ? laquelle change la taille ?</li></ol>
+
+<h2>19. Synthèse</h2>
+<div class="summary-box"><ul><li>Un point du plan est représenté par des coordonnées <strong>(x,y)</strong>.</li><li>La distance entre deux points repose sur le théorème de Pythagore.</li><li>Le milieu est obtenu en faisant la moyenne des coordonnées correspondantes.</li><li>La pente décrit la variation verticale par rapport à la variation horizontale.</li><li>Les coordonnées d’un écran ne suivent pas toujours la même convention que le plan cartésien.</li><li>Une image numérique est une grille de pixels définie notamment par sa largeur et sa hauteur.</li><li>Une translation déplace un objet ; une rotation change son orientation ; une homothétie modifie son échelle.</li><li>L’ordre des transformations successives peut changer le résultat.</li><li>En informatique, ces notions servent notamment aux interfaces, images, jeux, simulations et visualisations.</li><li>En cybersécurité, leur rôle est plus spécialisé ; le lien le plus pertinent dans ce cours est la compréhension des représentations et données numériques.</li></ul></div>
+</article></main><footer>© AsTechAI-Teaching · Mathématiques et résolution de problèmes informatiques</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script>document.querySelectorAll('[data-root-href]').forEach(function(a){var h=a.getAttribute('data-root-href');if(/^https?:/.test(h)){a.href=h;return;}a.href='../../../'+h;});</script>
+</body></html>

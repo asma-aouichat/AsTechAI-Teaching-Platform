@@ -1,0 +1,351 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapitre 1 — Introduction aux mathématiques appliquées à l’informatique | AsTechAI</title><style>
+:root{--navy:#0b245d;--blue:#1268f3;--purple:#7c35f6;--bg:#f5f7fb;--text:#202020}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+
+
+
+
+
+main{max-width:1080px;margin:auto;padding:64px 22px 80px}.back{display:inline-block;color:#0870ff;text-decoration:none;font-size:18px;margin-bottom:30px}
+.lesson-card{background:#fff;border:1px solid #dfe4ec;border-radius:22px;padding:66px 62px;box-shadow:0 1px 4px #0f234612}.badge{display:inline-block;background:#edf3ff;color:#2567dc;font-size:14px;font-weight:700;padding:5px 11px;border-radius:20px;margin-bottom:20px}
+h1{font-size:46px;line-height:1.14;color:#10265e;margin:0 0 20px;font-weight:500}.lead{font-size:23px;line-height:1.55;margin:0 0 28px}.objectives{background:#dbe9ff;border:1px solid #83b3ff;border-radius:8px;padding:20px 22px;color:#10356d;font-size:18px;margin:28px 0 54px}.objectives strong{font-weight:800}
+h2{font-size:34px;line-height:1.25;margin:44px 0 22px}p{font-size:18px;margin:0 0 18px}footer{text-align:center;padding:28px;color:#6b7280}
+@media(max-width:950px){.lesson-card{padding:40px}}
+@media(max-width:650px){.lesson-card{padding:28px 22px}h1{font-size:34px}h2{font-size:28px}}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+.as-navbar{min-height:100px;z-index:1030}
+.as-nav-container{max-width:1540px;margin:auto;padding:0 34px}
+.as-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.as-book{width:76px;height:52px;display:inline-block;position:relative}
+.as-book::before,.as-book::after{content:"";position:absolute;top:2px;width:35px;height:49px;border-radius:7px 7px 12px 7px;transform:skewY(7deg)}
+.as-book::before{left:0;background:#0967f6}
+.as-book::after{right:0;background:#8237f4}
+.as-brand strong{display:block;font-size:32px;line-height:1;color:#081d54}
+.as-brand strong span{color:#5936e8}
+.as-brand small{display:block;margin-top:7px;color:#63718d;font-size:14px}
+.as-main-links{gap:20px}
+.as-main-links .nav-link{font-weight:700;color:#0b245d!important;padding:15px 18px!important;border-radius:16px}
+.as-main-links .nav-link.active{background:#edf3ff;color:#1268f3!important}
+.as-search{width:320px;height:56px;border-radius:30px;background:#f0f4fc;align-items:center;padding:0 20px;gap:10px;margin-right:26px}
+.as-search input{border:0;outline:0;background:transparent;width:100%;font-size:17px}
+.as-login{background:linear-gradient(90deg,#3c72f5,#8732ef);border:0!important;color:#fff!important;font-weight:700;padding:15px 24px;border-radius:16px;white-space:nowrap}
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:min(760px,92vw);padding:18px;border:1px solid #e1e6ef;border-radius:18px;box-shadow:0 18px 50px rgba(16,38,94,.15)}
+.as-course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.as-course-card{display:flex;gap:14px;align-items:center;text-decoration:none;color:#10265e;padding:14px;border-radius:12px}
+.as-course-card:hover{background:#f3f6fc}
+.as-course-card small{display:block;color:#71809b}
+.as-course-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:10px;background:#eaf2ff;color:#1769ef;font-weight:800;font-size:20px}
+.as-course-icon.orange{background:#fff1e5;color:#f28a24}.as-course-icon.purple{background:#f0e9ff;color:#7737ef}
+@media(max-width:991px){.as-navbar{min-height:auto}.as-nav-container{padding:12px 20px}.as-course-grid{grid-template-columns:1fr}.as-brand strong{font-size:26px}.as-book{transform:scale(.85);transform-origin:left center}}
+</style>
+
+
+<style>
+.lesson-card{overflow:hidden}
+.lesson-card h2{color:#10265e;border-bottom:2px solid #edf2fa;padding-bottom:12px}
+.lesson-card h3{font-size:24px;color:#173b7a;margin:30px 0 12px}
+.lesson-card h4{font-size:19px;color:#243b67;margin:22px 0 8px}
+.lesson-card ul,.lesson-card ol{font-size:18px;padding-left:28px}
+.lesson-card li{margin:8px 0}
+.key-box,.example-box,.activity-box,.remember-box,.warning-box,.summary-box{border-radius:12px;padding:20px 22px;margin:22px 0}
+.key-box{background:#f2f7ff;border-left:5px solid #1769ef}
+.example-box{background:#f7f4ff;border-left:5px solid #7c35f6}
+.activity-box{background:#f1fbf6;border-left:5px solid #27a56a}
+.remember-box{background:#fff8e8;border-left:5px solid #e8a51b}
+.warning-box{background:#fff2f2;border-left:5px solid #d94b4b}
+.summary-box{background:#eef4ff;border:1px solid #b9d2ff}
+.concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.concept-card{border:1px solid #e0e6ef;border-radius:14px;padding:20px;background:#fff;box-shadow:0 3px 12px rgba(16,38,94,.05)}
+.concept-card strong{color:#10265e;font-size:19px}
+.flow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:25px 0}
+.flow span{padding:12px 16px;background:#edf3ff;color:#143c83;border-radius:10px;font-weight:700}
+.flow b{color:#7c35f6;font-size:22px}
+.ped-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:17px}
+.ped-table th,.ped-table td{border:1px solid #dce3ed;padding:12px 14px;vertical-align:top}
+.ped-table th{background:#10265e;color:#fff}
+.ped-table tr:nth-child(even) td{background:#f8faff}
+.check-question{padding:16px 18px;border:1px solid #dfe6f0;border-radius:10px;margin:12px 0;background:#fff}
+.answer{margin-top:8px;color:#52627d;font-size:16px}
+.mini-title{font-weight:800;color:#10265e}
+@media(max-width:700px){.concept-grid{grid-template-columns:1fr}.ped-table{font-size:15px}}
+</style>
+
+
+<style>
+.lesson-card pre{background:#f6f8fc;border:1px solid #e0e6ef;border-radius:10px;padding:16px 18px;overflow:auto;font-size:16px;line-height:1.55;color:#172033}
+.lesson-card code{background:#eef2f7;border-radius:5px;padding:2px 5px}
+.formula{text-align:center;font-size:19px;font-weight:700;padding:10px}
+.lesson-card .cyber-label{color:#6d28d9;font-weight:800}
+</style>
+</head><body>
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+  <div class="container-fluid as-nav-container">
+    <a class="navbar-brand as-brand" data-root-href="index.html" href="#">
+      <span class="as-book" aria-hidden="true"></span>
+      <span>
+        <strong>AsTech<span>AI</span></strong>
+        <small>IT Learning Platform</small>
+      </span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#asMainNavbar" aria-controls="asMainNavbar"
+            aria-expanded="false" aria-label="Afficher la navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="asMainNavbar">
+      <ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+        <li class="nav-item">
+          <a class="nav-link active" data-root-href="index.html" href="#">Accueil</a>
+        </li>
+
+        <li class="nav-item dropdown position-static">
+          <a class="nav-link dropdown-toggle" href="#" role="button"
+             data-bs-toggle="dropdown" data-bs-auto-close="outside"
+             aria-expanded="false">Cours</a>
+
+          <div class="dropdown-menu as-course-menu">
+            <div class="as-course-grid">
+              <a class="as-course-card" data-root-href="cours/gestion-ordinateurs/index.html" href="#">
+                <span class="as-course-icon">▣</span>
+                <span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="https://asma-aouichat.github.io/microsoft365-learning-hub/" href="#">
+                <span class="as-course-icon orange">M</span>
+                <span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="cours/mathematiques-resolution-probleme/index.html" href="#">
+                <span class="as-course-icon purple">∑</span>
+                <span><strong>Mathématiques — Résolution de problème</strong><small>Raisonnement, méthodes et stratégies de résolution</small></span>
+              </a>
+              <!-- <a class="as-course-card" data-root-href="cours/programmation/index.html" href="#">
+                <span class="as-course-icon purple">&lt;/&gt;</span>
+                <span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="cours/bases-de-donnees/index.html" href="#">
+                <span class="as-course-icon">◎</span>
+                <span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="cours/programmation-orientee-objet/index.html" href="#">
+                <span class="as-course-icon purple">◇</span>
+                <span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+              </a> -->
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" data-root-href="projets/index.html" href="#">Projets</a></li>
+        <li class="nav-item"><a class="nav-link" data-root-href="index.html#apropos" href="#">À propos</a></li>
+        <li class="nav-item"><a class="nav-link" data-root-href="index.html#ressources" href="#">Ressources</a></li>
+      </ul>
+
+      <form class="d-none d-xl-flex as-search" role="search" onsubmit="return false;">
+        <span aria-hidden="true">⌕</span>
+        <input type="search" placeholder="Rechercher..." aria-label="Rechercher">
+      </form>
+
+      <a class="btn as-login" data-root-href="connexion/index.html" href="#">♙ &nbsp; Connexion</a>
+    </div>
+  </div>
+</nav>
+<main><a class="back" href="../index.html">← Retour aux leçons</a><article class="lesson-card"><span class="badge">Leçon 2</span>
+<h1>Systèmes numériques et représentation de l’information</h1>
+<p class="lead">Comprendre les systèmes de numération, les conversions, l’arithmétique binaire et la représentation des nombres afin de préparer les applications en programmation, réseaux et cybersécurité.</p>
+
+
+<div class="objectives"><strong>Objectifs d’apprentissage.</strong> À la fin de ce chapitre, l’étudiant sera capable de :<ul>
+<li>expliquer la notion de base et de notation positionnelle ;</li><li>distinguer les systèmes décimal, binaire, octal et hexadécimal ;</li><li>expliquer bit, nibble, octet et unités de stockage ;</li><li>effectuer des conversions entre les bases 2, 8, 10 et 16 ;</li><li>effectuer des opérations arithmétiques simples en binaire ;</li><li>utiliser les opérations bit à bit AND, OR, XOR et NOT ;</li><li>distinguer entiers non signés et signés et expliquer le complément à deux ;</li><li>identifier les limites de représentation et le débordement ;</li><li>comprendre le principe de la représentation des nombres réels et de la précision numérique ;</li><li>relier ces notions à des situations informatiques et de cybersécurité.</li></ul></div>
+
+<h2>2.1 Qu’est-ce qu’un système de numération ?</h2>
+<p>Un <strong>système de numération</strong> est une méthode permettant d’écrire des nombres à l’aide d’un ensemble de symboles. Le nombre de symboles disponibles définit la <strong>base</strong>.</p>
+<table class="ped-table"><tr><th>Système</th><th>Base</th><th>Symboles</th><th>Exemple</th></tr><tr><td>Décimal</td><td>10</td><td>0 à 9</td><td>253₁₀</td></tr><tr><td>Binaire</td><td>2</td><td>0 et 1</td><td>101101₂</td></tr><tr><td>Octal</td><td>8</td><td>0 à 7</td><td>735₈</td></tr><tr><td>Hexadécimal</td><td>16</td><td>0 à 9 et A à F</td><td>2AF₁₆</td></tr></table>
+<div class="key-box"><strong>Idée essentielle :</strong> la quantité ne change pas lorsque sa représentation change. Par exemple, 15₁₀ = 1111₂ = 17₈ = F₁₆.</div>
+<h3>Pourquoi plusieurs systèmes ?</h3><p>Les humains utilisent principalement le décimal. Les ordinateurs manipulent naturellement des états binaires. L’octal et surtout l’hexadécimal offrent une écriture plus compacte du binaire.</p>
+<div class="key-box"><strong>Lien cybersécurité :</strong> l’hexadécimal apparaît fréquemment dans les adresses mémoire, les dumps de paquets, les valeurs d’octets, les empreintes numériques et l’analyse de données brutes.</div>
+
+<h2>2.2 Notation positionnelle</h2>
+<p>Dans un système positionnel, la valeur d’un chiffre dépend de sa position. En base <em>b</em>, les positions correspondent à b⁰, b¹, b², etc.</p>
+<div class="example-box"><strong>Exemple binaire :</strong><div class="formula">1011₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 8 + 0 + 2 + 1 = 11₁₀</div></div>
+<div class="example-box"><strong>Exemple hexadécimal :</strong><div class="formula">2F₁₆ = 2×16¹ + 15×16⁰ = 32 + 15 = 47₁₀</div></div>
+<p>En hexadécimal : A=10, B=11, C=12, D=13, E=14 et F=15.</p>
+
+<h2>2.3 Bit, nibble, octet et mot</h2>
+<div class="concept-grid"><div class="concept-card"><h4>Bit</h4><p>Un <strong>bit</strong> (binary digit) vaut 0 ou 1. C’est l’unité élémentaire d’information.</p></div><div class="concept-card"><h4>Nibble</h4><p>Un <strong>nibble</strong> contient 4 bits. Un chiffre hexadécimal correspond exactement à 4 bits.</p></div><div class="concept-card"><h4>Octet</h4><p>Un <strong>octet</strong> contient 8 bits. En anglais : <em>byte</em>.</p></div><div class="concept-card"><h4>Mot</h4><p>Un <strong>mot</strong> est un groupe de bits traité comme une unité par un processeur, par exemple 32 ou 64 bits.</p></div></div>
+<pre>1 bit     : 1
+4 bits    : 1011       = 1 nibble
+8 bits    : 10110110   = 1 octet
+16 bits   : 2 octets
+32 bits   : 4 octets
+64 bits   : 8 octets</pre>
+<div class="key-box"><strong>Relation importante :</strong> 1 chiffre hexadécimal = 4 bits ; 2 chiffres hexadécimaux = 8 bits = 1 octet.</div>
+<div class="key-box"><strong>Exemple :</strong> l’octet 11111111₂ peut s’écrire FF₁₆. Cette correspondance rend l’hexadécimal très pratique pour lire des données binaires.</div>
+
+<h2>2.4 Unités de stockage : bit → octet → Ko → Mo → Go</h2>
+<p>Les unités permettent d’exprimer de grandes quantités de données.</p>
+<table class="ped-table"><tr><th>Unité</th><th>Symbole</th><th>Valeur décimale</th></tr><tr><td>bit</td><td>b</td><td>0 ou 1</td></tr><tr><td>octet</td><td>o / B</td><td>8 bits</td></tr><tr><td>kilooctet</td><td>Ko / kB</td><td>1 000 octets</td></tr><tr><td>mégaoctet</td><td>Mo / MB</td><td>1 000 000 octets</td></tr><tr><td>gigaoctet</td><td>Go / GB</td><td>1 000 000 000 octets</td></tr><tr><td>téraoctet</td><td>To / TB</td><td>1 000 000 000 000 octets</td></tr></table>
+<h3>1 000 ou 1 024 ?</h3><p>Il existe deux conventions. Les unités décimales utilisent des puissances de 1 000. Les unités binaires utilisent des puissances de 1 024 = 2¹⁰.</p>
+<table class="ped-table"><tr><th>Décimal</th><th>Valeur</th><th>Binaire</th><th>Valeur</th></tr><tr><td>1 Ko</td><td>1 000 octets</td><td>1 Kio</td><td>1 024 octets = 2¹⁰</td></tr><tr><td>1 Mo</td><td>1 000 000 octets</td><td>1 Mio</td><td>1 048 576 octets = 2²⁰</td></tr><tr><td>1 Go</td><td>1 000 000 000 octets</td><td>1 Gio</td><td>1 073 741 824 octets = 2³⁰</td></tr></table>
+<div class="warning-box"><strong>Attention :</strong> b signifie <em>bit</em>, tandis que B signifie <em>byte</em> (octet). 8 bits = 1 octet.</div>
+<div class="activity-box"><strong>Mini-activité :</strong> combien de bits contiennent 20 octets ? Réponse : 20 × 8 = 160 bits.</div>
+
+<h2>2.5 Puissances de 2 et capacité de représentation</h2>
+<p>Avec <strong>n bits</strong>, il existe <strong>2ⁿ combinaisons</strong>. Pour un entier non signé, les valeurs vont de 0 à 2ⁿ−1.</p>
+<table class="ped-table"><tr><th>Bits</th><th>Combinaisons</th><th>Intervalle non signé</th></tr><tr><td>1</td><td>2</td><td>0 à 1</td></tr><tr><td>4</td><td>16</td><td>0 à 15</td></tr><tr><td>8</td><td>256</td><td>0 à 255</td></tr><tr><td>16</td><td>65 536</td><td>0 à 65 535</td></tr><tr><td>32</td><td>4 294 967 296</td><td>0 à 4 294 967 295</td></tr></table>
+<div class="example-box"><strong>Exemple :</strong> avec 8 bits, on dispose de 2⁸ = 256 combinaisons. Comme on commence à 0, la plus grande valeur non signée est 255.</div>
+
+<h2>2.6 Conversion binaire → décimal</h2>
+<p>On multiplie chaque bit par la puissance de 2 correspondant à sa position.</p>
+<pre>110101₂
+= 1×2⁵ + 1×2⁴ + 0×2³ + 1×2² + 0×2¹ + 1×2⁰
+= 32 + 16 + 0 + 4 + 0 + 1
+= 53₁₀</pre>
+<div class="activity-box"><strong>À faire :</strong> convertir 10110₂, 111111₂ et 10000000₂ en décimal.</div>
+
+<h2>2.7 Conversion décimal → binaire</h2>
+<h3>Méthode des divisions successives</h3><p>On divise le nombre par 2, on conserve les restes, puis on lit les restes de bas en haut.</p>
+<pre>25 ÷ 2 = 12 reste 1
+12 ÷ 2 =  6 reste 0
+ 6 ÷ 2 =  3 reste 0
+ 3 ÷ 2 =  1 reste 1
+ 1 ÷ 2 =  0 reste 1
+
+Lecture de bas en haut : 11001₂
+Donc 25₁₀ = 11001₂</pre>
+<div class="activity-box"><strong>À faire :</strong> convertir 13₁₀, 42₁₀, 100₁₀ et 255₁₀ en binaire.</div>
+
+<h2>2.8 Octal et hexadécimal</h2>
+<h3>Octal</h3><p>La base 8 utilise les chiffres 0 à 7. Chaque chiffre octal correspond à <strong>3 bits</strong>, car 8 = 2³.</p>
+<pre>101 111 010₂
+ 5   7   2
+= 572₈</pre>
+<h3>Hexadécimal</h3><p>La base 16 utilise 0–9 et A–F. Chaque chiffre hexadécimal correspond à <strong>4 bits</strong>, car 16 = 2⁴.</p>
+<table class="ped-table"><tr><th>Binaire</th><th>Hex.</th><th>Binaire</th><th>Hex.</th></tr><tr><td>0000</td><td>0</td><td>1000</td><td>8</td></tr><tr><td>0001</td><td>1</td><td>1001</td><td>9</td></tr><tr><td>0010</td><td>2</td><td>1010</td><td>A</td></tr><tr><td>0011</td><td>3</td><td>1011</td><td>B</td></tr><tr><td>0100</td><td>4</td><td>1100</td><td>C</td></tr><tr><td>0101</td><td>5</td><td>1101</td><td>D</td></tr><tr><td>0110</td><td>6</td><td>1110</td><td>E</td></tr><tr><td>0111</td><td>7</td><td>1111</td><td>F</td></tr></table>
+<div class="example-box"><strong>Exemple :</strong> 1111 1010₂ = FA₁₆. Inversement, 3C₁₆ = 0011 1100₂.</div>
+<div class="key-box"><strong>Lien cybersécurité :</strong> lorsqu’un outil affiche un octet comme <code>7F</code>, il s’agit de 01111111₂, soit 127₁₀. Lire l’hexadécimal permet donc d’interpréter rapidement les octets.</div>
+
+<h2>2.9 Opérations arithmétiques binaires</h2>
+<h3>Addition</h3><table class="ped-table"><tr><th>Opération</th><th>Résultat</th></tr><tr><td>0 + 0</td><td>0</td></tr><tr><td>0 + 1</td><td>1</td></tr><tr><td>1 + 0</td><td>1</td></tr><tr><td>1 + 1</td><td>10 : écrire 0, retenue 1</td></tr><tr><td>1 + 1 + 1</td><td>11 : écrire 1, retenue 1</td></tr></table>
+<pre>   1011
+ + 0110
+ ------
+  10001</pre>
+<h3>Soustraction avec emprunt</h3><p>Lorsque l’on rencontre 0−1, on emprunte 1 à la colonne de gauche. En base 2, cet emprunt vaut <strong>10₂</strong> dans la colonne courante.</p>
+<pre>   1010
+ - 0011
+ ------
+   0111</pre>
+<p>Vérification : 10₁₀ − 3₁₀ = 7₁₀.</p>
+<div class="warning-box"><strong>Important :</strong> dans cette partie, on choisit d’abord des exercices où le premier nombre est supérieur ou égal au second afin de rester dans les entiers non signés.</div>
+<h3>Multiplication</h3><pre>     101
+   ×  11
+   -----
+     101
++   1010
+   -----
+    1111</pre><p>Vérification : 5 × 3 = 15.</p>
+<h3>Division</h3><p>Diviser par 10₂ revient à diviser par 2 ; pour une division entière par une puissance de 2, cela correspond à un décalage vers la droite.</p>
+<pre>1100₂ ÷ 10₂ = 110₂     (12 ÷ 2 = 6)
+1100₂ ÷ 100₂ = 11₂     (12 ÷ 4 = 3)
+1111₂ ÷ 11₂ = 101₂     (15 ÷ 3 = 5)</pre>
+
+<h2>2.10 Opérations bit à bit : AND, OR, XOR et NOT</h2>
+<p>Les opérations bit à bit comparent les bits placés à la même position.</p>
+<table class="ped-table"><tr><th>A</th><th>B</th><th>A AND B</th><th>A OR B</th><th>A XOR B</th></tr><tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td></tr></table>
+<div class="concept-grid"><div class="concept-card"><h4>AND</h4><p>1 uniquement si les deux bits valent 1.</p></div><div class="concept-card"><h4>OR</h4><p>1 si au moins un bit vaut 1.</p></div><div class="concept-card"><h4>XOR</h4><p>1 si les deux bits sont différents.</p></div><div class="concept-card"><h4>NOT</h4><p>Inverse chaque bit : 0 devient 1 et 1 devient 0.</p></div></div>
+<pre>A       = 11001010
+B       = 10110100
+A AND B = 10000000
+A OR B  = 11111110
+A XOR B = 01111110
+NOT A   = 00110101   (sur 8 bits)</pre>
+<div class="key-box"><strong>Lien cybersécurité :</strong> AND sert notamment à appliquer des masques de bits ; XOR est une opération fondamentale dans de nombreux mécanismes informatiques et cryptographiques. Ici, l’objectif est d’en maîtriser le calcul, pas encore les algorithmes cryptographiques.</div>
+
+<h2>2.11 Décalages de bits</h2>
+<p>Un décalage déplace les bits vers la gauche ou vers la droite.</p>
+<pre>00101101 << 1  → 01011010
+00101100 >> 1  → 00010110</pre>
+<p>Pour des entiers non signés et en l’absence de perte de bits, un décalage d’un bit vers la gauche correspond à une multiplication par 2 ; un décalage d’un bit vers la droite correspond à une division entière par 2.</p>
+<div class="warning-box"><strong>Attention :</strong> si un bit significatif sort de la taille fixée, l’interprétation du résultat dépend du type et de la largeur utilisés.</div>
+
+<h2>2.12 Entiers non signés et signés</h2>
+<h3>Entier non signé</h3><p>Tous les bits servent à représenter la valeur. Sur 8 bits : 0 à 255.</p>
+<h3>Entier signé</h3><p>Un entier signé doit pouvoir représenter des valeurs positives et négatives. La représentation courante est le <strong>complément à deux</strong>.</p>
+<table class="ped-table"><tr><th>Largeur</th><th>Non signé</th><th>Signé en complément à deux</th></tr><tr><td>4 bits</td><td>0 à 15</td><td>−8 à +7</td></tr><tr><td>8 bits</td><td>0 à 255</td><td>−128 à +127</td></tr><tr><td>16 bits</td><td>0 à 65 535</td><td>−32 768 à +32 767</td></tr></table>
+<div class="key-box"><strong>Formule :</strong> sur n bits, l’intervalle signé en complément à deux est −2ⁿ⁻¹ à 2ⁿ⁻¹−1.</div>
+
+<h2>2.13 Complément à deux</h2>
+<p>Pour obtenir l’opposé d’un nombre sur une largeur fixée :</p><ol><li>écrire le nombre positif sur n bits ;</li><li>inverser tous les bits ;</li><li>ajouter 1.</li></ol>
+<pre>+5 sur 8 bits : 00000101
+Inversion      : 11111010
+Ajouter 1      : 11111011
+Donc −5        : 11111011</pre>
+<div class="example-box"><strong>Exemple de soustraction donnant un résultat négatif :</strong> sur 4 bits, 3−7 peut être traité comme 0011 + (complément à deux de 0111). Le résultat 1100₂ représente −4.</div>
+<div class="warning-box"><strong>Attention :</strong> une suite de bits n’a pas une valeur signée ou non signée par elle-même. L’interprétation dépend du type choisi. Par exemple, 1100₂ vaut 12 en non signé sur 4 bits, mais −4 en complément à deux sur 4 bits.</div>
+
+<h2>2.14 Débordement (overflow)</h2>
+<p>Une largeur de n bits impose une plage limitée. Un résultat mathématique peut ne pas être représentable dans cette plage.</p>
+<div class="example-box"><strong>Exemple non signé sur 8 bits :</strong> la valeur maximale est 255. Le calcul 255 + 1 nécessite 256, qui ne tient pas sur 8 bits non signés.</div>
+<div class="example-box"><strong>Exemple signé sur 8 bits :</strong> la valeur maximale est +127. Le calcul 127 + 1 sort de l’intervalle −128 à +127.</div>
+<div class="key-box"><strong>Lien cybersécurité :</strong> comprendre les limites numériques aide à comprendre certaines classes de problèmes logiciels, notamment les erreurs de taille, de compteur et de validation. Les conséquences exactes dépendent du langage, du type et du contexte d’exécution.</div>
+
+<h2>2.15 Nombres fractionnaires en binaire</h2>
+<p>À droite de la virgule binaire, les positions valent 2⁻¹, 2⁻², 2⁻³, etc.</p>
+<pre>10.101₂
+= 1×2¹ + 0×2⁰ + 1×2⁻¹ + 0×2⁻² + 1×2⁻³
+= 2 + 0,5 + 0,125
+= 2,625₁₀</pre>
+<h3>Décimal fractionnaire → binaire</h3><p>Pour la partie fractionnaire, on multiplie successivement par 2 et on conserve les parties entières obtenues.</p>
+<pre>0,625 × 2 = 1,25  → 1
+0,25  × 2 = 0,50  → 0
+0,50  × 2 = 1,00  → 1
+Donc 0,625₁₀ = 0.101₂</pre>
+
+<h2>2.16 Virgule flottante et précision numérique</h2>
+<p>Les nombres réels sont généralement représentés en virgule flottante avec trois idées : <strong>signe</strong>, <strong>exposant</strong> et <strong>significande</strong>. La norme IEEE 754 définit des formats courants.</p>
+<div class="flow">Nombre réel → signe + exposant + significande → représentation binaire finie</div>
+<p>Certains nombres décimaux, comme 0,1, ne possèdent pas de représentation binaire fractionnaire finie. L’ordinateur doit donc stocker une approximation.</p>
+<div class="warning-box"><strong>Conséquence :</strong> certains calculs en virgule flottante peuvent produire de petites erreurs d’arrondi. Pour comparer des valeurs réelles, il faut tenir compte de la précision du format et du contexte.</div>
+
+<h2>2.17 Applications orientées cybersécurité</h2>
+<p>Ces mathématiques deviennent des outils de lecture et de raisonnement dans plusieurs sujets futurs.</p>
+<table class="ped-table"><tr><th>Notion</th><th>Application future</th></tr><tr><td>Binaire</td><td>bits, champs, indicateurs, permissions et protocoles</td></tr><tr><td>Hexadécimal</td><td>octets, mémoire, paquets, empreintes et données brutes</td></tr><tr><td>AND / OR</td><td>masques et sélection de bits</td></tr><tr><td>XOR</td><td>transformations binaires et notions cryptographiques</td></tr><tr><td>Décalages</td><td>manipulation de champs binaires et calculs sur entiers</td></tr><tr><td>Tailles et limites</td><td>validation de longueurs, compteurs et compréhension de l’overflow</td></tr></table>
+<div class="key-box"><strong>Exemple de lecture :</strong> l’octet <code>AC₁₆</code> correspond à <code>10101100₂</code>. Selon le contexte, chaque bit peut représenter un indicateur différent. Être capable de passer rapidement de l’hexadécimal au binaire est donc une compétence pratique.</div>
+
+<h2>2.18 Méthode de résolution</h2><ol><li><strong>Identifier la base</strong> de chaque nombre.</li><li><strong>Déterminer la largeur</strong> en bits lorsqu’elle est importante.</li><li><strong>Identifier l’interprétation</strong> : signé ou non signé.</li><li><strong>Choisir la méthode</strong> : puissances, divisions successives, regroupement ou opération directe.</li><li><strong>Effectuer le calcul.</strong></li><li><strong>Vérifier</strong> avec une autre représentation lorsque c’est possible.</li><li><strong>Interpréter</strong> le résultat dans le contexte informatique.</li></ol>
+
+<h2>2.19 Exercices guidés</h2>
+<h3>A. Conversions</h3><ol class="check"><li>Convertir 45₁₀ en binaire.</li><li>Convertir 11010110₂ en décimal.</li><li>Convertir 11101111₂ en hexadécimal.</li><li>Convertir A7₁₆ en binaire puis en décimal.</li><li>Convertir 725₈ en binaire.</li></ol>
+<h3>B. Arithmétique</h3><ol class="check"><li>1011₂ + 0110₂</li><li>1010₂ − 0011₂</li><li>101₂ × 11₂</li><li>1111₂ ÷ 11₂</li></ol>
+<h3>C. Bit à bit</h3><p>Pour A=11001010 et B=10110100, calculer A AND B, A OR B, A XOR B et NOT A sur 8 bits.</p>
+<h3>D. Capacité</h3><ol class="check"><li>Combien de valeurs différentes peut-on représenter avec 12 bits ?</li><li>Quelle est la valeur maximale non signée sur 12 bits ?</li><li>Quel est l’intervalle signé en complément à deux sur 12 bits ?</li></ol>
+
+<h2>2.20 Mini étude de cas</h2>
+<p>Un outil affiche quatre octets sous forme hexadécimale :</p><pre>4A 7F 80 FF</pre>
+<p>Pour chaque octet :</p><ol><li>écrire sa représentation binaire sur 8 bits ;</li><li>donner sa valeur décimale non signée ;</li><li>identifier la valeur maximale possible d’un octet non signé ;</li><li>expliquer pourquoi l’hexadécimal est plus compact que le binaire pour afficher ces données.</li></ol>
+
+<h2>2.21 Synthèse</h2><ul>
+<li>Le binaire est la base 2 ; l’octal la base 8 ; le décimal la base 10 ; l’hexadécimal la base 16.</li><li>1 octet = 8 bits ; 1 chiffre hexadécimal = 4 bits.</li><li>Avec n bits, on dispose de 2ⁿ combinaisons.</li><li>Les conversions reposent sur la notation positionnelle, les divisions successives et le regroupement des bits.</li><li>L’arithmétique binaire suit les mêmes principes que l’arithmétique habituelle, adaptés à la base 2.</li><li>AND, OR, XOR, NOT et les décalages permettent de manipuler directement les bits.</li><li>Le complément à deux permet de représenter les entiers négatifs.</li><li>La largeur en bits impose des limites et peut conduire à un débordement.</li><li>La virgule flottante est une représentation approximative de nombreux nombres réels.</li><li>Ces notions constituent une base importante pour la programmation système, les réseaux et la cybersécurité.</li></ul>
+
+
+</article></main><footer>© AsTechAI-Teaching</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const ROOT = "../../../";
+  document.querySelectorAll("[data-root-href]").forEach(el => {
+    const target = el.getAttribute("data-root-href");
+    if (/^https?:\/\//i.test(target)) {
+      el.href = target;
+    } else {
+      el.href = ROOT + target;
+    }
+  });
+});
+</script>
+
+</body></html>

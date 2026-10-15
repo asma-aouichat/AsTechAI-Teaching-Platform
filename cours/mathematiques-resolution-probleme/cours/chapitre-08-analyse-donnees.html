@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapitre 8 — Analyse de données et résolution de problèmes | AsTechAI</title>
+<style>
+:root{
+  --navy:#0b245d;--blue:#1268f3;--purple:#7c35f6;--bg:#f5f7fb;--text:#202020;
+  --muted:#667085;--border:#dfe4ec;--green:#16865c;--orange:#d97706;--red:#c43d4b;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.72}
+.navbar{background:#fff;border-bottom:1px solid #e6e9ef;position:sticky;top:0;z-index:20}
+.nav-inner{max-width:1200px;margin:auto;min-height:94px;padding:14px 22px;display:flex;align-items:center;gap:28px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--navy);margin-right:auto}
+.logo{width:48px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--purple));display:grid;place-items:center;color:#fff;font-size:24px}
+.brand strong{display:block;font-size:21px}.brand small{display:block;color:#667085;font-size:12px}
+.navlinks{display:flex;gap:22px;align-items:center}.navlinks a{color:#344054;text-decoration:none;font-size:15px}
+.login{background:linear-gradient(135deg,var(--blue),var(--purple));color:#fff!important;padding:10px 18px;border-radius:10px}
+main{max-width:1080px;margin:auto;padding:64px 22px 80px}
+.back{display:inline-block;margin-bottom:22px;color:var(--blue);font-size:18px;text-decoration:none}
+.lesson-card{background:#fff;border:1px solid var(--border);border-radius:22px;padding:66px 62px;box-shadow:0 10px 28px rgba(15,23,42,.06)}
+.badge{display:inline-block;background:#e8f1ff;color:#1759c7;padding:7px 13px;border-radius:999px;font-size:14px;font-weight:700}
+h1{font-size:46px;line-height:1.12;color:#10265e;font-weight:500;margin:18px 0 18px}
+.lead{font-size:22px;color:#4b5565;margin-bottom:30px}
+h2{font-size:32px;color:#10265e;font-weight:600;margin:50px 0 20px;padding-bottom:10px;border-bottom:1px solid #e2e7ef}
+h3{font-size:23px;color:#173b7a;margin:30px 0 12px}
+h4{font-size:19px;color:#243b67;margin:22px 0 8px}
+p,li,td,th{font-size:17px}
+.objectives,.key-box,.example-box,.activity-box,.remember-box,.warning-box,.summary-box{padding:20px 22px;border-radius:14px;margin:20px 0}
+.objectives,.key-box{background:#edf5ff;border-left:5px solid var(--blue)}
+.example-box{background:#f5efff;border-left:5px solid var(--purple)}
+.activity-box{background:#edf9f3;border-left:5px solid var(--green)}
+.remember-box{background:#fff8e7;border-left:5px solid var(--orange)}
+.warning-box{background:#fff0f1;border-left:5px solid var(--red)}
+.summary-box{background:#eef5ff;border:1px solid #bdd5ff}
+.concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:22px 0}
+.concept-card{border:1px solid #dfe4ec;border-radius:14px;padding:20px;background:#fff}
+.ped-table{width:100%;border-collapse:collapse;margin:20px 0;background:#fff}
+.ped-table th{background:#10265e;color:#fff}.ped-table th,.ped-table td{border:1px solid #dce2eb;padding:11px 13px;text-align:left}
+.ped-table tr:nth-child(even) td{background:#f8faff}
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:20px 0}
+.flow span{background:#edf5ff;border:1px solid #c7dafb;border-radius:999px;padding:9px 13px;font-weight:700;color:#173b7a}
+.flow b{color:#8290a7}
+.formula{font-family:"Courier New",monospace;background:#f4f6fa;border:1px solid #e0e5ed;border-radius:10px;padding:13px 16px;margin:12px 0;overflow:auto}
+.check-question{border:1px solid #dfe4ec;border-radius:12px;padding:16px 18px;margin:12px 0}
+.answer{color:#1759c7;font-weight:700}
+.mini-title{font-weight:700;color:#173b7a}
+footer{text-align:center;padding:28px;color:#667085}
+@media(max-width:820px){.navlinks{display:none}.lesson-card{padding:38px 24px}h1{font-size:36px}.lead{font-size:19px}.concept-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-inner">
+    <a class="brand" data-root-href="index.html" href="#">
+      <div class="logo">▤</div>
+      <div><strong>AsTechAI</strong><small>IT Learning Platform</small></div>
+    </a>
+    <div class="navlinks">
+      <a data-root-href="index.html" href="#">Accueil</a>
+      <a data-root-href="cours/index.html" href="#">Cours</a>
+      <a data-root-href="projets/index.html" href="#">Projets</a>
+      <a data-root-href="apropos.html" href="#">À propos</a>
+      <a data-root-href="ressources.html" href="#">Ressources</a>
+      <a class="login" data-root-href="connexion.html" href="#">Connexion</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+<a class="back" href="../index.html">← Retour aux leçons</a>
+<article class="lesson-card">
+<span class="badge">Leçon 8</span>
+<h1>Analyse de données et résolution de problèmes</h1>
+<p class="lead">Transformer des données brutes en informations utiles : organiser, calculer, comparer, interpréter et communiquer des résultats afin de résoudre un problème informatique.</p>
+
+<div class="objectives">
+<strong>Objectifs d’apprentissage</strong>
+<ul>
+<li>Identifier clairement un problème et les données nécessaires pour le résoudre.</li>
+<li>Nettoyer, organiser et résumer un ensemble de données.</li>
+<li>Choisir des indicateurs statistiques adaptés : moyenne, médiane, mode, étendue et écart type.</li>
+<li>Comparer plusieurs ensembles de données sans se limiter à une seule valeur.</li>
+<li>Choisir une représentation graphique adaptée à la question posée.</li>
+<li>Repérer des valeurs inhabituelles et formuler des hypothèses raisonnables.</li>
+<li>Interpréter les résultats dans leur contexte informatique ou de cybersécurité.</li>
+<li>Justifier une conclusion à partir de données plutôt que d'une impression.</li>
+</ul>
+</div>
+
+<h2>8.1 De la donnée à la décision</h2>
+<p>Une donnée isolée donne rarement une réponse complète. L’analyse de données consiste à transformer un ensemble de valeurs en informations permettant de comprendre une situation et de prendre une décision.</p>
+<div class="flow"><span>Données brutes</span><b>→</b><span>Préparation</span><b>→</b><span>Calcul</span><b>→</b><span>Comparaison</span><b>→</b><span>Interprétation</span><b>→</b><span>Décision</span></div>
+<div class="example-box"><strong>Exemple informatique.</strong> Un serveur reçoit 120, 125, 118, 130 et 540 requêtes par minute. Le nombre 540 attire l’attention, mais il faut analyser le contexte avant de conclure qu’il s’agit d’un problème ou d’une attaque.</div>
+
+<h2>8.2 Formuler le problème avant de calculer</h2>
+<p>Avant d’utiliser une formule, il faut savoir ce que l’on cherche. Une bonne analyse commence par une question précise.</p>
+<table class="ped-table"><tr><th>Question</th><th>Exemple</th></tr>
+<tr><td>Quel est le problème ?</td><td>Le serveur semble plus lent à certaines heures.</td></tr>
+<tr><td>Quelles données possédons-nous ?</td><td>Temps de réponse mesurés chaque minute.</td></tr>
+<tr><td>Quelle information voulons-nous ?</td><td>Savoir si le ralentissement est occasionnel ou régulier.</td></tr>
+<tr><td>Quelle méthode peut aider ?</td><td>Médiane, moyenne, écart type, graphique temporel.</td></tr></table>
+<div class="remember-box"><strong>À retenir :</strong> choisir une formule avant de comprendre le problème conduit souvent à une analyse inutile.</div>
+
+<h2>8.3 Comprendre les données</h2>
+<div class="concept-grid">
+<div class="concept-card"><h3>Données quantitatives</h3><p>Valeurs numériques sur lesquelles des calculs ont un sens : temps de réponse, nombre de connexions, taille d’un fichier, débit réseau.</p></div>
+<div class="concept-card"><h3>Données qualitatives</h3><p>Catégories ou étiquettes : type d’erreur, protocole, état d’une connexion, catégorie d’événement.</p></div>
+</div>
+<p>Il faut également identifier l’unité, la période d’observation et le sens de chaque variable. Comparer « 25 » à « 40 » n’a aucun sens si l’on ignore si ces nombres représentent des millisecondes, des mégaoctets ou des événements.</p>
+
+<h2>8.4 Préparer et nettoyer les données</h2>
+<p>Les données réelles peuvent contenir des erreurs, des valeurs manquantes, des doublons ou des formats incompatibles.</p>
+<div class="key-box">
+<strong>Contrôles simples avant l’analyse :</strong>
+<ul>
+<li>vérifier les unités ;</li>
+<li>repérer les cellules ou valeurs manquantes ;</li>
+<li>chercher les doublons ;</li>
+<li>vérifier les valeurs impossibles ;</li>
+<li>uniformiser les formats ;</li>
+<li>conserver une trace des modifications apportées.</li>
+</ul>
+</div>
+<div class="warning-box"><strong>Attention :</strong> une valeur inhabituelle n’est pas nécessairement une erreur. La supprimer automatiquement peut faire disparaître l’information la plus importante du jeu de données.</div>
+
+<h2>8.5 Organiser les données</h2>
+<p>Une première étape consiste souvent à trier les valeurs ou à construire un tableau d’effectifs.</p>
+<div class="example-box">
+<p><strong>Nombre d’échecs de connexion observés sur 10 intervalles :</strong></p>
+<div class="formula">2, 3, 2, 5, 4, 2, 3, 12, 4, 3</div>
+<p>Valeurs triées :</p>
+<div class="formula">2, 2, 2, 3, 3, 3, 4, 4, 5, 12</div>
+</div>
+<table class="ped-table"><tr><th>Nombre d’échecs</th><th>Effectif</th><th>Fréquence</th></tr>
+<tr><td>2</td><td>3</td><td>30 %</td></tr><tr><td>3</td><td>3</td><td>30 %</td></tr>
+<tr><td>4</td><td>2</td><td>20 %</td></tr><tr><td>5</td><td>1</td><td>10 %</td></tr><tr><td>12</td><td>1</td><td>10 %</td></tr></table>
+
+<h2>8.6 Résumer les données : tendance centrale</h2>
+<h3>Moyenne</h3>
+<div class="formula">moyenne = somme des valeurs / nombre de valeurs</div>
+<p>Pour les données précédentes :</p>
+<div class="formula">(2+3+2+5+4+2+3+12+4+3) / 10 = 40 / 10 = 4</div>
+<h3>Médiane</h3>
+<p>Après tri, les deux valeurs centrales sont 3 et 3. La médiane vaut donc 3.</p>
+<h3>Mode</h3>
+<p>Les valeurs 2 et 3 apparaissent chacune trois fois. La série possède donc deux modes : 2 et 3.</p>
+<div class="key-box"><strong>Interprétation :</strong> la moyenne vaut 4 alors que la médiane vaut 3. La valeur 12 tire la moyenne vers le haut. Cela montre pourquoi il est utile de comparer plusieurs indicateurs.</div>
+
+<h2>8.7 Mesurer la dispersion</h2>
+<p>Deux séries peuvent avoir la même moyenne mais être très différentes. La dispersion décrit la manière dont les valeurs sont réparties autour du centre.</p>
+<h3>Étendue</h3>
+<div class="formula">étendue = maximum − minimum = 12 − 2 = 10</div>
+<h3>Variance et écart type</h3>
+<p>La variance mesure l’écart quadratique moyen par rapport à la moyenne. L’écart type est la racine carrée de la variance et s’exprime dans la même unité que les données.</p>
+<div class="formula">variance population = Σ(xᵢ − μ)² / N
+écart type = √variance</div>
+<div class="remember-box">Dans ce cours, précisez toujours si vous calculez la variance d’une <strong>population</strong> ou d’un <strong>échantillon</strong>. Le dénominateur n’est pas le même.</div>
+
+<h2>8.8 Comparer deux ensembles de données</h2>
+<p>Considérons les temps de réponse, en millisecondes, de deux services.</p>
+<table class="ped-table"><tr><th>Service A</th><th>Service B</th></tr>
+<tr><td>98</td><td>60</td></tr><tr><td>100</td><td>80</td></tr><tr><td>101</td><td>100</td></tr><tr><td>99</td><td>120</td></tr><tr><td>102</td><td>140</td></tr></table>
+<p>Les deux services ont une moyenne de 100 ms. Pourtant, le service A est beaucoup plus stable : ses valeurs restent proches de 100, alors que celles du service B sont très dispersées.</p>
+<div class="key-box"><strong>Conclusion :</strong> « même moyenne » ne signifie pas « même comportement ». Une comparaison sérieuse examine le centre <em>et</em> la dispersion.</div>
+
+<h2>8.9 Choisir le bon graphique</h2>
+<table class="ped-table"><tr><th>Besoin</th><th>Représentation utile</th></tr>
+<tr><td>Comparer des catégories</td><td>Diagramme en barres</td></tr>
+<tr><td>Observer une évolution dans le temps</td><td>Graphique en courbes</td></tr>
+<tr><td>Observer la distribution de nombreuses valeurs numériques</td><td>Histogramme</td></tr>
+<tr><td>Étudier la relation entre deux variables quantitatives</td><td>Nuage de points</td></tr></table>
+<div class="warning-box"><strong>Un graphique peut être trompeur.</strong> Vérifiez le titre, les unités, les axes, l’échelle, la période couverte et les données réellement représentées avant d’interpréter.</div>
+
+<h2>8.10 Analyse temporelle</h2>
+<p>En informatique, beaucoup de données sont associées à une date ou une heure : charge CPU, connexions, erreurs, trafic réseau, temps de réponse. L’ordre temporel devient alors essentiel.</p>
+<div class="example-box"><strong>Exemple :</strong> 20, 22, 19, 21, 23, 85, 24 connexions par minute. La valeur 85 constitue un pic local. On cherchera ce qui s’est produit au même moment : tâche planifiée, hausse légitime d’utilisateurs, panne, test ou activité inhabituelle.</div>
+
+<h2>8.11 Valeurs atypiques et anomalies</h2>
+<p>Une valeur atypique est une observation très différente des autres. Elle mérite une investigation, mais elle ne fournit pas à elle seule une explication.</p>
+<div class="flow"><span>Observation inhabituelle</span><b>→</b><span>Vérification</span><b>→</b><span>Contexte</span><b>→</b><span>Hypothèses</span><b>→</b><span>Investigation</span></div>
+<div class="warning-box"><strong>Cybersécurité :</strong> un pic de tentatives de connexion peut être compatible avec une activité malveillante, mais il peut aussi avoir une cause légitime. Les statistiques aident à détecter des signaux ; elles ne prouvent pas automatiquement qu’une attaque a eu lieu.</div>
+
+<h2>8.12 Seuils et règles de détection</h2>
+<p>Une règle simple peut déclencher une alerte lorsque la valeur dépasse un seuil.</p>
+<div class="formula">Si échecs_connexion > 20 → générer une alerte</div>
+<p>Cette règle est facile à comprendre, mais le choix du seuil influence le résultat.</p>
+<div class="concept-grid">
+<div class="concept-card"><h3>Seuil trop bas</h3><p>Beaucoup d’activités normales peuvent déclencher des alertes : faux positifs.</p></div>
+<div class="concept-card"><h3>Seuil trop élevé</h3><p>Des événements réellement importants peuvent ne pas déclencher d’alerte : faux négatifs.</p></div>
+</div>
+
+<h2>8.13 Corrélation et prudence dans l’interprétation</h2>
+<p>Deux variables peuvent évoluer ensemble sans que l’une soit nécessairement la cause de l’autre. Un nuage de points peut suggérer une relation, mais une relation statistique ne démontre pas automatiquement une causalité.</p>
+<div class="remember-box"><strong>Règle :</strong> corrélation ≠ causalité. Pour expliquer une relation, il faut examiner le contexte et rechercher d’autres éléments de preuve.</div>
+
+<h2>8.14 Choisir une méthode selon la question</h2>
+<table class="ped-table"><tr><th>Question</th><th>Méthode possible</th></tr>
+<tr><td>Quelle est la valeur typique ?</td><td>Moyenne ou médiane</td></tr>
+<tr><td>Quelle valeur apparaît le plus souvent ?</td><td>Mode</td></tr>
+<tr><td>Les valeurs sont-elles stables ?</td><td>Étendue, variance, écart type</td></tr>
+<tr><td>Comment la mesure évolue-t-elle ?</td><td>Graphique temporel</td></tr>
+<tr><td>Une observation semble-t-elle inhabituelle ?</td><td>Comparaison avec le comportement habituel + contexte</td></tr>
+<tr><td>Deux variables évoluent-elles ensemble ?</td><td>Nuage de points et analyse de corrélation</td></tr></table>
+
+<h2>8.15 Méthode générale de résolution de problèmes</h2>
+<div class="flow"><span>1. Comprendre</span><b>→</b><span>2. Identifier les données</span><b>→</b><span>3. Préparer</span><b>→</b><span>4. Choisir</span><b>→</b><span>5. Calculer</span><b>→</b><span>6. Vérifier</span><b>→</b><span>7. Interpréter</span></div>
+<ol>
+<li><strong>Comprendre :</strong> reformuler le problème avec ses propres mots.</li>
+<li><strong>Identifier :</strong> déterminer les variables, unités et données pertinentes.</li>
+<li><strong>Préparer :</strong> vérifier les formats, erreurs et valeurs manquantes.</li>
+<li><strong>Choisir :</strong> sélectionner les calculs ou graphiques adaptés.</li>
+<li><strong>Calculer :</strong> effectuer les opérations avec méthode.</li>
+<li><strong>Vérifier :</strong> contrôler les calculs et la cohérence des résultats.</li>
+<li><strong>Interpréter :</strong> répondre à la question initiale dans son contexte.</li>
+</ol>
+
+<h2>8.16 Étude guidée — Temps de réponse d’un serveur</h2>
+<p>On mesure les temps de réponse suivants, en ms :</p>
+<div class="formula">95, 102, 98, 101, 99, 97, 103, 100, 96, 180</div>
+<div class="activity-box">
+<p><strong>Travail demandé :</strong></p>
+<ol>
+<li>Trier les valeurs.</li>
+<li>Calculer la moyenne et la médiane.</li>
+<li>Calculer l’étendue.</li>
+<li>Identifier une valeur qui mérite une investigation.</li>
+<li>Expliquer l’influence de 180 sur la moyenne.</li>
+<li>Choisir un graphique adapté.</li>
+<li>Rédiger une conclusion de 3 à 5 phrases sans affirmer une cause non démontrée.</li>
+</ol>
+</div>
+
+<h2>8.17 Application cybersécurité — Journaux d’authentification</h2>
+<p>Nombre d’échecs d’authentification par tranche de 10 minutes :</p>
+<div class="formula">3, 4, 5, 4, 6, 5, 4, 7, 6, 38, 5, 4</div>
+<div class="activity-box">
+<ol>
+<li>Calculer la moyenne.</li>
+<li>Calculer la médiane.</li>
+<li>Comparer ces deux indicateurs.</li>
+<li>Identifier l’observation inhabituelle.</li>
+<li>Proposer trois explications possibles, dont au moins une légitime.</li>
+<li>Indiquer quelles données supplémentaires permettraient d’investiguer : heure, compte, adresse source, type d’erreur, etc.</li>
+<li>Expliquer pourquoi les données seules ne permettent pas encore de conclure à une attaque.</li>
+</ol>
+</div>
+
+<h2>8.18 Vérifier la qualité d’une conclusion</h2>
+<p>Une bonne conclusion doit être soutenue par les données et distinguer observation, calcul et interprétation.</p>
+<table class="ped-table"><tr><th>Formulation</th><th>Évaluation</th></tr>
+<tr><td>« 38 échecs ont été observés pendant un intervalle. »</td><td>Observation factuelle.</td></tr>
+<tr><td>« 38 est nettement supérieur aux autres valeurs de la série. »</td><td>Comparaison soutenue par les données.</td></tr>
+<tr><td>« Il y a certainement eu une cyberattaque. »</td><td>Conclusion non démontrée par ces seules données.</td></tr>
+<tr><td>« L’intervalle mérite une investigation supplémentaire. »</td><td>Conclusion prudente et justifiée.</td></tr></table>
+
+<h2>8.19 Exercices progressifs</h2>
+<div class="check-question"><span class="mini-title">Exercice 1 — Choisir l’indicateur</span><br>Pour chaque situation, indiquer si la moyenne, la médiane, le mode ou une mesure de dispersion serait la plus utile, puis justifier.</div>
+<div class="check-question"><span class="mini-title">Exercice 2 — Comparaison</span><br>A = {20, 20, 20, 20, 20} et B = {10, 15, 20, 25, 30}. Calculer la moyenne et l’étendue de chaque série. Que montre la comparaison ?</div>
+<div class="check-question"><span class="mini-title">Exercice 3 — Valeur extrême</span><br>Calculer moyenne et médiane pour {8, 9, 9, 10, 10, 11, 40}. Expliquer l’effet de 40.</div>
+<div class="check-question"><span class="mini-title">Exercice 4 — Graphique</span><br>Choisir un graphique pour représenter le trafic réseau mesuré chaque heure pendant 24 heures. Justifier.</div>
+<div class="check-question"><span class="mini-title">Exercice 5 — Analyse critique</span><br>Un étudiant affirme : « Le nombre d’erreurs a doublé, donc le système est attaqué. » Identifier ce qui manque pour soutenir cette conclusion.</div>
+
+<h2>8.20 Étude de cas intégratrice — Supervision d’un service informatique</h2>
+<p>Une équipe collecte chaque heure quatre mesures : nombre de connexions, échecs d’authentification, temps de réponse moyen et volume de données transférées.</p>
+<div class="activity-box">
+<strong>Mission :</strong>
+<ol>
+<li>Définir la question d’analyse.</li>
+<li>Identifier les variables quantitatives et leurs unités.</li>
+<li>Vérifier la qualité des données.</li>
+<li>Calculer au moins deux indicateurs de tendance centrale et une mesure de dispersion.</li>
+<li>Construire ou décrire deux graphiques pertinents.</li>
+<li>Comparer les périodes normales et inhabituelles.</li>
+<li>Identifier les observations qui nécessitent une investigation.</li>
+<li>Proposer des hypothèses sans les présenter comme des faits.</li>
+<li>Rédiger une conclusion structurée et proposer les prochaines vérifications.</li>
+</ol>
+</div>
+
+<h2>8.21 Mini-projet — Tableau de bord d’analyse</h2>
+<p>À partir d’un petit jeu de données informatique fourni par l’enseignante, produire un mini tableau de bord ou un rapport d’analyse.</p>
+<div class="key-box">
+<strong>Le livrable doit contenir :</strong>
+<ul>
+<li>la question étudiée ;</li>
+<li>une description des données ;</li>
+<li>les vérifications effectuées avant l’analyse ;</li>
+<li>les calculs statistiques pertinents ;</li>
+<li>au moins deux représentations graphiques ;</li>
+<li>une comparaison ou un constat principal ;</li>
+<li>une interprétation prudente ;</li>
+<li>une conclusion et une recommandation de vérification.</li>
+</ul>
+</div>
+
+<h2>8.22 Synthèse du chapitre</h2>
+<div class="summary-box">
+<ul>
+<li>L’analyse de données commence par une <strong>question claire</strong>, pas par une formule.</li>
+<li>Les données doivent être comprises, vérifiées et organisées avant le calcul.</li>
+<li>Moyenne, médiane et mode décrivent le centre ; étendue, variance et écart type décrivent la dispersion.</li>
+<li>Une même moyenne peut cacher des comportements très différents.</li>
+<li>Le graphique doit être choisi selon le type de données et la question.</li>
+<li>Une valeur inhabituelle est un <strong>signal à examiner</strong>, pas automatiquement une erreur ou une attaque.</li>
+<li>En cybersécurité, l’analyse statistique aide à prioriser les investigations, mais le contexte et d’autres éléments sont nécessaires pour établir ce qui s’est réellement produit.</li>
+<li>Une bonne résolution de problème se termine toujours par une interprétation et une vérification de la conclusion.</li>
+</ul>
+</div>
+
+<h2>8.23 Défi final</h2>
+<div class="activity-box">
+<p>Un service enregistre le nombre d’échecs de connexion par heure :</p>
+<div class="formula">4, 5, 4, 6, 5, 7, 5, 6, 4, 5, 42, 8</div>
+<p>Réalisez une analyse complète : organisation, moyenne, médiane, étendue, identification des observations importantes, choix d’un graphique, interprétation et conclusion. Votre conclusion doit clairement distinguer <strong>ce que les données montrent</strong> de <strong>ce qui reste à vérifier</strong>.</p>
+</div>
+</article>
+</main>
+<footer>© AsTechAI — Mathématiques et résolution de problèmes informatiques</footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const ROOT = "../../../";
+  document.querySelectorAll("[data-root-href]").forEach(el => {
+    const target = el.getAttribute("data-root-href");
+    el.href = /^https?:\/\//i.test(target) ? target : ROOT + target;
+  });
+});
+</script>
+</body></html>

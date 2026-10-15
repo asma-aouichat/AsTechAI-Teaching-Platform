@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapitre 5 — Algèbre de Boole | AsTechAI</title>
+<style>
+:root{--navy:#0b245d;--blue:#1268f3;--purple:#7c35f6;--bg:#f5f7fb;--text:#202020}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+main{max-width:1080px;margin:auto;padding:64px 22px 80px}.back{display:inline-block;color:#0870ff;text-decoration:none;font-size:18px;margin-bottom:30px}
+.lesson-card{background:#fff;border:1px solid #dfe4ec;border-radius:22px;padding:66px 62px;box-shadow:0 1px 4px #0f234612;overflow:hidden}.badge{display:inline-block;background:#edf3ff;color:#2567dc;font-size:14px;font-weight:700;padding:5px 11px;border-radius:20px;margin-bottom:20px}
+h1{font-size:46px;line-height:1.14;color:#10265e;margin:0 0 20px;font-weight:500}.lead{font-size:23px;line-height:1.55;margin:0 0 28px}.objectives{background:#dbe9ff;border:1px solid #83b3ff;border-radius:8px;padding:20px 22px;color:#10356d;font-size:18px;margin:28px 0 54px}.objectives strong{font-weight:800}
+h2{font-size:34px;line-height:1.25;margin:44px 0 22px;color:#10265e;border-bottom:2px solid #edf2fa;padding-bottom:12px}h3{font-size:24px;color:#173b7a;margin:30px 0 12px}h4{font-size:19px;color:#243b67;margin:22px 0 8px}p{font-size:18px;margin:0 0 18px}footer{text-align:center;padding:28px;color:#6b7280}
+.lesson-card ul,.lesson-card ol{font-size:18px;padding-left:28px}.lesson-card li{margin:8px 0}.key-box,.example-box,.activity-box,.remember-box,.warning-box,.summary-box,.cyber-box{border-radius:12px;padding:20px 22px;margin:22px 0}.key-box{background:#f2f7ff;border-left:5px solid #1769ef}.example-box{background:#f7f4ff;border-left:5px solid #7c35f6}.activity-box{background:#f1fbf6;border-left:5px solid #27a56a}.remember-box{background:#fff8e8;border-left:5px solid #e8a51b}.warning-box{background:#fff2f2;border-left:5px solid #d94b4b}.summary-box{background:#eef4ff;border:1px solid #b9d2ff}.cyber-box{background:#f5f1ff;border-left:5px solid #7c35f6}.concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}.concept-card{border:1px solid #e0e6ef;border-radius:14px;padding:20px;background:#fff;box-shadow:0 3px 12px rgba(16,38,94,.05)}.concept-card strong{color:#10265e;font-size:19px}.flow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:25px 0}.flow span{padding:12px 16px;background:#edf3ff;color:#143c83;border-radius:10px;font-weight:700}.flow b{color:#7c35f6;font-size:22px}.ped-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:17px}.ped-table th,.ped-table td{border:1px solid #dce3ed;padding:12px 14px;vertical-align:top}.ped-table th{background:#10265e;color:#fff}.ped-table tr:nth-child(even) td{background:#f8faff}.mini-title{font-weight:800;color:#10265e}.binary{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#f5f7fb;border:1px solid #e1e6ef;border-radius:10px;padding:16px 18px;font-size:18px;overflow:auto;white-space:pre}.formula{text-align:center;font-size:21px;font-weight:700;color:#10265e;margin:16px 0}.check-question{padding:16px 18px;border:1px solid #dfe6f0;border-radius:10px;margin:12px 0;background:#fff}.answer{margin-top:8px;color:#52627d;font-size:16px}
+.as-navbar{min-height:100px;z-index:1030}.as-nav-container{max-width:1540px;margin:auto;padding:0 34px}.as-brand{display:flex;align-items:center;gap:14px;text-decoration:none}.as-book{width:76px;height:52px;display:inline-block;position:relative}.as-book::before,.as-book::after{content:"";position:absolute;top:2px;width:35px;height:49px;border-radius:7px 7px 12px 7px;transform:skewY(7deg)}.as-book::before{left:0;background:#0967f6}.as-book::after{right:0;background:#8237f4}.as-brand strong{display:block;font-size:32px;line-height:1;color:#081d54}.as-brand strong span{color:#5936e8}.as-brand small{display:block;margin-top:7px;color:#63718d;font-size:14px}.as-main-links{gap:20px}.as-main-links .nav-link{font-weight:700;color:#0b245d!important;padding:15px 18px!important;border-radius:16px}.as-main-links .nav-link.active{background:#edf3ff;color:#1268f3!important}.as-search{width:320px;height:56px;border-radius:30px;background:#f0f4fc;align-items:center;padding:0 20px;gap:10px;margin-right:26px}.as-search input{border:0;outline:0;background:transparent;width:100%;font-size:17px}.as-login{background:linear-gradient(90deg,#3c72f5,#8732ef);border:0!important;color:#fff!important;font-weight:700;padding:15px 24px;border-radius:16px;white-space:nowrap}.as-course-menu{left:50%!important;transform:translateX(-50%);width:min(760px,92vw);padding:18px;border:1px solid #e1e6ef;border-radius:18px;box-shadow:0 18px 50px rgba(16,38,94,.15)}.as-course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.as-course-card{display:flex;gap:14px;align-items:center;text-decoration:none;color:#10265e;padding:14px;border-radius:12px}.as-course-card:hover{background:#f3f6fc}.as-course-card small{display:block;color:#71809b}.as-course-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:10px;background:#eaf2ff;color:#1769ef;font-weight:800;font-size:20px}.as-course-icon.orange{background:#fff1e5;color:#f28a24}.as-course-icon.purple{background:#f0e9ff;color:#7737ef}
+@media(max-width:991px){.as-navbar{min-height:auto}.as-nav-container{padding:12px 20px}.as-course-grid{grid-template-columns:1fr}.as-brand strong{font-size:26px}.as-book{transform:scale(.85);transform-origin:left center}}@media(max-width:950px){.lesson-card{padding:40px}}@media(max-width:700px){.concept-grid{grid-template-columns:1fr}.ped-table{font-size:15px}}@media(max-width:650px){.lesson-card{padding:28px 22px}h1{font-size:34px}h2{font-size:28px}}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head><body>
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar"><div class="container-fluid as-nav-container">
+<a class="navbar-brand as-brand" data-root-href="index.html" href="#"><span class="as-book" aria-hidden="true"></span><span><strong>AsTech<span>AI</span></strong><small>IT Learning Platform</small></span></a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#asMainNavbar"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="asMainNavbar"><ul class="navbar-nav mx-auto align-items-lg-center as-main-links"><li class="nav-item"><a class="nav-link active" data-root-href="index.html" href="#">Accueil</a></li><li class="nav-item dropdown position-static"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside">Cours</a><div class="dropdown-menu as-course-menu"><div class="as-course-grid"><a class="as-course-card" data-root-href="cours/gestion-ordinateurs/index.html" href="#"><span class="as-course-icon">▣</span><span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span></a><a class="as-course-card" data-root-href="https://asma-aouichat.github.io/microsoft365-learning-hub/" href="#"><span class="as-course-icon orange">M</span><span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span></a><a class="as-course-card" data-root-href="cours/mathematiques-resolution-probleme/index.html" href="#"><span class="as-course-icon purple">∑</span><span><strong>Mathématiques — Résolution de problème</strong><small>Raisonnement, méthodes et stratégies de résolution</small></span></a></div></div></li><li class="nav-item"><a class="nav-link" data-root-href="projets/index.html" href="#">Projets</a></li><li class="nav-item"><a class="nav-link" data-root-href="index.html#apropos" href="#">À propos</a></li><li class="nav-item"><a class="nav-link" data-root-href="index.html#ressources" href="#">Ressources</a></li></ul><form class="d-none d-xl-flex as-search" role="search" onsubmit="return false;"><span>⌕</span><input type="search" placeholder="Rechercher..."></form><a class="btn as-login" data-root-href="connexion/index.html" href="#">♙ &nbsp; Connexion</a></div></div></nav>
+<main><a class="back" href="../index.html">← Retour aux leçons</a><article class="lesson-card"><span class="badge">Leçon 5</span>
+<h1>Algèbre de Boole et logique numérique</h1>
+<p class="lead">Comprendre comment les valeurs Vrai/Faux et les opérateurs logiques permettent à un ordinateur de prendre des décisions, de construire des circuits numériques et d'exprimer des règles utilisées en programmation et en cybersécurité.</p>
+<div class="objectives"><strong>Objectifs d’apprentissage.</strong> À la fin de ce chapitre, l’étudiant sera capable de :<ul>
+<li>définir une variable booléenne et relier Vrai/Faux aux valeurs 1/0 ;</li><li>utiliser les opérateurs NON (NOT), ET (AND), OU (OR) et OU exclusif (XOR) ;</li><li>construire et interpréter une table de vérité ;</li><li>évaluer une expression logique étape par étape ;</li><li>traduire une condition exprimée en français en expression booléenne ;</li><li>appliquer les principales lois de l’algèbre de Boole ;</li><li>comprendre le rôle des portes logiques dans les circuits numériques ;</li><li>relier la logique booléenne aux conditions de programmation et aux règles de contrôle d’accès en cybersécurité.</li></ul></div>
+
+<h2>1. Pourquoi l’algèbre de Boole en informatique ?</h2>
+<p>Un ordinateur manipule des données binaires, mais il doit aussi <strong>prendre des décisions</strong>. Une condition peut être vraie ou fausse : un mot de passe est correct ou incorrect, un utilisateur possède ou non une autorisation, un fichier existe ou n’existe pas.</p>
+<div class="flow"><span>Condition</span><b>→</b><span>Vrai / Faux</span><b>→</b><span>Opération logique</span><b>→</b><span>Décision</span></div>
+<div class="key-box"><strong>Idée essentielle.</strong> L’algèbre de Boole est une algèbre dans laquelle une variable ne prend que deux états. On les note généralement <strong>0 et 1</strong> ou <strong>Faux et Vrai</strong>.</div>
+<table class="ped-table"><tr><th>Valeur logique</th><th>Notation numérique</th><th>Interprétation possible</th></tr><tr><td>Faux</td><td>0</td><td>Condition non satisfaite, interrupteur ouvert, permission absente</td></tr><tr><td>Vrai</td><td>1</td><td>Condition satisfaite, interrupteur fermé, permission présente</td></tr></table>
+
+<h2>2. Variables booléennes</h2>
+<p>Une <strong>variable booléenne</strong> représente une information qui possède seulement deux valeurs possibles.</p>
+<div class="concept-grid"><div class="concept-card"><strong>A = utilisateur authentifié</strong><p>A = 1 si l’utilisateur est authentifié ; A = 0 sinon.</p></div><div class="concept-card"><strong>B = compte actif</strong><p>B = 1 si le compte est actif ; B = 0 sinon.</p></div><div class="concept-card"><strong>C = fichier chiffré</strong><p>C = 1 si le fichier est chiffré ; C = 0 sinon.</p></div><div class="concept-card"><strong>D = alerte détectée</strong><p>D = 1 si une alerte est présente ; D = 0 sinon.</p></div></div>
+<div class="remember-box"><strong>Attention au contexte.</strong> Le chiffre 1 ne signifie pas toujours « autorisé » et 0 ne signifie pas toujours « interdit ». Ils représentent simplement les deux états définis par le problème.</div>
+
+<h2>3. L’opérateur NON — NOT</h2>
+<p>L’opérateur <strong>NON</strong> inverse une valeur logique. Si A est vraie, NON A est fausse ; si A est fausse, NON A est vraie.</p>
+<div class="formula">NON A = ¬A = A̅</div>
+<table class="ped-table"><tr><th>A</th><th>NON A</th></tr><tr><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td></tr></table>
+<div class="example-box"><div class="mini-title">Exemple</div><p>A signifie « le compte est actif ». Si A = 1, alors ¬A = 0. La proposition « le compte n’est pas actif » est donc fausse.</p></div>
+
+<h2>4. L’opérateur ET — AND</h2>
+<p>L’opérateur <strong>ET</strong> donne 1 uniquement lorsque <strong>toutes</strong> les conditions sont vraies.</p>
+<div class="formula">A ET B = A ∧ B = A · B</div>
+<table class="ped-table"><tr><th>A</th><th>B</th><th>A ET B</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></table>
+<div class="example-box"><div class="mini-title">Exemple — accès à une ressource</div><p>A = « utilisateur authentifié » et B = « compte actif ». La règle <strong>A ET B</strong> autorise la suite seulement lorsque les deux conditions valent 1.</p></div>
+<div class="remember-box"><strong>Astuce.</strong> Pour ET, cherchez le cas où <strong>tout est vrai</strong>. Un seul 0 suffit pour obtenir 0.</div>
+
+<h2>5. L’opérateur OU — OR</h2>
+<p>L’opérateur <strong>OU</strong> donne 1 lorsqu’<strong>au moins une</strong> des conditions est vraie. Il s’agit du OU inclusif : les deux conditions peuvent également être vraies.</p>
+<div class="formula">A OU B = A ∨ B = A + B</div>
+<table class="ped-table"><tr><th>A</th><th>B</th><th>A OU B</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></table>
+<div class="example-box"><div class="mini-title">Exemple</div><p>Une notification est envoyée si une connexion inhabituelle <strong>OU</strong> plusieurs échecs d’authentification sont détectés. Une seule des deux conditions suffit.</p></div>
+
+<h2>6. OU exclusif — XOR</h2>
+<p>Le <strong>OU exclusif</strong> est vrai lorsque les deux entrées sont <strong>différentes</strong>. Si elles sont identiques, le résultat vaut 0.</p>
+<div class="formula">A XOR B = A ⊕ B</div>
+<table class="ped-table"><tr><th>A</th><th>B</th><th>A XOR B</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr></table>
+<div class="key-box"><strong>Pourquoi inclure XOR ?</strong> Vous l’avez rencontré avec les opérations bit à bit. Il est également important en logique numérique et apparaît dans de nombreux mécanismes informatiques et cryptographiques. Ici, on étudie uniquement son comportement logique.</div>
+<div class="example-box"><div class="mini-title">Exemple</div><p>A = 1 et B = 0 : A ⊕ B = 1. Mais si A = 1 et B = 1 : A ⊕ B = 0.</p></div>
+
+<h2>7. Comparer les opérateurs fondamentaux</h2>
+<table class="ped-table"><tr><th>A</th><th>B</th><th>¬A</th><th>A ∧ B</th><th>A ∨ B</th><th>A ⊕ B</th></tr><tr><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr></table>
+<div class="summary-box"><strong>À retenir :</strong> NON inverse ; ET exige toutes les conditions ; OU exige au moins une condition ; XOR exige des valeurs différentes.</div>
+
+<h2>8. Expressions booléennes</h2>
+<p>Plusieurs opérateurs peuvent être combinés pour former une <strong>expression logique</strong>.</p>
+<div class="formula">F = A ∧ (B ∨ ¬C)</div>
+<p>Pour l’évaluer correctement, on calcule les sous-expressions progressivement. Les parenthèses rendent l’ordre explicite.</p>
+<div class="example-box"><div class="mini-title">Exemple détaillé</div><p>Soit A = 1, B = 0 et C = 0. Calculons F = A ∧ (B ∨ ¬C).</p><div class="binary">1. ¬C = ¬0 = 1
+2. B ∨ ¬C = 0 ∨ 1 = 1
+3. A ∧ 1 = 1 ∧ 1 = 1
+Donc F = 1.</div></div>
+<div class="remember-box"><strong>Méthode.</strong> Commencez par les parenthèses et les négations, puis calculez les autres opérations. Pour éviter les erreurs, écrivez chaque résultat intermédiaire.</div>
+
+<h2>9. Construire une table de vérité</h2>
+<p>Une <strong>table de vérité</strong> énumère toutes les combinaisons possibles des variables d’entrée et calcule le résultat de l’expression pour chacune.</p>
+<div class="key-box">Avec <strong>n variables</strong>, il existe <strong>2<sup>n</sup></strong> combinaisons. Deux variables donnent 2² = 4 lignes ; trois variables donnent 2³ = 8 lignes.</div>
+<h3>9.1 Exemple : F = A ∧ ¬B</h3>
+<table class="ped-table"><tr><th>A</th><th>B</th><th>¬B</th><th>F = A ∧ ¬B</th></tr><tr><td>0</td><td>0</td><td>1</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td><td>0</td></tr></table>
+<h3>9.2 Méthode systématique</h3><ol><li>Identifier le nombre de variables.</li><li>Créer les 2<sup>n</sup> combinaisons possibles.</li><li>Ajouter une colonne pour chaque sous-expression utile.</li><li>Calculer de gauche à droite selon la structure de l’expression.</li><li>Vérifier la colonne finale.</li></ol>
+
+<h2>10. Traduire une situation en expression logique</h2>
+<p>Une compétence importante consiste à passer d’une règle écrite en langage naturel à une expression booléenne.</p>
+<div class="example-box"><div class="mini-title">Situation</div><p>Un utilisateur peut accéder à une ressource s’il est <strong>authentifié</strong> ET si son <strong>compte est actif</strong>.</p><p>Définissons A = authentifié et C = compte actif.</p><div class="formula">Accès = A ∧ C</div></div>
+<div class="example-box"><div class="mini-title">Situation avec négation</div><p>Une opération est acceptée si l’utilisateur est authentifié ET si le compte n’est PAS bloqué.</p><p>A = authentifié, B = compte bloqué.</p><div class="formula">Acceptée = A ∧ ¬B</div></div>
+<div class="activity-box"><strong>À vous.</strong> Une alerte doit être générée si une connexion inhabituelle est détectée OU si le nombre d’échecs dépasse un seuil. Définissez deux variables booléennes et écrivez l’expression correspondante.</div>
+
+<h2>11. Portes logiques et circuits numériques</h2>
+<p>Les opérateurs booléens possèdent une représentation matérielle : les <strong>portes logiques</strong>. Elles reçoivent des signaux binaires en entrée et produisent un signal binaire en sortie.</p>
+<div class="concept-grid"><div class="concept-card"><strong>NOT</strong><p>Une entrée, une sortie. La sortie est l’inverse de l’entrée.</p></div><div class="concept-card"><strong>AND</strong><p>La sortie vaut 1 uniquement si toutes les entrées valent 1.</p></div><div class="concept-card"><strong>OR</strong><p>La sortie vaut 1 si au moins une entrée vaut 1.</p></div><div class="concept-card"><strong>XOR</strong><p>Pour deux entrées, la sortie vaut 1 lorsqu’elles sont différentes.</p></div></div>
+<div class="flow"><span>Entrées binaires</span><b>→</b><span>Portes logiques</span><b>→</b><span>Expression booléenne</span><b>→</b><span>Sortie</span></div>
+
+<h2>12. Lois fondamentales de l’algèbre de Boole</h2>
+<p>Les lois booléennes permettent de reconnaître des expressions équivalentes et préparent le chapitre consacré à la simplification logique.</p>
+<table class="ped-table"><tr><th>Loi</th><th>Forme</th><th>Idée</th></tr><tr><td>Identité</td><td>A ∧ 1 = A ; A ∨ 0 = A</td><td>La valeur reste A.</td></tr><tr><td>Domination</td><td>A ∧ 0 = 0 ; A ∨ 1 = 1</td><td>0 domine ET ; 1 domine OU.</td></tr><tr><td>Idempotence</td><td>A ∧ A = A ; A ∨ A = A</td><td>Répéter A ne change rien.</td></tr><tr><td>Complément</td><td>A ∧ ¬A = 0 ; A ∨ ¬A = 1</td><td>A et son contraire.</td></tr><tr><td>Double négation</td><td>¬(¬A) = A</td><td>Deux inversions redonnent A.</td></tr><tr><td>Commutativité</td><td>A ∧ B = B ∧ A ; A ∨ B = B ∨ A</td><td>L’ordre des variables peut être échangé.</td></tr><tr><td>Associativité</td><td>(A ∧ B) ∧ C = A ∧ (B ∧ C)</td><td>Le regroupement peut changer sans changer le résultat.</td></tr><tr><td>Distributivité</td><td>A ∧ (B ∨ C) = (A ∧ B) ∨ (A ∧ C)</td><td>Principe comparable à une distribution algébrique.</td></tr></table>
+<div class="example-box"><div class="mini-title">Vérification simple</div><p>Pour A = 0 : A ∨ ¬A = 0 ∨ 1 = 1. Pour A = 1 : A ∨ ¬A = 1 ∨ 0 = 1. L’expression est donc toujours vraie.</p></div>
+
+<h2>13. Introduction aux lois de De Morgan</h2>
+<p>Les lois de De Morgan montrent comment transformer la négation d’une expression composée. Elles seront approfondies dans le chapitre de simplification.</p>
+<div class="formula">¬(A ∧ B) = ¬A ∨ ¬B</div><div class="formula">¬(A ∨ B) = ¬A ∧ ¬B</div>
+<div class="example-box"><div class="mini-title">Interprétation</div><p>« Il n’est pas vrai que A et B soient tous les deux vrais » signifie qu’<strong>au moins l’un des deux est faux</strong>.</p></div>
+<div class="warning-box"><strong>Erreur fréquente.</strong> Lorsque la négation traverse les parenthèses, ET devient OU et OU devient ET, et chaque variable est niée.</div>
+
+<h2>14. Algèbre de Boole et programmation</h2>
+<p>Les conditions utilisées dans les programmes reposent directement sur la logique booléenne.</p>
+<div class="binary">// idée logique
+si (authentifie ET compteActif) alors
+    autoriser l'action
+sinon
+    refuser l'action</div>
+<p>Les langages de programmation utilisent des syntaxes différentes, mais le raisonnement reste le même : produire une valeur vraie ou fausse puis choisir une action.</p>
+<table class="ped-table"><tr><th>Mathématiques</th><th>Lecture</th><th>Notation fréquente en programmation</th></tr><tr><td>¬A</td><td>NON A</td><td>!A</td></tr><tr><td>A ∧ B</td><td>A ET B</td><td>A &amp;&amp; B</td></tr><tr><td>A ∨ B</td><td>A OU B</td><td>A || B</td></tr></table>
+
+<h2>15. Connexion avec la cybersécurité</h2>
+<p>La logique booléenne est directement pertinente en cybersécurité, car de nombreuses décisions de sécurité reposent sur plusieurs conditions.</p>
+<div class="concept-grid"><div class="concept-card"><strong>Authentification</strong><p>Combiner des conditions liées à l’identité, à l’état du compte ou à une étape supplémentaire de vérification.</p></div><div class="concept-card"><strong>Contrôle d’accès</strong><p>Exprimer des règles indiquant dans quelles conditions une action est autorisée ou refusée.</p></div><div class="concept-card"><strong>Filtrage</strong><p>Combiner plusieurs critères pour décider si une donnée ou un événement correspond à une règle.</p></div><div class="concept-card"><strong>Détection</strong><p>Construire des conditions à partir de plusieurs indicateurs pour produire une alerte.</p></div></div>
+<div class="cyber-box"><strong>Exemple conceptuel.</strong> Soit A = utilisateur authentifié, R = rôle autorisé et B = compte bloqué. Une politique simplifiée peut être écrite : <strong>Accès = A ∧ R ∧ ¬B</strong>. Cette expression décrit seulement la logique de décision ; dans un véritable système, les politiques de sécurité sont généralement plus détaillées.</div>
+<div class="remember-box"><strong>Principe de sécurité.</strong> Une règle logique mal formulée peut produire une décision différente de celle attendue. Il est donc important de définir précisément chaque variable, de vérifier toutes les combinaisons pertinentes et de tester les cas limites.</div>
+
+<h2>16. Méthode de résolution</h2>
+<ol><li><strong>Définir les variables</strong> et ce que signifient 0 et 1.</li><li><strong>Repérer les mots logiques</strong> : NON, ET, OU, exactement un, etc.</li><li><strong>Écrire l’expression</strong> avec des parenthèses si nécessaire.</li><li><strong>Décomposer</strong> l’expression en sous-expressions.</li><li><strong>Calculer</strong> ou construire la table de vérité.</li><li><strong>Vérifier</strong> quelques cas simples.</li><li><strong>Interpréter</strong> le résultat dans le contexte du problème.</li></ol>
+<div class="flow"><span>Variables</span><b>→</b><span>Expression</span><b>→</b><span>Table / calcul</span><b>→</b><span>Vérification</span><b>→</b><span>Décision</span></div>
+
+<h2>17. Exercices guidés</h2>
+<h3>A. Comprendre les opérateurs</h3><div class="check-question">1. Calculer ¬A lorsque A = 0, puis lorsque A = 1.</div><div class="check-question">2. Calculer A ∧ B, A ∨ B et A ⊕ B pour A = 1 et B = 0.</div><div class="check-question">3. Pour quelles valeurs de A et B l’expression A ∧ B vaut-elle 1 ?</div><div class="check-question">4. Quelle différence existe entre OU et XOR lorsque A = B = 1 ?</div>
+<h3>B. Évaluer des expressions</h3><div class="check-question">5. A = 1, B = 0. Calculer ¬A ∨ B.</div><div class="check-question">6. A = 1, B = 1, C = 0. Calculer A ∧ (B ∨ C).</div><div class="check-question">7. A = 0, B = 1, C = 0. Calculer (A ∨ B) ∧ ¬C.</div><div class="check-question">8. A = 1, B = 0, C = 1. Calculer (A ⊕ B) ∧ C.</div>
+<h3>C. Tables de vérité</h3><div class="check-question">9. Construire la table de vérité de F = ¬A ∨ B.</div><div class="check-question">10. Construire la table de vérité de F = A ∧ (B ∨ C).</div><div class="check-question">11. Construire la table de vérité de F = (A ∨ B) ∧ ¬C.</div>
+<h3>D. Traduction</h3><div class="check-question">12. Écrire une expression : « l’accès est accordé si le compte est actif ET si l’utilisateur est authentifié ».</div><div class="check-question">13. Écrire une expression : « l’alerte est produite si A OU B est vrai, mais pas si les deux sont vrais ».</div><div class="check-question">14. Écrire une expression : « l’action est autorisée si A est vrai ET si B est faux ».</div>
+<h3>E. Lois booléennes</h3><div class="check-question">15. Simplifier A ∧ 1.</div><div class="check-question">16. Simplifier A ∨ 0.</div><div class="check-question">17. Simplifier A ∧ ¬A.</div><div class="check-question">18. Appliquer De Morgan à ¬(A ∨ B).</div>
+
+<h2>18. Mini étude de cas — règle de contrôle d’accès</h2>
+<p>Une application utilise trois variables :</p><ul><li><strong>A</strong> : l’utilisateur est authentifié ;</li><li><strong>R</strong> : l’utilisateur possède le rôle requis ;</li><li><strong>B</strong> : le compte est bloqué.</li></ul>
+<p>La règle est :</p><div class="formula">Accès = A ∧ R ∧ ¬B</div>
+<ol><li>Expliquer le rôle de chaque variable.</li><li>Calculer l’accès pour A = 1, R = 1, B = 0.</li><li>Calculer l’accès pour A = 1, R = 0, B = 0.</li><li>Calculer l’accès pour A = 1, R = 1, B = 1.</li><li>Construire la table de vérité complète de la règle.</li><li>Expliquer en une phrase dans quelles conditions l’accès vaut 1.</li></ol>
+<div class="activity-box"><strong>Objectif.</strong> Passer d’une règle écrite à une expression logique, puis utiliser la table de vérité pour vérifier que toutes les combinaisons produisent le comportement attendu.</div>
+
+<h2>19. Défi de synthèse</h2>
+<p>Un système simplifié produit une alerte selon trois indicateurs : A = connexion inhabituelle, E = plusieurs échecs récents, C = appareil connu. On définit :</p><div class="formula">Alerte = (A ∨ E) ∧ ¬C</div>
+<ol><li>Expliquer l’expression avec des mots.</li><li>Calculer le résultat pour A=1, E=0, C=0.</li><li>Calculer le résultat pour A=0, E=1, C=1.</li><li>Construire la table de vérité complète.</li><li>Identifier les lignes où l’alerte vaut 1.</li><li>Proposer une phrase claire décrivant exactement la règle.</li></ol>
+
+<h2>20. Synthèse</h2>
+<div class="summary-box"><ul><li>Une variable booléenne possède deux états : 0/1 ou Faux/Vrai.</li><li>NON inverse une valeur logique.</li><li>ET vaut 1 lorsque toutes les conditions sont vraies.</li><li>OU vaut 1 lorsqu’au moins une condition est vraie.</li><li>XOR vaut 1, pour deux entrées, lorsqu’elles sont différentes.</li><li>Une expression booléenne combine plusieurs variables et opérateurs.</li><li>Une table de vérité permet de vérifier toutes les combinaisons possibles.</li><li>Avec n variables, une table complète contient 2<sup>n</sup> lignes.</li><li>Les lois booléennes permettent de transformer des expressions sans modifier leur résultat.</li><li>Les lois de De Morgan transforment la négation d’un ET en OU des négations, et inversement.</li><li>La logique booléenne est utilisée dans les circuits, les programmes et les règles de décision.</li><li>En cybersécurité, elle aide notamment à raisonner sur l’authentification, le contrôle d’accès, le filtrage et la détection.</li></ul></div>
+</article></main><footer>© AsTechAI-Teaching · Mathématiques et résolution de problèmes informatiques</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script>document.querySelectorAll('[data-root-href]').forEach(function(a){var h=a.getAttribute('data-root-href');if(/^https?:/.test(h)){a.href=h;return;}a.href='../../../'+h;});</script>
+</body></html>

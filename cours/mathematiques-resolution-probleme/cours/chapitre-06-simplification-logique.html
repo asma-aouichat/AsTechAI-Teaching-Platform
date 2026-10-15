@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapitre 6 — Simplification des fonctions logiques | AsTechAI</title>
+<style>
+:root{--navy:#0b245d;--blue:#1268f3;--purple:#7c35f6;--bg:#f5f7fb;--text:#202020}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+main{max-width:1080px;margin:auto;padding:64px 22px 80px}.back{display:inline-block;color:#0870ff;text-decoration:none;font-size:18px;margin-bottom:30px}
+.lesson-card{background:#fff;border:1px solid #dfe4ec;border-radius:22px;padding:66px 62px;box-shadow:0 1px 4px #0f234612;overflow:hidden}.badge{display:inline-block;background:#edf3ff;color:#2567dc;font-size:14px;font-weight:700;padding:5px 11px;border-radius:20px;margin-bottom:20px}
+h1{font-size:46px;line-height:1.14;color:#10265e;margin:0 0 20px;font-weight:500}.lead{font-size:23px;line-height:1.55;margin:0 0 28px}.objectives{background:#dbe9ff;border:1px solid #83b3ff;border-radius:8px;padding:20px 22px;color:#10356d;font-size:18px;margin:28px 0 54px}.objectives strong{font-weight:800}
+h2{font-size:34px;line-height:1.25;margin:44px 0 22px;color:#10265e;border-bottom:2px solid #edf2fa;padding-bottom:12px}h3{font-size:24px;color:#173b7a;margin:30px 0 12px}h4{font-size:19px;color:#243b67;margin:22px 0 8px}p{font-size:18px;margin:0 0 18px}footer{text-align:center;padding:28px;color:#6b7280}
+.lesson-card ul,.lesson-card ol{font-size:18px;padding-left:28px}.lesson-card li{margin:8px 0}.key-box,.example-box,.activity-box,.remember-box,.warning-box,.summary-box,.cyber-box{border-radius:12px;padding:20px 22px;margin:22px 0}.key-box{background:#f2f7ff;border-left:5px solid #1769ef}.example-box{background:#f7f4ff;border-left:5px solid #7c35f6}.activity-box{background:#f1fbf6;border-left:5px solid #27a56a}.remember-box{background:#fff8e8;border-left:5px solid #e8a51b}.warning-box{background:#fff2f2;border-left:5px solid #d94b4b}.summary-box{background:#eef4ff;border:1px solid #b9d2ff}.cyber-box{background:#f5f1ff;border-left:5px solid #7c35f6}.concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}.concept-card{border:1px solid #e0e6ef;border-radius:14px;padding:20px;background:#fff;box-shadow:0 3px 12px rgba(16,38,94,.05)}.concept-card strong{color:#10265e;font-size:19px}.flow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:25px 0}.flow span{padding:12px 16px;background:#edf3ff;color:#143c83;border-radius:10px;font-weight:700}.flow b{color:#7c35f6;font-size:22px}.ped-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:17px}.ped-table th,.ped-table td{border:1px solid #dce3ed;padding:12px 14px;vertical-align:top}.ped-table th{background:#10265e;color:#fff}.ped-table tr:nth-child(even) td{background:#f8faff}.mini-title{font-weight:800;color:#10265e}.binary{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#f5f7fb;border:1px solid #e1e6ef;border-radius:10px;padding:16px 18px;font-size:18px;overflow:auto;white-space:pre}.formula{text-align:center;font-size:21px;font-weight:700;color:#10265e;margin:16px 0}.check-question{padding:16px 18px;border:1px solid #dfe6f0;border-radius:10px;margin:12px 0;background:#fff}.answer{margin-top:8px;color:#52627d;font-size:16px}
+.as-navbar{min-height:100px;z-index:1030}.as-nav-container{max-width:1540px;margin:auto;padding:0 34px}.as-brand{display:flex;align-items:center;gap:14px;text-decoration:none}.as-book{width:76px;height:52px;display:inline-block;position:relative}.as-book::before,.as-book::after{content:"";position:absolute;top:2px;width:35px;height:49px;border-radius:7px 7px 12px 7px;transform:skewY(7deg)}.as-book::before{left:0;background:#0967f6}.as-book::after{right:0;background:#8237f4}.as-brand strong{display:block;font-size:32px;line-height:1;color:#081d54}.as-brand strong span{color:#5936e8}.as-brand small{display:block;margin-top:7px;color:#63718d;font-size:14px}.as-main-links{gap:20px}.as-main-links .nav-link{font-weight:700;color:#0b245d!important;padding:15px 18px!important;border-radius:16px}.as-main-links .nav-link.active{background:#edf3ff;color:#1268f3!important}.as-search{width:320px;height:56px;border-radius:30px;background:#f0f4fc;align-items:center;padding:0 20px;gap:10px;margin-right:26px}.as-search input{border:0;outline:0;background:transparent;width:100%;font-size:17px}.as-login{background:linear-gradient(90deg,#3c72f5,#8732ef);border:0!important;color:#fff!important;font-weight:700;padding:15px 24px;border-radius:16px;white-space:nowrap}.as-course-menu{left:50%!important;transform:translateX(-50%);width:min(760px,92vw);padding:18px;border:1px solid #e1e6ef;border-radius:18px;box-shadow:0 18px 50px rgba(16,38,94,.15)}.as-course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.as-course-card{display:flex;gap:14px;align-items:center;text-decoration:none;color:#10265e;padding:14px;border-radius:12px}.as-course-card:hover{background:#f3f6fc}.as-course-card small{display:block;color:#71809b}.as-course-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:10px;background:#eaf2ff;color:#1769ef;font-weight:800;font-size:20px}.as-course-icon.orange{background:#fff1e5;color:#f28a24}.as-course-icon.purple{background:#f0e9ff;color:#7737ef}
+@media(max-width:991px){.as-navbar{min-height:auto}.as-nav-container{padding:12px 20px}.as-course-grid{grid-template-columns:1fr}.as-brand strong{font-size:26px}.as-book{transform:scale(.85);transform-origin:left center}}@media(max-width:950px){.lesson-card{padding:40px}}@media(max-width:700px){.concept-grid{grid-template-columns:1fr}.ped-table{font-size:15px}}@media(max-width:650px){.lesson-card{padding:28px 22px}h1{font-size:34px}h2{font-size:28px}}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head><body>
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar"><div class="container-fluid as-nav-container">
+<a class="navbar-brand as-brand" data-root-href="index.html" href="#"><span class="as-book" aria-hidden="true"></span><span><strong>AsTech<span>AI</span></strong><small>IT Learning Platform</small></span></a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#asMainNavbar"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse" id="asMainNavbar"><ul class="navbar-nav mx-auto align-items-lg-center as-main-links"><li class="nav-item"><a class="nav-link active" data-root-href="index.html" href="#">Accueil</a></li><li class="nav-item dropdown position-static"><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside">Cours</a><div class="dropdown-menu as-course-menu"><div class="as-course-grid"><a class="as-course-card" data-root-href="cours/gestion-ordinateurs/index.html" href="#"><span class="as-course-icon">▣</span><span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span></a><a class="as-course-card" data-root-href="https://asma-aouichat.github.io/microsoft365-learning-hub/" href="#"><span class="as-course-icon orange">M</span><span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span></a><a class="as-course-card" data-root-href="cours/mathematiques-resolution-probleme/index.html" href="#"><span class="as-course-icon purple">∑</span><span><strong>Mathématiques — Résolution de problème</strong><small>Raisonnement, méthodes et stratégies de résolution</small></span></a></div></div></li><li class="nav-item"><a class="nav-link" data-root-href="projets/index.html" href="#">Projets</a></li><li class="nav-item"><a class="nav-link" data-root-href="index.html#apropos" href="#">À propos</a></li><li class="nav-item"><a class="nav-link" data-root-href="index.html#ressources" href="#">Ressources</a></li></ul><form class="d-none d-xl-flex as-search" role="search" onsubmit="return false;"><span>⌕</span><input type="search" placeholder="Rechercher..."></form><a class="btn as-login" data-root-href="connexion/index.html" href="#">♙ &nbsp; Connexion</a></div></div></nav>
+<main><a class="back" href="../index.html">← Retour aux leçons</a><article class="lesson-card"><span class="badge">Leçon 6</span>
+<h1>Simplification des fonctions logiques</h1>
+<p class="lead">Apprendre à transformer une expression booléenne en une forme plus simple sans modifier son comportement, en utilisant les identités booléennes, les lois de De Morgan et la vérification par table de vérité.</p>
+<div class="objectives"><strong>Objectifs d’apprentissage.</strong> À la fin de ce chapitre, l’étudiant sera capable de :<ul>
+<li>expliquer pourquoi une fonction logique peut être simplifiée ;</li><li>appliquer les identités fondamentales de l’algèbre de Boole ;</li><li>utiliser correctement les lois de De Morgan ;</li><li>simplifier une expression logique étape par étape en justifiant chaque transformation ;</li><li>reconnaître les formes somme de produits et produit de sommes à un niveau introductif ;</li><li>vérifier l’équivalence de deux expressions à l’aide d’une table de vérité ;</li><li>relier la simplification logique aux conditions de programmation, aux circuits et aux règles de sécurité.</li></ul></div>
+
+<h2>1. Pourquoi simplifier une expression logique ?</h2>
+<p>Dans le chapitre précédent, nous avons appris à construire des expressions avec NON, ET, OU et XOR. Une même décision logique peut cependant être écrite de plusieurs façons. Certaines expressions sont longues alors qu’une expression plus courte produit exactement les mêmes résultats.</p>
+<div class="example-box"><div class="mini-title">Exemple</div><p>Considérons <strong>F = A ∧ 1</strong>. La valeur 1 ne change jamais le résultat d’un ET. On peut donc écrire simplement :</p><div class="formula">A ∧ 1 = A</div><p>Les deux expressions ont le même comportement pour toutes les valeurs de A.</p></div>
+<div class="flow"><span>Expression initiale</span><b>→</b><span>Lois booléennes</span><b>→</b><span>Expression simplifiée</span><b>→</b><span>Vérification</span></div>
+<div class="key-box"><strong>Simplifier</strong> ne signifie pas changer la fonction. La nouvelle expression doit produire exactement la même sortie que l’expression originale pour toutes les combinaisons d’entrées.</div>
+
+<h2>2. Rappel des notations</h2>
+<table class="ped-table"><tr><th>Opération</th><th>Notation</th><th>Lecture</th><th>Quand le résultat vaut 1 ?</th></tr><tr><td>Négation</td><td>¬A</td><td>NON A</td><td>Lorsque A = 0</td></tr><tr><td>Conjonction</td><td>A ∧ B</td><td>A ET B</td><td>Lorsque A = 1 et B = 1</td></tr><tr><td>Disjonction</td><td>A ∨ B</td><td>A OU B</td><td>Lorsqu’au moins une entrée vaut 1</td></tr><tr><td>OU exclusif</td><td>A ⊕ B</td><td>A XOR B</td><td>Pour deux entrées, lorsqu’elles sont différentes</td></tr></table>
+<div class="remember-box"><strong>Priorité pratique.</strong> Calculer d’abord les parenthèses et les négations, puis les ET, puis les OU. Lorsque l’expression est complexe, ajouter des parenthèses pour rendre le raisonnement explicite.</div>
+
+<h2>3. Identité et domination</h2>
+<h3>3.1 Lois d’identité</h3><div class="formula">A ∧ 1 = A &nbsp;&nbsp;&nbsp; et &nbsp;&nbsp;&nbsp; A ∨ 0 = A</div>
+<p>Faire un ET avec 1 conserve A. Faire un OU avec 0 conserve également A.</p>
+<h3>3.2 Lois de domination</h3><div class="formula">A ∧ 0 = 0 &nbsp;&nbsp;&nbsp; et &nbsp;&nbsp;&nbsp; A ∨ 1 = 1</div>
+<p>Dans un ET, la présence de 0 force le résultat à 0. Dans un OU, la présence de 1 force le résultat à 1.</p>
+<table class="ped-table"><tr><th>Expression</th><th>Résultat</th><th>Pourquoi ?</th></tr><tr><td>B ∧ 1</td><td>B</td><td>Identité</td></tr><tr><td>C ∨ 0</td><td>C</td><td>Identité</td></tr><tr><td>D ∧ 0</td><td>0</td><td>Domination</td></tr><tr><td>E ∨ 1</td><td>1</td><td>Domination</td></tr></table>
+
+<h2>4. Idempotence, complément et double négation</h2>
+<div class="concept-grid"><div class="concept-card"><strong>Idempotence</strong><p>A ∧ A = A<br>A ∨ A = A</p><p>Répéter la même condition ne change pas le résultat.</p></div><div class="concept-card"><strong>Complément</strong><p>A ∧ ¬A = 0<br>A ∨ ¬A = 1</p><p>A et son contraire ne peuvent pas être vrais ensemble.</p></div><div class="concept-card"><strong>Double négation</strong><p>¬(¬A) = A</p><p>Nier deux fois une variable redonne sa valeur initiale.</p></div><div class="concept-card"><strong>Constantes</strong><p>¬0 = 1<br>¬1 = 0</p><p>La négation inverse une valeur logique.</p></div></div>
+<div class="example-box"><div class="mini-title">Exemple</div><p>F = (A ∨ A) ∧ 1</p><p>1. A ∨ A = A — idempotence.<br>2. A ∧ 1 = A — identité.</p><div class="formula">F = A</div></div>
+
+<h2>5. Commutativité et associativité</h2>
+<p>Ces lois permettent de réorganiser les termes afin de faire apparaître des simplifications plus facilement.</p>
+<table class="ped-table"><tr><th>Loi</th><th>ET</th><th>OU</th></tr><tr><td>Commutativité</td><td>A ∧ B = B ∧ A</td><td>A ∨ B = B ∨ A</td></tr><tr><td>Associativité</td><td>(A ∧ B) ∧ C = A ∧ (B ∧ C)</td><td>(A ∨ B) ∨ C = A ∨ (B ∨ C)</td></tr></table>
+<div class="example-box"><p><strong>F = A ∨ B ∨ A</strong></p><p>On regroupe A avec A : (A ∨ A) ∨ B = A ∨ B.</p></div>
+
+<h2>6. Distributivité</h2>
+<p>Comme en algèbre classique, un terme peut être distribué. En algèbre de Boole, deux formes distributives sont particulièrement utiles.</p>
+<div class="formula">A ∧ (B ∨ C) = (A ∧ B) ∨ (A ∧ C)</div>
+<div class="formula">A ∨ (B ∧ C) = (A ∨ B) ∧ (A ∨ C)</div>
+<div class="example-box"><div class="mini-title">Factorisation</div><p>F = (A ∧ B) ∨ (A ∧ C)</p><p>A est commun aux deux termes :</p><div class="formula">F = A ∧ (B ∨ C)</div><p>La deuxième écriture est plus compacte.</p></div>
+
+<h2>7. Loi d’absorption</h2>
+<p>L’absorption permet de supprimer une partie redondante d’une expression.</p>
+<div class="formula">A ∨ (A ∧ B) = A</div><div class="formula">A ∧ (A ∨ B) = A</div>
+<div class="example-box"><div class="mini-title">Comprendre A ∨ (A ∧ B)</div><p>Si A = 1, l’expression vaut déjà 1. Si A = 0, alors A ∧ B vaut 0. B ne peut donc jamais modifier le résultat : l’expression équivaut à A.</p></div>
+<div class="activity-box"><strong>À essayer.</strong> Vérifiez A ∨ (A ∧ B) = A avec les quatre combinaisons possibles de A et B.</div>
+
+<h2>8. Les lois de De Morgan</h2>
+<p>Les lois de De Morgan sont essentielles lorsque la négation porte sur une expression entière.</p>
+<div class="formula">¬(A ∧ B) = ¬A ∨ ¬B</div><div class="formula">¬(A ∨ B) = ¬A ∧ ¬B</div>
+<div class="remember-box"><strong>Technique.</strong> Lorsque NON traverse les parenthèses : <strong>ET devient OU</strong>, <strong>OU devient ET</strong>, et chaque variable est niée.</div>
+<h3>Exemple 1</h3><div class="formula">¬(A ∧ B) → ¬A ∨ ¬B</div>
+<h3>Exemple 2</h3><div class="formula">¬(A ∨ ¬B) → ¬A ∧ ¬(¬B) → ¬A ∧ B</div>
+<div class="warning-box"><strong>Erreur fréquente.</strong> ¬(A ∨ B) n’est pas égal à ¬A ∨ ¬B. Il faut aussi changer l’opérateur : <strong>¬(A ∨ B) = ¬A ∧ ¬B</strong>.</div>
+
+<h2>9. De Morgan avec plusieurs variables</h2>
+<p>Le même principe s’applique à plus de deux variables.</p>
+<div class="formula">¬(A ∧ B ∧ C) = ¬A ∨ ¬B ∨ ¬C</div>
+<div class="formula">¬(A ∨ B ∨ C) = ¬A ∧ ¬B ∧ ¬C</div>
+<div class="example-box"><p><strong>F = ¬(A ∧ B ∧ ¬C)</strong></p><p>En appliquant De Morgan :</p><div class="formula">F = ¬A ∨ ¬B ∨ C</div><p>La double négation sur C disparaît.</p></div>
+
+<h2>10. Méthode de simplification algébrique</h2>
+<p>Une simplification doit être réalisée de manière organisée. Chaque étape devrait pouvoir être justifiée par une loi.</p>
+<ol><li><strong>Lire l’expression</strong> et identifier sa structure.</li><li><strong>Traiter les négations</strong>, particulièrement celles devant des parenthèses.</li><li><strong>Repérer les constantes</strong> 0 et 1.</li><li><strong>Chercher les répétitions</strong> A ∧ A ou A ∨ A.</li><li><strong>Repérer A et ¬A</strong>.</li><li><strong>Réorganiser ou factoriser</strong> si nécessaire.</li><li><strong>Utiliser l’absorption</strong> lorsqu’un terme est redondant.</li><li><strong>Vérifier</strong> que l’expression simplifiée est équivalente à l’originale.</li></ol>
+<div class="flow"><span>Observer</span><b>→</b><span>Transformer</span><b>→</b><span>Justifier</span><b>→</b><span>Simplifier</span><b>→</b><span>Vérifier</span></div>
+
+<h2>11. Exemples de simplification pas à pas</h2>
+<h3>Exemple A — constantes</h3><div class="binary">F = (A ∧ 1) ∨ 0
+  = A ∨ 0        identité
+  = A            identité</div>
+<h3>Exemple B — complément</h3><div class="binary">F = (A ∧ ¬A) ∨ B
+  = 0 ∨ B        complément
+  = B            identité</div>
+<h3>Exemple C — factorisation</h3><div class="binary">F = (A ∧ B) ∨ (A ∧ ¬B)
+  = A ∧ (B ∨ ¬B)      distributivité
+  = A ∧ 1             complément
+  = A                 identité</div>
+<h3>Exemple D — De Morgan</h3><div class="binary">F = ¬(A ∨ B) ∨ (¬A ∧ B)
+  = (¬A ∧ ¬B) ∨ (¬A ∧ B)    De Morgan
+  = ¬A ∧ (¬B ∨ B)           factorisation
+  = ¬A ∧ 1                   complément
+  = ¬A                       identité</div>
+
+<h2>12. Vérifier une simplification par table de vérité</h2>
+<p>Une transformation algébrique peut contenir une erreur. La table de vérité constitue une méthode de vérification : deux expressions sont équivalentes si leurs colonnes de sortie sont identiques pour toutes les entrées.</p>
+<p>Vérifions <strong>A ∨ (A ∧ B) = A</strong>.</p>
+<table class="ped-table"><tr><th>A</th><th>B</th><th>A ∧ B</th><th>A ∨ (A ∧ B)</th><th>A</th></tr><tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr></table>
+<div class="key-box">Les deux dernières colonnes sont identiques. Les expressions sont donc équivalentes.</div>
+
+<h2>13. Équivalence logique</h2>
+<p>Deux expressions <strong>F</strong> et <strong>G</strong> sont logiquement équivalentes lorsqu’elles donnent toujours la même sortie pour les mêmes entrées. La simplification recherche donc une expression plus courte appartenant à la même fonction logique.</p>
+<div class="concept-grid"><div class="concept-card"><strong>Méthode algébrique</strong><p>Appliquer des lois reconnues et justifier chaque étape.</p></div><div class="concept-card"><strong>Table de vérité</strong><p>Comparer directement les sorties pour toutes les combinaisons.</p></div></div>
+
+<h2>14. Forme somme de produits — introduction</h2>
+<p>Une <strong>somme de produits</strong> est un OU de plusieurs termes construits avec des ET. Ici, « somme » désigne OU et « produit » désigne ET.</p>
+<div class="formula">F = (A ∧ B) ∨ (¬A ∧ C)</div>
+<p>Les deux produits sont A ∧ B et ¬A ∧ C ; ils sont ensuite reliés par OU.</p>
+<div class="example-box"><p>Cette forme est fréquente lorsqu’on décrit plusieurs situations différentes capables de produire la même sortie.</p></div>
+
+<h2>15. Forme produit de sommes — introduction</h2>
+<p>Un <strong>produit de sommes</strong> est un ET de plusieurs groupes reliés intérieurement par OU.</p>
+<div class="formula">F = (A ∨ B) ∧ (¬A ∨ C)</div>
+<p>Les deux sommes sont A ∨ B et ¬A ∨ C ; elles sont ensuite reliées par ET.</p>
+<div class="remember-box">L’objectif ici est de reconnaître les deux structures. Les techniques plus avancées de minimisation peuvent être étudiées ultérieurement.</div>
+
+<h2>16. Simplification et circuits numériques</h2>
+<p>Une expression logique peut être réalisée avec des portes logiques. Une expression simplifiée peut nécessiter moins d’opérations logiques et rendre un schéma plus facile à comprendre.</p>
+<div class="flow"><span>Expression</span><b>→</b><span>Simplification</span><b>→</b><span>Moins d’opérations</span><b>→</b><span>Circuit plus simple</span></div>
+<div class="example-box"><p>Expression initiale : <strong>(A ∧ B) ∨ (A ∧ ¬B)</strong>.</p><p>Après simplification : <strong>A</strong>.</p><p>La fonction ne dépend finalement que de A.</p></div>
+
+<h2>17. Simplification et programmation</h2>
+<p>Les programmes contiennent souvent des conditions complexes. L’algèbre de Boole aide à raisonner sur ces conditions et à détecter les parties redondantes.</p>
+<div class="binary">Condition initiale :
+(A ET B) OU (A ET NON B)
+
+Simplification :
+A ET (B OU NON B)
+A ET 1
+A</div>
+<div class="key-box"><strong>Important.</strong> Dans un programme réel, simplifier une condition exige aussi de tenir compte du langage, des effets de bord et de l’ordre d’évaluation. Ici, nous étudions l’équivalence logique mathématique.</div>
+
+<h2>18. Connexion avec la cybersécurité</h2>
+<p>Les politiques de sécurité peuvent combiner de nombreuses conditions : utilisateur authentifié, rôle autorisé, compte actif, appareil approuvé, ressource sensible, etc. Une écriture claire aide à vérifier que la règle correspond bien à l’intention.</p>
+<div class="cyber-box"><strong>Exemple conceptuel.</strong> Soit A = utilisateur authentifié, R = rôle requis et B = compte bloqué. Une règle peut être écrite <strong>Accès = A ∧ R ∧ ¬B</strong>. Une autre expression plus longue ne doit être remplacée par cette forme que si l’équivalence est démontrée.</div>
+<div class="warning-box"><strong>Pourquoi la vérification est importante.</strong> Une simplification incorrecte d’une règle de contrôle d’accès peut changer les cas autorisés ou refusés. En contexte de sécurité, on ne valide donc pas une transformation uniquement parce qu’elle « semble » plus simple : on vérifie son équivalence et on teste les cas pertinents.</div>
+<div class="remember-box"><strong>Réflexe sécurité.</strong> Définir précisément les variables, conserver des parenthèses explicites lorsque cela améliore la lisibilité, vérifier les cas limites et tester la politique après toute modification.</div>
+
+<h2>19. Exemple cybersécurité — règle d’accès</h2>
+<p>On définit A = authentifié, R = rôle autorisé et M = maintenance active. Considérons :</p>
+<div class="formula">F = (A ∧ R) ∨ (A ∧ R ∧ M)</div>
+<p>Le second terme est déjà inclus dans le premier : si A ∧ R ∧ M vaut 1, alors A ∧ R vaut nécessairement 1.</p>
+<div class="binary">F = (A ∧ R) ∨ ((A ∧ R) ∧ M)
+  = A ∧ R                 absorption</div>
+<p>La variable M n’influence donc pas cette fonction telle qu’elle a été écrite. Cette observation est utile : elle peut révéler qu’une condition supposée importante est en réalité redondante dans la règle.</p>
+
+<h2>20. Erreurs fréquentes</h2>
+<table class="ped-table"><tr><th>Erreur</th><th>Correction</th></tr><tr><td>¬(A ∨ B) = ¬A ∨ ¬B</td><td>¬(A ∨ B) = ¬A ∧ ¬B</td></tr><tr><td>A ∧ 1 = 1</td><td>A ∧ 1 = A</td></tr><tr><td>A ∨ 0 = 0</td><td>A ∨ 0 = A</td></tr><tr><td>A ∧ ¬A = 1</td><td>A ∧ ¬A = 0</td></tr><tr><td>A ∨ (A ∧ B) = A ∨ B</td><td>A ∨ (A ∧ B) = A</td></tr><tr><td>Supprimer un terme sans justification</td><td>Indiquer la loi utilisée ou vérifier avec une table de vérité.</td></tr></table>
+
+<h2>21. Exercices guidés</h2>
+<h3>A. Appliquer une seule loi</h3>
+<div class="check-question">1. Simplifier A ∧ 1.</div><div class="check-question">2. Simplifier B ∨ 0.</div><div class="check-question">3. Simplifier C ∧ 0.</div><div class="check-question">4. Simplifier D ∨ 1.</div><div class="check-question">5. Simplifier E ∧ E.</div><div class="check-question">6. Simplifier F ∨ ¬F.</div><div class="check-question">7. Simplifier ¬(¬G).</div>
+<h3>B. Plusieurs étapes</h3>
+<div class="check-question">8. Simplifier (A ∧ 1) ∨ (A ∧ 0).</div><div class="check-question">9. Simplifier (A ∨ A) ∧ 1.</div><div class="check-question">10. Simplifier (A ∧ B) ∨ (A ∧ ¬B).</div><div class="check-question">11. Simplifier A ∨ (A ∧ B).</div><div class="check-question">12. Simplifier A ∧ (A ∨ B).</div>
+<h3>C. De Morgan</h3>
+<div class="check-question">13. Transformer ¬(A ∧ B).</div><div class="check-question">14. Transformer ¬(A ∨ B).</div><div class="check-question">15. Transformer ¬(A ∨ ¬B).</div><div class="check-question">16. Transformer ¬(A ∧ B ∧ C).</div>
+<h3>D. Vérification</h3>
+<div class="check-question">17. Construire une table de vérité pour vérifier A ∧ (A ∨ B) = A.</div><div class="check-question">18. Vérifier par table de vérité que ¬(A ∧ B) = ¬A ∨ ¬B.</div><div class="check-question">19. Les expressions A ∨ B et A ⊕ B sont-elles équivalentes ? Justifier.</div>
+
+<h2>22. Activité — trouver et corriger l’erreur</h2>
+<p>Un étudiant propose les transformations suivantes. Identifiez la première étape incorrecte et corrigez la solution.</p>
+<div class="binary">F = ¬(A ∨ B) ∨ A
+  = (¬A ∨ ¬B) ∨ A
+  = (¬A ∨ A) ∨ ¬B
+  = 1 ∨ ¬B
+  = 1</div>
+<div class="activity-box"><strong>Indice.</strong> Vérifiez très attentivement l’application de De Morgan dès la première transformation.</div>
+
+<h2>23. Mini étude de cas — politique d’autorisation</h2>
+<p>Une application définit :</p><ul><li><strong>A</strong> : utilisateur authentifié ;</li><li><strong>R</strong> : rôle autorisé ;</li><li><strong>B</strong> : compte bloqué.</li></ul>
+<p>Une première écriture de la règle est :</p><div class="formula">F = (A ∧ R ∧ ¬B) ∨ (A ∧ R ∧ ¬B ∧ R)</div>
+<ol><li>Repérer le terme répété.</li><li>Simplifier l’expression.</li><li>Nommer la loi principale utilisée.</li><li>Construire une table de vérité pour vérifier l’équivalence.</li><li>Expliquer en français les conditions exactes pour lesquelles F = 1.</li></ol>
+<div class="activity-box"><strong>But.</strong> Montrer qu’une règle plus longue n’est pas nécessairement plus précise. La précision vient de la définition des conditions et de la vérification de leur comportement.</div>
+
+<h2>24. Défi de synthèse</h2>
+<p>Simplifiez l’expression suivante en justifiant chaque étape :</p><div class="formula">F = ¬(A ∨ B) ∨ (¬A ∧ B)</div>
+<ol><li>Appliquer De Morgan.</li><li>Rechercher un facteur commun.</li><li>Utiliser une loi de complément.</li><li>Donner l’expression finale.</li><li>Construire ensuite la table de vérité de l’expression originale et de l’expression simplifiée pour confirmer le résultat.</li></ol>
+
+<h2>25. Synthèse</h2>
+<div class="summary-box"><ul><li>Simplifier une fonction logique consiste à obtenir une expression équivalente plus simple.</li><li>Les lois d’identité, domination, idempotence, complément et double négation permettent des simplifications directes.</li><li>Commutativité et associativité servent à réorganiser les termes.</li><li>La distributivité permet de développer ou de factoriser.</li><li>L’absorption élimine certaines parties redondantes.</li><li>De Morgan transforme correctement une négation appliquée à un groupe logique.</li><li>Chaque transformation doit conserver exactement la même fonction.</li><li>Une table de vérité permet de vérifier l’équivalence de deux expressions.</li><li>Les formes somme de produits et produit de sommes donnent deux structures courantes d’écriture.</li><li>La simplification est utile pour raisonner sur les circuits et les conditions de programmation.</li><li>En cybersécurité, la clarté et la vérification des règles logiques sont importantes pour éviter de modifier involontairement une politique d’autorisation ou de détection.</li></ul></div>
+</article></main><footer>© AsTechAI-Teaching · Mathématiques et résolution de problèmes informatiques</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script>document.querySelectorAll('[data-root-href]').forEach(function(a){var h=a.getAttribute('data-root-href');if(/^https?:/.test(h)){a.href=h;return;}a.href='../../../'+h;});</script>
+</body></html>

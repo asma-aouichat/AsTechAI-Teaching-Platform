@@ -1,0 +1,585 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chapitre 1 — Introduction aux mathématiques appliquées à l’informatique | AsTechAI</title><style>
+:root{--navy:#0b245d;--blue:#1268f3;--purple:#7c35f6;--bg:#f5f7fb;--text:#202020}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
+
+
+
+
+
+main{max-width:1080px;margin:auto;padding:64px 22px 80px}.back{display:inline-block;color:#0870ff;text-decoration:none;font-size:18px;margin-bottom:30px}
+.lesson-card{background:#fff;border:1px solid #dfe4ec;border-radius:22px;padding:66px 62px;box-shadow:0 1px 4px #0f234612}.badge{display:inline-block;background:#edf3ff;color:#2567dc;font-size:14px;font-weight:700;padding:5px 11px;border-radius:20px;margin-bottom:20px}
+h1{font-size:46px;line-height:1.14;color:#10265e;margin:0 0 20px;font-weight:500}.lead{font-size:23px;line-height:1.55;margin:0 0 28px}.objectives{background:#dbe9ff;border:1px solid #83b3ff;border-radius:8px;padding:20px 22px;color:#10356d;font-size:18px;margin:28px 0 54px}.objectives strong{font-weight:800}
+h2{font-size:34px;line-height:1.25;margin:44px 0 22px}p{font-size:18px;margin:0 0 18px}footer{text-align:center;padding:28px;color:#6b7280}
+@media(max-width:950px){.lesson-card{padding:40px}}
+@media(max-width:650px){.lesson-card{padding:28px 22px}h1{font-size:34px}h2{font-size:28px}}
+</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+.as-navbar{min-height:100px;z-index:1030}
+.as-nav-container{max-width:1540px;margin:auto;padding:0 34px}
+.as-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+.as-book{width:76px;height:52px;display:inline-block;position:relative}
+.as-book::before,.as-book::after{content:"";position:absolute;top:2px;width:35px;height:49px;border-radius:7px 7px 12px 7px;transform:skewY(7deg)}
+.as-book::before{left:0;background:#0967f6}
+.as-book::after{right:0;background:#8237f4}
+.as-brand strong{display:block;font-size:32px;line-height:1;color:#081d54}
+.as-brand strong span{color:#5936e8}
+.as-brand small{display:block;margin-top:7px;color:#63718d;font-size:14px}
+.as-main-links{gap:20px}
+.as-main-links .nav-link{font-weight:700;color:#0b245d!important;padding:15px 18px!important;border-radius:16px}
+.as-main-links .nav-link.active{background:#edf3ff;color:#1268f3!important}
+.as-search{width:320px;height:56px;border-radius:30px;background:#f0f4fc;align-items:center;padding:0 20px;gap:10px;margin-right:26px}
+.as-search input{border:0;outline:0;background:transparent;width:100%;font-size:17px}
+.as-login{background:linear-gradient(90deg,#3c72f5,#8732ef);border:0!important;color:#fff!important;font-weight:700;padding:15px 24px;border-radius:16px;white-space:nowrap}
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:min(760px,92vw);padding:18px;border:1px solid #e1e6ef;border-radius:18px;box-shadow:0 18px 50px rgba(16,38,94,.15)}
+.as-course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.as-course-card{display:flex;gap:14px;align-items:center;text-decoration:none;color:#10265e;padding:14px;border-radius:12px}
+.as-course-card:hover{background:#f3f6fc}
+.as-course-card small{display:block;color:#71809b}
+.as-course-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:10px;background:#eaf2ff;color:#1769ef;font-weight:800;font-size:20px}
+.as-course-icon.orange{background:#fff1e5;color:#f28a24}.as-course-icon.purple{background:#f0e9ff;color:#7737ef}
+@media(max-width:991px){.as-navbar{min-height:auto}.as-nav-container{padding:12px 20px}.as-course-grid{grid-template-columns:1fr}.as-brand strong{font-size:26px}.as-book{transform:scale(.85);transform-origin:left center}}
+</style>
+
+
+<style>
+.lesson-card{overflow:hidden}
+.lesson-card h2{color:#10265e;border-bottom:2px solid #edf2fa;padding-bottom:12px}
+.lesson-card h3{font-size:24px;color:#173b7a;margin:30px 0 12px}
+.lesson-card h4{font-size:19px;color:#243b67;margin:22px 0 8px}
+.lesson-card ul,.lesson-card ol{font-size:18px;padding-left:28px}
+.lesson-card li{margin:8px 0}
+.key-box,.example-box,.activity-box,.remember-box,.warning-box,.summary-box{border-radius:12px;padding:20px 22px;margin:22px 0}
+.key-box{background:#f2f7ff;border-left:5px solid #1769ef}
+.example-box{background:#f7f4ff;border-left:5px solid #7c35f6}
+.activity-box{background:#f1fbf6;border-left:5px solid #27a56a}
+.remember-box{background:#fff8e8;border-left:5px solid #e8a51b}
+.warning-box{background:#fff2f2;border-left:5px solid #d94b4b}
+.summary-box{background:#eef4ff;border:1px solid #b9d2ff}
+.concept-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:20px 0}
+.concept-card{border:1px solid #e0e6ef;border-radius:14px;padding:20px;background:#fff;box-shadow:0 3px 12px rgba(16,38,94,.05)}
+.concept-card strong{color:#10265e;font-size:19px}
+.flow{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:25px 0}
+.flow span{padding:12px 16px;background:#edf3ff;color:#143c83;border-radius:10px;font-weight:700}
+.flow b{color:#7c35f6;font-size:22px}
+.ped-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:17px}
+.ped-table th,.ped-table td{border:1px solid #dce3ed;padding:12px 14px;vertical-align:top}
+.ped-table th{background:#10265e;color:#fff}
+.ped-table tr:nth-child(even) td{background:#f8faff}
+.check-question{padding:16px 18px;border:1px solid #dfe6f0;border-radius:10px;margin:12px 0;background:#fff}
+.answer{margin-top:8px;color:#52627d;font-size:16px}
+.mini-title{font-weight:800;color:#10265e}
+@media(max-width:700px){.concept-grid{grid-template-columns:1fr}.ped-table{font-size:15px}}
+</style>
+
+</head><body>
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+  <div class="container-fluid as-nav-container">
+    <a class="navbar-brand as-brand" data-root-href="index.html" href="#">
+      <span class="as-book" aria-hidden="true"></span>
+      <span>
+        <strong>AsTech<span>AI</span></strong>
+        <small>IT Learning Platform</small>
+      </span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#asMainNavbar" aria-controls="asMainNavbar"
+            aria-expanded="false" aria-label="Afficher la navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="asMainNavbar">
+      <ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+        <li class="nav-item">
+          <a class="nav-link active" data-root-href="index.html" href="#">Accueil</a>
+        </li>
+
+        <li class="nav-item dropdown position-static">
+          <a class="nav-link dropdown-toggle" href="#" role="button"
+             data-bs-toggle="dropdown" data-bs-auto-close="outside"
+             aria-expanded="false">Cours</a>
+
+          <div class="dropdown-menu as-course-menu">
+            <div class="as-course-grid">
+              <a class="as-course-card" data-root-href="cours/gestion-ordinateurs/index.html" href="#">
+                <span class="as-course-icon">▣</span>
+                <span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="https://asma-aouichat.github.io/microsoft365-learning-hub/" href="#">
+                <span class="as-course-icon orange">M</span>
+                <span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="cours/mathematiques-resolution-probleme/index.html" href="#">
+                <span class="as-course-icon purple">∑</span>
+                <span><strong>Mathématiques — Résolution de problème</strong><small>Raisonnement, méthodes et stratégies de résolution</small></span>
+              </a>
+              <!-- <a class="as-course-card" data-root-href="cours/programmation/index.html" href="#">
+                <span class="as-course-icon purple">&lt;/&gt;</span>
+                <span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="cours/bases-de-donnees/index.html" href="#">
+                <span class="as-course-icon">◎</span>
+                <span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+              </a>
+              <a class="as-course-card" data-root-href="cours/programmation-orientee-objet/index.html" href="#">
+                <span class="as-course-icon purple">◇</span>
+                <span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+              </a> -->
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" data-root-href="projets/index.html" href="#">Projets</a></li>
+        <li class="nav-item"><a class="nav-link" data-root-href="index.html#apropos" href="#">À propos</a></li>
+        <li class="nav-item"><a class="nav-link" data-root-href="index.html#ressources" href="#">Ressources</a></li>
+      </ul>
+
+      <form class="d-none d-xl-flex as-search" role="search" onsubmit="return false;">
+        <span aria-hidden="true">⌕</span>
+        <input type="search" placeholder="Rechercher..." aria-label="Rechercher">
+      </form>
+
+      <a class="btn as-login" data-root-href="connexion/index.html" href="#">♙ &nbsp; Connexion</a>
+    </div>
+  </div>
+</nav>
+<main><a class="back" href="../index.html">← Retour aux leçons</a><article class="lesson-card"><span class="badge">Leçon 1</span>
+<h1>Introduction aux mathématiques appliquées à l’informatique</h1>
+<p class="lead">Comprendre le rôle des mathématiques en informatique, la représentation de l’information et les bases de la numération.</p>
+
+<div class="objectives">
+  <strong>Objectifs d’apprentissage.</strong> À la fin de ce chapitre, l’étudiant sera capable de :
+  <ul>
+    <li>expliquer le rôle des mathématiques dans différents domaines de l’informatique ;</li>
+    <li>distinguer une information de sa représentation numérique ;</li>
+    <li>expliquer pourquoi un ordinateur utilise des états binaires ;</li>
+    <li>identifier les principales catégories de données manipulées par un ordinateur ;</li>
+    <li>décrire, à un niveau introductif, comment nombres, textes, images et sons deviennent des données numériques ;</li>
+    <li>faire le lien entre représentation de l’information, systèmes de numération et résolution de problèmes informatiques.</li>
+  </ul>
+</div>
+
+<h2>1. Pourquoi étudier les mathématiques en informatique ?</h2>
+<p>L’informatique ne consiste pas uniquement à écrire du code. Avant de programmer une solution, il faut comprendre un problème, identifier les données utiles, établir des relations entre ces données, choisir une méthode de résolution et vérifier le résultat. Les mathématiques fournissent une grande partie des outils nécessaires à ce raisonnement.</p>
+
+<div class="key-box"><strong>Idée essentielle.</strong> En informatique, les mathématiques servent à <strong>représenter</strong>, <strong>modéliser</strong>, <strong>calculer</strong>, <strong>raisonner</strong>, <strong>optimiser</strong> et <strong>vérifier</strong>.</div>
+
+<h3>1.1 Mathématiques et résolution de problèmes</h3>
+<p>Un problème informatique commence généralement par une situation réelle. Pour qu’un ordinateur puisse la traiter, il faut transformer cette situation en données et en opérations précises.</p>
+<div class="flow">
+  <span>Problème réel</span><b>→</b><span>Modèle</span><b>→</b><span>Données</span><b>→</b><span>Algorithme</span><b>→</b><span>Résultat</span><b>→</b><span>Interprétation</span>
+</div>
+
+<div class="example-box">
+  <div class="mini-title">Exemple — Calculer une facture</div>
+  <p>Une application doit calculer le montant total d’un achat. Le problème réel est transformé en variables : prix, quantité, taxe et remise. Une formule mathématique permet ensuite de produire le résultat.</p>
+  <p><strong>Total avant taxe</strong> = prix × quantité<br>
+  <strong>Total final</strong> = total avant taxe − remise + taxes</p>
+  <p>Le programme informatique automatise donc un modèle mathématique préalablement défini.</p>
+</div>
+
+<h3>1.2 Où retrouve-t-on les mathématiques en informatique ?</h3>
+<table class="ped-table">
+<tr><th>Domaine informatique</th><th>Mathématiques utilisées</th><th>Exemple</th></tr>
+<tr><td>Programmation</td><td>Arithmétique, logique, fonctions</td><td>Calculer une moyenne ou vérifier une condition.</td></tr>
+<tr><td>Architecture des ordinateurs</td><td>Binaire, hexadécimal, logique booléenne</td><td>Représenter les données en mémoire.</td></tr>
+<tr><td>Graphisme et jeux vidéo</td><td>Géométrie, coordonnées, vecteurs</td><td>Déplacer ou faire pivoter un objet.</td></tr>
+<tr><td>Réseaux</td><td>Numération binaire, puissances</td><td>Comprendre les adresses et masques binaires.</td></tr>
+<tr><td>Données et IA</td><td>Statistiques, probabilités, algèbre</td><td>Analyser des données ou mesurer une tendance.</td></tr>
+<tr><td>Cybersécurité</td><td>Arithmétique, logique, mathématiques discrètes</td><td>Chiffrement et contrôle d’intégrité.</td></tr>
+</table>
+
+<h2>2. De l’information à la donnée numérique</h2>
+<h3>2.1 Qu’est-ce qu’une information ?</h3>
+<p>Une information est un élément auquel nous attribuons une signification. Un nom, une température, une photographie, une note d’étudiant ou un morceau de musique sont des informations. Pour qu’un ordinateur puisse les stocker et les traiter, elles doivent être transformées en une représentation exploitable par la machine.</p>
+
+<div class="concept-grid">
+  <div class="concept-card"><strong>Information</strong><p>Ce que la donnée signifie pour l’utilisateur. Exemple : « la température est de 22 °C ».</p></div>
+  <div class="concept-card"><strong>Donnée</strong><p>Une représentation codée de l’information pouvant être stockée, transmise ou traitée.</p></div>
+</div>
+
+<div class="remember-box"><strong>À retenir.</strong> L’ordinateur ne comprend pas le sens d’une photo, d’un mot ou d’un nombre comme un humain. Il manipule leur <strong>représentation codée</strong>.</div>
+
+<h3>2.2 Pourquoi le binaire ?</h3>
+
+<h4>Qu’est-ce qu’un circuit numérique ?</h4>
+<p>Un <strong>circuit numérique</strong> est un circuit électronique qui fonctionne avec des valeurs discrètes, généralement deux états. En informatique, ces deux états sont représentés par les symboles <strong>0</strong> et <strong>1</strong>.</p>
+
+<p>À l’intérieur d’un ordinateur, de très nombreux composants électroniques, notamment des <strong>transistors</strong>, sont utilisés pour construire des circuits capables de manipuler ces deux états. Cette organisation permet à l’ordinateur de représenter, mémoriser et traiter l’information.</p>
+
+<div class="concept-grid">
+  <div class="concept-card">
+    <strong>État 0</strong>
+    <p>Peut représenter, selon le contexte, un niveau électrique bas, un état désactivé ou la valeur logique « faux ».</p>
+  </div>
+  <div class="concept-card">
+    <strong>État 1</strong>
+    <p>Peut représenter, selon le contexte, un niveau électrique haut, un état activé ou la valeur logique « vrai ».</p>
+  </div>
+</div>
+
+<div class="example-box">
+  <div class="mini-title">Analogie simple — L’interrupteur</div>
+  <p>Pour comprendre l’idée, on peut imaginer un interrupteur possédant deux états : <strong>ouvert</strong> ou <strong>fermé</strong>. On peut associer l’un des états à <strong>0</strong> et l’autre à <strong>1</strong>. Les circuits réels d’un ordinateur sont beaucoup plus complexes, mais cette analogie permet de comprendre le principe de deux états distincts.</p>
+</div>
+
+<h4>Pourquoi dit-on « numérique » ?</h4>
+<p>Un système <strong>analogique</strong> représente une grandeur qui peut varier de façon continue. Un système <strong>numérique</strong>, quant à lui, représente l’information à l’aide de valeurs discrètes.</p>
+
+<table class="ped-table">
+  <tr><th>Type</th><th>Principe</th><th>Exemple simplifié</th></tr>
+  <tr><td>Analogique</td><td>Variation continue du signal</td><td>Une grandeur qui évolue progressivement.</td></tr>
+  <tr><td>Numérique</td><td>Valeurs discrètes</td><td>Une suite telle que 0, 1, 1, 0, 1.</td></tr>
+</table>
+
+<div class="key-box">
+  <strong>Idée essentielle.</strong> Un ordinateur est constitué de circuits électroniques numériques. Pour notre étude, nous représentons leurs deux états logiques par <strong>0</strong> et <strong>1</strong>. Ces deux symboles constituent la base du <strong>système binaire</strong>.
+</div>
+
+<p>En combinant un très grand nombre de 0 et de 1, l’ordinateur peut représenter et traiter des informations beaucoup plus complexes : nombres, textes, images, sons, vidéos et instructions de programmes.</p>
+
+<table class="ped-table">
+<tr><th>Modèle logique</th><th>Interprétation possible</th></tr>
+<tr><td>0</td><td>Faux, désactivé, absence de signal, niveau bas</td></tr>
+<tr><td>1</td><td>Vrai, activé, présence de signal, niveau haut</td></tr>
+</table>
+
+<p>Il ne faut cependant pas penser qu’un 0 signifie toujours « éteint » physiquement. Le sens exact dépend du système électronique. Pour ce cours, 0 et 1 sont avant tout des <strong>symboles permettant de coder l’information</strong>.</p>
+
+<h3>2.3 Le bit : unité élémentaire</h3>
+<p>Le mot <strong>bit</strong> vient de <em>binary digit</em>. Un bit peut prendre deux valeurs : 0 ou 1. Pris isolément, il permet donc de distinguer deux possibilités.</p>
+
+<div class="example-box">
+  <div class="mini-title">Exemple</div>
+  <p>Un état « porte fermée / porte ouverte » peut être codé avec un bit : <strong>0 = fermée</strong>, <strong>1 = ouverte</strong>. Lorsque plusieurs bits sont regroupés, le nombre de combinaisons augmente. Cette idée sera développée dans le chapitre sur les systèmes numériques.</p>
+</div>
+
+<h2>3. Comment différents types d’information sont-ils représentés ?</h2>
+<p>La représentation finale est binaire, mais la méthode de codage dépend du type d’information.</p>
+
+<h3>3.1 Les nombres</h3>
+<p>Un nombre peut être représenté selon différents systèmes de numération. Nous utilisons quotidiennement le système décimal, tandis que l’informatique utilise principalement le système binaire. Les systèmes octal et hexadécimal permettent également d’écrire certaines valeurs binaires de manière plus compacte.</p>
+
+<div class="example-box">
+  <div class="mini-title">Même valeur, représentations différentes</div>
+  <p><strong>13</strong> en décimal peut s’écrire <strong>1101</strong> en binaire. La valeur mathématique ne change pas ; seule sa représentation change.</p>
+</div>
+
+<h3>3.2 Le texte</h3>
+<p>Pour enregistrer du texte, chaque caractère est associé à un code numérique. Le caractère est donc d’abord associé à une valeur, puis cette valeur est représentée sous forme binaire. Des standards de codage tels qu’Unicode permettent de représenter un très grand nombre de caractères et de langues.</p>
+
+<div class="example-box">
+  <div class="mini-title">Exemple 1 — Le caractère « A »</div>
+  <p>Dans le codage ASCII, la lettre majuscule <strong>A</strong> correspond à la valeur décimale <strong>65</strong>. Cette valeur peut être représentée en binaire par <strong>01000001</strong>.</p>
+  <div class="flow"><span>A</span><b>→</b><span>65</span><b>→</b><span>01000001</span></div>
+  <p>Ainsi, lorsque l’utilisateur voit la lettre <strong>A</strong>, l’ordinateur manipule en réalité une représentation numérique de ce caractère.</p>
+</div>
+
+<div class="example-box">
+  <div class="mini-title">Exemple 2 — Le mot « INFO »</div>
+  <p>Un mot est représenté caractère par caractère. En ASCII, on peut associer :</p>
+  <table class="ped-table">
+    <tr><th>Caractère</th><th>Code décimal</th><th>Binaire sur 8 bits</th></tr>
+    <tr><td>I</td><td>73</td><td>01001001</td></tr>
+    <tr><td>N</td><td>78</td><td>01001110</td></tr>
+    <tr><td>F</td><td>70</td><td>01000110</td></tr>
+    <tr><td>O</td><td>79</td><td>01001111</td></tr>
+  </table>
+  <p>Le texte affiché à l’écran est donc associé à une suite de valeurs numériques stockées et traitées par l’ordinateur.</p>
+</div>
+
+<div class="key-box"><strong>Et les caractères comme é, € ou les caractères arabes ?</strong> ASCII est limité. Unicode fournit un système beaucoup plus vaste permettant d’attribuer des points de code aux caractères de nombreuses langues et systèmes d’écriture. Des encodages comme UTF-8 permettent ensuite de représenter ces points de code sous forme d’octets.</div>
+
+<h3>3.3 Les images</h3>
+<p>Une image numérique peut être décrite comme un ensemble de <strong>pixels</strong>. Un pixel est un petit élément de l’image auquel on associe notamment une couleur. Dans une représentation RGB courante, une couleur est décrite à l’aide de trois composantes : <strong>rouge (R)</strong>, <strong>vert (G)</strong> et <strong>bleu (B)</strong>.</p>
+
+<div class="example-box">
+  <div class="mini-title">Exemple 1 — Une couleur RGB</div>
+  <p>Si chaque composante est représentée par une valeur comprise entre 0 et 255, quelques couleurs simples peuvent s’écrire :</p>
+  <table class="ped-table">
+    <tr><th>Couleur</th><th>R</th><th>G</th><th>B</th></tr>
+    <tr><td>Noir</td><td>0</td><td>0</td><td>0</td></tr>
+    <tr><td>Blanc</td><td>255</td><td>255</td><td>255</td></tr>
+    <tr><td>Rouge</td><td>255</td><td>0</td><td>0</td></tr>
+    <tr><td>Vert</td><td>0</td><td>255</td><td>0</td></tr>
+    <tr><td>Bleu</td><td>0</td><td>0</td><td>255</td></tr>
+  </table>
+  <p>Ainsi, la couleur d’un pixel peut elle-même être décrite par plusieurs nombres.</p>
+</div>
+
+<div class="activity-box">
+  <div class="mini-title">Exemple 2 — Combien de pixels contient une image ?</div>
+  <p>Une image de <strong>1920 × 1080</strong> contient :</p>
+  <p><strong>1920 × 1080 = 2 073 600 pixels</strong>.</p>
+  <p>Cette multiplication illustre directement l’utilisation des mathématiques dans la représentation des images numériques.</p>
+</div>
+
+<div class="example-box">
+  <div class="mini-title">Exemple 3 — Estimation simple de la quantité de données</div>
+  <p>Supposons, de manière simplifiée, qu’une image RGB utilise <strong>3 octets par pixel</strong> : un octet pour le rouge, un pour le vert et un pour le bleu.</p>
+  <p>Pour une image de 100 × 100 pixels :</p>
+  <p><strong>100 × 100 = 10 000 pixels</strong><br>
+  <strong>10 000 × 3 = 30 000 octets</strong> de données brutes.</p>
+  <p>Dans un fichier réel, la taille peut être différente en raison notamment du format, de la compression et d’autres informations stockées dans le fichier.</p>
+</div>
+
+<h3>3.4 Le son</h3>
+<p>Un son analogique varie continuellement. Pour être traité par un ordinateur, il est <strong>échantillonné</strong> : on mesure l’amplitude du signal à intervalles réguliers et chaque mesure est ensuite représentée par une valeur numérique.</p>
+
+<div class="flow"><span>Son analogique</span><b>→</b><span>Échantillonnage</span><b>→</b><span>Valeurs numériques</span><b>→</b><span>Données binaires</span></div>
+
+<div class="example-box">
+  <div class="mini-title">Exemple 1 — Échantillonnage simplifié</div>
+  <p>Imaginons que l’on mesure un signal sonore à plusieurs instants et que l’on obtienne les valeurs suivantes :</p>
+  <p style="text-align:center;font-size:21px"><strong>12 &nbsp; 18 &nbsp; 25 &nbsp; 20 &nbsp; 10</strong></p>
+  <p>Ces nombres représentent différentes mesures du signal. L’ordinateur peut les stocker sous forme binaire. Lorsqu’un très grand nombre de mesures sont prises chaque seconde, on peut reconstruire numériquement la forme du son avec davantage de précision.</p>
+</div>
+
+<div class="example-box">
+  <div class="mini-title">Exemple 2 — Fréquence d’échantillonnage</div>
+  <p>Une fréquence d’échantillonnage de <strong>44,1 kHz</strong> signifie que le signal est échantillonné <strong>44 100 fois par seconde</strong> pour chaque canal.</p>
+  <p>Pour 10 secondes, cela correspond à <strong>44 100 × 10 = 441 000 échantillons par canal</strong>.</p>
+</div>
+
+<div class="example-box">
+  <div class="mini-title">Exemple 3 — Taille approximative d’un son non compressé</div>
+  <p>Pour un son mono de 1 seconde échantillonné à <strong>44 100 échantillons/s</strong>, avec <strong>16 bits</strong> par échantillon :</p>
+  <p><strong>44 100 × 16 = 705 600 bits</strong>, soit <strong>88 200 octets</strong> de données audio brutes.</p>
+  <p>Un son stéréo possède deux canaux ; à paramètres identiques, la quantité de données audio brutes est donc doublée. Les formats compressés peuvent réduire fortement la taille finale du fichier.</p>
+</div>
+
+<div class="remember-box"><strong>À retenir.</strong> Pour le son numérique, deux notions sont importantes : la <strong>fréquence d’échantillonnage</strong>, qui indique combien de mesures sont réalisées par seconde, et la <strong>profondeur en bits</strong>, qui indique la précision disponible pour représenter chaque échantillon.</div>
+
+<h2>4. Représentation, stockage et traitement</h2>
+<p>Une fois codées, les données peuvent être stockées en mémoire, transférées sur un réseau et traitées par des programmes. Il est important de distinguer trois étapes :</p>
+<ol>
+  <li><strong>Représenter :</strong> choisir comment l’information sera codée.</li>
+  <li><strong>Stocker :</strong> conserver cette représentation dans un support ou une mémoire.</li>
+  <li><strong>Traiter :</strong> appliquer des opérations à ces données afin de produire un résultat.</li>
+</ol>
+
+<div class="example-box">
+  <div class="mini-title">Exemple — Note d’un étudiant</div>
+  <p>La note <strong>85</strong> possède une signification pour l’utilisateur. Elle est enregistrée sous une représentation numérique en mémoire. Un programme peut ensuite l’utiliser pour calculer une moyenne, déterminer une réussite ou produire un graphique.</p>
+</div>
+
+
+<h2>5. Les unités de mesure de l’information : du bit au téraoctet</h2>
+<p>Avant d’étudier les systèmes de numération, il est important de comprendre comment on mesure la <strong>quantité d’information numérique</strong> et la <strong>capacité de stockage</strong>. Les unités les plus courantes vont du <strong>bit</strong> à l’<strong>octet</strong>, puis au kilo-octet, mégaoctet, gigaoctet, téraoctet et au-delà.</p>
+
+<h3>5.1 Le bit</h3>
+<p>Le <strong>bit</strong>, dont le nom vient de <em>binary digit</em>, est l’unité élémentaire d’information binaire. Un bit peut prendre seulement deux valeurs :</p>
+<div class="flow"><span>0</span><b>ou</b><span>1</span></div>
+<p>Un seul bit permet donc de représenter deux états possibles. Cependant, pour représenter des informations plus complexes, plusieurs bits sont regroupés.</p>
+
+<h3>5.2 Le nibble : 4 bits</h3>
+<p>Un groupe de <strong>4 bits</strong> est parfois appelé un <strong>nibble</strong> (ou demi-octet). Il est particulièrement utile lorsqu’on travaille avec le système hexadécimal, car un chiffre hexadécimal correspond exactement à 4 bits.</p>
+<div class="example-box">
+  <div class="mini-title">Exemple</div>
+  <p><strong>1010</strong> contient 4 bits. En hexadécimal, cette suite correspond au chiffre <strong>A</strong>.</p>
+</div>
+
+<h3>5.3 L’octet : 8 bits</h3>
+<p>Un <strong>octet</strong> est un groupe de <strong>8 bits</strong>. En anglais, on utilise généralement le terme <strong>byte</strong>. L’octet est une unité fondamentale pour exprimer la taille des données et la capacité de stockage.</p>
+<div class="flow">
+  <span>1 octet</span><b>=</b><span>8 bits</span>
+</div>
+
+<div class="example-box">
+  <div class="mini-title">Exemple — Un octet</div>
+  <p>La suite <strong>01000001</strong> contient 8 bits : elle occupe donc un octet. Dans un encodage comme ASCII, cette suite peut représenter le caractère <strong>A</strong>.</p>
+</div>
+
+<h3>5.4 Du bit aux grandes unités de stockage</h3>
+<p>Lorsque la quantité de données devient importante, utiliser uniquement des octets produit de très grands nombres. On utilise donc des unités plus grandes.</p>
+
+<table class="ped-table">
+  <tr><th>Unité</th><th>Symbole</th><th>Relation décimale courante</th><th>Exemple d’usage</th></tr>
+  <tr><td>Bit</td><td>bit / b</td><td>0 ou 1</td><td>État binaire</td></tr>
+  <tr><td>Octet</td><td>o / B</td><td>8 bits</td><td>Petite quantité de données</td></tr>
+  <tr><td>Kilo-octet</td><td>Ko / kB</td><td>1 000 octets</td><td>Petit document texte</td></tr>
+  <tr><td>Mégaoctet</td><td>Mo / MB</td><td>1 000 Ko</td><td>Photo, document, audio court</td></tr>
+  <tr><td>Gigaoctet</td><td>Go / GB</td><td>1 000 Mo</td><td>Applications, vidéos, mémoire et stockage</td></tr>
+  <tr><td>Téraoctet</td><td>To / TB</td><td>1 000 Go</td><td>SSD et disques de grande capacité</td></tr>
+  <tr><td>Pétaoctet</td><td>Po / PB</td><td>1 000 To</td><td>Très grands centres de données</td></tr>
+  <tr><td>Exaoctet</td><td>Eo / EB</td><td>1 000 Po</td><td>Volumes de données à très grande échelle</td></tr>
+</table>
+
+<div class="flow">
+  <span>bit</span><b>→</b><span>octet</span><b>→</b><span>Ko</span><b>→</b><span>Mo</span><b>→</b><span>Go</span><b>→</b><span>To</span><b>→</b><span>Po</span><b>→</b><span>Eo</span>
+</div>
+
+<h3>5.5 Attention : 1 000 ou 1 024 ?</h3>
+<p>Deux conventions sont rencontrées en informatique. Dans le <strong>système décimal</strong>, les préfixes kilo, méga et giga utilisent des puissances de 1 000. Pour les puissances de 1 024, des préfixes binaires spécifiques sont utilisés : <strong>kibioctet (Kio)</strong>, <strong>mébioctet (Mio)</strong> et <strong>gibioctet (Gio)</strong>.</p>
+
+<table class="ped-table">
+  <tr><th>Unité décimale</th><th>Valeur</th><th>Unité binaire</th><th>Valeur</th></tr>
+  <tr><td>1 Ko</td><td>1 000 octets</td><td>1 Kio</td><td>1 024 octets = 2<sup>10</sup> octets</td></tr>
+  <tr><td>1 Mo</td><td>1 000 000 octets</td><td>1 Mio</td><td>1 048 576 octets = 2<sup>20</sup> octets</td></tr>
+  <tr><td>1 Go</td><td>1 000 000 000 octets</td><td>1 Gio</td><td>1 073 741 824 octets = 2<sup>30</sup> octets</td></tr>
+</table>
+
+<div class="warning-box"><strong>Attention aux symboles.</strong> Le symbole <strong>b</strong> désigne généralement un <strong>bit</strong>, tandis que <strong>B</strong> désigne un <strong>byte</strong>, c’est-à-dire un octet. Ainsi, <strong>8 bits = 1 octet</strong>.</div>
+
+<h3>5.6 Exemples de conversion</h3>
+<div class="example-box">
+  <div class="mini-title">Exemple 1 — Octets vers bits</div>
+  <p>Un fichier contient <strong>250 octets</strong>. Puisque 1 octet = 8 bits :</p>
+  <p><strong>250 × 8 = 2 000 bits</strong>.</p>
+</div>
+
+<div class="example-box">
+  <div class="mini-title">Exemple 2 — Mo vers octets</div>
+  <p>Avec la convention décimale, une image de <strong>5 Mo</strong> représente :</p>
+  <p><strong>5 × 1 000 000 = 5 000 000 octets</strong>.</p>
+</div>
+
+<div class="example-box">
+  <div class="mini-title">Exemple 3 — Capacité d’un disque</div>
+  <p>Un disque de <strong>1 To</strong>, exprimé selon la convention décimale, correspond à :</p>
+  <p><strong>1 000 Go = 1 000 000 Mo = 1 000 000 000 Ko = 1 000 000 000 000 octets</strong>.</p>
+</div>
+
+<div class="activity-box">
+  <div class="mini-title">Vérifiez votre compréhension</div>
+  <ol>
+    <li>Combien de bits contient un octet ?</li>
+    <li>Combien de bits contiennent 20 octets ?</li>
+    <li>Avec la convention décimale, combien de Mo représentent 3 Go ?</li>
+    <li>Quelle est la différence entre 1 Ko et 1 Kio ?</li>
+    <li>Classez du plus petit au plus grand : Mo, bit, To, octet, Ko, Go.</li>
+  </ol>
+</div>
+
+<div class="remember-box">
+  <strong>À retenir.</strong> <strong>8 bits = 1 octet</strong>. Pour les grandes quantités de données, on utilise notamment Ko, Mo, Go et To. Il faut également distinguer les préfixes décimaux (Ko, Mo, Go) des préfixes binaires (Kio, Mio, Gio).
+</div>
+
+<h2>6. Introduction aux systèmes de numération</h2>
+
+<p>Un <strong>système de numération</strong> est une méthode permettant de représenter les nombres à l’aide d’un ensemble de symboles et de règles. La notion de <strong>base</strong> indique notamment combien de symboles distincts sont utilisés dans le système.</p>
+
+<table class="ped-table">
+<tr><th>Système</th><th>Base</th><th>Symboles</th><th>Exemple</th></tr>
+<tr><td>Décimal</td><td>10</td><td>0 à 9</td><td>245</td></tr>
+<tr><td>Binaire</td><td>2</td><td>0 et 1</td><td>101101</td></tr>
+<tr><td>Octal</td><td>8</td><td>0 à 7</td><td>735</td></tr>
+<tr><td>Hexadécimal</td><td>16</td><td>0 à 9 et A à F</td><td>2AF</td></tr>
+</table>
+
+<div class="warning-box"><strong>Attention.</strong> Une suite de chiffres n’a pas toujours la même valeur si sa base change. Par exemple, <strong>10₂</strong> et <strong>10₁₀</strong> ne représentent pas la même valeur. La base fait partie de l’information nécessaire pour interpréter correctement l’écriture d’un nombre.</div>
+
+<h3>6.1 Pourquoi plusieurs systèmes ?</h3>
+<p>Le décimal est naturel pour les usages humains courants. Le binaire correspond directement à la représentation numérique élémentaire utilisée par les ordinateurs. L’octal et l’hexadécimal sont utiles parce qu’ils permettent de regrouper et de lire plus facilement de longues suites de bits.</p>
+
+<div class="example-box">
+  <div class="mini-title">Exemple — Une même valeur dans plusieurs systèmes</div>
+  <p>Considérons la valeur décimale <strong>255</strong>. Cette même valeur peut être écrite de différentes façons selon le système de numération :</p>
+  <table class="ped-table">
+    <tr><th>Système</th><th>Base</th><th>Représentation de la valeur 255</th></tr>
+    <tr><td>Décimal</td><td>10</td><td><strong>255₁₀</strong></td></tr>
+    <tr><td>Binaire</td><td>2</td><td><strong>11111111₂</strong></td></tr>
+    <tr><td>Octal</td><td>8</td><td><strong>377₈</strong></td></tr>
+    <tr><td>Hexadécimal</td><td>16</td><td><strong>FF₁₆</strong></td></tr>
+  </table>
+
+  <p>On remarque que l’écriture binaire <strong>11111111</strong> est plus longue. L’hexadécimal permet d’écrire exactement la même valeur avec seulement deux symboles : <strong>FF</strong>.</p>
+
+  <div class="flow">
+    <span>1111 1111₂</span><b>→</b><span>F F₁₆</span>
+  </div>
+
+  <p>En hexadécimal, chaque groupe de <strong>4 bits</strong> peut être représenté par un seul chiffre hexadécimal. Ainsi, <strong>1111₂ = F₁₆</strong>, donc <strong>1111 1111₂ = FF₁₆</strong>.</p>
+</div>
+
+<div class="example-box">
+  <div class="mini-title">Exemple informatique — Les couleurs</div>
+  <p>En informatique, l’hexadécimal est notamment utilisé pour écrire des couleurs. Par exemple, en notation RGB hexadécimale :</p>
+  <p style="text-align:center;font-size:22px"><strong>#FF0000</strong> → rouge</p>
+  <p>Les six chiffres sont regroupés par deux : <strong>FF</strong> pour le rouge, <strong>00</strong> pour le vert et <strong>00</strong> pour le bleu. Ici, <strong>FF₁₆ = 255₁₀</strong>.</p>
+</div>
+
+<div class="remember-box">
+  <strong>À retenir.</strong> Les différents systèmes ne changent pas la quantité représentée : ils changent seulement sa <strong>façon de l’écrire</strong>. Le binaire est adapté au fonctionnement numérique de l’ordinateur, tandis que l’hexadécimal offre souvent une écriture plus courte et plus lisible pour les humains.
+</div>
+
+<div class="remember-box"><strong>Transition vers le chapitre suivant.</strong> Le chapitre 2 étudiera en profondeur les bases, la notation positionnelle, les bits et octets, les tailles, les conversions entre bases, l’arithmétique binaire, les nombres signés, le complément à deux et les nombres réels.</div>
+
+<h2>7. Méthode de résolution d’un problème informatique</h2>
+<p>Les notions mathématiques deviennent réellement utiles lorsqu’elles sont intégrées dans une démarche structurée de résolution de problèmes.</p>
+<table class="ped-table">
+<tr><th>Étape</th><th>Question à se poser</th></tr>
+<tr><td>1. Comprendre</td><td>Quel est exactement le problème ? Quel résultat est attendu ?</td></tr>
+<tr><td>2. Identifier les données</td><td>Quelles informations sont disponibles ? Quelles sont les entrées ?</td></tr>
+<tr><td>3. Modéliser</td><td>Quelles relations, formules ou règles permettent de passer des données au résultat ?</td></tr>
+<tr><td>4. Construire la solution</td><td>Dans quel ordre faut-il effectuer les opérations ?</td></tr>
+<tr><td>5. Vérifier</td><td>Le résultat est-il cohérent ? Que se passe-t-il avec des cas particuliers ?</td></tr>
+<tr><td>6. Interpréter</td><td>Que signifie le résultat dans le contexte du problème ?</td></tr>
+</table>
+
+<div class="activity-box">
+  <div class="mini-title">Activité guidée — Stockage de photos</div>
+  <p>Un téléphone contient 240 photos. Chaque photo occupe approximativement 4 Mo.</p>
+  <ol>
+    <li>Identifiez les données du problème.</li>
+    <li>Déterminez l’opération nécessaire pour calculer l’espace total.</li>
+    <li>Calculez l’espace occupé en Mo.</li>
+    <li>Expliquez ce que représente le résultat obtenu.</li>
+  </ol>
+  <p class="answer"><strong>Vérification :</strong> 240 × 4 = 960 Mo. L’objectif n’est pas seulement d’obtenir « 960 », mais de comprendre que ce nombre représente une quantité de stockage.</p>
+</div>
+
+<h2>8. Vérification des acquis</h2>
+<div class="check-question"><strong>1.</strong> Expliquez avec vos propres mots la différence entre une information et une donnée numérique.</div>
+<div class="check-question"><strong>2.</strong> Pourquoi utilise-t-on deux états dans la représentation binaire ?</div>
+<div class="check-question"><strong>3.</strong> Donnez trois domaines informatiques dans lesquels les mathématiques sont utilisées et précisez leur rôle.</div>
+<div class="check-question"><strong>4.</strong> Un bit peut prendre combien de valeurs ? Lesquelles ?</div>
+<div class="check-question"><strong>5.</strong> Expliquez pourquoi le nombre 13 et l’écriture binaire 1101 peuvent représenter la même quantité.</div>
+<div class="check-question"><strong>6.</strong> Décrivez, sans entrer dans les détails techniques, comment une image peut être représentée par un ordinateur.</div>
+<div class="check-question"><strong>7.</strong> Pourquoi est-il important de connaître la base lorsqu’on lit un nombre comme « 10 » ?</div>
+
+<h2>9. Mini-défi de résolution de problème</h2>
+<div class="activity-box">
+  <p>Une petite entreprise souhaite sauvegarder 350 documents de 2 Mo chacun et 120 images de 5 Mo chacune.</p>
+  <ol>
+    <li>Identifiez les deux catégories de données.</li>
+    <li>Calculez l’espace occupé par les documents.</li>
+    <li>Calculez l’espace occupé par les images.</li>
+    <li>Calculez l’espace total nécessaire.</li>
+    <li>Expliquez pourquoi ce problème illustre le lien entre mathématiques et informatique.</li>
+  </ol>
+</div>
+
+<h2>10. Synthèse du chapitre</h2>
+<div class="summary-box">
+  <ul>
+    <li>Les mathématiques sont un outil fondamental de modélisation et de résolution de problèmes informatiques.</li>
+    <li>Un ordinateur traite des représentations codées de l’information.</li>
+    <li>Le bit est l’unité élémentaire de la représentation binaire et prend la valeur 0 ou 1.</li>
+    <li>Les nombres, textes, images et sons peuvent tous être transformés en données numériques.</li>
+    <li>Les systèmes décimal, binaire, octal et hexadécimal représentent les nombres selon des bases différentes.</li>
+    <li>Une bonne résolution de problème passe par la compréhension, la modélisation, le calcul, la vérification et l’interprétation.</li>
+  </ul>
+</div>
+
+</article></main><footer>© AsTechAI-Teaching</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const ROOT = "../../../";
+  document.querySelectorAll("[data-root-href]").forEach(el => {
+    const target = el.getAttribute("data-root-href");
+    if (/^https?:\/\//i.test(target)) {
+      el.href = target;
+    } else {
+      el.href = ROOT + target;
+    }
+  });
+});
+</script>
+
+</body></html>
