@@ -217,8 +217,7 @@ Lecture de bas en haut : 11001₂
 Donc 25₁₀ = 11001₂</pre>
 <div class="activity-box"><strong>À faire :</strong> convertir 13₁₀, 42₁₀, 100₁₀ et 255₁₀ en binaire.</div>
 
-<h2>2.8 Octal et hexadécimal</h2>
-<h3>Octal</h3><p>La base 8 utilise les chiffres 0 à 7. Chaque chiffre octal correspond à <strong>3 bits</strong>, car 8 = 2³.</p>
+<div class="example-box"><strong>Rappel — binaire → décimal :</strong> 101101₂ = 1×2⁵ + 0×2⁴ + 1×2³ + 1×2² + 0×2¹ + 1×2⁰ = <strong>45₁₀</strong>.</div><div class="example-box"><strong>Rappel — décimal → binaire :</strong> 42 ÷ 2 = 21 reste 0 ; 21 ÷ 2 = 10 reste 1 ; 10 ÷ 2 = 5 reste 0 ; 5 ÷ 2 = 2 reste 1 ; 2 ÷ 2 = 1 reste 0 ; 1 ÷ 2 = 0 reste 1. Lecture des restes de bas en haut : <strong>42₁₀ = 101010₂</strong>.</div><h2>2.8 Conversions entre les bases 2, 8 et 16 — méthodes complètes</h2><p>Pour les conversions directes entre le binaire, l’octal et l’hexadécimal, utiliser les regroupements de <strong>3 bits</strong> (octal) ou de <strong>4 bits</strong> (hexadécimal). Les zéros ajoutés à gauche ne changent pas la valeur du nombre.</p><h3>Octal</h3><p>La base 8 utilise les chiffres 0 à 7. Chaque chiffre octal correspond à <strong>3 bits</strong>, car 8 = 2³.</p>
 <pre>101 111 010₂
  5   7   2
 = 572₈</pre>
@@ -227,19 +226,31 @@ Donc 25₁₀ = 11001₂</pre>
 <div class="example-box"><strong>Exemple :</strong> 1111 1010₂ = FA₁₆. Inversement, 3C₁₆ = 0011 1100₂.</div>
 <div class="key-box"><strong>Lien cybersécurité :</strong> lorsqu’un outil affiche un octet comme <code>7F</code>, il s’agit de 01111111₂, soit 127₁₀. Lire l’hexadécimal permet donc d’interpréter rapidement les octets.</div>
 
-<h2>2.9 Opérations arithmétiques binaires</h2>
+<h3>2.8.1 Conversion octal → binaire</h3><div class="key-box"><strong>Méthode :</strong> Chaque chiffre octal est remplacé par son équivalent sur <strong>3 bits</strong>.</div><div class="example-box"><strong>Exemple détaillé :</strong><p>572₈ → 5 = 101, 7 = 111, 2 = 010 → <strong>101111010₂</strong></p></div><div class="activity-box"><strong>À faire :</strong> Convertir 347₈ et 625₈ en binaire.</div><h3>2.8.2 Conversion binaire → octal</h3><div class="key-box"><strong>Méthode :</strong> Regrouper les bits <strong>par 3 en partant de la droite</strong>. Ajouter des zéros à gauche si nécessaire, puis convertir chaque groupe.</div><div class="example-box"><strong>Exemple détaillé :</strong><p>1101011₂ → 001 | 101 | 011 → 1 | 5 | 3 → <strong>153₈</strong></p></div><div class="activity-box"><strong>À faire :</strong> Convertir 101110₂ et 11100101₂ en octal.</div><h3>2.8.3 Conversion binaire → hexadécimal</h3><div class="key-box"><strong>Méthode :</strong> Regrouper les bits <strong>par 4 en partant de la droite</strong>. Compléter à gauche par des zéros si nécessaire.</div><div class="example-box"><strong>Exemple détaillé :</strong><p>11010110₂ → 1101 | 0110 → D | 6 → <strong>D6₁₆</strong></p></div><div class="activity-box"><strong>À faire :</strong> Convertir 10111100₂ et 1110101₂ en hexadécimal.</div><h3>2.8.4 Conversion hexadécimal → binaire</h3><div class="key-box"><strong>Méthode :</strong> Remplacer chaque chiffre hexadécimal par son équivalent sur <strong>4 bits</strong>.</div><div class="example-box"><strong>Exemple détaillé :</strong><p>3A₁₆ → 3 = 0011, A = 1010 → <strong>00111010₂</strong></p></div><div class="activity-box"><strong>À faire :</strong> Convertir B7₁₆ et 2F₁₆ en binaire.</div><h3>2.8.5 Conversion octal → hexadécimal</h3><div class="key-box"><strong>Méthode :</strong> Passer par le <strong>binaire</strong> : convertir chaque chiffre octal en 3 bits, puis regrouper les bits par 4 depuis la droite.</div><div class="example-box"><strong>Exemple détaillé :</strong><p>735₈ → 111 | 011 | 101 → 0001 | 1101 | 1101 → <strong>1DD₁₆</strong></p></div><div class="activity-box"><strong>À faire :</strong> Convertir 247₈ et 654₈ en hexadécimal.</div><h3>2.8.6 Conversion hexadécimal → octal</h3><div class="key-box"><strong>Méthode :</strong> Passer par le <strong>binaire</strong> : convertir chaque chiffre hexadécimal en 4 bits, puis regrouper les bits par 3 depuis la droite.</div><div class="example-box"><strong>Exemple détaillé :</strong><p>2F₁₆ → 0010 | 1111 → 000 | 101 | 111 → <strong>57₈</strong></p></div><div class="activity-box"><strong>À faire :</strong> Convertir A9₁₆ et 3C₁₆ en octal.</div><div class="summary-box"><strong>Tableau récapitulatif</strong><table class="ped-table"><tr><th>Conversion</th><th>Technique</th></tr><tr><td>Binaire → décimal</td><td>Somme des chiffres × puissances de 2 (section 2.6)</td></tr><tr><td>Décimal → binaire</td><td>Divisions successives par 2 (section 2.7)</td></tr><tr><td>Octal → binaire</td><td>1 chiffre octal = 3 bits</td></tr><tr><td>Binaire → octal</td><td>Groupes de 3 bits depuis la droite</td></tr><tr><td>Binaire → hexadécimal</td><td>Groupes de 4 bits depuis la droite</td></tr><tr><td>Hexadécimal → binaire</td><td>1 chiffre hexadécimal = 4 bits</td></tr><tr><td>Octal → hexadécimal</td><td>Octal → binaire → hexadécimal</td></tr><tr><td>Hexadécimal → octal</td><td>Hexadécimal → binaire → octal</td></tr></table></div><h2>2.9 Opérations arithmétiques binaires</h2>
 <h3>Addition</h3><table class="ped-table"><tr><th>Opération</th><th>Résultat</th></tr><tr><td>0 + 0</td><td>0</td></tr><tr><td>0 + 1</td><td>1</td></tr><tr><td>1 + 0</td><td>1</td></tr><tr><td>1 + 1</td><td>10 : écrire 0, retenue 1</td></tr><tr><td>1 + 1 + 1</td><td>11 : écrire 1, retenue 1</td></tr></table>
 <pre>   1011
  + 0110
  ------
   10001</pre>
-<h3>Soustraction avec emprunt</h3><p>Lorsque l’on rencontre 0−1, on emprunte 1 à la colonne de gauche. En base 2, cet emprunt vaut <strong>10₂</strong> dans la colonne courante.</p>
-<pre>   1010
- - 0011
- ------
-   0111</pre>
-<p>Vérification : 10₁₀ − 3₁₀ = 7₁₀.</p>
-<div class="warning-box"><strong>Important :</strong> dans cette partie, on choisit d’abord des exercices où le premier nombre est supérieur ou égal au second afin de rester dans les entiers non signés.</div>
+<h3>Soustraction binaire</h3>
+<p>La soustraction binaire s’effectue <strong>de droite à gauche</strong>, colonne par colonne, comme en décimal. Elle utilise uniquement les chiffres 0 et 1. Si le bit du haut est inférieur au bit du bas, on effectue un <strong>emprunt</strong> à la colonne de gauche.</p>
+<h4>Règles de la soustraction binaire</h4>
+<table class="ped-table"><tr><th>Opération</th><th>Résultat</th><th>Explication</th></tr><tr><td>0 − 0</td><td>0</td><td>Aucune différence</td></tr><tr><td>1 − 0</td><td>1</td><td>On conserve 1</td></tr><tr><td>1 − 1</td><td>0</td><td>Les deux bits s’annulent</td></tr><tr><td>0 − 1</td><td>1 avec emprunt</td><td>On emprunte 1 à gauche : 10₂ − 1₂ = 1₂</td></tr></table>
+<div class="key-box"><strong>À retenir :</strong> emprunter 1 à la colonne de gauche ajoute 2 (10₂) à la colonne courante et diminue de 1 la colonne de gauche. Si celle-ci vaut 0, l’emprunt se propage jusqu’au prochain 1.</div>
+<div class="example-box"><strong>Exemple 1 — Sans emprunt :</strong><pre>   1111₂
+ − 0101₂
+ --------
+   1010₂</pre><p>De droite à gauche : 1−1=0 ; 1−0=1 ; 1−1=0 ; 1−0=1.</p><p><strong>Vérification :</strong> 15₁₀ − 5₁₀ = 10₁₀.</p></div>
+<div class="example-box"><strong>Exemple 2 — Avec emprunt :</strong><pre>   1010₂
+ − 0011₂
+ --------
+   0111₂</pre><ol><li>Colonne 1 (droite) : 0−1 nécessite un emprunt ; 10₂−1₂=1₂.</li><li>Colonne 2 : le 1 a prêté 1, il reste 0 ; 0−1 nécessite un nouvel emprunt. Le 0 de la colonne suivante transmet l’emprunt depuis le 1 de gauche : 10₂−1₂=1₂.</li><li>Colonne 3 : après propagation de l’emprunt, il reste 1 ; 1−0=1.</li><li>Colonne 4 : le 1 de gauche a été emprunté ; il reste 0.</li></ol><p><strong>Résultat :</strong> 1010₂ − 0011₂ = 0111₂. <strong>Vérification :</strong> 10₁₀ − 3₁₀ = 7₁₀.</p></div>
+<div class="example-box"><strong>Exemple 3 — Emprunt à travers plusieurs zéros :</strong><pre>   10000₂
+ − 00001₂
+ --------
+   01111₂</pre><p>Pour soustraire le 1 final, l’emprunt traverse les trois zéros jusqu’au 1 le plus à gauche. <strong>Vérification :</strong> 16₁₀ − 1₁₀ = 15₁₀.</p></div>
+<div class="activity-box"><strong>À faire :</strong><ol><li>Calculer 1101₂ − 0100₂.</li><li>Calculer 1110₂ − 0111₂.</li><li>Calculer 10000₂ − 00101₂.</li><li>Vérifier chaque résultat en décimal.</li></ol></div>
+<div class="warning-box"><strong>Important :</strong> ces exemples concernent les entiers binaires non signés avec un premier nombre supérieur ou égal au second. Les résultats négatifs sont abordés dans la section 2.13 sur le complément à deux.</div>
 <h3>Multiplication</h3><pre>     101
    ×  11
    -----
