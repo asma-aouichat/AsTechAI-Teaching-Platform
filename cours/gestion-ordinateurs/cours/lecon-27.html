@@ -1,21 +1,127 @@
 <!DOCTYPE html>
 
-<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>Rédaction correcte de scripts sous Linux — 420-E04-UC</title><style>
-:root{--navy:#10245c;--blue:#315eea;--ink:#283954;--muted:#60708c;--line:#e4eaf4;--bg:#f6f8fc}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,"Segoe UI",sans-serif;line-height:1.7}a{color:#2754c6}.wrap{max-width:1120px;margin:auto;padding:28px 18px 72px}.hero{background:linear-gradient(125deg,#10245c,#315eea);border-radius:23px;color:white;padding:40px;margin-top:22px}.hero h1{color:white;font-size:clamp(1.8rem,4vw,2.8rem);margin:8px 0}.hero p{max-width:750px;margin-bottom:0}.pill{display:inline-block;border-radius:30px;background:#eaf0ff;color:#224ab6;padding:5px 13px;font-size:.8rem;font-weight:700}.hero .pill{background:rgba(255,255,255,.16);color:white}.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:27px 30px;margin-top:22px;box-shadow:0 6px 24px rgba(20,40,90,.035)}.panel h2{font-size:1.48rem;color:#142a64;margin:0 0 16px}.panel h3{font-size:1.05rem;color:#23478e;margin:16px 0 8px}.panel p{margin:10px 0}.toc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.toc a{text-decoration:none;background:#f2f6ff;padding:11px 14px;border-radius:9px}.toc a:hover{background:#e6eeff}.lesson{scroll-margin-top:105px}.num{display:inline-grid;place-items:center;width:39px;height:39px;border-radius:10px;background:#e9efff;color:#2355d8;font-weight:800;margin-right:10px}.concepts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:20px 0}.concepts>div{background:#f4f7ff;border:1px solid #e3eafb;border-radius:12px;padding:13px 16px}.concepts h3{margin:0 0 6px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;margin:16px 0}th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{background:#eef3ff;color:#193b86}code{background:#eef2f8;padding:2px 5px;border-radius:4px;color:#254f9f}.code-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:19px;font-weight:700}.copy{border:1px solid #b9cafa;background:white;color:#2856be;padding:6px 12px;border-radius:8px;cursor:pointer}.copy:hover{background:#eef3ff}pre{background:#101a30;color:#e0f2ff;border-radius:12px;padding:18px 20px;overflow:auto;line-height:1.65;margin:9px 0 13px}pre code{background:none;color:inherit;padding:0}.tip,.warning{padding:13px 16px;border-radius:9px;background:#edf4ff;border-left:4px solid #4779ef;margin-top:16px}.warning{background:#fff4f1;border-left-color:#d55d49}.tree{background:#101a30;color:#e0f2ff;border-radius:12px;padding:16px 20px;font-family:monospace;display:flex;flex-direction:column;white-space:pre;overflow:auto}.task li{margin:9px 0}.task code{white-space:nowrap}details{border:1px solid #dce5f5;border-radius:11px;padding:12px 16px;margin-top:14px}summary{cursor:pointer;font-weight:700;color:#244da8}footer{margin-top:24px;font-size:.9rem;color:var(--muted)}.progressline{height:5px;background:#e2e9f7;position:sticky;top:0;z-index:1100}.progressline>div{height:100%;background:#5c7ef5;width:0}.skip{position:absolute;left:-9999px}.skip:focus{left:10px;top:10px;background:white;padding:10px;z-index:1200}@media(max-width:700px){.wrap{padding:18px 12px 50px}.hero{padding:25px}.panel{padding:20px 17px}.toc{grid-template-columns:1fr}.panel h2{font-size:1.27rem}}@media print{nav,.progressline,.copy{display:none!important}.panel{break-inside:avoid;box-shadow:none}.hero{color:#142a64;background:white;border:1px solid #aaa}.hero h1{color:#142a64}}
-</style>
-<style>.as-navbar{min-height:72px}.as-brand{display:flex;align-items:center;gap:10px;text-decoration:none}.as-brand strong{font-size:24px;color:#10245c}.as-brand strong span{color:#6741e8}.as-brand small{display:block;color:#71809e;font-size:11px}.as-book{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#1267f3,#8d31f4);display:inline-block}.as-main-links .nav-link{color:#183366;font-weight:600}.as-course-menu{width:min(690px,90vw);padding:14px}.as-course-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.as-course-card{display:flex;gap:10px;padding:10px;border:1px solid #e5eaf5;border-radius:10px;text-decoration:none;color:#183366}.as-course-card small{display:block;font-size:11px}.as-course-icon{color:#315eea;font-weight:bold}.as-login{background:#315eea;color:white}.as-search{display:flex;gap:8px;background:#f0f5ff;border-radius:20px;padding:7px 14px}.as-search input{border:0;background:transparent;outline:none;width:140px}@media(max-width:700px){.as-course-grid{grid-template-columns:1fr}}</style><style>.exercise{background:#f2f6ff;border-left:4px solid #315eea;border-radius:10px;padding:15px 18px;margin:14px 0}.exercise strong{color:#193b86}.section{scroll-margin-top:100px}.section h2{display:flex;align-items:center}.section h2 .num{flex-shrink:0}.section h3{color:#23478e}.intro{margin-top:22px}.tag{display:inline-block;border-radius:30px;background:#eaf0ff;color:#224ab6;padding:5px 13px;font-size:.8rem;font-weight:700}.hero .tag{background:rgba(255,255,255,.16);color:white}.toc{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;list-style:none;padding:0}.toc li{margin:0}.toc a{display:block;text-decoration:none;background:#f2f6ff;padding:11px 14px;border-radius:9px}.toc a:hover{background:#e6eeff}@media(max-width:700px){.toc{grid-template-columns:1fr}}@media print{.exercise{break-inside:avoid}}</style></head><body><a class="skip" href="#contenu">Aller au contenu</a><div aria-hidden="true" class="progressline"><div id="progress"></div></div><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar"><div class="container-fluid"><a class="navbar-brand as-brand" href="../../../index.html"><span aria-hidden="true" class="as-book"></span><span><strong>AsTech<span>AI</span></strong><small>IT Learning Platform</small></span></a><button aria-controls="mainNav" aria-expanded="false" aria-label="Afficher la navigation" class="navbar-toggler" data-bs-target="#mainNav" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="mainNav"><ul class="navbar-nav mx-auto as-main-links"><li class="nav-item"><a class="nav-link" href="../../../index.html">Accueil</a></li><li class="nav-item"><a class="nav-link" href="../../../cours/gestion-ordinateurs/index.html">Cours</a></li><li class="nav-item"><a class="nav-link" href="../../../index.html#ressources">Ressources</a></li></ul><a class="btn as-login" href="../../../connexion/index.html">Connexion</a></div></div></nav><header class="hero"><div class="pill">420-E04-UC · Installation et gestion d’ordinateurs</div><h1>Rédaction correcte de scripts sous Linux</h1><p>Support de cours Bash : concepts, exemples commentés et deux exercices d’application après chaque section.</p><span class="tag">10 sections · 20 exercices</span></header><main class="wrap" id="contenu"><article class="panel intro"><h2>Objectifs pédagogiques</h2><p>Créer, exécuter, documenter et tester des scripts Bash fiables afin d’automatiser des opérations courantes d’administration Linux. Les manipulations doivent être réalisées sur une machine virtuelle ou dans un environnement de test.</p><h2>Sommaire</h2><ol class="toc">
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Leçon 27 — Rédaction de scripts Bash | AsTechAI</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<style>body{background:#f7f8fb;color:#42506c}.wrap{max-width:900px;margin:auto;padding:50px 20px}.card{border:1px solid #e5e9f1;border-radius:18px}h1{color:#152354}.badge{background:#eef2ff!important;color:#315eea!important}</style>
+<link href="../../../assets/css/navbar.css" rel="stylesheet"/><style id="astechai-navbar-embedded">:root{--as-navy:#07164d;--as-blue:#1267f3;--as-purple:#8d31f4}
+.as-navbar{min-height:80px;z-index:1050;font-family:Arial,"Segoe UI",sans-serif}
+.as-nav-container{max-width:1440px;padding-left:44px;padding-right:44px}
+.as-brand{display:flex;align-items:center;gap:12px;margin-right:36px}
+.as-brand>span:last-child{display:flex;flex-direction:column}
+.as-brand strong{font-size:27px;line-height:1;color:var(--as-navy);font-weight:850;letter-spacing:-.5px}
+.as-brand strong span{color:#4227c9}.as-brand small{font-size:12px;color:#71809e;margin-top:5px}
+.as-book{width:60px;height:48px;position:relative;display:inline-block;flex:0 0 60px}
+.as-book:before,.as-book:after{content:"";position:absolute;top:4px;width:28px;height:39px;border-radius:5px 5px 15px 5px}
+.as-book:before{left:0;background:linear-gradient(145deg,#0877ff,#1453ee);transform:skewY(8deg)}
+.as-book:after{right:0;background:linear-gradient(145deg,#7058ff,#a22ef2);transform:skewY(-8deg)}
+.as-main-links{gap:7px}.as-main-links .nav-link{color:#0b225c!important;font-size:14px;font-weight:700;padding:11px 18px!important;border-radius:12px}
+.as-main-links .nav-link:hover,.as-main-links .nav-link.active{background:#edf4ff;color:#075bd8!important}
+.as-search{width:255px;height:44px;border-radius:25px;background:#f0f5ff;align-items:center;gap:8px;padding:0 16px;margin-right:22px;color:#7b88a4}
+.as-search input{width:100%;border:0;outline:0;background:transparent;color:#5e6e8b}
+.as-login{border:0!important;border-radius:13px!important;padding:12px 22px!important;color:#fff!important;font-weight:700!important;white-space:nowrap;background:linear-gradient(100deg,#3a7df5,#8b30f4)!important}
+.as-course-menu{left:50%!important;transform:translateX(-50%);width:690px;padding:18px;border:1px solid #e6ebf4;border-radius:18px;box-shadow:0 20px 48px rgba(23,48,96,.14)}
+.as-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.as-course-card{display:flex;align-items:center;gap:11px;min-height:78px;padding:12px;border:1px solid #edf0f6;border-radius:13px;background:#fff;color:#172958;text-decoration:none;transition:.15s ease}
+.as-course-card:hover{background:#f6f9ff;border-color:#dce7ff;transform:translateY(-1px)}
+.as-course-icon{width:42px;height:42px;flex:0 0 42px;border-radius:11px;background:#edf4ff;color:#1267f3;display:grid;place-items:center;font-size:19px;font-weight:800}
+.as-course-icon.orange{background:#fff0eb;color:#e84b27}.as-course-icon.purple{background:#f4eaff;color:#8429ef}
+.as-course-card strong{display:block;font-size:13px;line-height:1.25;color:#102252}.as-course-card small{display:block;margin-top:3px;font-size:10px;line-height:1.25;color:#7b89a5}
+@media(max-width:1199px){.as-nav-container{padding-left:22px;padding-right:22px}.as-brand{margin-right:12px}.as-main-links{gap:1px}.as-main-links .nav-link{padding:10px 11px!important}}
+@media(max-width:991px){.as-navbar{min-height:72px}.as-brand strong{font-size:23px}.as-book{width:50px;flex-basis:50px}.as-book:before,.as-book:after{width:23px;height:36px}.navbar-collapse{padding:12px 0 16px}.as-main-links{align-items:stretch!important}.as-course-menu{position:static!important;transform:none!important;width:100%;margin:5px 0 8px}.as-course-grid{grid-template-columns:1fr 1fr}.as-login{margin-top:8px}}
+@media(max-width:600px){.as-nav-container{padding-left:14px;padding-right:14px}.as-brand small{display:none}.as-course-grid{grid-template-columns:1fr}}
+</style><style>
+.wrap{max-width:1000px}.lesson-section{margin-top:2.6rem;padding-top:1.4rem;border-top:1px solid #e5e9f1}.lesson-section h2{color:#152354;font-size:1.65rem;font-weight:750;margin-bottom:1.2rem}.lesson-section h3{color:#254a91;font-size:1.13rem;font-weight:700;margin-top:1.45rem;margin-bottom:.75rem}.lesson-section p,.lesson-section li{line-height:1.75}.lesson-section li{margin-bottom:.32rem}.lesson-section pre{background:#14213b;color:#eaf3ff;border-radius:12px;padding:1rem 1.2rem;overflow-x:auto;line-height:1.6}.lesson-section pre code{color:inherit;background:transparent;padding:0}.lesson-section code:not(pre code){background:#eef2fa;color:#244fa1;border-radius:5px;padding:.1rem .32rem}.lesson-section .table{font-size:.94rem;margin:1rem 0}.lesson-section .table th{background:#eaf0fc;color:#18346b}.exercise{background:#f0f5ff;border:1px solid #dbe7fc;border-left:5px solid #4679e6;border-radius:12px;padding:1.1rem 1.35rem;margin-top:1.5rem}.exercise h3{margin-top:0;color:#173b83}.diagram{max-width:410px;margin:1.3rem auto;text-align:center}.diagram-parent{display:inline-block;padding:.75rem 1.6rem;background:#dceafe;border:1px solid #8eb1ec;border-radius:10px;color:#173b83;font-weight:bold}.diagram-arrow{font-size:1.8rem;color:#8da1be}.diagram-children{display:flex;justify-content:space-around}.diagram-children span{background:#e2f3e9;color:#1d6242;border:1px solid #88c6a0;padding:.6rem 2rem;border-radius:9px}.perm-diagram{display:grid;grid-template-columns:.7fr 1.5fr 1.3fr 1.3fr;gap:8px;margin:1rem 0}.perm-diagram span{background:#eaf1ff;border-radius:9px;text-align:center;padding:.8rem .25rem;font-size:1.3rem;font-family:monospace;font-weight:bold;color:#1c488f}.perm-diagram span:nth-child(3){background:#e4f5eb;color:#206342}.perm-diagram span:nth-child(4){background:#fff2dc;color:#8a5d12}.perm-diagram small{display:block;font-family:Arial,sans-serif;font-size:.7rem;font-weight:normal}.calculator{border:1px solid #dfe5ef;border-radius:14px;padding:1.1rem;margin-top:1rem}.calculator-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.calculator fieldset{min-width:0}.calculator legend{font-size:.92rem;font-weight:bold;color:#24447c}.calculator label{display:block;font-size:.85rem;margin:.65rem 0}.calculator-result{display:flex;justify-content:space-between;border-top:1px solid #e1e7f0;margin:1rem 0;padding-top:1rem;gap:1rem}.calculator-result strong{display:block;font-size:1.5rem;color:#163c83;font-family:monospace}.note{color:#61708b;font-size:.9rem}@media(max-width:600px){.calculator-grid{grid-template-columns:1fr}.calculator-result{flex-direction:column}.lesson-section h2{font-size:1.4rem}.wrap{padding:25px 12px}.perm-diagram{gap:3px}.perm-diagram span{font-size:1rem}.perm-diagram small{font-size:.57rem}}
+</style><style id="astechai-lesson-modern-design">
+:root{--ink:#17264b;--muted:#64748b;--blue:#315eea;--purple:#7c3aed;--border:#e5eaf4;--surface:#fff}
+html{scroll-behavior:smooth}body{background:#f5f7fc;color:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif;line-height:1.75}
+.as-navbar{box-shadow:0 2px 16px rgba(20,38,82,.04)}
+.wrap{max-width:1120px;padding:0 22px 80px;margin:0 auto}
+.lesson-hero{max-width:1120px;margin:32px auto 0;padding:34px 40px 38px;border-radius:24px;background:radial-gradient(circle at 90% 10%,rgba(130,104,255,.26),transparent 35%),linear-gradient(115deg,#0b1b4e,#193a88 70%,#315eea);color:white;box-shadow:0 18px 45px rgba(23,53,120,.17);overflow:hidden}
+.hero-eyebrow{font-size:11px;font-weight:750;letter-spacing:.12em;color:#c6d8ff;display:flex;align-items:center;gap:10px}.hero-dot{width:8px;height:8px;background:#70e5c0;border-radius:50%;box-shadow:0 0 0 4px rgba(112,229,192,.13)}
+.hero-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:40px;align-items:center;margin-top:26px}.hero-kicker{font-size:12px;letter-spacing:.13em;font-weight:800;color:#a9c8ff}.hero-kicker span{margin:0 8px;color:#91a5dc}
+.lesson-hero h1{font-size:clamp(2.1rem,4vw,3.35rem);letter-spacing:-.055em;line-height:1.12;font-weight:850;margin:13px 0 18px;color:white}.lesson-hero h1 em{font-style:normal;color:#a8c5ff}.lesson-hero p{color:#d5e2ff;line-height:1.65;font-size:1.03rem;max-width:560px;margin:0}.hero-tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}.hero-tags span{font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.09);padding:6px 12px;border-radius:30px}
+.hero-terminal{background:#0a142c;border:1px solid #405584;border-radius:15px;overflow:hidden;box-shadow:0 20px 36px rgba(0,0,0,.24);transform:rotate(1deg)}.terminal-top{background:#17243f;color:#b4c3e2;font-size:11px;display:flex;align-items:center;justify-content:space-between;padding:12px 15px}.lights{display:flex;gap:6px}.lights i{width:9px;height:9px;border-radius:50%;background:#ff6b73}.lights i:nth-child(2){background:#ffca62}.lights i:nth-child(3){background:#60d6a0}.terminal-code{padding:22px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:13px;line-height:2.1;color:#e8f2ff}.terminal-code .comment{color:#91a5c3}.terminal-code .prompt{color:#6ce3bb}.terminal-code .output{color:#9cc4ff}.cursor{color:#86efac}
+.panel{background:white;border:1px solid var(--border);border-radius:18px;box-shadow:0 7px 26px rgba(24,49,98,.035);padding:34px 42px;margin-top:20px}.intro{margin-top:25px}.intro h2{font-size:1.4rem;font-weight:800;color:#122b65;margin:0 0 15px}.intro h2:not(:first-child){margin-top:28px}.intro p{color:#52627e}
+.toc{list-style:none;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;counter-reset:chapter}.toc li{counter-increment:chapter;margin:0}.toc a{display:flex;align-items:center;gap:12px;padding:13px 15px;border:1px solid #e3eafa;border-radius:11px;background:#f8faff;text-decoration:none;color:#29477f;font-size:14px;font-weight:650;transition:.18s}.toc a:before{content:counter(chapter,decimal-leading-zero);font-size:12px;color:#426ae0;font-weight:850}.toc a:hover{background:#edf3ff;border-color:#bfd0fb;transform:translateY(-2px)}
+.lesson{scroll-margin-top:105px}.lesson .chapter-title{display:flex;align-items:center;gap:16px;font-size:1.58rem;line-height:1.35;font-weight:800;letter-spacing:-.025em;color:#142c65;margin:0 0 28px}.lesson .num{display:grid;place-items:center;min-width:47px;height:47px;border-radius:13px;background:linear-gradient(135deg,#e8efff,#eef0ff);color:#315eea;font-size:16px;font-weight:850}
+.lesson h3{font-size:1.12rem;font-weight:800;color:#21468e;margin:30px 0 12px}.lesson p,.lesson li{color:#455572;line-height:1.8}.lesson li{margin-bottom:7px}.lesson strong{color:#233d73}.lesson code:not(pre code){background:#edf3ff;color:#244fba;padding:2px 6px;border-radius:5px;font-size:.92em;overflow-wrap:anywhere}
+.code-head{background:#1c2b49;color:#d8e8ff;border:1px solid #293e66;border-radius:12px 12px 0 0;padding:9px 14px;margin-top:19px;display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:750}.copy{background:#31466e;border:1px solid #45618f;border-radius:7px;color:#e7f1ff;padding:5px 12px;font-size:12px;cursor:pointer}.copy:hover{background:#41639e}.code-head+pre{margin-top:0;border-radius:0 0 12px 12px}.lesson pre{background:#101b30;color:#e6f1ff;padding:20px 22px;border-radius:12px;overflow-x:auto;font-size:13px;line-height:1.75;border:1px solid #263653}.lesson pre code{background:transparent;color:inherit;padding:0}
+.tip,.warning{padding:16px 19px;margin:20px 0;border-radius:10px;background:#f0f6ff;border-left:4px solid #4e7cf0;color:#3b527a}.warning{background:#fff7ed;border-left-color:#ed9852}
+.exercise{background:#f7f9ff;border:1px solid #dce6fa;border-left:4px solid #4773eb;border-radius:12px;padding:20px 23px;margin:15px 0}.exercise-title{display:block;font-size:1.02rem;color:#20448f!important;margin-bottom:9px}.exercise p{margin:7px 0}.exercise ol{padding-left:22px}.lesson .table-wrap{overflow-x:auto}.lesson table{border-collapse:collapse;width:100%;margin:18px 0;font-size:14px}.lesson th{background:#edf3ff;color:#234381;padding:12px;text-align:left}.lesson td{border-bottom:1px solid #e7ecf6;padding:12px;vertical-align:top}
+.illustration-equipe{max-width:100%;overflow:hidden}.illustration-equipe img{max-width:100%;height:auto}footer{padding:24px 0;color:#70809c;font-size:13px;text-align:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-terminal{max-width:520px;transform:none}.lesson-hero{margin:18px 14px 0}.panel{padding:28px}}
+@media(max-width:620px){.wrap{padding:0 12px 48px}.lesson-hero{padding:27px 23px;margin:12px 12px 0;border-radius:18px}.hero-grid{gap:22px}.hero-terminal{display:none}.hero-eyebrow{font-size:9px}.panel{padding:22px 18px;border-radius:14px}.toc{grid-template-columns:1fr}.lesson .chapter-title{font-size:1.26rem;gap:11px}.lesson .num{min-width:38px;height:38px;font-size:13px}.lesson pre{font-size:12px;padding:15px}.exercise{padding:16px}}
+@media print{.lesson-hero{background:white;color:#152354;box-shadow:none;border:1px solid #ddd}.lesson-hero h1,.lesson-hero h1 em,.lesson-hero p{color:#152354}.hero-terminal,.copy{display:none}.panel{box-shadow:none;break-inside:auto}.exercise{break-inside:avoid}}
+</style></head>
+<body><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
+<div class="container-fluid as-nav-container">
+<a class="navbar-brand as-brand" href="../../../index.html">
+<span aria-hidden="true" class="as-book"></span>
+<span>
+<strong>AsTech<span>AI</span></strong>
+<small>IT Learning Platform</small>
+</span>
+</a>
+<button aria-controls="asMainNavbar" aria-expanded="false" aria-label="Afficher la navigation" class="navbar-toggler" data-bs-target="#asMainNavbar" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="asMainNavbar">
+<ul class="navbar-nav mx-auto align-items-lg-center as-main-links">
+<li class="nav-item">
+<a class="nav-link active" href="../../../index.html">Accueil</a>
+</li>
+<li class="nav-item dropdown position-static">
+<a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-auto-close="outside" data-bs-toggle="dropdown" href="#" role="button">Cours</a>
+<div class="dropdown-menu as-course-menu">
+<div class="as-course-grid">
+<a class="as-course-card" href="../../../cours/gestion-ordinateurs/index.html">
+<span class="as-course-icon">▣</span>
+<span><strong>Gestion d’ordinateurs</strong><small>Windows, Linux, virtualisation et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/microsoft-365/index.html">
+<span class="as-course-icon orange">M</span>
+<span><strong>Microsoft 365 Hub</strong><small>Outils et environnement Microsoft 365</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation/index.html">
+<span class="as-course-icon purple">&lt;/&gt;</span>
+<span><strong>Programmation</strong><small>Algorithmes et développement</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/bases-de-donnees/index.html">
+<span class="as-course-icon">◎</span>
+<span><strong>Bases de données</strong><small>Modélisation, SQL et administration</small></span>
+</a>
+<a class="as-course-card" href="../../../cours/programmation-orientee-objet/index.html">
+<span class="as-course-icon purple">◇</span>
+<span><strong>Programmation orientée objet</strong><small>OOP, C# et UML</small></span>
+</a>
+</div>
+</div>
+</li>
+<li class="nav-item"><a class="nav-link" href="../../../projets/index.html">Projets</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#apropos">À propos</a></li>
+<li class="nav-item"><a class="nav-link" href="../../../index.html#ressources">Ressources</a></li>
+</ul>
+<form class="d-none d-xl-flex as-search" onsubmit="return false;" role="search">
+<span aria-hidden="true">⌕</span>
+<input aria-label="Rechercher" placeholder="Rechercher..." type="search"/>
+</form>
+<a class="btn as-login" href="../../../connexion/index.html">♙   Connexion</a>
+</div>
+</div>
+</nav>
+<header class="lesson-hero"><div class="hero-eyebrow"><span class="hero-dot"></span> 420-E04-UC · INSTALLATION ET GESTION D’ORDINATEURS</div><div class="hero-grid"><div><div class="hero-kicker">LEÇON 27 <span>·</span> LINUX / BASH</div><h1>Rédaction de scripts <em>sous Linux</em></h1><p>Apprenez à créer des scripts Bash fiables, des premières variables à l’automatisation de tâches d’administration.</p><div class="hero-tags"><span>10 chapitres</span><span>20 exercices</span><span>Exemples pratiques</span></div></div><div aria-label="Exemple de terminal Bash" class="hero-terminal"><div class="terminal-top"><span class="lights"><i></i><i></i><i></i></span><span>terminal — bash</span></div><div class="terminal-code"><span class="comment"># Mon premier script</span><br/><span class="prompt">$</span> bash bonjour.sh<br/><span class="output">Bonjour depuis Linux !</span><br/><span class="prompt">$</span> <span class="cursor">▌</span></div></div></div></header><main class="wrap" id="contenu"><article class="panel intro"><h2>Objectifs pédagogiques</h2><p>Créer, exécuter, documenter et tester des scripts Bash fiables afin d’automatiser des opérations courantes d’administration Linux. Les manipulations doivent être réalisées sur une machine virtuelle ou dans un environnement de test.</p><h2>Sommaire</h2><ol class="toc">
 <li><a href="#s1">Introduction aux scripts Shell</a></li>
 <li><a href="#s2">Création et exécution d’un script Bash</a></li>
 <li><a href="#s3">Variables et interaction avec l’utilisateur</a></li>
 <li><a href="#s4">Opérateurs et structures conditionnelles</a></li>
 <li><a href="#s5">Structures répétitives</a></li>
 <li><a href="#s6">Manipulation des fichiers et répertoires</a></li>
-<li><a href="#s7">Bonnes pratiques de rédaction</a></li>
+<li><a href="#s7">Fonctions et bonnes pratiques de rédaction</a></li>
 <li><a href="#s8">Gestion des erreurs et débogage</a></li>
 <li><a href="#s9">Automatisation des tâches d’administration Linux</a></li>
 <li><a href="#s10">Travaux pratiques intégrateurs</a></li>
 </ol><p><strong>Prérequis :</strong> navigation dans le terminal, commandes de base et permissions Linux. <strong>Conseil :</strong> tester les exemples dans un dossier de travail avant toute adaptation sur un système de production.</p></article>
-<section class="panel lesson section" id="s1"><h2><span class="num">01</span>1. Introduction aux scripts Shell</h2>
+<section class="panel lesson section" id="s1"><h2 class="chapter-title"><span class="num">01</span>Introduction aux scripts Shell</h2>
 <h3>Qu’est-ce qu’un script ?</h3><p>Un script Shell est un fichier texte contenant une suite de commandes exécutées par un interpréteur. Bash est un Shell courant sous Linux. Un script permet de reproduire des opérations sans les ressaisir.</p>
 <h3>Où créer un fichier script Bash ?</h3>
 <p>Un script est un <strong>fichier texte ordinaire</strong> : vous pouvez le créer dans votre dossier personnel, sans droits administrateur. Pour ce cours, utilisez un répertoire dédié <code>~/scripts</code> afin de regrouper vos travaux. Évitez de commencer dans <code>/etc</code>, <code>/usr/bin</code> ou d'autres dossiers système.</p>
@@ -47,7 +153,6 @@ cat premier_script.sh
 bash premier_script.sh</code></pre>
 <p><code>ls -l</code> confirme la présence du fichier, <code>cat</code> affiche son contenu et <code>bash premier_script.sh</code> l'exécute. À ce stade, il n'est <strong>pas nécessaire</strong> d'ajouter la permission d'exécution : elle sera expliquée dans la section suivante.</p>
 <div class="tip"><strong>À retenir :</strong> un script Bash peut être créé dans n'importe quel dossier où vous avez le droit d'écrire. L'extension <code>.sh</code> est une convention utile, mais elle n'est pas obligatoire.</div>
-
 <h3>Comprendre la première ligne d’un script : le shebang</h3>
 <p>Après la définition d’un script, observons cette ligne que l’on place généralement tout au début d’un script Bash :</p>
 <div class="code-head"><span>Exemple Bash</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash</code></pre>
@@ -67,43 +172,54 @@ date</code></pre>
 <h3>Exemple pratique</h3><pre><code>whoami
 pwd
 date</code></pre><h3>Exercices d’application</h3>
-<div class="exercise"><strong>Exercice 1.1 — Observation</strong><p>Exécutez séparément whoami, pwd et date. Expliquez le rôle de chaque commande et indiquez laquelle pourrait servir dans un rapport système.</p></div>
-<div class="exercise"><strong>Exercice 1.2 — Analyse</strong><p>Une équipe vérifie chaque matin la date, le nom de l’utilisateur et le dossier courant. Proposez l’ordre des commandes à placer dans un script et justifiez l’intérêt de cette automatisation.</p></div>
+<div class="exercise"><strong class="exercise-title">Exercice 1.1 — Observation</strong><p>Exécutez séparément whoami, pwd et date. Expliquez le rôle de chaque commande et indiquez laquelle pourrait servir dans un rapport système.</p></div>
+<div class="exercise"><strong class="exercise-title">Exercice 1.2 — Analyse</strong><p>Une équipe vérifie chaque matin la date, le nom de l’utilisateur et le dossier courant. Proposez l’ordre des commandes à placer dans un script et justifiez l’intérêt de cette automatisation.</p></div>
 </section>
-<section class="panel lesson section" id="s2"><h2><span class="num">02</span>2. Création et exécution d’un script Bash</h2>
+<section class="panel lesson section" id="s2"><h2 class="chapter-title"><span class="num">02</span>Création et exécution d’un script Bash</h2>
 <h3>Le fichier et le shebang</h3><p>Un script Bash peut porter l’extension .sh (facultative). La première ligne #!/usr/bin/env bash indique l’interpréteur à utiliser lors d’une exécution directe.</p>
 <h3>Exécution et permissions</h3><p>bash script.sh lance le fichier avec Bash sans nécessiter le droit d’exécution. chmod u+x script.sh puis ./script.sh permettent son exécution directe. Les commentaires commencent par #.</p>
 <h3>Exemple pratique</h3><div class="code-head"><span>Exemple Bash</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
 # Premier script : informations de base
 echo "Bonjour depuis Linux"
 date
-# Exécution : bash premier.sh</code></pre><h3>Exercices d’application</h3>
-<div class="exercise"><strong>Exercice 2.1 —  préparer les comptes d’une équipe informatique</strong>
+# Exécution : bash premier.sh</code></pre><div class="tip"><strong>Activité guidée avant les exercices :</strong> créez <code>bonjour.sh</code> dans <code>~/scripts</code>, ajoutez le shebang et <code>echo "Bonjour Linux"</code>, puis comparez <code>bash bonjour.sh</code> avec <code>chmod u+x bonjour.sh</code> suivi de <code>./bonjour.sh</code>. Les exercices suivants constituent des <strong>défis avancés d’administration</strong> à réaliser après l’étude des comptes, groupes et permissions.</div><h3>Exercices d’application</h3>
+<div class="exercise"><strong class="exercise-title">Exercice 2.1 —  préparer les comptes d’une équipe informatique</strong>
 <p><strong>Contexte :</strong> dans une machine virtuelle Linux de laboratoire, une entreprise accueille trois employés : <code>amine</code> (développement), <code>sarah</code> (tests) et <code>lina</code> (documentation). Les groupes <code>dev</code>, <code>tests</code> et <code>docs</code> doivent être créés. Amine appartient à <code>dev</code> et <code>tests</code> ; Sarah à <code>tests</code> et <code>docs</code> ; Lina à <code>docs</code>.</p>
 <ol class="task"><li>Créez le dossier <code>~/scripts</code>, puis le fichier <code>preparer_equipe.sh</code> avec <code>nano</code>. Ajoutez le shebang et des commentaires qui décrivent chaque étape.</li><li>Écrivez les commandes permettant de créer les trois groupes, les trois comptes avec leurs dossiers personnels, puis de leur attribuer les groupes secondaires demandés. Pour un premier essai, utilisez des noms explicites directement dans les commandes.</li><li>Créez les répertoires <code>/srv/equipe/dev</code>, <code>/srv/equipe/tests</code> et <code>/srv/equipe/docs</code>. Attribuez à chacun le groupe correspondant et les permissions <code>2770</code> (accès au propriétaire et au groupe, aucun accès aux autres ; bit setgid pour hériter du groupe).</li><li>Vérifiez les comptes, leurs groupes et les permissions avec <code>id</code> et <code>ls -ld</code>. Expliquez pourquoi <code>chmod 2770</code> convient à un espace collaboratif privé.</li><li>Exécutez d’abord une vérification syntaxique avec <code>bash -n preparer_equipe.sh</code>, puis lancez le script avec les privilèges administrateur nécessaires, uniquement sur la machine virtuelle de test.</li></ol>
 <p><strong>Livrables :</strong> fichier <code>preparer_equipe.sh</code>, commandes de vérification et capture des permissions finales. <strong>Question :</strong> que se passe-t-il si vous exécutez le même script une seconde fois ?</p></div>
-<figure class="illustration-equipe" style="margin:22px auto 28px;max-width:1100px;text-align:center"><img src="images/organisation-equipe-linux.png" alt="Schéma de l’organisation de l’équipe Linux : amine, sarah et lina, groupes dev, tests et docs, répertoires partagés et permissions 2770" style="display:block;width:100%;height:auto;border-radius:14px;border:1px solid #e4eaf4;box-shadow:0 8px 24px rgba(16,36,92,.08)" loading="lazy"><figcaption style="font-size:.9rem;color:#60708c;margin-top:10px">Figure — Organisation des utilisateurs, des groupes et des répertoires partagés de l’exercice 2.1.</figcaption></figure>
-<div class="exercise"><strong>Exercice 2.2 —  déployer une organisation multiéquipes avec des accès différenciés</strong>
-<p><strong>Contexte :</strong> une organisation possède trois services : <code>support</code>, <code>reseau</code> et <code>audit</code>. Les comptes <code>nora</code> (support), <code>yassine</code> (réseau) et <code>maya</code> (audit) sont membres de leur groupe principal ; <code>maya</code> doit également appartenir aux groupes <code>support</code> et <code>reseau</code> afin de consulter les ressources des deux équipes.</p>
-<ol class="task"><li>Créez <code>deployer_services.sh</code> dans <code>~/scripts</code> avec un shebang, un en-tête descriptif et des commentaires. Prévoyez les commandes de création des groupes et des comptes, puis leurs affiliations avec <code>usermod -aG</code> sans supprimer les groupes secondaires existants.</li><li>Créez <code>/srv/services/support</code>, <code>/srv/services/reseau</code> et <code>/srv/services/audit</code>. Associez à chaque répertoire le groupe correspondant.</li><li>Appliquez des droits différents : <code>2770</code> pour <code>support</code> et <code>reseau</code> (travail collaboratif réservé au groupe), et <code>2750</code> pour <code>audit</code> (lecture et parcours pour le groupe, écriture réservée au propriétaire). Expliquez chaque chiffre et le bit setgid.</li><li>Pour permettre à Maya de <strong>consulter sans modifier</strong> les fichiers des équipes support et réseau, étudiez et appliquez des ACL avec <code>setfacl</code> sur les répertoires concernés, puis contrôlez le résultat avec <code>getfacl</code>. Précisez comment les ACL par défaut influencent les nouveaux fichiers et leurs limites.</li><li>Vérifiez les appartenances avec <code>id</code>, les permissions avec <code>ls -ld</code> et les ACL avec <code>getfacl</code>. Documentez les tests d’accès autorisé et refusé à réaliser avec les différents comptes.</li><li>Vérifiez la syntaxe du script avec <code>bash -n</code>, rendez-le exécutable avec <code>chmod u+x</code>, puis expliquez la différence entre <code>sudo bash deployer_services.sh</code> et <code>sudo ./deployer_services.sh</code>.</li></ol>
-<div class="warning"><strong>Précautions :</strong> travaillez uniquement sur une VM dédiée, avec des comptes fictifs. Les commandes de création de comptes nécessitent des privilèges élevés. L’appartenance de Maya aux groupes <code>support</code> et <code>reseau</code> lui donnerait les droits d’écriture accordés à ces groupes par <code>2770</code> : pour imposer réellement une lecture seule, proposez une <strong>correction de la stratégie d’appartenance</strong> (par exemple retirer Maya de ces deux groupes et accorder seulement des ACL de lecture et de parcours). Justifiez cette correction avant vos tests.</div>
+<figure class="illustration-equipe" style="margin:22px auto 28px;max-width:1100px;text-align:center"><img alt="Schéma de l’organisation de l’équipe Linux : amine, sarah et lina, groupes dev, tests et docs, répertoires partagés et permissions 2770" loading="lazy" src="images/organisation-equipe-linux.png" style="display:block;width:100%;height:auto;border-radius:14px;border:1px solid #e4eaf4;box-shadow:0 8px 24px rgba(16,36,92,.08)"/><figcaption style="font-size:.9rem;color:#60708c;margin-top:10px">Figure — Organisation des utilisateurs, des groupes et des répertoires partagés de l’exercice 2.1.</figcaption></figure>
+<div class="exercise"><strong class="exercise-title">Exercice 2.2 —  déployer une organisation multiéquipes avec des accès différenciés</strong>
+<p><strong>Contexte :</strong> une organisation possède trois services : <code>support</code>, <code>reseau</code> et <code>audit</code>. Les comptes <code>nora</code> (support), <code>yassine</code> (réseau) et <code>maya</code> (audit) appartiennent chacun à leur groupe principal. Maya doit pouvoir <strong>consulter, mais pas modifier</strong> les ressources des deux autres services, sans devenir membre de leurs groupes disposant de droits d’écriture.</p>
+<ol class="task"><li>Créez <code>deployer_services.sh</code> avec un shebang et des commentaires. Prévoyez les commandes de création des groupes et des comptes, puis vérifiez leurs groupes principaux avec <code>id</code>. Expliquez pourquoi ajouter Maya aux groupes <code>support</code> et <code>reseau</code> serait incompatible avec l’accès en lecture seule demandé.</li><li>Créez <code>/srv/services/support</code>, <code>/srv/services/reseau</code> et <code>/srv/services/audit</code>. Associez à chaque répertoire le groupe correspondant.</li><li>Appliquez des droits différents : <code>2770</code> pour <code>support</code> et <code>reseau</code> (travail collaboratif réservé au groupe), et <code>2750</code> pour <code>audit</code> (lecture et parcours pour le groupe, écriture réservée au propriétaire). Expliquez chaque chiffre et le bit setgid.</li><li>Pour permettre à Maya de <strong>consulter sans modifier</strong> les fichiers des équipes support et réseau, étudiez et appliquez des ACL avec <code>setfacl</code> sur les répertoires concernés, puis contrôlez le résultat avec <code>getfacl</code>. Précisez comment les ACL par défaut influencent les nouveaux fichiers et leurs limites.</li><li>Vérifiez les appartenances avec <code>id</code>, les permissions avec <code>ls -ld</code> et les ACL avec <code>getfacl</code>. Documentez les tests d’accès autorisé et refusé à réaliser avec les différents comptes.</li><li>Vérifiez la syntaxe du script avec <code>bash -n</code>, rendez-le exécutable avec <code>chmod u+x</code>, puis expliquez la différence entre <code>sudo bash deployer_services.sh</code> et <code>sudo ./deployer_services.sh</code>.</li></ol>
+<div class="warning"><strong>Précautions :</strong> travaillez uniquement sur une VM dédiée avec des comptes fictifs. Les commandes de création de comptes nécessitent des privilèges administrateur. Pour Maya, utilisez des ACL de lecture et de parcours sur les dossiers et les fichiers concernés ; vérifiez aussi les ACL par défaut pour les futurs éléments. Testez les accès effectifs, car les permissions des dossiers et des fichiers doivent toutes deux être adaptées.</div>
 <p><strong>Livrables :</strong> script documenté, tableau des comptes/groupes/permissions, résultats de vérification et justification de la stratégie d’accès. <strong>Défi :</strong> proposez une méthode pour éviter les erreurs lors d’une deuxième exécution du script.</p></div>
 </section>
-<section class="panel lesson section" id="s3"><h2><span class="num">03</span>3. Variables et interaction avec l’utilisateur</h2>
-<h3>Variables</h3><p>Une affectation ne contient pas d’espaces autour de = : dossier="/tmp". Utilisez "$dossier" pour éviter le découpage des valeurs contenant des espaces.</p>
-<h3>Entrées et arguments</h3><p>read -r -p demande une saisie. Les paramètres $1 et $2 désignent les premiers arguments, $# leur nombre, "$@" l’ensemble des arguments. Le code de retour d’une commande est accessible via $?.</p>
-<h3>Exemple pratique</h3><div class="code-head"><span>Exemple Bash</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
+<section class="panel lesson section" id="s3"><h2 class="chapter-title"><span class="num">03</span>Variables et interaction avec l’utilisateur</h2><h3>Qu’est-ce qu’une variable ?</h3><p>Une <strong>variable</strong> est un nom qui permet de conserver une valeur (texte, nombre ou chemin) et de la réutiliser dans un script. En Bash, une variable est créée lors de sa première affectation : il n’est pas nécessaire de déclarer son type.</p><h3>Déclarer, initialiser et modifier une variable</h3><p>La syntaxe générale est <code>nom_variable=valeur</code>, <strong>sans espace autour de =</strong>. Le nom commence par une lettre ou un soulignement et peut contenir des chiffres ensuite. Une valeur contenant des espaces doit être entourée de guillemets.</p><div class="code-head"><span>Affectation et réaffectation</span><button class="copy" type="button">Copier</button></div><pre><code>prenom="Amine"
+age=20
+dossier="$HOME/Documents"
+age=21</code></pre><h3>Afficher la valeur d’une variable</h3><p>Le symbole <code>$</code> permet d’accéder à la valeur d’une variable. Privilégiez <code>"$variable"</code> pour conserver les espaces. <code>echo</code> convient à un affichage simple ; <code>printf</code> donne un format plus prévisible.</p><div class="code-head"><span>Afficher avec echo et printf</span><button class="copy" type="button">Copier</button></div><pre><code>prenom="Amine"
+echo "Bonjour $prenom"
+printf "Bonjour %s\n" "$prenom"</code></pre><h3>Lire une valeur saisie par l’utilisateur</h3><p>La commande <code>read -r -p "Message : " variable</code> affiche une question, attend la saisie et la conserve dans la variable. L’option <code>-r</code> évite d’interpréter les barres obliques inverses.</p><div class="code-head"><span>Interaction complète</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
 read -r -p "Votre prénom : " prenom
-printf "Bonjour %s\n" "$prenom"
+printf "Bonjour %s !\n" "$prenom"</code></pre><h3>Arguments transmis au script</h3><p>Lorsqu’on lance <code>bash rapport.sh serveur1</code>, <code>$1</code> vaut <code>serveur1</code>. <code>$2</code> est le deuxième argument, <code>$#</code> leur nombre et <code>"$@"</code> représente tous les arguments, en préservant chacun d’eux.</p><div class="code-head"><span>Exemple d’arguments</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
 printf "Nombre d’arguments : %s\n" "$#"
-printf "Premier argument : %s\n" "${1:-aucun}"</code></pre><h3>Exercices d’application</h3>
-<div class="exercise"><strong>Exercice 3.1 — Interaction</strong><p>Écrivez un script qui demande un nom de machine et affiche « Machine à vérifier : NOM ». Testez avec un nom contenant un espace.</p></div>
-<div class="exercise"><strong>Exercice 3.2 — Arguments</strong><p>Écrivez un script rapport.sh qui affiche le nombre d’arguments reçus et le premier argument, ou « non fourni » si celui-ci est absent. Testez avec zéro, un et deux arguments.</p></div>
+printf "Premier argument : %s\n" "${1:-non fourni}"</code></pre><div class="tip"><strong>À retenir :</strong> <code>nom=valeur</code> affecte une valeur ; <code>"$nom"</code> la lit ; <code>read -r -p</code> demande une saisie. Ne confondez pas <code>nom</code> et <code>$nom</code>.</div>
+<div class="exercise"><strong class="exercise-title">Exercice 3.1 — Interaction</strong><p>Écrivez un script qui demande un nom de machine et affiche « Machine à vérifier : NOM ». Testez avec un nom contenant un espace.</p></div>
+<div class="exercise"><strong class="exercise-title">Exercice 3.2 — Arguments</strong><p>Écrivez un script rapport.sh qui affiche le nombre d’arguments reçus et le premier argument, ou « non fourni » si celui-ci est absent. Testez avec zéro, un et deux arguments.</p></div>
 </section>
-<section class="panel lesson section" id="s4"><h2><span class="num">04</span>4. Opérateurs et structures conditionnelles</h2>
-<h3>Tests et comparaisons</h3><p>[[ -f "$chemin" ]] vérifie un fichier ordinaire ; -d un répertoire ; -e une entrée existante. Pour les nombres, utilisez -eq, -ne, -lt, -le, -gt et -ge. Pour les chaînes, == et !=.</p>
-<h3>Branches</h3><p>if ...; then ... elif ...; then ... else ... fi choisit une action. case ... in ... esac convient à plusieurs choix distincts.</p>
-<h3>Exemple pratique</h3><div class="code-head"><span>Exemple Bash</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
+<section class="panel lesson section" id="s4"><h2 class="chapter-title"><span class="num">04</span>Opérateurs et structures conditionnelles</h2><h3>Pourquoi utiliser une condition ?</h3><p>Une structure conditionnelle permet d’exécuter différentes commandes selon qu’un test est vrai ou faux. En Bash, <code>if</code> ouvre la condition, <code>then</code> commence les commandes à exécuter et <code>fi</code> termine la structure.</p><h3>Syntaxe générale : if / else / elif</h3><div class="code-head"><span>Structure conditionnelle</span><button class="copy" type="button">Copier</button></div><pre><code>if [[ condition1 ]]; then
+  # Commandes si condition1 est vraie
+elif [[ condition2 ]]; then
+  # Commandes si condition2 est vraie
+else
+  # Commandes dans les autres cas
+fi</code></pre><p>Les blocs <code>elif</code> et <code>else</code> sont facultatifs. Pour une seule condition, utilisez simplement <code>if ...; then ... fi</code>.</p><h3>Opérateurs de comparaison</h3><div class="table-wrap"><table><thead><tr><th>Catégorie</th><th>Opérateurs</th><th>Signification</th></tr></thead><tbody><tr><td>Nombres</td><td><code>-eq</code>, <code>-ne</code>, <code>-lt</code>, <code>-le</code>, <code>-gt</code>, <code>-ge</code></td><td>Égal, différent, inférieur, inférieur ou égal, supérieur, supérieur ou égal</td></tr><tr><td>Chaînes</td><td><code>==</code>, <code>!=</code>, <code>-z</code>, <code>-n</code></td><td>Égalité, différence, vide, non vide</td></tr><tr><td>Fichiers</td><td><code>-f</code>, <code>-d</code>, <code>-e</code>, <code>-r</code></td><td>Fichier ordinaire, dossier, existence, lecture autorisée</td></tr><tr><td>Logique</td><td><code>&amp;&amp;</code>, <code>||</code>, <code>!</code></td><td>ET, OU, négation (dans <code>[[ ... ]]</code>)</td></tr></tbody></table></div><h3>Exemple 1 — Comparer un nombre</h3><div class="code-head"><span>Vérifier un seuil</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
+nombre=12
+if [[ "$nombre" -ge 10 ]]; then
+  echo "Le nombre est au moins égal à 10"
+else
+  echo "Le nombre est inférieur à 10"
+fi</code></pre><h3>Exemple 2 — Vérifier un chemin</h3><div class="code-head"><span>Fichier ou dossier ?</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
 read -r -p "Chemin à vérifier : " chemin
 if [[ -f "$chemin" ]]; then
   echo "Fichier ordinaire"
@@ -111,27 +227,38 @@ elif [[ -d "$chemin" ]]; then
   echo "Répertoire"
 else
   echo "Chemin absent ou autre type"
-fi</code></pre><h3>Exercices d’application</h3>
-<div class="exercise"><strong>Exercice 4.1 — Conditions</strong><p>Écrivez un script qui demande un chemin et affiche s’il correspond à un fichier, à un dossier ou à une autre situation.</p></div>
-<div class="exercise"><strong>Exercice 4.2 — Choix</strong><p>Écrivez un script qui lit un choix (1 : date, 2 : utilisateur, 3 : répertoire courant) et utilise case pour exécuter la commande correspondante ; prévoyez un message pour tout autre choix.</p></div>
+fi</code></pre><h3>Plusieurs choix avec case</h3><p>La structure <code>case</code> est pratique pour un menu à plusieurs choix. Le motif <code>*</code> traite les autres valeurs.</p><div class="code-head"><span>Menu simple</span><button class="copy" type="button">Copier</button></div><pre><code>read -r -p "Choix (1 ou 2) : " choix
+case "$choix" in
+  1) date ;;
+  2) whoami ;;
+  *) echo "Choix invalide" ;;
+esac</code></pre>
+<div class="exercise"><strong class="exercise-title">Exercice 4.1 — Conditions</strong><p>Écrivez un script qui demande un chemin et affiche s’il correspond à un fichier, à un dossier ou à une autre situation.</p></div>
+<div class="exercise"><strong class="exercise-title">Exercice 4.2 — Choix</strong><p>Écrivez un script qui lit un choix (1 : date, 2 : utilisateur, 3 : répertoire courant) et utilise case pour exécuter la commande correspondante ; prévoyez un message pour tout autre choix.</p></div>
 </section>
-<section class="panel lesson section" id="s5"><h2><span class="num">05</span>5. Structures répétitives</h2>
-<h3>Boucles</h3><p>for parcourt une liste ; while répète tant qu’une condition est vraie ; until répète tant qu’elle est fausse. break interrompt une boucle et continue passe à l’itération suivante.</p>
-<h3>Précautions</h3><p>Utilisez des conditions d’arrêt explicites. Pour parcourir des noms de fichiers, privilégiez les expansions de chemins correctement citées plutôt que le découpage de la sortie de ls.</p>
-<h3>Exemple pratique</h3><div class="code-head"><span>Exemple Bash</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
-for fichier in "$HOME"/*.txt; do
+<section class="panel lesson section" id="s5"><h2 class="chapter-title"><span class="num">05</span>Structures répétitives</h2><h3>Qu’est-ce qu’une boucle ?</h3><p>Une boucle permet de répéter un ensemble de commandes. On choisit <code>for</code> pour parcourir une liste, <code>while</code> pour répéter tant qu’une condition est vraie et <code>until</code> pour répéter jusqu’à ce qu’une condition devienne vraie.</p><h3>La boucle for : syntaxe générale</h3><div class="code-head"><span>Parcours d’une liste</span><button class="copy" type="button">Copier</button></div><pre><code>for element in liste_de_valeurs; do
+  # Commandes utilisant "$element"
+done</code></pre><div class="code-head"><span>Exemple : afficher trois services</span><button class="copy" type="button">Copier</button></div><pre><code>for service in web mail dns; do
+  echo "Service : $service"
+done</code></pre><h3>La boucle while : syntaxe générale</h3><div class="code-head"><span>Répéter tant que le test est vrai</span><button class="copy" type="button">Copier</button></div><pre><code>while [[ condition ]]; do
+  # Commandes répétées
+  # Modifier une valeur pour atteindre l’arrêt
+done</code></pre><div class="code-head"><span>Exemple : compter de 1 à 3</span><button class="copy" type="button">Copier</button></div><pre><code>compteur=1
+while [[ "$compteur" -le 3 ]]; do
+  echo "Vérification $compteur"
+  ((compteur+=1))
+done</code></pre><h3>La boucle until : syntaxe générale</h3><div class="code-head"><span>Répéter jusqu’à ce que le test soit vrai</span><button class="copy" type="button">Copier</button></div><pre><code>compteur=1
+until [[ "$compteur" -gt 3 ]]; do
+  echo "Étape $compteur"
+  ((compteur+=1))
+done</code></pre><h3>Parcourir des fichiers</h3><div class="code-head"><span>Fichiers .txt du dossier personnel</span><button class="copy" type="button">Copier</button></div><pre><code>for fichier in "$HOME"/*.txt; do
   [[ -e "$fichier" ]] || continue
   printf "Fichier : %s\n" "$fichier"
-done
-compteur=1
-while (( compteur &lt;= 3 )); do
-  echo "Vérification $compteur"
-  ((compteur++))
-done</code></pre><h3>Exercices d’application</h3>
-<div class="exercise"><strong>Exercice 5.1 — Répétition</strong><p>Écrivez un script qui affiche les nombres de 1 à 10 à l’aide d’une boucle while.</p></div>
-<div class="exercise"><strong>Exercice 5.2 — Parcours</strong><p>Écrivez un script qui parcourt les fichiers .log d’un répertoire donné en argument et affiche leurs noms. Gérez le cas où aucun fichier .log n’est présent.</p></div>
+done</code></pre><p><code>break</code> interrompt la boucle ; <code>continue</code> passe à l’itération suivante. Dans chaque boucle conditionnelle, prévoyez une condition d’arrêt atteignable pour éviter une répétition infinie.</p><div class="tip"><strong>À retenir :</strong> <code>for</code> parcourt une série d’éléments ; <code>while</code> continue tant que la condition est vraie ; <code>until</code> continue tant qu’elle est fausse.</div>
+<div class="exercise"><strong class="exercise-title">Exercice 5.1 — Répétition</strong><p>Écrivez un script qui affiche les nombres de 1 à 10 à l’aide d’une boucle while.</p></div>
+<div class="exercise"><strong class="exercise-title">Exercice 5.2 — Parcours</strong><p>Écrivez un script qui parcourt les fichiers .log d’un répertoire donné en argument et affiche leurs noms. Gérez le cas où aucun fichier .log n’est présent.</p></div>
 </section>
-<section class="panel lesson section" id="s6"><h2><span class="num">06</span>6. Manipulation des fichiers et répertoires</h2>
+<section class="panel lesson section" id="s6"><h2 class="chapter-title"><span class="num">06</span>Manipulation des fichiers et répertoires</h2>
 <h3>Commandes utiles</h3><p>mkdir -p crée une arborescence, cp copie, mv déplace, find recherche et grep filtre des lignes. Les redirections &gt; et &gt;&gt; écrivent ou ajoutent du contenu ; | transmet la sortie d’une commande à une autre.</p>
 <h3>Sécurité</h3><p>Citez systématiquement les variables contenant des chemins. Vérifiez les sources avant une copie. Évitez les suppressions destructrices dans les premiers exercices et travaillez dans un répertoire de test.</p>
 <h3>Exemple pratique</h3><div class="code-head"><span>Exemple Bash</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
@@ -143,11 +270,14 @@ if [[ ! -d "$source_dir" ]]; then
 fi
 mkdir -p "$destination" || exit 1
 cp -a "$source_dir"/. "$destination"/ || exit 1
-echo "Copie terminée"</code></pre><h3>Exercices d’application</h3>
-<div class="exercise"><strong>Exercice 6.1 — Arborescence</strong><p>Créez un script qui construit dans un dossier de test les sous-dossiers documents, journaux et sauvegardes, puis affiche leur arborescence avec find.</p></div>
-<div class="exercise"><strong>Exercice 6.2 — Sauvegarde</strong><p>Écrivez un script qui reçoit un répertoire source et un répertoire de destination en arguments, vérifie la source et copie son contenu. Testez uniquement avec des fichiers fictifs.</p></div>
+echo "Copie terminée"</code></pre><h3>Comprendre les redirections et les tubes</h3><p><code>&gt;</code> remplace le contenu d’un fichier par la sortie d’une commande ; <code>&gt;&gt;</code> ajoute du contenu à la fin ; <code>|</code> transmet la sortie standard d’une commande à l’entrée standard d’une autre.</p><div class="code-head"><span>Exemple dans un dossier de test</span><button class="copy" type="button">Copier</button></div><pre><code>mkdir -p "$HOME/test-scripts"
+date &gt; "$HOME/test-scripts/journal.txt"
+whoami &gt;&gt; "$HOME/test-scripts/journal.txt"
+cat "$HOME/test-scripts/journal.txt" | grep -F "$(whoami)"</code></pre><h3>Exercices d’application</h3>
+<div class="exercise"><strong class="exercise-title">Exercice 6.1 — Arborescence</strong><p>Créez un script qui construit dans un dossier de test les sous-dossiers documents, journaux et sauvegardes, puis affiche leur arborescence avec find.</p></div>
+<div class="exercise"><strong class="exercise-title">Exercice 6.2 — Sauvegarde</strong><p>Écrivez un script qui reçoit un répertoire source et un répertoire de destination en arguments, vérifie la source et copie son contenu. Testez uniquement avec des fichiers fictifs.</p></div>
 </section>
-<section class="panel lesson section" id="s7"><h2><span class="num">07</span>7. Bonnes pratiques de rédaction</h2>
+<section class="panel lesson section" id="s7"><h2 class="chapter-title"><span class="num">07</span>Fonctions et bonnes pratiques de rédaction</h2>
 <h3>Lisibilité</h3><p>Choisissez des noms explicites (repertoire_source), une indentation régulière et des commentaires décrivant l’intention. Séparez la configuration, les vérifications et les actions.</p>
 <h3>Robustesse</h3><p>Placez les expansions de chemins entre guillemets, validez les arguments et utilisez des fonctions pour les actions réutilisables. Préférez printf pour un affichage prévisible.</p>
 <h3>Exemple pratique</h3><div class="code-head"><span>Exemple Bash</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
@@ -161,11 +291,25 @@ if (( $# != 1 )); then
 fi
 repertoire="$1"
 [[ -d "$repertoire" ]] || { afficher_erreur "Dossier absent"; exit 1; }
-printf "Dossier valide : %s\n" "$repertoire"</code></pre><h3>Exercices d’application</h3>
-<div class="exercise"><strong>Exercice 7.1 — Refactorisation</strong><p>Réécrivez ce code pour le rendre lisible et sûr : d=$1; mkdir $d; echo fait. Ajoutez la vérification du nombre d’arguments et les guillemets nécessaires.</p></div>
-<div class="exercise"><strong>Exercice 7.2 — Relecture</strong><p>Un collègue a écrit un script sans commentaires, avec les variables a et b et plusieurs blocs répétés. Proposez quatre améliorations concrètes et appliquez-en deux dans un court script.</p></div>
+printf "Dossier valide : %s\n" "$repertoire"</code></pre><h3>Les fonctions : définition et utilité</h3><p>Une <strong>fonction</strong> regroupe plusieurs commandes sous un nom. Elle facilite la réutilisation du code, la lisibilité et la maintenance d’un script. Une fonction doit être définie avant son premier appel dans le déroulement du script.</p><h3>Syntaxe générale d’une fonction Bash</h3><div class="code-head"><span>Définition et appel</span><button class="copy" type="button">Copier</button></div><pre><code>nom_fonction() {
+  # Commandes de la fonction
+}
+
+nom_fonction</code></pre><h3>Exemple : une fonction sans argument</h3><div class="code-head"><span>Afficher un message</span><button class="copy" type="button">Copier</button></div><pre><code>afficher_bienvenue() {
+  echo "Bienvenue dans le script Linux"
+}
+
+afficher_bienvenue</code></pre><h3>Exemple : une fonction avec argument</h3><p>Les paramètres d’une fonction sont accessibles avec <code>$1</code>, <code>$2</code>, etc., <strong>à l’intérieur de la fonction</strong>. Le mot-clé <code>local</code> limite la portée d’une variable à cette fonction.</p><div class="code-head"><span>Réutiliser une fonction</span><button class="copy" type="button">Copier</button></div><pre><code>afficher_machine() {
+  local machine="$1"
+  printf "Machine à vérifier : %s\n" "$machine"
+}
+
+afficher_machine "serveur-web"
+afficher_machine "poste-test"</code></pre><p><strong>Important :</strong> <code>return</code> sert à indiquer un code d’état numérique (0 pour une réussite conventionnelle), et non à renvoyer directement une chaîne de texte. Pour produire du texte, utilisez <code>printf</code> et, si nécessaire, récupérez sa sortie avec <code>$(fonction)</code>.</p><div class="tip"><strong>À retenir :</strong> définissez une fonction avec <code>nom() { ...; }</code>, appelez-la par son nom et transmettez les arguments après ce nom.</div><h3>Exercices d’application</h3>
+<div class="exercise"><strong class="exercise-title">Exercice 7.1 — Refactorisation</strong><p>Réécrivez ce code pour le rendre lisible et sûr : d=$1; mkdir $d; echo fait. Ajoutez la vérification du nombre d’arguments et les guillemets nécessaires.</p></div>
+<div class="exercise"><strong class="exercise-title">Exercice 7.2 — Relecture</strong><p>Un collègue a écrit un script sans commentaires, avec les variables a et b et plusieurs blocs répétés. Proposez quatre améliorations concrètes et appliquez-en deux dans un court script.</p></div>
 </section>
-<section class="panel lesson section" id="s8"><h2><span class="num">08</span>8. Gestion des erreurs et débogage</h2>
+<section class="panel lesson section" id="s8"><h2 class="chapter-title"><span class="num">08</span>Gestion des erreurs et débogage</h2>
 <h3>Codes de sortie</h3><p>Une commande réussie renvoie généralement 0. Les autres codes indiquent un échec ou une situation particulière. Testez directement les commandes avec if commande; then plutôt que de dépendre tardivement de $?.</p>
 <h3>Outils</h3><p>bash -n script.sh vérifie la syntaxe sans exécuter le script. bash -x script.sh affiche les étapes d’exécution : attention, cela peut exposer des données sensibles. Les messages d’erreur peuvent être envoyés vers stderr avec &gt;&amp;2.</p>
 <h3>Exemple pratique</h3><div class="code-head"><span>Exemple Bash</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
@@ -174,11 +318,16 @@ if ! mkdir -p "$HOME/test-scripts/journaux"; then
   exit 1
 fi
 echo "Répertoire prêt"
-# Diagnostic : bash -n script.sh ; bash -x script.sh</code></pre><h3>Exercices d’application</h3>
-<div class="exercise"><strong>Exercice 8.1 — Débogage</strong><p>Corrigez ce script puis vérifiez-le avec bash -n : if [[ -d "$HOME" ]]; then echo "OK" (il manque une instruction de fermeture).</p></div>
-<div class="exercise"><strong>Exercice 8.2 — Gestion d’échec</strong><p>Écrivez un script qui tente de lire un fichier donné en argument. Si le fichier est absent ou illisible, affichez un message sur la sortie d’erreur et quittez avec un code non nul.</p></div>
+# Diagnostic : bash -n script.sh ; bash -x script.sh</code></pre><h3>Étapes de vérification d’un script</h3><ol><li>Vérifiez la syntaxe avec <code>bash -n script.sh</code>.</li><li>Testez le comportement avec des données fictives et des cas d’erreur.</li><li>Utilisez <code>bash -x script.sh</code> si nécessaire, sans exposer de secrets.</li><li>Vérifiez le code de sortie immédiatement après l’exécution avec <code>echo "$?"</code>.</li></ol><div class="code-head"><span>Exemple : traiter un échec</span><button class="copy" type="button">Copier</button></div><pre><code>if mkdir -p "$HOME/test-scripts/rapports"; then
+  echo "Dossier prêt"
+else
+  echo "Erreur de création" &gt;&amp;2
+  exit 1
+fi</code></pre><h3>Exercices d’application</h3>
+<div class="exercise"><strong class="exercise-title">Exercice 8.1 — Débogage</strong><p>Corrigez ce script puis vérifiez-le avec bash -n : if [[ -d "$HOME" ]]; then echo "OK" (il manque une instruction de fermeture).</p></div>
+<div class="exercise"><strong class="exercise-title">Exercice 8.2 — Gestion d’échec</strong><p>Écrivez un script qui tente de lire un fichier donné en argument. Si le fichier est absent ou illisible, affichez un message sur la sortie d’erreur et quittez avec un code non nul.</p></div>
 </section>
-<section class="panel lesson section" id="s9"><h2><span class="num">09</span>9. Automatisation des tâches d’administration Linux</h2>
+<section class="panel lesson section" id="s9"><h2 class="chapter-title"><span class="num">09</span>Automatisation des tâches d’administration Linux</h2>
 <h3>Surveillance</h3><p>df -h indique l’espace disponible sur les systèmes de fichiers ; du -sh mesure un répertoire ; free -h résume la mémoire ; ps affiche les processus. systemctl permet de consulter les services sur les systèmes utilisant systemd.</p>
 <h3>Rapports et planification</h3><p>Un rapport peut regrouper date, nom d’hôte et indicateurs système. cron planifie des tâches selon une expression temporelle ; il faut employer des chemins explicites et rediriger les journaux.</p>
 <h3>Exemple pratique</h3><div class="code-head"><span>Exemple Bash</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
@@ -189,11 +338,11 @@ rapport="$HOME/rapport-systeme.txt"
   df -h
   free -h
 } &gt; "$rapport"
-printf "Rapport créé : %s\n" "$rapport"</code></pre><h3>Exercices d’application</h3>
-<div class="exercise"><strong>Exercice 9.1 — Rapport</strong><p>Créez un script qui génère un rapport daté contenant le nom d’hôte, l’espace disque et la mémoire. Enregistrez le résultat dans un fichier de votre dossier personnel.</p></div>
-<div class="exercise"><strong>Exercice 9.2 — Surveillance</strong><p>Créez un script qui lit le pourcentage d’utilisation de la partition / à partir de df et affiche une alerte si le seuil de 80 % est atteint. Expliquez comment tester la condition sans remplir réellement le disque.</p></div>
+printf "Rapport créé : %s\n" "$rapport"</code></pre><h3>Planifier une exécution avec cron</h3><p>Une entrée cron classique contient cinq champs (minute, heure, jour du mois, mois, jour de la semaine), suivis de la commande. Testez d’abord le script manuellement et utilisez des chemins absolus dans la planification.</p><div class="code-head"><span>Exemple illustratif : tous les jours à 8 h</span><button class="copy" type="button">Copier</button></div><pre><code>0 8 * * * /bin/bash /home/etudiant/scripts/rapport.sh &gt;&gt; /home/etudiant/rapport-cron.log 2&gt;&amp;1</code></pre><p>Adaptez <code>/home/etudiant</code> au véritable dossier personnel du compte concerné. Les tâches cron s’exécutent dans un environnement différent de celui du terminal interactif.</p><h3>Exercices d’application</h3>
+<div class="exercise"><strong class="exercise-title">Exercice 9.1 — Rapport</strong><p>Créez un script qui génère un rapport daté contenant le nom d’hôte, l’espace disque et la mémoire. Enregistrez le résultat dans un fichier de votre dossier personnel.</p></div>
+<div class="exercise"><strong class="exercise-title">Exercice 9.2 — Surveillance</strong><p>Créez un script qui lit le pourcentage d’utilisation de la partition / à partir de df et affiche une alerte si le seuil de 80 % est atteint. Expliquez comment tester la condition sans remplir réellement le disque.</p></div>
 </section>
-<section class="panel lesson section" id="s10"><h2><span class="num">10</span>10. Travaux pratiques intégrateurs</h2>
+<section class="panel lesson section" id="s10"><h2 class="chapter-title"><span class="num">10</span>Travaux pratiques intégrateurs</h2>
 <h3>Méthode de réalisation</h3><p>Pour chaque mini-projet : analyser le besoin, définir les entrées, écrire les vérifications, coder les actions, tester plusieurs scénarios, puis documenter l’utilisation.</p>
 <h3>Critères de qualité</h3><p>Le script doit fonctionner dans un environnement de test, traiter les chemins contenant des espaces, signaler les erreurs, respecter une structure claire et produire une sortie compréhensible.</p>
 <h3>Exemple pratique</h3><div class="code-head"><span>Exemple Bash</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
@@ -202,8 +351,8 @@ printf "Rapport créé : %s\n" "$rapport"</code></pre><h3>Exercices d’applicat
 # 2. Vérifier les ressources
 # 3. Exécuter les opérations
 # 4. Produire un bilan
-# 5. Renvoyer un code de sortie adapté</code></pre><h3>Exercices d’application</h3>
-<div class="exercise"><strong>Exercice 10.1 — Mini-projet A : sauvegarde</strong><p>Développez un script de sauvegarde paramétrable : source, destination, validation, création du dossier cible, copie et bilan. Fournissez trois tests, dont un cas d’erreur.</p></div>
-<div class="exercise"><strong>Exercice 10.2 — Mini-projet B : diagnostic</strong><p>Développez un script de diagnostic Linux regroupant date, hôte, disque, mémoire et état d’un service choisi. Écrivez un rapport et expliquez comment vous vérifiez son exactitude.</p></div>
+# 5. Renvoyer un code de sortie adapté</code></pre><h3>Grille d’évaluation proposée</h3><div class="table-wrap"><table><thead><tr><th>Critère</th><th>Pondération</th></tr></thead><tbody><tr><td>Fonctionnement et résultats attendus</td><td>40 %</td></tr><tr><td>Validation des entrées et gestion des erreurs</td><td>25 %</td></tr><tr><td>Structure, variables et fonctions pertinentes</td><td>20 %</td></tr><tr><td>Tests et documentation</td><td>15 %</td></tr></tbody></table></div><p>Avant la remise, testez un cas normal, un cas limite et un cas d’erreur. N’exécutez pas les scripts d’administration sur une machine de production.</p><h3>Exercices d’application</h3>
+<div class="exercise"><strong class="exercise-title">Exercice 10.1 — Mini-projet A : sauvegarde</strong><p>Développez un script de sauvegarde paramétrable : source, destination, validation, création du dossier cible, copie et bilan. Fournissez trois tests, dont un cas d’erreur.</p></div>
+<div class="exercise"><strong class="exercise-title">Exercice 10.2 — Mini-projet B : diagnostic</strong><p>Développez un script de diagnostic Linux regroupant date, hôte, disque, mémoire et état d’un service choisi. Écrivez un rapport et expliquez comment vous vérifiez son exactitude.</p></div>
 </section>
-<footer>Support pédagogique — 420-E04-UC · Linux / Bash · Les exercices sont proposés sans corrigé.</footer></main><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script>document.querySelectorAll('.copy').forEach(button=>button.addEventListener('click',async()=>{const code=(button.closest('.code-head')?.nextElementSibling?.querySelector('code') || button.closest('section')?.querySelector('pre code'));if(!code)return;try{await navigator.clipboard.writeText(code.textContent);const original=button.textContent;button.textContent='Copié !';setTimeout(()=>button.textContent=original,1500)}catch(e){button.textContent='Sélectionnez le code';}}));window.addEventListener('scroll',()=>{const total=document.documentElement.scrollHeight-innerHeight;document.getElementById('progress').style.width=(total>0?100*scrollY/total:0)+'%';},{passive:true});</script></body></html>
+<footer>Support pédagogique enrichi — 420-E04-UC · Linux / Bash · Exercices sans corrigé · Tests en environnement isolé.</footer></main><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script>document.querySelectorAll('.copy').forEach(button=>button.addEventListener('click',async()=>{const code=(button.closest('.code-head')?.nextElementSibling?.querySelector('code') || button.closest('section')?.querySelector('pre code'));if(!code)return;try{await navigator.clipboard.writeText(code.textContent);const original=button.textContent;button.textContent='Copié !';setTimeout(()=>button.textContent=original,1500)}catch(e){button.textContent='Sélectionnez le code';}}));window.addEventListener('scroll',()=>{const total=document.documentElement.scrollHeight-innerHeight;document.getElementById('progress').style.width=(total>0?100*scrollY/total:0)+'%';},{passive:true});</script></body></html>
