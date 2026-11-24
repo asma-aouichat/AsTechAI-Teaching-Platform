@@ -52,7 +52,7 @@ html{scroll-behavior:smooth}body{background:#f5f7fc;color:var(--ink);font-family
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-terminal{max-width:520px;transform:none}.lesson-hero{margin:18px 14px 0}.panel{padding:28px}}
 @media(max-width:620px){.wrap{padding:0 12px 48px}.lesson-hero{padding:27px 23px;margin:12px 12px 0;border-radius:18px}.hero-grid{gap:22px}.hero-terminal{display:none}.hero-eyebrow{font-size:9px}.panel{padding:22px 18px;border-radius:14px}.toc{grid-template-columns:1fr}.lesson .chapter-title{font-size:1.26rem;gap:11px}.lesson .num{min-width:38px;height:38px;font-size:13px}.lesson pre{font-size:12px;padding:15px}.exercise{padding:16px}}
 @media print{.lesson-hero{background:white;color:#152354;box-shadow:none;border:1px solid #ddd}.lesson-hero h1,.lesson-hero h1 em,.lesson-hero p{color:#152354}.hero-terminal,.copy{display:none}.panel{box-shadow:none;break-inside:auto}.exercise{break-inside:avoid}}
-</style></head>
+</style><style>.solution-33{margin-top:20px;border:1px solid #dce6fa;border-radius:10px;padding:14px;background:#fff}.solution-33 summary{cursor:pointer;font-weight:750;color:#21468e}.solution-33[open] summary{margin-bottom:12px}@media print{.solution-33{display:none}}</style></head>
 <body><nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top as-navbar">
 <div class="container-fluid as-nav-container">
 <a class="navbar-brand as-brand" href="../../../index.html">
@@ -109,7 +109,7 @@ html{scroll-behavior:smooth}body{background:#f5f7fc;color:var(--ink);font-family
 </div>
 </div>
 </nav>
-<header class="lesson-hero"><div class="hero-eyebrow"><span class="hero-dot"></span> 420-E04-UC · INSTALLATION ET GESTION D’ORDINATEURS</div><div class="hero-grid"><div><div class="hero-kicker">LEÇON 27 <span>·</span> LINUX / BASH</div><h1>Rédaction de scripts <em>sous Linux</em></h1><p>Apprenez à créer des scripts Bash fiables, des premières variables à l’automatisation de tâches d’administration.</p><div class="hero-tags"><span>10 chapitres</span><span>20 exercices</span><span>Exemples pratiques</span></div></div><div aria-label="Exemple de terminal Bash" class="hero-terminal"><div class="terminal-top"><span class="lights"><i></i><i></i><i></i></span><span>terminal — bash</span></div><div class="terminal-code"><span class="comment"># Mon premier script</span><br/><span class="prompt">$</span> bash bonjour.sh<br/><span class="output">Bonjour depuis Linux !</span><br/><span class="prompt">$</span> <span class="cursor">▌</span></div></div></div></header><main class="wrap" id="contenu"><article class="panel intro"><h2>Objectifs pédagogiques</h2><p>Créer, exécuter, documenter et tester des scripts Bash fiables afin d’automatiser des opérations courantes d’administration Linux. Les manipulations doivent être réalisées sur une machine virtuelle ou dans un environnement de test.</p><h2>Sommaire</h2><ol class="toc">
+<header class="lesson-hero"><div class="hero-eyebrow"><span class="hero-dot"></span> 420-E04-UC · INSTALLATION ET GESTION D’ORDINATEURS</div><div class="hero-grid"><div><div class="hero-kicker">LEÇON 27 <span>·</span> LINUX / BASH</div><h1>Rédaction de scripts <em>sous Linux</em></h1><p>Apprenez à créer des scripts Bash fiables, des premières variables à l’automatisation de tâches d’administration.</p><div class="hero-tags"><span>10 chapitres</span><span>21 exercices</span><span>Exemples pratiques</span></div></div><div aria-label="Exemple de terminal Bash" class="hero-terminal"><div class="terminal-top"><span class="lights"><i></i><i></i><i></i></span><span>terminal — bash</span></div><div class="terminal-code"><span class="comment"># Mon premier script</span><br/><span class="prompt">$</span> bash bonjour.sh<br/><span class="output">Bonjour depuis Linux !</span><br/><span class="prompt">$</span> <span class="cursor">▌</span></div></div></div></header><main class="wrap" id="contenu"><article class="panel intro"><h2>Objectifs pédagogiques</h2><p>Créer, exécuter, documenter et tester des scripts Bash fiables afin d’automatiser des opérations courantes d’administration Linux. Les manipulations doivent être réalisées sur une machine virtuelle ou dans un environnement de test.</p><h2>Sommaire</h2><ol class="toc">
 <li><a href="#s1">Introduction aux scripts Shell</a></li>
 <li><a href="#s2">Création et exécution d’un script Bash</a></li>
 <li><a href="#s3">Variables et interaction avec l’utilisateur</a></li>
@@ -206,6 +206,61 @@ printf "Nombre d’arguments : %s\n" "$#"
 printf "Premier argument : %s\n" "${1:-non fourni}"</code></pre><div class="tip"><strong>À retenir :</strong> <code>nom=valeur</code> affecte une valeur ; <code>"$nom"</code> la lit ; <code>read -r -p</code> demande une saisie. Ne confondez pas <code>nom</code> et <code>$nom</code>.</div>
 <div class="exercise"><strong class="exercise-title">Exercice 3.1 — Interaction</strong><p>Écrivez un script qui demande un nom de machine et affiche « Machine à vérifier : NOM ». Testez avec un nom contenant un espace.</p></div>
 <div class="exercise"><strong class="exercise-title">Exercice 3.2 — Arguments</strong><p>Écrivez un script rapport.sh qui affiche le nombre d’arguments reçus et le premier argument, ou « non fourni » si celui-ci est absent. Testez avec zéro, un et deux arguments.</p></div>
+<div class="exercise" id="exercice-3-3"><strong class="exercise-title">Exercice 3.3 — Automatisation de la création des comptes utilisateurs sous Linux</strong>
+<p><strong>Contexte :</strong> une entreprise informatique accueille régulièrement de nouveaux employés. L’administrateur système doit préparer leurs comptes, leurs groupes et leurs répertoires de travail. Réutilisez les notions du cours précédent sur les utilisateurs, groupes et permissions pour automatiser ces opérations.</p>
+<p><strong>Travail demandé :</strong> créez le script <code>configurer_employe.sh</code> dans <code>~/scripts</code>.</p>
+<h3>1. Déclaration et initialisation des variables</h3>
+<div class="table-wrap"><table><thead><tr><th>Variable</th><th>Valeur initiale</th><th>Description</th></tr></thead><tbody><tr><td><code>entreprise</code></td><td>Tech Solutions</td><td>Nom de l’entreprise</td></tr><tr><td><code>repertoire_base</code></td><td>/srv/employes</td><td>Répertoire principal</td></tr><tr><td><code>permissions</code></td><td>750</td><td>Permissions par défaut</td></tr><tr><td><code>statut</code></td><td>En attente</td><td>État de la configuration</td></tr></tbody></table></div>
+<h3>2. Récupération des arguments</h3><p>Récupérez le nom du compte et du groupe dans les variables <code>utilisateur</code> et <code>groupe</code>. Affichez le nombre d’arguments et tous les arguments transmis.</p>
+<div class="code-head"><span>Exemple d’exécution</span><button class="copy" type="button">Copier</button></div><pre><code>sudo bash configurer_employe.sh amine dev</code></pre>
+<h3>3. Interaction avec l’administrateur</h3><p>Demandez le nom complet de l’employé, son service et les permissions souhaitées avec <code>read</code>. Modifiez la valeur initiale de <code>permissions</code> avec la saisie.</p>
+<h3>4. Construction du chemin</h3><p>Construisez la variable <code>repertoire_travail</code> en combinant le répertoire de base et le nom du compte. Exemple : <code>/srv/employes/amine</code>.</p>
+<h3>5. Affichage du récapitulatif</h3><p>Utilisez <code>echo</code> et <code>printf</code> pour afficher les informations avant la configuration.</p>
+<div class="code-head"><span>Exemple de résultat attendu</span></div><pre><code>=== CONFIGURATION D’UN EMPLOYÉ ===
+Entreprise : Tech Solutions
+Nom complet : Amine Benali
+Utilisateur : amine
+Groupe : dev
+Service : Développement informatique
+Répertoire : /srv/employes/amine
+Permissions : 770
+Nombre d’arguments : 2
+Argument : amine
+Argument : dev
+Statut : En attente</code></pre>
+<h3>6. Configuration de l’environnement Linux</h3><ol><li>Créez le groupe et le compte avec son dossier personnel.</li><li>Associez le compte au groupe demandé.</li><li>Créez le répertoire de travail, attribuez son propriétaire et son groupe, puis appliquez les permissions saisies.</li><li>Utilisez les variables plutôt que des valeurs fixes dans les commandes.</li></ol>
+<h3>7. Modification du statut et vérification</h3><p>Modifiez le statut en « Configuration terminée », affichez-le et vérifiez le compte, son groupe et les permissions. Ce statut indique seulement que la dernière étape a été atteinte, pas que toutes les commandes ont réussi.</p>
+<h3>Scénarios de test</h3><div class="table-wrap"><table><thead><tr><th>Compte</th><th>Groupe</th><th>Nom complet</th><th>Service</th><th>Permissions</th></tr></thead><tbody><tr><td>amine</td><td>dev</td><td>Amine Benali</td><td>Développement informatique</td><td>770</td></tr><tr><td>sarah</td><td>support</td><td>Sarah Amari</td><td>Support technique</td><td>750</td></tr><tr><td>lina</td><td>audit</td><td>Lina Mansouri</td><td>Audit informatique</td><td>700</td></tr></tbody></table></div>
+<div class="warning"><strong>Précautions :</strong> utilisez une VM dédiée, avec des comptes et groupes inexistants, deux arguments valides et des permissions numériques valides. Vérifiez la syntaxe avant l’exécution. Ne réutilisez pas une VM contenant les comptes des exercices précédents sans restaurer son état initial.</div>
+<h3>Questions de compréhension</h3><ol><li>Pourquoi éviter les espaces autour de = ?</li><li>Quelle différence entre <code>utilisateur</code> et <code>$utilisateur</code> ?</li><li>Pourquoi entourer les expansions de guillemets ?</li><li>Quelle différence entre <code>read</code> et <code>$1</code> ?</li><li>Que représentent <code>$1</code>, <code>$2</code>, <code>$#</code> et <code>"$@"</code> ?</li><li>Quel est l’intérêt des variables en administration Linux ?</li><li>Que se passe-t-il si les arguments manquent ou si le compte existe déjà ?</li></ol>
+<div class="tip"><strong>Contrainte pédagogique :</strong> n’utilisez ni conditions, ni boucles, ni fonctions. La validation automatique sera abordée dans les prochaines sections.</div>
+<details class="solution-33"><summary>Afficher / masquer la solution proposée</summary><p>Corrigé pour les scénarios valides uniquement. Les erreurs ne sont pas encore traitées automatiquement.</p><div class="code-head"><span>configurer_employe.sh</span><button class="copy" type="button">Copier</button></div><pre><code>#!/usr/bin/env bash
+# À exécuter uniquement dans une VM de test avec deux arguments valides.
+entreprise=&quot;Tech Solutions&quot;
+repertoire_base=&quot;/srv/employes&quot;
+permissions=750
+statut=&quot;En attente&quot;
+utilisateur=&quot;$1&quot;
+groupe=&quot;$2&quot;
+read -r -p &quot;Nom complet : &quot; nom_complet
+read -r -p &quot;Service : &quot; service
+read -r -p &quot;Permissions souhaitées : &quot; permissions
+repertoire_travail=&quot;$repertoire_base/$utilisateur&quot;
+echo &quot;=== CONFIGURATION D’UN EMPLOYÉ ===&quot;
+printf &#x27;Entreprise : %s\nNom complet : %s\nUtilisateur : %s\nGroupe : %s\nService : %s\nRépertoire : %s\nPermissions : %s\n&#x27; &quot;$entreprise&quot; &quot;$nom_complet&quot; &quot;$utilisateur&quot; &quot;$groupe&quot; &quot;$service&quot; &quot;$repertoire_travail&quot; &quot;$permissions&quot;
+printf &#x27;Nombre d’arguments : %s\n&#x27; &quot;$#&quot;
+printf &#x27;Argument : %s\n&#x27; &quot;$@&quot;
+printf &#x27;Statut : %s\n&#x27; &quot;$statut&quot;
+groupadd -- &quot;$groupe&quot;
+useradd -m -c &quot;$nom_complet&quot; -g &quot;$groupe&quot; -- &quot;$utilisateur&quot;
+mkdir -p -- &quot;$repertoire_travail&quot;
+chown -- &quot;$utilisateur:$groupe&quot; &quot;$repertoire_travail&quot;
+chmod -- &quot;$permissions&quot; &quot;$repertoire_travail&quot;
+statut=&quot;Configuration terminée&quot;
+printf &#x27;Statut : %s\n&#x27; &quot;$statut&quot;
+id -- &quot;$utilisateur&quot;
+ls -ld -- &quot;$repertoire_travail&quot;
+</code></pre></details></div>
 </section>
 <section class="panel lesson section" id="s4"><h2 class="chapter-title"><span class="num">04</span>Opérateurs et structures conditionnelles</h2><h3>Pourquoi utiliser une condition ?</h3><p>Une structure conditionnelle permet d’exécuter différentes commandes selon qu’un test est vrai ou faux. En Bash, <code>if</code> ouvre la condition, <code>then</code> commence les commandes à exécuter et <code>fi</code> termine la structure.</p><h3>Syntaxe générale : if / else / elif</h3><div class="code-head"><span>Structure conditionnelle</span><button class="copy" type="button">Copier</button></div><pre><code>if [[ condition1 ]]; then
   # Commandes si condition1 est vraie
@@ -355,4 +410,4 @@ printf "Rapport créé : %s\n" "$rapport"</code></pre><h3>Planifier une exécuti
 <div class="exercise"><strong class="exercise-title">Exercice 10.1 — Mini-projet A : sauvegarde</strong><p>Développez un script de sauvegarde paramétrable : source, destination, validation, création du dossier cible, copie et bilan. Fournissez trois tests, dont un cas d’erreur.</p></div>
 <div class="exercise"><strong class="exercise-title">Exercice 10.2 — Mini-projet B : diagnostic</strong><p>Développez un script de diagnostic Linux regroupant date, hôte, disque, mémoire et état d’un service choisi. Écrivez un rapport et expliquez comment vous vérifiez son exactitude.</p></div>
 </section>
-<footer>Support pédagogique enrichi — 420-E04-UC · Linux / Bash · Exercices sans corrigé · Tests en environnement isolé.</footer></main><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script>document.querySelectorAll('.copy').forEach(button=>button.addEventListener('click',async()=>{const code=(button.closest('.code-head')?.nextElementSibling?.querySelector('code') || button.closest('section')?.querySelector('pre code'));if(!code)return;try{await navigator.clipboard.writeText(code.textContent);const original=button.textContent;button.textContent='Copié !';setTimeout(()=>button.textContent=original,1500)}catch(e){button.textContent='Sélectionnez le code';}}));window.addEventListener('scroll',()=>{const total=document.documentElement.scrollHeight-innerHeight;document.getElementById('progress').style.width=(total>0?100*scrollY/total:0)+'%';},{passive:true});</script></body></html>
+<footer>Support pédagogique enrichi — 420-E04-UC · Linux / Bash · Exercices et corrigé repliable (3.3) · Tests en environnement isolé.</footer></main><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script>document.querySelectorAll('.copy').forEach(button=>button.addEventListener('click',async()=>{const code=(button.closest('.code-head')?.nextElementSibling?.querySelector('code') || button.closest('section')?.querySelector('pre code'));if(!code)return;try{await navigator.clipboard.writeText(code.textContent);const original=button.textContent;button.textContent='Copié !';setTimeout(()=>button.textContent=original,1500)}catch(e){button.textContent='Sélectionnez le code';}}));window.addEventListener('scroll',()=>{const total=document.documentElement.scrollHeight-innerHeight;document.getElementById('progress').style.width=(total>0?100*scrollY/total:0)+'%';},{passive:true});</script></body></html>
